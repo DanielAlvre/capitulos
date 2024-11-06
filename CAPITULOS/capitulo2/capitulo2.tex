@@ -1,0 +1,391 @@
+\chapter{Marco Teórico}
+
+
+
+\section{MediaPipe Holistic}
+
+MediaPipe Holistic es una solución integral de Google para el seguimiento del cuerpo humano en tiempo real. El modelo de Holistic combina  modelos de aprendizaje profundo para detectar y rastrear puntos (posiciones flotantes en un  plano x, y) clave en el rostro, las manos y el cuerpo completo. Esta capacidad de análisis detallado de los movimientos corporales es esencial para la captura expresiva de la Lengua de Señas Mexicana (LSM), donde la posición del cuerpo y los movimientos de las manos son fundamentales para recibir y generar la comunicación.
+
+\subsection{Componentes del Modelo Holistic}
+
+MediaPipe Holistic se compone de tres modelos principales:
+
+\begin{enumerate}
+    \item \textbf{Pose Landmarker:}
+    \begin{itemize}
+        \item \textbf{Descripción:}  Este modelo detecta 33 puntos de referencia del cuerpo humano en una imagen o video, incluyendo la nariz, los ojos, las orejas, los hombros, los codos, las muñecas, las caderas, las rodillas y los tobillos. 
+        \item \textbf{Aplicaciones en LSM:}  Estos puntos son cruciales para interpretar las señas, ya que permiten analizar la postura general del cuerpo y la posición de los brazos y las manos en relación al torso. Por ejemplo, la posición de los codos y las muñecas es fundamental para distinguir señas como \textquotedblleft CASA\textquotedblright  u  \textquotedblleft HOLA\textquotedblright.
+        \item \textbf{Imágenes de referencia:} [Imagen de los 33 puntos de referencia de Pose Landmarker sobrepuestos en una persona signando]
+        \item \textbf{Funcionamiento:} El modelo utiliza una red neuronal convolucional similar a MobileNetV2 y está optimizado para aplicaciones de entrenamiento en tiempo real y en el dispositivo.  Primero, detecta la presencia de cuerpos humanos en la imagen, y luego localiza los 33 puntos de referencia en el cuerpo detectado.
+        \item \textbf{Opciones de configuración:}  
+            \begin{itemize}
+                \item \textbf{running\_mode:} Establece el modo de ejecución (IMAGE, VIDEO, LIVE\_STREAM).
+                \item \textbf{num\_poses:} La cantidad máxima de poses a detectar.
+                \item \textbf{min\_pose\_detection\_confidence:} Puntuación mínima para la detección de poses.
+                \item \textbf{min\_pose\_presence\_confidence:} Puntuación mínima de presencia de poses.
+                \item \textbf{min\_tracking\_confidence:} Puntuación mínima para el seguimiento de poses.
+                \item \textbf{output\_segmentation\_masks:}  Si se generan máscaras de segmentación.
+            \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Face Landmarks:}
+    \begin{itemize}
+        \item \textbf{Cantidad:} 468 puntos.
+        \item \textbf{Descripción:}  Detecta puntos clave en el rostro, como los ojos, las cejas, la nariz, la boca y el contorno de la cara.
+        \item \textbf{Aplicaciones en LSM:} Se utilizan para analizar las expresiones faciales, que son un componente gramatical crucial en la LSM. Por ejemplo, las expresiones faciales pueden indicar preguntas, negación, o emociones.
+    \end{itemize}
+
+    \item \textbf{Hand Landmarks:}
+    \begin{itemize}
+        \item \textbf{Cantidad:} 21 puntos por cada mano \cite{ref20}.
+        \item \textbf{Descripción:} Detecta  puntos clave en las manos, como las puntas de los dedos, los nudillos y la palma.
+        \item \textbf{Aplicaciones en LSM:} Permite analizar la forma, orientación y movimiento de las manos, lo cual es fundamental para identificar los diferentes queremas (formas de la mano) en la LSM.
+    \end{itemize}
+\end{enumerate}
+
+\begin{figure}[h]
+  \includegraphics[scale=0.4]{CAPITULOS/capitulo2/hand-landmarks.png}
+  \centering
+  \caption[Puntos de medipipe ]{Puntos de medipipe  \cite{ref20}}
+  \label{fig:imagen_medipipe}
+\end{figure}
+
+
+
+\subsection{Ventajas de MediaPipe Holistic}
+
+\begin{itemize}
+\item \textbf{Integración completa:} Combina el seguimiento de rostro, manos y cuerpo en un solo framework, lo que facilita el desarrollo de aplicaciones de LSM.
+\item \textbf{Rendimiento en tiempo real:} Permite procesar imágenes en tiempo real, lo que es crucial para la fluidez en la traducción de LSM.
+\item \textbf{Eficiencia computacional:} Está optimizado para ejecutarse en dispositivos móviles y de escritorio, con bajo consumo de recursos.
+\item \textbf{Robustez:} Funciona en diferentes condiciones de iluminación y con diferentes tipos de cámaras.
+\item \textbf{Facilidad de uso:} MediaPipe ofrece APIs fáciles de usar para integrar Holistic en aplicaciones de Python, Android y web.
+\end{itemize}
+
+\section{TensorFlow/Keras}
+TensorFlow, una plataforma de aprendizaje automático de código abierto, y Keras, una interfaz de alto nivel para construir y entrenar modelos de redes neuronales, son herramientas esenciales en el desarrollo de modelos de aprendizaje profundo. Estos modelos, entrenados con datos de LSM, son capaces de reconocer y clasificar señas, formando la base del sistema de traducción \cite{ref34}.
+
+\section{Procesamiento Híbrido (Local y en la Nube)}
+El enfoque híbrido combina el procesamiento local en el dispositivo del usuario con el procesamiento en la nube a través de Amazon Web Services (AWS). Esta estrategia aprovecha las ventajas de ambos entornos: el procesamiento local reduce la latencia y protege la privacidad, aspectos cruciales al tratar con datos sensibles como la comunicación en LSM, mientras que la nube ofrece potencia de cómputo escalable para tareas intensivas, como el entrenamiento de modelos y el almacenamiento de datos \cite{ref35}.
+
+\section{Amazon Web Services (AWS)}
+AWS proporciona una amplia gama de servicios en la nube que son fundamentales para el proyecto:
+\begin{itemize}
+    \item \textbf{Buckets S3:} Almacenamiento escalable y seguro para grandes volúmenes de datos de LSM, como videos y modelos de aprendizaje profundo.
+    \item \textbf{Colas SQS:} Facilitan la comunicación asincrónica entre los diferentes microservicios del sistema, permitiendo el procesamiento eficiente y desacoplado de solicitudes de traducción.
+    \item \textbf{Funciones Lambda:} Ejecutan código sin necesidad de aprovisionar o administrar servidores, lo que permite escalar automáticamente el procesamiento de solicitudes de traducción según la demanda \cite{ref5}.
+\end{itemize}
+
+\section{Lingüística de la Lengua de Señas Mexicana (LSM)}
+La LSM, como cualquier lengua natural, posee una gramática compleja que incluye aspectos como la configuración manual, la ubicación, la orientación y el movimiento de las manos, así como las expresiones faciales. El proyecto incorpora conocimientos lingüísticos de la LSM para asegurar una traducción precisa y culturalmente apropiada. La Matriz Segmental, que describe la estructura de las señas en términos de segmentos secuenciales, es una herramienta clave para el análisis y la representación de las señas en el sistema \cite{ref36}.
+
+\section{Diccionarios y Bases de Datos de LSM}
+Aunque existen diccionarios de LSM como "Manos con Voz", la falta de bases de datos estructuradas que contengan la gramática y el léxico de la LSM representa un desafío. El proyecto busca contribuir a la creación de tales recursos, beneficiando no solo a la traducción automática, sino también a la investigación y la enseñanza de la LSM.
+
+\section{ Arquitectura de Microservicios}
+El proyecto adopta una arquitectura de microservicios en la parte del entrenamiento del modelo, donde cada componente del sistema se implementa como un servicio independiente y autónomo. Esta modularidad facilita el desarrollo, la implementación y el mantenimiento del sistema, permitiendo escalar y actualizar componentes individuales sin afectar el funcionamiento global \cite{ref37}.
+
+\section{Redes Neuronales}
+\subsection{Redes Neuronales Convolucionales (CNN)}
+
+Las Redes Neuronales Convolucionales (CNN) son una red neuronal profunda con gran eficacia en el procesamiento de imágenes y videos. Esta capacidad se debe a su estructura, enfoca analizar datos organizados en forma de grilla, como es el caso de las imágenes. En el contexto de la traducción de la Lengua de Señas Mexicana (LSM), las CNN tienen un rol fundamental, ya que facilitan el análisis de las imágenes que capturan las señas realizadas por el usuario.
+
+Las CNN se caracterizan por la inclusión de capas convolucionales. Estas capas emplean filtros (kernels), que se deslizan sobre la imagen de entrada para identificar y extraer características relevantes.
+
+
+\subsubsection{Convolución: Definición General}
+
+La convolución  se puede definir como la integral del producto de dos funciones después de desplazar una de ellas una distancia $t$, como se observa en la ecuación \ref{eq:convolucion_continua}:
+
+\begin{equation}
+    S(t) = \int_{-\infty}^{\infty} x(a)w(t-a) da
+    \label{eq:convolucion_continua}
+\end{equation}
+
+donde:
+
+\begin{itemize}
+    \item  $x(a)$ Es la señal de entrada (entrada de la red).
+    \item  $w(t-a)$ Es la segunda función (kernel) desplazada una distancia $t$.
+    \item  $S(t)$ Es la función resultante de operar la convolución.
+\end{itemize}
+
+La salida ($S$) se conoce como mapa de características.
+
+
+\subsubsection{Convolución Discreta}
+
+Al tener que procesar datos en una computadora, el tiempo y la señal de entrada se discretizan.  En consecuencia, la operación de convolución se adapta al dominio discreto, como se expresa en la ecuación \ref{eq:convolucion_discreta}:
+
+\begin{equation}
+    S(t) = (x * w)(t) = \sum_{a = -\infty}^{\infty} x(a)w(t-a)
+    \label{eq:convolucion_discreta}
+\end{equation}
+
+
+\subsubsection{Convolución en Dos Dimensiones}
+
+Las imágenes son datos bidimensionales, por lo que la convolución se extiende a dos dimensiones. Si $I$ representa la imagen de entrada y $K$ representa el kernel, la convolución 2D se define como:
+
+\begin{equation}
+    S(i,j) = (I * K)(i,j) =  \sum_{m} \sum_{n} I(m,n) K(i-m, j-n)
+    \label{eq:convolucion_2d}
+\end{equation}
+
+donde:
+
+\begin{itemize}
+    \item $S(i,j)$ representa el valor del píxel en la posición $(i,j)$ del mapa de características de salida.
+    \item $I(m,n)$ representa el valor del píxel en la posición $(m,n)$ de la imagen de entrada.
+    \item $K(i-m,j-n)$ representa el valor del elemento en la posición $(i-m,j-n)$ del kernel.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    % [Insertar Ilustración 24: Acción de Convolución]
+    \caption{Acción de Convolución}
+    \label{fig:accion_convolucion}
+\end{figure}
+
+De esta manera, se ilustra la transición de la convolución en su forma general a la convolución discreta y, finalmente, a la convolución 2D empleada en las CNN para el procesamiento de imágenes.
+\subsection{Redes Neuronales Recurrentes (RNN) para el Análisis de Señas Dinámicas}
+
+Las Redes Neuronales Recurrentes (RNN) constituyen una clase de red neuronal artificial que se caracteriza por sus conexiones recurrentes, lo que les confiere la habilidad de procesar secuencias de datos. Esta propiedad las vuelve especialmente idóneas para el reconocimiento de señas dinámicas en la Lengua de Señas Mexicana (LSM), donde la información temporal es fundamental para la adecuada interpretación del significado. A diferencia de las CNN, que se centran principalmente en el análisis de las características espaciales de las imágenes, las RNN se enfocan en la evolución temporal de las señas, considerando cómo la posición y el movimiento de las manos se modifican a lo largo del tiempo.
+
+\subsubsection{LSTM (Long Short-Term Memory)}
+
+Las LSTM (Long Short-Term Memory) son una variante de las RNN que aborda el problema del desvanecimiento del gradiente, un obstáculo frecuente en el entrenamiento de RNN tradicionales. Este problema dificulta la captura de dependencias a largo plazo en las secuencias de datos. Las LSTM, con su arquitectura de memoria a corto y largo plazo, superan esta limitación y permiten modelar secuencias más extensas y complejas.
+
+\paragraph{Arquitectura de una celda LSTM}
+
+Una celda LSTM está compuesta por tres puertas principales:
+
+\begin{itemize}
+    \item \textbf{Puerta de entrada:} Regula la entrada de nueva información a la memoria de la celda.
+    \item \textbf{Puerta de olvido:} Determina qué información se descarta de la memoria de la celda.
+    \item \textbf{Puerta de salida:}  Controla qué información se utiliza para actualizar el estado oculto de la celda.
+\end{itemize}
+
+\paragraph{Ecuaciones de una celda LSTM}
+
+Las siguientes ecuaciones describen el funcionamiento de una celda LSTM:
+
+\begin{align*}
+    i_t &= \sigma(W_{xi} x_t + W_{hi} h_{t-1} + b_i) \\
+    f_t &= \sigma(W_{xf} x_t + W_{hf} h_{t-1} + b_f) \\
+    o_t &= \sigma(W_{xo} x_t + W_{ho} h_{t-1} + b_o) \\
+    \tilde{c}_t &= tanh(W_{xc} x_t + W_{hc} h_{t-1} + b_c) \\
+    c_t &= f_t * c_{t-1} + i_t * \tilde{c}_t \\
+    h_t &= o_t * tanh(c_t)
+\end{align*}
+
+donde:
+
+\begin{itemize}
+    \item $x_t$: Vector de entrada en el instante $t$.
+    \item $h_t$: Estado oculto en el instante $t$.
+    \item $c_t$: Estado de la celda en el instante $t$.
+    \item $i_t$, $f_t$, $o_t$:  Valores de las puertas de entrada, olvido y salida, respectivamente.
+    \item $\tilde{c}_t$:  Candidato al nuevo estado de la celda.
+    \item $W_{xi}$, $W_{hi}$, etc.: Matrices de pesos.
+    \item $b_i$, $b_f$, etc.: Vectores de sesgo.
+    \item $\sigma$: Función sigmoide.
+    \item $tanh$: Función tangente hiperbólica.
+\end{itemize}
+
+\paragraph{Complemento a la red neuronal convolucional}
+
+En el proyecto de identificación de señas LSM, las LSTM complementan a las CNN al procesar la información temporal de las secuencias de imágenes. Mientras que las CNN extraen características espaciales de cada imagen, las LSTM modelan la evolución de estas características a lo largo del tiempo, capturando la dinámica de las señas. Esta combinación de CNN y LSTM permite un análisis más completo de las señas, mejorando la precisión del sistema de reconocimiento.
+
+\paragraph{Ejemplo}
+
+Para reconocer la seña "hola" en LSM, que implica un movimiento de la mano, las CNN podrían identificar la forma de la mano y su posición inicial, mientras que las LSTM analizarían la trayectoria de la mano a lo largo del tiempo para confirmar que se trata del movimiento característico de la seña "hola".
+
+En resumen, la incorporación de LSTM en el proyecto de identificación de señas LSM permite un análisis más preciso y robusto de las señas dinámicas, al considerar la información temporal en conjunto con las características espaciales extraídas por las CNN.
+\section{Funciones de Activación}
+Las funciones de activación introducen no linealidad en las redes neuronales, permitiendo que estas aprendan patrones complejos en los datos. Imaginemos que nuestra red se encuentra ante una bifurcación en el camino; las funciones de activación son responsables de decidir hacia dónde dirigirse.
+
+\subsection{Función Sigmoide}
+La función sigmoide transforma cualquier valor de entrada a un rango entre 0 y 1. Esta función es especialmente útil en la capa de salida para problemas de clasificación binaria, como determinar si una seña corresponde a una palabra específica.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={$x$},
+            ylabel={$\sigma(x)$},
+            xmin=-5, xmax=5,
+            ymin=-0.2, ymax=1.2,
+            legend pos=north west,
+            axis lines=middle,
+            grid=both,
+            minor tick num=4,
+        ]
+        \addplot[domain=-5:5, samples=100, blue, thick] {1/(1+exp(-x))};
+        \legend{Sigmoide}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Gráfica de la función sigmoide.}
+\end{figure}
+
+% Función por partes
+\indexedequation{Función de activacion Sigmoide}{
+f(x) = \begin{cases}
+      \frac{1}{1 + e^{-x}}
+   \end{cases} \label{eq:funcion_por_partes_sigmoide}
+}
+\clearpage
+
+\subsection{Función Tangencial Hiperbólica (tanh)}
+
+La función tangencial hiperbólica, conocida como tanh, es otra función de activación que produce valores en el rango de (-1, 1). A diferencia de la sigmoide, que se limita a valores positivos, tanh puede asignar salidas tanto negativas como positivas. Esto la hace especialmente adecuada para problemas donde es necesario identificar tanto clases positivas como negativas, o en situaciones donde se requiere una salida centrada en cero.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={$x$},
+            ylabel={$\tanh(x)$},
+            xmin=-5, xmax=5,
+            ymin=-1.2, ymax=1.2,
+            legend pos=north west,
+            axis lines=middle,
+            grid=both,
+            minor tick num=4,
+        ]
+        \addplot[domain=-5:5, samples=100, blue, thick] {tanh(x)};
+        \legend{$\tanh(x)$}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Gráfica de la función tangencial hiperbólica ($\tanh$).}
+\end{figure}
+
+% Función por partes de tanh
+\indexedequation{Función de activacion (tanh)}{
+f(x) = \begin{cases}
+      -1, & \text{si } x \to -\infty \\
+      1, & \text{si } x \to +\infty \\
+      \tanh(x), & \text{de otra manera}
+   \end{cases} \label{eq:tanh}
+}
+
+La función tangencial hiperbólica (tanh), se define mediante la siguiente fórmula:
+
+\indexedequation{Función tanh}{
+\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}} \label{eq:tanh_formula}
+}
+
+
+\clearpage
+\subsection{Función ReLU (Rectified Linear Unit)}
+La función ReLU es una función lineal que retorna 0 para entradas negativas y el valor de entrada para entradas positivas. Esta función ha ganado popularidad debido a su simplicidad y eficiencia computacional. En el contexto del reconocimiento de señas, ReLU puede ser utilizada en las capas ocultas de la red neuronal para mejorar la capacidad de aprendizaje del modelo.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={$x$},
+            ylabel={$ReLU(x)$},
+            xmin=-5, xmax=5,
+            ymin=-0.2, ymax=5,
+            legend pos=north west,
+            axis lines=middle,
+            grid=both,
+            minor tick num=4,
+        ]
+        \addplot[domain=-5:0, samples=100, blue, thick] {0};
+        \addplot[domain=0:5, samples=100, blue, thick] {x};
+        \legend{ReLU}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Gráfica de la función ReLU.}
+\end{figure}
+
+% Función por partes
+\indexedequation{Función de activacion Relu}{
+f(x) = \begin{cases}
+      0, & \text{si } x < 0 \\
+      x, & \text{si } x \geq 0 
+   \end{cases} \label{eq:funcion_por_partes_relu}
+}
+\clearpage
+\subsection{Función Softmax}
+La función Softmax es frecuentemente utilizada en modelos de clasificación multiclase, ya que convierte las salidas de la red neuronal en probabilidades. Asigna a cada clase una probabilidad que refleja la certeza del modelo sobre su pertenencia, y la clase con la probabilidad más alta se selecciona como la predicción final. Esta función es esencial en muchas redes neuronales profundas, particularmente en la capa de salida de modelos que manejan múltiples categorías.
+
+
+
+% Figura para la función Softmax
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={$z$},
+            ylabel={$\sigma(z)_j$},
+            xmin=-5, xmax=5,
+            ymin=0, ymax=1,
+            legend pos=north west,
+            axis lines=middle,
+            grid=both,
+            minor tick num=4
+        ]
+            % Softmax example with three fixed components
+            \addplot[domain=-5:5, samples=100, blue, thick] 
+                {exp(x)/(exp(x) + exp(0) + exp(-1))};
+            \legend{Softmax}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Gráfica de la función de activación Softmax considerando tres valores fijos \( z = -1, 0, 1 \).}
+    \label{fig:softmax}
+\end{figure}
+
+\indexedequation{Función de activación Softmax}{
+\sigma(z)_j = \frac{e^{z_j}}{\sum_{k=1}^K e^{z_k}} \label{eq:softmax}
+}
+
+\clearpage
+Las funciones de activación juegan un papel crucial en la reducción de la complejidad computacional. Esto es particularmente relevante, dado que se ejecutan para cada neurona en la red, para cada muestra y en cada ciclo de entrenamiento. Por ejemplo, con un conjunto de 1500 muestras y 10 características en una red con 4 capas de 64 neuronas cada una, esto puede traducirse en millones de ejecuciones en cada iteración de entrenamiento.
+
+Sin funciones de activación, la red operaría de manera lineal, lo que limitaría su capacidad para aprender patrones complejos. 
+La función sigmoide, que limita los valores entre (0, 1), es útil para predecir probabilidades. Por otro lado, la tangente hiperbólica (tanh) ofrece un rango de (-1, 1) y es más efectiva para modelar relaciones donde las entradas negativas deben ser fuertemente negativas y las positivas fuertemente positivas.
+
+La función ReLU, en particular, ha demostrado ser extremadamente eficaz en redes neuronales convolucionales y de aprendizaje profundo, ya que descarta las entradas negativas, lo que simplifica el proceso computacional. Por su parte, la variante Leaky ReLU evita el problema de perder información al permitir que algunos valores negativos pasen con un peso reducido.
+
+Finalmente, la función Softmax permite realizar clasificaciones categóricas multiclase y se aplica en las capas de salida, facilitando la interpretación de las salidas de la red como probabilidades, lo que es fundamental para muchas aplicaciones de inteligencia artificial.
+
+
+\section{Entrada de Arreglos Fila (Vectores)}
+La entrada de datos al modelo de aprendizaje profundo se realiza en forma de arreglos fila o vectores, que representan las características extraídas de las señas capturadas por la cámara. Estos vectores contienen información sobre la seña en cada cuadro de la secuencia, permitiendo al modelo aprender a reconocer patrones y clasificar las señas \cite{ref38}.
+
+\section{Datasets para el Reconocimiento de LSM}
+
+El desarrollo de un sistema de traducción de LSM requiere un conjunto de datos robusto y diverso para entrenar y evaluar los modelos de aprendizaje profundo. Estos datasets deben contener imágenes o videos de personas realizando señas en LSM, junto con sus correspondientes traducciones al español.
+
+\subsection{Características de los Datasets}
+
+Los datasets ideales para el reconocimiento de LSM deben cumplir con las siguientes características:
+
+\begin{itemize}
+    \item \textbf{Variedad de Señas:} Incluir un amplio repertorio de señas, abarcando el alfabeto, números,  palabras comunes,  expresiones faciales y gramática de la LSM.
+    \item \textbf{Diversidad de Signantes:}  Contener muestras de diferentes signantes con variaciones en edad, género,  etnia,  experiencia en LSM y estilo de señas. 
+    \item \textbf{Etiquetado Preciso:} Cada muestra debe estar etiquetada correctamente con su correspondiente traducción al español, incluyendo información sobre la  seña,  significado,  y contexto gramatical.
+    \item \textbf{Tamaño del Dataset:}  Un mayor número de muestras generalmente mejora el rendimiento del modelo,  permitiendo un aprendizaje más robusto y una mejor generalización.
+    \item \textbf{Formato de Datos:}  Los datos deben estar en un formato adecuado para el entrenamiento de modelos de aprendizaje profundo,  como imágenes,  videos,  o secuencias de datos.
+\end{itemize}
+
+\subsection{Entrada de Datos al Modelo}
+
+La entrada de datos al modelo de aprendizaje profundo se realiza en forma de arreglos fila o vectores, que representan las características extraídas de las señas capturadas por la cámara. Estos vectores contienen información sobre la seña en cada cuadro de la secuencia, gracias a un enfoque holístico, permitiendo al modelo aprender a reconocer patrones y clasificar las señas \cite{ref38}.
+\indexedequation{Matriz A}{
+A = \begin{pmatrix} a_1 & a_2 & a_3 & \cdots & a_n \end{pmatrix} \label{eq:matrizA}
+}
+
+Donde:
+
+\begin{itemize}
+    \item  $A$ representa el vector de características.
+    \item  $a_1, a_2, a_3, ..., a_n$ son las características individuales extraídas de la seña, como la posición de la mano, la forma de la mano, la orientación, el movimiento, etc.
+\end{itemize}
+
+
+
+Este enfoque de representación de datos permite que el modelo capture la información espacial y temporal de la seña de manera eficiente, lo que es fundamental para un reconocimiento preciso de la LSM.

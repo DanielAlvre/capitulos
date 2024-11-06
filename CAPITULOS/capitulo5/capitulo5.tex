@@ -1,0 +1,58 @@
+\chapter{Diseño}
+\section{Desarrollo de un Sistema de Reconocimiento de Señas}
+El sistema de reconocimiento de señas que se desarrollará utilizará principalmente la información de la posición de las falanges de la mano y el antebrazo, capturada a través de una cámara web. Para el seguimiento de manos, se empleará \textbf{MediaPipe Holistic} u otra API de \textbf{hand tracking} que cumpla con criterios de precisión, velocidad, facilidad de integración y soporte para el reconocimiento de la \textbf{Lengua de Señas Mexicana (LSM)}.
+
+Este trabajo se centra en la configuración manual, es decir, en la forma y posición de las manos y los antebrazos durante la realización de una seña. Es importante tener en cuenta que el uso de una cámara implica limitaciones en el campo de visión. Aunque ofrece mayor flexibilidad que algunos sensores, factores como el entorno y la distancia a la cámara pueden afectar la calidad de la captura de datos. Por ello, el sistema se enfocará en la parte superior del cuerpo del usuario, desde los antebrazos hacia arriba, incluyendo las manos, que son las áreas clave para la expresión en LSM.
+
+El flujo de trabajo del sistema, ilustrado en el diagrama \ref{fig:diagrama_composicion}, se desarrolla de la siguiente manera:
+
+\begin{itemize}
+    \item \textbf{Iniciar Grabación/Toma de Fotos}: El usuario inicia el proceso, lo que activa la captura de video o fotos.
+    \item \textbf{Captura y Procesamiento de Datos}: El sistema divide el video en frames y almacena estos datos localmente antes de subirlos a la nube.
+    \item \textbf{Almacenamiento y Notificación}: Los frames se almacenan en un bucket de S3, y se envían notificaciones a través de \textbf{EventBridge}.
+    \item \textbf{Invocación de Microservicios}: Se invoca un microservicio que procesa los frames utilizando \textbf{MediaPipe} para extraer características relevantes de las manos y antebrazos.
+    \item \textbf{Entrenamiento y Predicción}: Los modelos de machine learning se entrenan con los datos procesados. Cuando el usuario inicia la traducción, el sistema captura frames, predice las palabras en base a un modelo local y genera el audio correspondiente a la seña.
+\end{itemize}
+
+El sistema no solo busca reconocer las señas de manera precisa, sino también facilitar la comunicación efectiva mediante la generación de audio en tiempo real, que se reproducirá para el usuario. Además, el enfoque en la parte superior del cuerpo garantiza que se capture adecuadamente la expresión manual esencial para el reconocimiento de la LSM.
+
+
+\begin{figure}[h]
+  \includegraphics[scale=0.17]{CAPITULOS/capitulo1/segundo.png}
+  \centering
+  \caption[Diagrama de secuencia composición del sistema ]{Diagrama de secuencia composición del sistema}
+  \label{fig:diagrama_composicion}
+\end{figure}
+
+\clearpage
+\section{Proceso de Muestreo}
+
+El proceso de reconocimiento comenzará cuando el usuario realice un gesto específico de inicio, como alzar la mano. A partir de ese momento, se capturarán fotogramas (frames) de la seña. Estos datos se almacenarán en la nube, utilizando un servicio como Amazon S3, para su posterior procesamiento.
+
+\section{Proceso de Extracción de Datos y Entrenamiento}
+
+La API de MediaPipe Holistic (u otra similar) se encargará de procesar los fotogramas y extraer la posición de los puntos de referencia relevantes en las manos y antebrazos. Una vez que se hayan recopilado suficientes muestras de entrenamiento, se utilizará un microservicio en Python que utilice TensorFlow o Keras para entrenar un modelo de aprendizaje profundo capaz de reconocer las señas. Este modelo se desplegará en la nube para garantizar la escalabilidad y el manejo eficiente de las solicitudes de entrenamiento.
+
+\section{Reconocimiento y Traducción de Señas}
+
+El algoritmo entrenado clasificará la seña emitida, comparándola con las señas previamente clasificadas y entradas. Para ello, utilizará la información de la posición de los puntos de referencia proporcionada por la API de hand tracking y realizará un mapeo a la configuración manual de la seña, como entrada al modelo. Una vez que se logre el reconocimiento de una seña dentro de la LSM, el sistema proporcionará la traducción al español, seguida de un mensaje de voz generado mediante una API de Text-To-Speech.
+
+\section{Arquitectura del Sistema}
+
+\begin{itemize}
+    \item El programa de obtención de muestreo residirá en un entorno on-premise (en el dispositivo del usuario). Se encargará de capturar los datos, realizar un preprocesamiento básico y enviarlos a la nube.
+    \item El sistema de almacenamiento de fotogramas, el entrenamiento del modelo y el despliegue del algoritmo de clasificación se llevarán a cabo en la nube, lo que permitirá escalabilidad y automatización de procesos.
+    \item La decisión de desplegar el sistema de traducción en la nube o en un entorno on-premise se basará en un análisis de varios factores, como costo y latencia.
+\end{itemize}
+
+\section{Tecnologías Utilizadas}
+
+\begin{itemize}
+    \item MediaPipe Holistic (o API similar): Captura y procesamiento de datos de la cámara.
+    \item TensorFlow: Entrenamiento y despliegue del modelo de aprendizaje profundo.
+    \item Amazon S3: Almacenamiento de fotogramas y datos en la nube.
+    \item Python: Lenguaje de programación principal.
+    \item API de Text-To-Speech: Generación de mensajes de voz.
+    \item Microservicios, SQS, Lambda, EventBridge: Componentes para la arquitectura en la nube (si se opta por esa opción).
+    \item Tecnologías web: Sistema web (en conjunto con su framework).
+\end{itemize}
