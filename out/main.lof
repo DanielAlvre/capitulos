@@ -6,9 +6,9 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Puntos de medipipe }}{17}{}%
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Acción de Convolución}}{20}{}%
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Gráfica de la función sigmoide.}}{22}{}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Gráfica de la función tangencial hiperbólica ($\tanh $).}}{23}{}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Gráfica de la función ReLU.}}{24}{}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Gráfica de la función de activación Softmax considerando tres valores fijos \( z = -1, 0, 1 \).}}{25}{}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Gráfica de la función tangencial hiperbólica ($\tanh $).}}{22}{}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Gráfica de la función ReLU.}}{23}{}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Gráfica de la función de activación Softmax considerando tres valores fijos \( z = -1, 0, 1 \).}}{24}{}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Diagrama de casos de uso del Sistema Principal}}{33}{}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Diagrama de casos de uso del Sistema Principal}}{31}{}%

@@ -155,11 +155,13 @@ donde:
 \end{itemize}
 
 \begin{figure}[h]
+    \includegraphics[width=0.9\textwidth]{CAPITULOS/capitulo2/imagenpresentacion}
     \centering
-    % [Insertar Ilustración 24: Acción de Convolución]
     \caption{Acción de Convolución}
     \label{fig:accion_convolucion}
 \end{figure}
+
+
 
 De esta manera, se ilustra la transición de la convolución en su forma general a la convolución discreta y, finalmente, a la convolución 2D empleada en las CNN para el procesamiento de imágenes.
 \subsection{Redes Neuronales Recurrentes (RNN) para el Análisis de Señas Dinámicas}
@@ -218,7 +220,7 @@ Las funciones de activación introducen no linealidad en las redes neuronales, p
 \subsection{Función Sigmoide}
 La función sigmoide transforma cualquier valor de entrada a un rango entre 0 y 1. Esta función es especialmente útil en la capa de salida para problemas de clasificación binaria, como determinar si una seña corresponde a una palabra específica.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
@@ -244,13 +246,13 @@ f(x) = \begin{cases}
       \frac{1}{1 + e^{-x}}
    \end{cases} \label{eq:funcion_por_partes_sigmoide}
 }
-\clearpage
+
 
 \subsection{Función Tangencial Hiperbólica (tanh)}
 
 La función tangencial hiperbólica, conocida como tanh, es otra función de activación que produce valores en el rango de (-1, 1). A diferencia de la sigmoide, que se limita a valores positivos, tanh puede asignar salidas tanto negativas como positivas. Esto la hace especialmente adecuada para problemas donde es necesario identificar tanto clases positivas como negativas, o en situaciones donde se requiere una salida centrada en cero.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
@@ -286,11 +288,11 @@ La función tangencial hiperbólica (tanh), se define mediante la siguiente fór
 }
 
 
-\clearpage
+
 \subsection{Función ReLU (Rectified Linear Unit)}
 La función ReLU es una función lineal que retorna 0 para entradas negativas y el valor de entrada para entradas positivas. Esta función ha ganado popularidad debido a su simplicidad y eficiencia computacional. En el contexto del reconocimiento de señas, ReLU puede ser utilizada en las capas ocultas de la red neuronal para mejorar la capacidad de aprendizaje del modelo.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
@@ -318,14 +320,14 @@ f(x) = \begin{cases}
       x, & \text{si } x \geq 0 
    \end{cases} \label{eq:funcion_por_partes_relu}
 }
-\clearpage
+
 \subsection{Función Softmax}
 La función Softmax es frecuentemente utilizada en modelos de clasificación multiclase, ya que convierte las salidas de la red neuronal en probabilidades. Asigna a cada clase una probabilidad que refleja la certeza del modelo sobre su pertenencia, y la clase con la probabilidad más alta se selecciona como la predicción final. Esta función es esencial en muchas redes neuronales profundas, particularmente en la capa de salida de modelos que manejan múltiples categorías.
 
 
 
 % Figura para la función Softmax
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
@@ -352,7 +354,7 @@ La función Softmax es frecuentemente utilizada en modelos de clasificación mul
 \sigma(z)_j = \frac{e^{z_j}}{\sum_{k=1}^K e^{z_k}} \label{eq:softmax}
 }
 
-\clearpage
+
 Las funciones de activación juegan un papel crucial en la reducción de la complejidad computacional. Esto es particularmente relevante, dado que se ejecutan para cada neurona en la red, para cada muestra y en cada ciclo de entrenamiento. Por ejemplo, con un conjunto de 1500 muestras y 10 características en una red con 4 capas de 64 neuronas cada una, esto puede traducirse en millones de ejecuciones en cada iteración de entrenamiento.
 
 Sin funciones de activación, la red operaría de manera lineal, lo que limitaría su capacidad para aprender patrones complejos. 
@@ -364,7 +366,7 @@ Finalmente, la función Softmax permite realizar clasificaciones categóricas mu
 
 
 \section{Entrada de Arreglos Fila (Vectores)}
-La entrada de datos al modelo de aprendizaje profundo se realiza en forma de arreglos fila o vectores, que representan las características extraídas de las señas capturadas por la cámara. Estos vectores contienen información sobre la seña en cada cuadro de la secuencia, permitiendo al modelo aprender a reconocer patrones y clasificar las señas \cite{ref38}.
+La entrada de datos al modelo de aprendizaje profundo se realiza en forma de arreglos fila o vectores, que representan las características extraídas de las señas capturadas por la cámara. Estos vectores contienen información sobre la seña en cada cuadro de la secuencia, permitiendo al modelo aprender a reconocer patrones y clasificar las señas\cite{ref38}.
 
 \section{Datasets para el Reconocimiento de LSM}
 
@@ -384,7 +386,7 @@ Los datasets ideales para el reconocimiento de LSM deben cumplir con las siguien
 
 \subsection{Entrada de Datos al Modelo}
 
-La entrada de datos al modelo de aprendizaje profundo se realiza en forma de arreglos fila o vectores, que representan las características extraídas de las señas capturadas por la cámara. Estos vectores contienen información sobre la seña en cada cuadro de la secuencia, gracias a un enfoque holístico, permitiendo al modelo aprender a reconocer patrones y clasificar las señas \cite{ref38}.
+La entrada de datos al modelo de aprendizaje profundo se realiza en forma de arreglos fila o vectores, que representan las características extraídas de las señas capturadas por la cámara. Estos vectores contienen información sobre la seña en cada cuadro de la secuencia, gracias a un enfoque holístico, permitiendo al modelo aprender a reconocer patrones y clasificar las señas\cite{ref38}.
 \indexedequation{Matriz A}{
 A = \begin{pmatrix} a_1 & a_2 & a_3 & \cdots & a_n \end{pmatrix} \label{eq:matrizA}
 }

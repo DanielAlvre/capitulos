@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.6)  7 NOV 2024 19:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.6)  7 NOV 2024 21:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -529,14 +529,6 @@ Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
 \backup@length=\skip51
 \ar@cellbox=\box64
 )
-(/usr/local/texlive/2024/texmf-dist/tex/latex/float/float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count297
-\float@exts=\toks42
-\float@box=\box65
-\@float@everytoks=\toks43
-\@floatcapt=\box66
-)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
 )
@@ -568,9 +560,8 @@ Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
 \caption@hangindent=\dimen281
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count298
-\c@continuedfloat=\count299
-Package caption Info: float package is loaded.
+\c@caption@flags=\count297
+\c@continuedfloat=\count298
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2023/05/13 v2.17o AMS math features
@@ -582,7 +573,7 @@ Package: amstext 2021/08/26 v2.01 AMS text
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks44
+\@emptytoks=\toks42
 \ex@=\dimen282
 ))
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsbsy.sty
@@ -592,19 +583,19 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count300
+\inf@bad=\count299
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count301
-\leftroot@=\count302
+\uproot@=\count300
+\leftroot@=\count301
 LaTeX Info: Redefining \overline on input line 399.
 LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count303
-\DOTSCASE@=\count304
+\classnum@=\count302
+\DOTSCASE@=\count303
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box67
-\strutbox@=\box68
+\Mathstrutbox@=\box65
+\strutbox@=\box66
 LaTeX Info: Redefining \big on input line 722.
 LaTeX Info: Redefining \Big on input line 723.
 LaTeX Info: Redefining \bigg on input line 724.
@@ -612,31 +603,31 @@ LaTeX Info: Redefining \Bigg on input line 725.
 \big@size=\dimen284
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count305
+\macc@depth=\count304
 LaTeX Info: Redefining \bmod on input line 905.
 LaTeX Info: Redefining \pmod on input line 910.
 LaTeX Info: Redefining \smash on input line 940.
 LaTeX Info: Redefining \relbar on input line 970.
 LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count306
+\c@MaxMatrixCols=\count305
 \dotsspace@=\muskip16
-\c@parentequation=\count307
-\dspbrk@lvl=\count308
-\tag@help=\toks45
-\row@=\count309
-\column@=\count310
-\maxfields@=\count311
-\andhelp@=\toks46
+\c@parentequation=\count306
+\dspbrk@lvl=\count307
+\tag@help=\toks43
+\row@=\count308
+\column@=\count309
+\maxfields@=\count310
+\andhelp@=\toks44
 \eqnshift@=\dimen285
 \alignsep@=\dimen286
 \tagshift@=\dimen287
 \tagwidth@=\dimen288
 \totwidth@=\dimen289
 \lineht@=\dimen290
-\@envbody=\toks47
+\@envbody=\toks45
 \multlinegap=\skip62
 \multlinetaggap=\skip63
-\mathdisplay@stack=\toks48
+\mathdisplay@stack=\toks46
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )
@@ -672,8 +663,8 @@ Package tocloft Info: The document has chapter divisions on input line 51.
 \cftbeforefigskip=\skip90
 \cftfigindent=\skip91
 \cftfignumwidth=\skip92
-\c@lofdepth=\count312
-\c@lotdepth=\count313
+\c@lofdepth=\count311
+\c@lotdepth=\count312
 \cftbeforelottitleskip=\skip93
 \cftafterlottitleskip=\skip94
 \cftbeforetabskip=\skip95
@@ -686,29 +677,58 @@ Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 )
-\c@r@tfl@t=\count314
+\c@r@tfl@t=\count313
 \rotFPtop=\skip98
 \rotFPbot=\skip99
-\rot@float@box=\box69
-\rot@mess@toks=\toks49
+\rot@float@box=\box67
+\rot@mess@toks=\toks47
 )
-\c@myequations=\count315
+(/usr/local/texlive/2024/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count314
+\float@exts=\toks48
+\float@box=\box68
+\@float@everytoks=\toks49
+\@floatcapt=\box69
+)
+
+./main.tex:29: LaTeX Error: Two \documentclass or \documentstyle commands.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.29 \documentclass{
+                    article}
+The document may only declare one class.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2023/07/08 v2.11c `tabularx' package (DPC)
+\TX@col@width=\dimen291
+\TX@old@table=\dimen292
+\TX@old@col=\dimen293
+\TX@target=\dimen294
+\TX@delta=\dimen295
+\TX@cols=\count315
+\TX@ftn=\toks50
+)
+\c@myequations=\count316
 \cftbeforemyequationsskip=\skip100
 \cftmyequationsindent=\skip101
 \cftmyequationsnumwidth=\skip102
-\c@equdepth=\count316
+\c@equdepth=\count317
 \cftbeforeequtitleskip=\skip103
 \cftafterequtitleskip=\skip104
 
 
-./main.tex:68: LaTeX Error: Command \listofmyequations already defined.
+./main.tex:71: LaTeX Error: Command \listofmyequations already defined.
                Or name \end... illegal, see p.192 of the manual.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.68 }
+l.71 }
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -733,7 +753,7 @@ Package pdftexcmds Info: \pdfdraftmode found.
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count317
+\etb@tempcnta=\count318
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
@@ -743,7 +763,7 @@ Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 ))
 (/usr/local/texlive/2024/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count318
+\lrq@indent=\count319
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
@@ -752,49 +772,49 @@ File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-\c@tabx@nest=\count319
-\c@listtotal=\count320
-\c@listcount=\count321
-\c@liststart=\count322
-\c@liststop=\count323
-\c@citecount=\count324
-\c@citetotal=\count325
-\c@multicitecount=\count326
-\c@multicitetotal=\count327
-\c@instcount=\count328
-\c@maxnames=\count329
-\c@minnames=\count330
-\c@maxitems=\count331
-\c@minitems=\count332
-\c@citecounter=\count333
-\c@maxcitecounter=\count334
-\c@savedcitecounter=\count335
-\c@uniquelist=\count336
-\c@uniquename=\count337
-\c@refsection=\count338
-\c@refsegment=\count339
-\c@maxextratitle=\count340
-\c@maxextratitleyear=\count341
-\c@maxextraname=\count342
-\c@maxextradate=\count343
-\c@maxextraalpha=\count344
-\c@abbrvpenalty=\count345
-\c@highnamepenalty=\count346
-\c@lownamepenalty=\count347
-\c@maxparens=\count348
-\c@parenlevel=\count349
-\blx@tempcnta=\count350
-\blx@tempcntb=\count351
-\blx@tempcntc=\count352
-\c@blx@maxsection=\count353
-\blx@maxsegment@0=\count354
-\blx@notetype=\count355
-\blx@parenlevel@text=\count356
-\blx@parenlevel@foot=\count357
-\blx@sectionciteorder@0=\count358
-\blx@sectionciteorderinternal@0=\count359
-\blx@entrysetcounter=\count360
-\blx@biblioinstance=\count361
+\c@tabx@nest=\count320
+\c@listtotal=\count321
+\c@listcount=\count322
+\c@liststart=\count323
+\c@liststop=\count324
+\c@citecount=\count325
+\c@citetotal=\count326
+\c@multicitecount=\count327
+\c@multicitetotal=\count328
+\c@instcount=\count329
+\c@maxnames=\count330
+\c@minnames=\count331
+\c@maxitems=\count332
+\c@minitems=\count333
+\c@citecounter=\count334
+\c@maxcitecounter=\count335
+\c@savedcitecounter=\count336
+\c@uniquelist=\count337
+\c@uniquename=\count338
+\c@refsection=\count339
+\c@refsegment=\count340
+\c@maxextratitle=\count341
+\c@maxextratitleyear=\count342
+\c@maxextraname=\count343
+\c@maxextradate=\count344
+\c@maxextraalpha=\count345
+\c@abbrvpenalty=\count346
+\c@highnamepenalty=\count347
+\c@lownamepenalty=\count348
+\c@maxparens=\count349
+\c@parenlevel=\count350
+\blx@tempcnta=\count351
+\blx@tempcntb=\count352
+\blx@tempcntc=\count353
+\c@blx@maxsection=\count354
+\blx@maxsegment@0=\count355
+\blx@notetype=\count356
+\blx@parenlevel@text=\count357
+\blx@parenlevel@foot=\count358
+\blx@sectionciteorder@0=\count359
+\blx@sectionciteorderinternal@0=\count360
+\blx@entrysetcounter=\count361
+\blx@biblioinstance=\count362
 \labelnumberwidth=\skip105
 \labelalphawidth=\skip106
 \biblabelsep=\skip107
@@ -806,9 +826,9 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \blx@bcfin=\read4
 \blx@bcfout=\write4
 \blx@langwohyphens=\language90
-\c@mincomprange=\count362
-\c@maxcomprange=\count363
-\c@mincompwidth=\count364
+\c@mincomprange=\count363
+\c@maxcomprange=\count364
+\c@mincompwidth=\count365
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
@@ -819,74 +839,74 @@ Package biblatex Info: Trying to load biblatex style data model...
 Package biblatex Info: ... file 'numeric.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count365
-\c@savedafterword=\count366
-\c@annotator=\count367
-\c@savedannotator=\count368
-\c@author=\count369
-\c@savedauthor=\count370
-\c@bookauthor=\count371
-\c@savedbookauthor=\count372
-\c@commentator=\count373
-\c@savedcommentator=\count374
-\c@editor=\count375
-\c@savededitor=\count376
-\c@editora=\count377
-\c@savededitora=\count378
-\c@editorb=\count379
-\c@savededitorb=\count380
-\c@editorc=\count381
-\c@savededitorc=\count382
-\c@foreword=\count383
-\c@savedforeword=\count384
-\c@holder=\count385
-\c@savedholder=\count386
-\c@introduction=\count387
-\c@savedintroduction=\count388
-\c@namea=\count389
-\c@savednamea=\count390
-\c@nameb=\count391
-\c@savednameb=\count392
-\c@namec=\count393
-\c@savednamec=\count394
-\c@translator=\count395
-\c@savedtranslator=\count396
-\c@shortauthor=\count397
-\c@savedshortauthor=\count398
-\c@shorteditor=\count399
-\c@savedshorteditor=\count400
-\c@labelname=\count401
-\c@savedlabelname=\count402
-\c@institution=\count403
-\c@savedinstitution=\count404
-\c@lista=\count405
-\c@savedlista=\count406
-\c@listb=\count407
-\c@savedlistb=\count408
-\c@listc=\count409
-\c@savedlistc=\count410
-\c@listd=\count411
-\c@savedlistd=\count412
-\c@liste=\count413
-\c@savedliste=\count414
-\c@listf=\count415
-\c@savedlistf=\count416
-\c@location=\count417
-\c@savedlocation=\count418
-\c@organization=\count419
-\c@savedorganization=\count420
-\c@origlocation=\count421
-\c@savedoriglocation=\count422
-\c@origpublisher=\count423
-\c@savedorigpublisher=\count424
-\c@publisher=\count425
-\c@savedpublisher=\count426
-\c@language=\count427
-\c@savedlanguage=\count428
-\c@origlanguage=\count429
-\c@savedoriglanguage=\count430
-\c@pageref=\count431
-\c@savedpageref=\count432
+\c@afterword=\count366
+\c@savedafterword=\count367
+\c@annotator=\count368
+\c@savedannotator=\count369
+\c@author=\count370
+\c@savedauthor=\count371
+\c@bookauthor=\count372
+\c@savedbookauthor=\count373
+\c@commentator=\count374
+\c@savedcommentator=\count375
+\c@editor=\count376
+\c@savededitor=\count377
+\c@editora=\count378
+\c@savededitora=\count379
+\c@editorb=\count380
+\c@savededitorb=\count381
+\c@editorc=\count382
+\c@savededitorc=\count383
+\c@foreword=\count384
+\c@savedforeword=\count385
+\c@holder=\count386
+\c@savedholder=\count387
+\c@introduction=\count388
+\c@savedintroduction=\count389
+\c@namea=\count390
+\c@savednamea=\count391
+\c@nameb=\count392
+\c@savednameb=\count393
+\c@namec=\count394
+\c@savednamec=\count395
+\c@translator=\count396
+\c@savedtranslator=\count397
+\c@shortauthor=\count398
+\c@savedshortauthor=\count399
+\c@shorteditor=\count400
+\c@savedshorteditor=\count401
+\c@labelname=\count402
+\c@savedlabelname=\count403
+\c@institution=\count404
+\c@savedinstitution=\count405
+\c@lista=\count406
+\c@savedlista=\count407
+\c@listb=\count408
+\c@savedlistb=\count409
+\c@listc=\count410
+\c@savedlistc=\count411
+\c@listd=\count412
+\c@savedlistd=\count413
+\c@liste=\count414
+\c@savedliste=\count415
+\c@listf=\count416
+\c@savedlistf=\count417
+\c@location=\count418
+\c@savedlocation=\count419
+\c@organization=\count420
+\c@savedorganization=\count421
+\c@origlocation=\count422
+\c@savedoriglocation=\count423
+\c@origpublisher=\count424
+\c@savedorigpublisher=\count425
+\c@publisher=\count426
+\c@savedpublisher=\count427
+\c@language=\count428
+\c@savedlanguage=\count429
+\c@origlanguage=\count430
+\c@savedoriglanguage=\count431
+\c@pageref=\count432
+\c@savedpageref=\count433
 \shorthandwidth=\skip113
 \shortjournalwidth=\skip114
 \shortserieswidth=\skip115
@@ -912,19 +932,19 @@ Package biblatex Info: ... file 'biblatex.def' found.
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
-\c@textcitecount=\count433
-\c@textcitetotal=\count434
-\c@textcitemaxnames=\count435
-\c@biburlbigbreakpenalty=\count436
-\c@biburlbreakpenalty=\count437
-\c@biburlnumpenalty=\count438
-\c@biburlucpenalty=\count439
-\c@biburllcpenalty=\count440
+\c@textcitecount=\count434
+\c@textcitetotal=\count435
+\c@textcitemaxnames=\count436
+\c@biburlbigbreakpenalty=\count437
+\c@biburlbreakpenalty=\count438
+\c@biburlnumpenalty=\count439
+\c@biburlucpenalty=\count440
+\c@biburllcpenalty=\count441
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count441
+\c@smartand=\count442
 )
 Package biblatex Info: Trying to load bibliography style 'numeric'...
 Package biblatex Info: ... file 'numeric.bbx' found.
@@ -936,8 +956,8 @@ Package biblatex Info: ... file 'standard.bbx' found.
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count442
-\c@bbx:relatedtotal=\count443
+\c@bbx:relatedcount=\count443
+\c@bbx:relatedtotal=\count444
 ))
 Package biblatex Info: Trying to load citation style 'numeric'...
 Package biblatex Info: ... file 'numeric.cbx' found.
@@ -970,7 +990,7 @@ Package: expl3 2024-02-20 L3 programming layer (loader)
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count444
+\l__color_backend_stack_int=\count445
 \l__pdf_internal_box=\box70
 ))
 Package biblatex Info: ... and expl3
@@ -988,8 +1008,8 @@ Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count445
-\@quotereset=\count446
+\@quotelevel=\count446
+\@quotereset=\count447
 (/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.aux
 (/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/PORTADA/portad
 a.aux)
@@ -1006,22 +1026,22 @@ tulo3.aux)
 tulo4.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Info: Redefining \. on input line 74.
-LaTeX Info: Redefining \% on input line 74.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Info: Redefining \. on input line 77.
+LaTeX Info: Redefining \% on input line 77.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1063,17 +1083,17 @@ Package geometry Warning: The marginal notes overrun the paper.
 
 (/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count447
-\scratchdimen=\dimen291
+\scratchcounter=\count448
+\scratchdimen=\dimen296
 \scratchbox=\box71
-\nofMPsegments=\count448
-\nofMParguments=\count449
-\everyMPshowfont=\toks50
-\MPscratchCnt=\count450
-\MPscratchDim=\dimen292
-\MPnumerator=\count451
-\makeMPintoPDFobject=\count452
-\everyMPtoPDFconversion=\toks51
+\nofMPsegments=\count449
+\nofMParguments=\count450
+\everyMPshowfont=\toks51
+\MPscratchCnt=\count451
+\MPscratchDim=\dimen297
+\MPnumerator=\count452
+\makeMPintoPDFobject=\count453
+\everyMPtoPDFconversion=\toks52
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -1087,6 +1107,7 @@ Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package biblatex Info: Trying to load language 'spanish'...
@@ -1111,8 +1132,8 @@ Package biblatex Warning: The following entry could not be found
 (biblatex)                LaTeX afterwards.
 
 )
-Package biblatex Info: Reference section=0 on input line 74.
-Package biblatex Info: Reference segment=0 on input line 74.
+Package biblatex Info: Reference section=0 on input line 77.
+Package biblatex Info: Reference segment=0 on input line 77.
 \openout2 = `CAPITULOS/PORTADA/portada.aux'.
 
  (./CAPITULOS/PORTADA/portada.tex
@@ -1261,10 +1282,6 @@ line 47.
 (pdftex.def)             Requested size: 430.80186pt x 149.35535pt.
  [17 <./CAPITULOS/capitulo2/hand-landmarks.png>] [18]
 
-LaTeX Warning: Reference `eq:convolucion_continua' on page 19 undefined on inpu
-t line 98.
-
-
 ./CAPITULOS/capitulo2/capitulo2.tex:106: LaTeX Error: No counter 'equ' defined.
 
 
@@ -1356,10 +1373,6 @@ So I shall assume that you typed `$$' both times.
 l.106 }
        
 Things are pretty mixed up, but I think the worst is over.
-
-
-LaTeX Warning: Reference `eq:convolucion_discreta' on page 19 undefined on inpu
-t line 123.
 
 
 ./CAPITULOS/capitulo2/capitulo2.tex:130: LaTeX Error: No counter 'equ' defined.
@@ -1548,107 +1561,110 @@ l.145 }
        
 Things are pretty mixed up, but I think the worst is over.
 
-[20]
+<CAPITULOS/capitulo2/imagenpresentacion.png, id=93, 852.129pt x 356.313pt>
+File: CAPITULOS/capitulo2/imagenpresentacion.png Graphic file (type png)
+<use CAPITULOS/capitulo2/imagenpresentacion.png>
+Package pdftex.def Info: CAPITULOS/capitulo2/imagenpresentacion.png  used on in
+put line 158.
+(pdftex.def)             Requested size: 399.21791pt x 166.92888pt.
+[20 <./CAPITULOS/capitulo2/imagenpresentacion.png>] [21]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-./CAPITULOS/capitulo2/capitulo2.tex:246: LaTeX Error: No counter 'equ' defined.
-
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.246 }
-       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[21] [22]
-
-./CAPITULOS/capitulo2/capitulo2.tex:280: LaTeX Error: No counter 'equ' defined.
+./CAPITULOS/capitulo2/capitulo2.tex:248: LaTeX Error: No counter 'equ' defined.
 
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.280 }
+l.248 }
        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-./CAPITULOS/capitulo2/capitulo2.tex:286: LaTeX Error: No counter 'equ' defined.
+./CAPITULOS/capitulo2/capitulo2.tex:282: LaTeX Error: No counter 'equ' defined.
 
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.286 }
+l.282 }
        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[23
 
-]
+Underfull \vbox (badness 1348) has occurred while \output is active []
 
-./CAPITULOS/capitulo2/capitulo2.tex:320: LaTeX Error: No counter 'equ' defined.
+ [22]
+
+./CAPITULOS/capitulo2/capitulo2.tex:288: LaTeX Error: No counter 'equ' defined.
 
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.320 }
+l.288 }
        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[24
 
-]
-
-./CAPITULOS/capitulo2/capitulo2.tex:353: LaTeX Error: No counter 'equ' defined.
+./CAPITULOS/capitulo2/capitulo2.tex:322: LaTeX Error: No counter 'equ' defined.
 
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.353 }
+l.322 }
        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[25
 
-]
+Underfull \vbox (badness 2384) has occurred while \output is active []
 
-./CAPITULOS/capitulo2/capitulo2.tex:390: LaTeX Error: No counter 'equ' defined.
+ [23]
+
+./CAPITULOS/capitulo2/capitulo2.tex:355: LaTeX Error: No counter 'equ' defined.
 
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.390 }
+l.355 }
        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[26
 
-]) [27]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [24]
+
+./CAPITULOS/capitulo2/capitulo2.tex:392: LaTeX Error: No counter 'equ' defined.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.392 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+) [25]
 \openout2 = `CAPITULOS/capitulo3/capitulo3.aux'.
 
  (./CAPITULOS/capitulo3/capitulo3.tex
@@ -1656,26 +1672,26 @@ Cap\'{\i }tulo 3.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [28
+ [26
 
 
 
 
 ]
-[29]
+[27]
 
-LaTeX Warning: Citation '29' on page 30 undefined on input line 33.
+LaTeX Warning: Citation '29' on page 28 undefined on input line 33.
 
 
 Underfull \vbox (badness 1038) has occurred while \output is active []
 
- [30])
-[31]
+ [28])
+[29]
 \openout2 = `CAPITULOS/capitulo4/capitulo4.aux'.
 
  (./CAPITULOS/capitulo4/capitulo4.tex
 Cap\'{\i }tulo 4.
-<CAPITULOS/capitulo4/Diagrama.jpeg, id=136, 614.295pt x 794.97pt>
+<CAPITULOS/capitulo4/Diagrama.jpeg, id=131, 614.295pt x 794.97pt>
 File: CAPITULOS/capitulo4/Diagrama.jpeg Graphic file (type jpg)
 <use CAPITULOS/capitulo4/Diagrama.jpeg>
 Package pdftex.def Info: CAPITULOS/capitulo4/Diagrama.jpeg  used on input line 
@@ -1684,12 +1700,12 @@ Package pdftex.def Info: CAPITULOS/capitulo4/Diagrama.jpeg  used on input line
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[32
+[30
 
 
 
 
-] [33 <./CAPITULOS/capitulo4/Diagrama.jpeg>]
+] [31 <./CAPITULOS/capitulo4/Diagrama.jpeg>]
 Underfull \hbox (badness 10000) in paragraph at lines 35--35
 []|\T1/cmr/bx/n/10 Definición del re-que-ri-
  []
@@ -1732,7 +1748,7 @@ Underfull \hbox (badness 3271) in paragraph at lines 100--100
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [34
+ [32
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 119--119
@@ -1774,7 +1790,7 @@ Underfull \hbox (badness 3271) in paragraph at lines 184--184
 []|\T1/cmr/bx/n/10 Descripción del re-que-ri-
  []
 
-[35]
+[33]
 Underfull \hbox (badness 10000) in paragraph at lines 203--203
 []|\T1/cmr/bx/n/10 Definición del re-que-ri-
  []
@@ -1807,7 +1823,7 @@ Underfull \hbox (badness 3271) in paragraph at lines 247--247
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [36]
+ [34]
 Underfull \hbox (badness 10000) in paragraph at lines 266--266
 []|\T1/cmr/bx/n/10 Definición del re-que-ri-
  []
@@ -1817,20 +1833,673 @@ Underfull \hbox (badness 3271) in paragraph at lines 268--268
 []|\T1/cmr/bx/n/10 Descripción del re-que-ri-
  []
 
-) [37]
+[35]
+./CAPITULOS/capitulo4/capitulo4.tex:355: LaTeX Error: \begin{itemize} on input 
+line 355 ended by \end{itemidoes}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.355     \end{tabularx}
+                        
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./CAPITULOS/capitulo4/capitulo4.tex:355: LaTeX Error: \begin{itemize} on input 
+line 355 ended by \end{itemidoes}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.355     \end{tabularx}
+                        
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (15.19495pt too wide) in paragraph at lines 355--355
+\T1/cmr/m/n/10 Escalabilidad  
+ []
+
+
+Overfull \hbox (6.1416pt too wide) in paragraph at lines 355--355
+\T1/cmr/m/n/10 Integración 
+ []
+
+
+Overfull \hbox (12.50116pt too wide) in paragraph at lines 355--355
+\T1/cmr/m/n/10 Complejidad  
+ []
+
+
+Overfull \hbox (29.99689pt too wide) in paragraph at lines 355--355
+\T1/cmr/m/n/10 Almacenamiento  
+ []
+
+
+Overfull \hbox (15.19495pt too wide) in paragraph at lines 355--355
+\T1/cmr/m/n/10 Escalabilidad  
+ []
+
+
+Overfull \hbox (12.64001pt too wide) in paragraph at lines 355--355
+\T1/cmr/m/n/10 Rendimiento  
+ []
+
+
+Overfull \hbox (6.1416pt too wide) in paragraph at lines 355--355
+\T1/cmr/m/n/10 Integración 
+ []
+
+
+Overfull \hbox (1.6427pt too wide) in paragraph at lines 355--355
+\T1/cmr/m/n/10 Desarrollo 
+ []
+
+
+Overfull \hbox (6.1416pt too wide) in paragraph at lines 355--355
+\T1/cmr/m/n/10 Integración 
+ []
+
+
+./CAPITULOS/capitulo4/capitulo4.tex:355: LaTeX Error: \begin{itemize} on input 
+line 355 ended by \end{itemidoes}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.355     \end{tabularx}
+                        
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (9.74588pt too wide) in paragraph at lines 355--355
+\T1/cmr/m/n/10 Aplicaciones 
+ []
+
+
+Overfull \hbox (21.2153pt too wide) in paragraph at lines 355--355
+\T1/cmr/m/n/10 Infraestructura  
+ []
+
+
+Overfull \hbox (10.71786pt too wide) in paragraph at lines 355--355
+\T1/cmr/m/n/10 Limitaciones 
+ []
+
+
+Overfull \hbox (28.2969pt too wide) in paragraph at lines 355--355
+\T1/cmr/m/n/10 Almacenamiento 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [36
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [37]
+Underfull \hbox (badness 10000) in paragraph at lines 378--379
+[]|\T1/cmr/bx/n/10 Principales
+ []
+
+
+Underfull \hbox (badness 2310) in paragraph at lines 384--385
+[]\T1/cmr/m/n/10 Escalabilidad au-to-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 385--386
+[]\T1/cmr/m/n/10 Integración con
+ []
+
+
+Underfull \hbox (badness 7221) in paragraph at lines 385--386
+\T1/cmr/m/n/10 otros ser-vi-cios de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 391--392
+[]\T1/cmr/m/n/10 Complejidad
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 391--392
+\T1/cmr/m/n/10 de con-fi-gu-ra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 396--397
+[]
+ []
+
+
+Overfull \hbox (22.30351pt too wide) in paragraph at lines 396--397
+\T1/cmr/m/n/10 Aplicaciones
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 397--398
+[]\T1/cmr/m/n/10 Bases
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 397--398
+\T1/cmr/m/n/10 de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 398--399
+[]
+ []
+
+
+Overfull \hbox (4.75224pt too wide) in paragraph at lines 398--399
+\T1/cmr/m/n/10 Machine
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 398--399
+\T1/cmr/m/n/10 Lear-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 402--402
+[]|\T1/cmr/m/n/10 Google
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 402--402
+[]|\T1/cmr/m/n/10 Google Com-pu-te
+ []
+
+
+Underfull \hbox (badness 2310) in paragraph at lines 406--407
+[]\T1/cmr/m/n/10 Escalabilidad au-to-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--408
+[]\T1/cmr/m/n/10 Fácil in-te-gra-ción
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 413--414
+[]\T1/cmr/m/n/10 Curva de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 418--419
+[]
+ []
+
+
+Overfull \hbox (22.30351pt too wide) in paragraph at lines 418--419
+\T1/cmr/m/n/10 Aplicaciones
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 419--420
+[]
+ []
+
+
+Overfull \hbox (26.77464pt too wide) in paragraph at lines 419--420
+\T1/cmr/m/n/10 Contenedores 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 420--421
+[]\T1/cmr/m/n/10 Big
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 424--424
+[]|\T1/cmr/m/n/10 Microsoft
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 434--435
+[]\T1/cmr/m/n/10 Complejidad
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 434--435
+\T1/cmr/m/n/10 de con-fi-gu-ra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 439--440
+[]
+ []
+
+
+Overfull \hbox (22.30351pt too wide) in paragraph at lines 439--440
+\T1/cmr/m/n/10 Aplicaciones
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 439--440
+\T1/cmr/m/n/10 em-pre-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 440--441
+[]
+ []
+
+
+Overfull \hbox (12.50035pt too wide) in paragraph at lines 440--441
+\T1/cmr/m/n/10 Desarrollo
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 441--442
+[]
+ []
+
+
+Overfull \hbox (33.77293pt too wide) in paragraph at lines 441--442
+\T1/cmr/m/n/10 Infraestructura 
+ []
+
+
+Overfull \hbox (86.46553pt too wide) in paragraph at lines 376--446
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 460--461
+[]|\T1/cmr/bx/n/10 Principales
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+[]\T1/cmr/m/n/10 Integración con
+ []
+
+
+Underfull \hbox (badness 7221) in paragraph at lines 467--468
+\T1/cmr/m/n/10 otros ser-vi-cios de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 473--474
+[]\T1/cmr/m/n/10 Complejidad
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 473--474
+\T1/cmr/m/n/10 de con-fi-gu-ra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+[]
+ []
+
+
+Overfull \hbox (40.85454pt too wide) in paragraph at lines 478--479
+\T1/cmr/m/n/10 Almacenamiento
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 478--479
+\T1/cmr/m/n/10 de da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 479--480
+[]
+ []
+
+
+Overfull \hbox (0.72545pt too wide) in paragraph at lines 479--480
+\T1/cmr/m/n/10 Backup
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 479--480
+\T1/cmr/m/n/10 pe-ra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 484--484
+[]|\T1/cmr/m/n/10 Google
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 495--496
+[]\T1/cmr/m/n/10 Curva de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 500--501
+[]
+ []
+
+
+Overfull \hbox (40.85454pt too wide) in paragraph at lines 500--501
+\T1/cmr/m/n/10 Almacenamiento
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 500--501
+\T1/cmr/m/n/10 de da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 501--502
+[]
+ []
+
+
+Overfull \hbox (4.75224pt too wide) in paragraph at lines 501--502
+\T1/cmr/m/n/10 Machine
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 501--502
+\T1/cmr/m/n/10 lear-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 502--503
+[]
+ []
+
+
+Overfull \hbox (12.27818pt too wide) in paragraph at lines 502--503
+\T1/cmr/m/n/10 Archivado 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 506--506
+[]|\T1/cmr/m/n/10 Microsoft
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 517--518
+[]\T1/cmr/m/n/10 Complejidad
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 517--518
+\T1/cmr/m/n/10 de con-fi-gu-ra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 522--523
+[]
+ []
+
+
+Overfull \hbox (40.85454pt too wide) in paragraph at lines 522--523
+\T1/cmr/m/n/10 Almacenamiento
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 522--523
+\T1/cmr/m/n/10 de da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 523--524
+[]
+ []
+
+
+Overfull \hbox (0.72545pt too wide) in paragraph at lines 523--524
+\T1/cmr/m/n/10 Backup
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 523--524
+\T1/cmr/m/n/10 pe-ra-
+ []
+
+
+Overfull \hbox (86.46553pt too wide) in paragraph at lines 458--529
+ [][] 
+ []
+
+[38]
+Underfull \hbox (badness 10000) in paragraph at lines 541--542
+[]|\T1/cmr/bx/n/10 Principales
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 548--549
+[]\T1/cmr/m/n/10 Integración con
+ []
+
+
+Underfull \hbox (badness 7221) in paragraph at lines 548--549
+\T1/cmr/m/n/10 otros ser-vi-cios de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 554--555
+[]\T1/cmr/m/n/10 Complejidad
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 554--555
+\T1/cmr/m/n/10 de con-fi-gu-ra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 559--560
+[]
+ []
+
+
+Overfull \hbox (15.8051pt too wide) in paragraph at lines 559--560
+\T1/cmr/m/n/10 Desacoplar
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 559--560
+\T1/cmr/m/n/10 apli-ca-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 560--561
+[]
+ []
+
+
+Overfull \hbox (31.63457pt too wide) in paragraph at lines 560--561
+\T1/cmr/m/n/10 Procesamiento
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 560--561
+\T1/cmr/m/n/10 de da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 560--561
+\T1/cmr/m/n/10 tos
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 560--561
+\T1/cmr/m/n/10 asín-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 561--562
+[]
+ []
+
+
+Overfull \hbox (29.91277pt too wide) in paragraph at lines 561--562
+\T1/cmr/m/n/10 Microservicios 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 565--565
+[]|\T1/cmr/m/n/10 Google
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 576--577
+[]\T1/cmr/m/n/10 Curva de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 581--582
+[]
+ []
+
+
+Overfull \hbox (12.5559pt too wide) in paragraph at lines 581--582
+\T1/cmr/m/n/10 Streaming
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 581--582
+\T1/cmr/m/n/10 de da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 582--583
+[]
+ []
+
+
+Overfull \hbox (31.63457pt too wide) in paragraph at lines 582--583
+\T1/cmr/m/n/10 Procesamiento
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 582--583
+\T1/cmr/m/n/10 de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 582--583
+\T1/cmr/m/n/10 even-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 583--584
+[]
+ []
+
+
+Overfull \hbox (16.99925pt too wide) in paragraph at lines 583--584
+\T1/cmr/m/n/10 Integración
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 583--584
+\T1/cmr/m/n/10 de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 583--584
+\T1/cmr/m/n/10 apli-ca-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 587--587
+[]|\T1/cmr/m/n/10 Microsoft
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 598--599
+[]\T1/cmr/m/n/10 Flexibilidad
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 603--604
+[]
+ []
+
+
+Overfull \hbox (40.85454pt too wide) in paragraph at lines 603--604
+\T1/cmr/m/n/10 Almacenamiento
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 603--604
+\T1/cmr/m/n/10 de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 603--604
+\T1/cmr/m/n/10 men-sa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 604--605
+[]
+ []
+
+
+Overfull \hbox (29.46843pt too wide) in paragraph at lines 604--605
+\T1/cmr/m/n/10 Comunicación
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 604--605
+\T1/cmr/m/n/10 en-tre
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 604--605
+\T1/cmr/m/n/10 apli-ca-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 605--606
+[]
+ []
+
+
+Overfull \hbox (31.63457pt too wide) in paragraph at lines 605--606
+\T1/cmr/m/n/10 Procesamiento
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 605--606
+\T1/cmr/m/n/10 asín-
+ []
+
+
+Overfull \hbox (86.46553pt too wide) in paragraph at lines 539--610
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [39] [40]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-20.
+23.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-) [38
+)
+[41
 
 
 
 ]
-./main.tex:121: Misplaced alignment tab character &.
+./main.tex:124: Misplaced alignment tab character &.
 <argument> ... Conference on Control Engineering &
                                                    Information Technology (C...
-l.121 
+l.124 
       
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1839,7 +2508,7 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-[39] [40] (/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.aux
+[42] [43] (/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.aux
 (/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/PORTADA/portad
 a.aux)
 LaTeX Info: Redefining \sptext on input line 10.
@@ -1858,22 +2527,15 @@ tulo4.aux))
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 35742 strings out of 474116
- 857820 string characters out of 5743682
- 1947187 words of memory out of 5000000
- 57554 multiletter control sequences out of 15000+600000
+ 35828 strings out of 474116
+ 859674 string characters out of 5743682
+ 1954187 words of memory out of 5000000
+ 57637 multiletter control sequences out of 15000+600000
  573611 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,19n,107p,1132b,3149s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1901,10 +2563,10 @@ onts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2024/texmf-dist/fon
 ts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2024/texmf-dist/fonts
 /type1/public/cm-super/sftt1000.pfb>
 Output written on /Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.pd
-f (40 pages, 1704570 bytes).
+f (43 pages, 3032200 bytes).
 PDF statistics:
- 268 PDF objects out of 1000 (max. 8388607)
- 168 compressed objects within 2 object streams
+ 280 PDF objects out of 1000 (max. 8388607)
+ 175 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 48 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 53 words of extra memory for PDF output out of 10000 (max. 10000000)
 
