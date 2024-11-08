@@ -13,8 +13,8 @@
     tmargin=2.5cm,
     bmargin=2.5cm,
     lmargin=3cm, % Margen izquierdo en páginas impares
-    rmargin=3cm, % Margen derecho en páginas pares
-    bindingoffset=0cm, % Ajusta este valor si tienes encuadernación
+    rmargin=3cm  % Margen derecho en páginas pares
+%bindingoffset=0cm,  % Ajusta este valor si tienes encuadernación
 }
 
 \usepackage{array}
@@ -23,14 +23,13 @@
 \usepackage{setspace}
 \usepackage{fancyhdr}
 \usepackage[center,font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
-\usepackage{emptypage}
 \usepackage{amsmath}
-\usepackage{tocloft} % Para crear el índice de ecuaciones
+\usepackage{tocloft}  % Para crear el índice de ecuaciones
 \usepackage{rotating}
 
 % --- Configura la sangría y el espacio entre párrafos ---
-\setlength{\parindent}{0pt} % Elimina la sangría de primera línea
-\setlength{\parskip}{0.5em} % Ajusta el espacio entre párrafos (ajusta el valor según sea necesario)
+\setlength{\parindent}{0pt}  % Elimina la sangría de primera línea
+\setlength{\parskip}{0.5em}  % Ajusta el espacio entre párrafos (ajusta el valor según sea necesario)
 
 \let\cleardoublepage\clearpage
 
@@ -44,10 +43,10 @@
 \renewcommand{\footrulewidth}{0pt}
 
 % --- Ajustar el desplazamiento del encabezado ---
-\fancyheadoffset[L]{3cm} % Ajusta el valor al margen izquierdo
-\fancyheadoffset[R]{3cm} % Ajusta el valor al margen derecho
+\fancyheadoffset[L]{3cm}  % Ajusta el valor al margen izquierdo
+\fancyheadoffset[R]{3cm}  % Ajusta el valor al margen derecho
 
-% --- Cambiamos los títulos de la lista de figuras y tablas ---
+% --- Cambiar los títulos de la lista de figuras y tablas ---
 \addto\captionsspanish{
     \renewcommand{\listfigurename}{Índice de figuras}
     \renewcommand{\listtablename}{Índice de tablas}
@@ -57,8 +56,15 @@
 \newcommand{\listequationsname}{Índice de ecuaciones}
 \newlistof{myequations}{equ}{\listequationsname}
 \newcommand{\indexedequation}[2]{%
+    \refstepcounter{equ}%
     \addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}%
     \begin{equation}#2\end{equation}%
+}
+
+\newcommand{\listofmyequations}{%  <--- Aquí se movió el \setcounter
+    \setcounter{equation}{0}  % Resetear el contador ANTES de la lista
+    \listof{myequations}{\listequationsname} % Índice de ecuaciones
+    \addcontentsline{toc}{chapter}{Índice de ecuaciones}
 }
 
 % --- Cargar el paquete BibLaTeX para las citas ---
@@ -68,53 +74,49 @@
 \begin{document}
 
 % Portada
-\include{CAPITULOS/PORTADA/portada} % Incluye la portada desde el archivo externo
+    \include{CAPITULOS/PORTADA/portada}  % Incluye la portada desde el archivo externo
 
 % Índice general
-\tableofcontents
-\newpage
+    \tableofcontents
+    \newpage
 
 % Índice de figuras
-\addcontentsline{toc}{chapter}{Índice de figuras}
-\listoffigures
-\newpage
+    \addcontentsline{toc}{chapter}{Índice de figuras}
+    \listoffigures
+    \newpage
 
 % Índice de tablas
-\addcontentsline{toc}{chapter}{Índice de tablas}
-\listoftables
-\newpage
+    \addcontentsline{toc}{chapter}{Índice de tablas}
+    \listoftables
+    \newpage
 
 % Índice de ecuaciones
-\addcontentsline{toc}{chapter}{Índice de ecuaciones}
-\listofmyequations
-\newpage
+    \listofmyequations  % Llamada a la función que ahora resetea el contador
+    \newpage
+
+% Resumen
+    \chapter*{Resumen}
+    \addcontentsline{toc}{chapter}{Resumen}
+    Este proyecto busca desarrollar un sistema que reconozca señas estáticas de la Lengua de Señas Mexicana (LSM) para facilitar la comunicación entre personas con discapacidad auditiva y la comunidad oyente en México. El sistema se basa en la captura de la configuración manual de las señas mediante webcams y utiliza MediaPipe para el seguimiento de las manos. Se enfoca principalmente en el reconocimiento de posturas fijas, con la posibilidad de incluir señas con movimiento si el tiempo lo permite. La traducción precisa de un conjunto predefinido de señas estáticas al español se logrará mediante modelos de aprendizaje profundo, utilizando TensorFlow/Keras. La integración de tecnología en la nube permitirá un procesamiento de datos escalable y una posible traducción en tiempo real. El objetivo final es cerrar la brecha de comunicación entre personas con discapacidad auditiva y oyentes, promoviendo una mayor inclusión y accesibilidad en México.
+
+    \textbf{keywords:}
+    Lengua de Señas Mexicana (LSM), Reconocimiento de Señas, Seguimiento de Manos (Hand Tracking), Algoritmos de Aprendizaje Automático, Redes Neuronales Convolucionales (CNN), Redes Neuronales LSTM, Automatización de Procesos, AWS (Amazon Web Services), Sistemas de Mensajería (SQS), Interfaz de Usuario, Análisis de Datos.
 
 % Abstract
-\chapter*{Resumen}
-\addcontentsline{toc}{chapter}{Resumen}
-Este proyecto busca desarrollar un sistema que reconozca señas estáticas de la Lengua de Señas Mexicana (LSM) para facilitar la comunicación entre personas con discapacidad auditiva y la comunidad oyente en México. El sistema se basa en la captura de la configuración manual de las señas mediante webcams y utiliza MediaPipe para el seguimiento de las manos. Se enfoca principalmente en el reconocimiento de posturas fijas, con la posibilidad de incluir señas con movimiento si el tiempo lo permite. La traducción precisa de un conjunto predefinido de señas estáticas al español se logrará mediante modelos de aprendizaje profundo, utilizando TensorFlow/Keras. La integración de tecnología en la nube permitirá un procesamiento de datos escalable y una posible traducción en tiempo real. El objetivo final es cerrar la brecha de comunicación entre personas con discapacidad auditiva y oyentes, promoviendo una mayor inclusión y accesibilidad en México.
+    \chapter*{Abstract}
+    \addcontentsline{toc}{chapter}{Abstract}
+    This project proposes a system for recognizing static signs in Mexican Sign Language (LSM) to facilitate communication between people with hearing disabilities and the hearing community in Mexico. Using webcams for hand tracking and focusing on the manual configuration of signs, the system captures and processes sign language through MediaPipe. The goal is to accurately translate a predefined set of static signs into Spanish, employing deep learning models trained with TensorFlow/Keras. By incorporating cloud technology for scalable data processing and potential real-time translation, this project aims to bridge the communication gap, promoting greater inclusion and accessibility for people with hearing disabilities in Mexico.
 
-\textbf{keywords:} 
-Lengua de Señas Mexicana (LSM), Reconocimiento de Señas, Seguimiento de Manos (Hand Tracking), Algoritmos de Aprendizaje Automático, Redes Neuronales Convolucionales (CNN), Redes Neuronales LSTM, Automatización de Procesos, AWS (Amazon Web Services), Sistemas de Mensajería (SQS), Interfaz de Usuario, Análisis de Datos.
-
-% Abstract
-\chapter*{Abstract}
-\addcontentsline{toc}{chapter}{Abstract}
-This project proposes a system for recognizing static signs in Mexican Sign Language (LSM) to facilitate communication between people with hearing disabilities and the hearing community in Mexico. Using webcams for hand tracking and focusing on the manual configuration of signs, the system captures and processes sign language through MediaPipe. The goal is to accurately translate a predefined set of static signs into Spanish, employing deep learning models trained with TensorFlow/Keras. By incorporating cloud technology for scalable data processing and potential real-time translation, this project aims to bridge the communication gap, promoting greater inclusion and accessibility for people with hearing disabilities in Mexico.
-
-\textbf{Keywords:} 
-Accessibility, Computer Vision, Deep Learning, Hand Tracking, Human-Computer Interaction, Mexican Sign Language (LSM), Sign Language Recognition.
-
-
-
-
+    \textbf{Keywords:}
+    Accessibility, Computer Vision, Deep Learning, Hand Tracking, Human-Computer Interaction, Mexican Sign Language (LSM), Sign Language Recognition.
 
 % Aquí continúan tus capítulos...
-\include{CAPITULOS/capitulo1/capitulo1}
-\include{CAPITULOS/capitulo2/capitulo2}
-\include{CAPITULOS/capitulo3/capitulo3}
-\include{CAPITULOS/capitulo4/capitulo4}
+    \include{CAPITULOS/capitulo1/capitulo1}
+    \include{CAPITULOS/capitulo2/capitulo2}
+    \include{CAPITULOS/capitulo3/capitulo3}
+    \include{CAPITULOS/capitulo4/capitulo4}
 
 % Añadir bibliografía
-\printbibliography
+    \printbibliography
+
 \end{document}

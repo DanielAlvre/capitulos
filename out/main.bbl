@@ -58,8 +58,8 @@
       \strng{authorbibnamehash}{9ea53fb8d7f3514d149ecc652334654d}
       \strng{authornamehash}{9ea53fb8d7f3514d149ecc652334654d}
       \strng{authorfullhash}{9ea53fb8d7f3514d149ecc652334654d}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Trabajo no publicado, Colegio de México}
@@ -101,8 +101,8 @@
       \strng{authorbibnamehash}{7b5d26fa938bbb9d0c8b3db59025af77}
       \strng{authornamehash}{7b5d26fa938bbb9d0c8b3db59025af77}
       \strng{authorfullhash}{b38b05a2f43ff0b5bf35463e4f52bd81}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Disponible en: \url{https://doi.org/10.48550/arXiv.2006.10214}}
@@ -230,8 +230,8 @@
       \strng{authornamehash}{1cf05abc2b2b84afca6c05d765b5c42b}
       \strng{authorfullhash}{b272607f2ec6c08d5f5a76e00bf6d30d}
       \field{extraname}{1}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Disponible en: \url{https://www.usenix.org/system/files/conference/osdi16/osdi16-abadi.pdf}}
@@ -253,8 +253,8 @@
       \strng{authorbibnamehash}{4d7e5f784bb5801c23c91ba37ed2649d}
       \strng{authornamehash}{4d7e5f784bb5801c23c91ba37ed2649d}
       \strng{authorfullhash}{4d7e5f784bb5801c23c91ba37ed2649d}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Disponible en: \url{https://docs.aws.amazon.com/}}
@@ -276,8 +276,8 @@
       \strng{authorbibnamehash}{90a256bf8c379542ae7bc17917dd9bcb}
       \strng{authornamehash}{90a256bf8c379542ae7bc17917dd9bcb}
       \strng{authorfullhash}{90a256bf8c379542ae7bc17917dd9bcb}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Centro de Investigación en Computación}
@@ -304,8 +304,8 @@
       \strng{authorbibnamehash}{79a8df85154faca8263af9bb7ecd59c2}
       \strng{authornamehash}{79a8df85154faca8263af9bb7ecd59c2}
       \strng{authorfullhash}{79a8df85154faca8263af9bb7ecd59c2}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{The British Journal of Psychiatry, 176(1), 52-57}
@@ -339,8 +339,8 @@
       \strng{authorbibnamehash}{0fda81430aa56a9741e7dfa3b00a809b}
       \strng{authornamehash}{0fda81430aa56a9741e7dfa3b00a809b}
       \strng{authorfullhash}{0fda81430aa56a9741e7dfa3b00a809b}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Revista de Investigación en Computación}
@@ -367,8 +367,8 @@
       \strng{authorbibnamehash}{dbfb9c08a2f1f7cd610aadacf48dcc6b}
       \strng{authornamehash}{dbfb9c08a2f1f7cd610aadacf48dcc6b}
       \strng{authorfullhash}{dbfb9c08a2f1f7cd610aadacf48dcc6b}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Consejo Nacional para Prevenir la Discriminación}
@@ -400,8 +400,8 @@
       \strng{authorbibnamehash}{6fee02590d209c0fe03f3237cd89a96c}
       \strng{authornamehash}{6fee02590d209c0fe03f3237cd89a96c}
       \strng{authorfullhash}{6fee02590d209c0fe03f3237cd89a96c}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Disponible en: \url{https://doi.org/10.1109/CONIELECOMP.2017.7891832}}
@@ -428,8 +428,8 @@
       \strng{authorbibnamehash}{ba229890bbd48bfe95b097c357c315b5}
       \strng{authornamehash}{ba229890bbd48bfe95b097c357c315b5}
       \strng{authorfullhash}{ba229890bbd48bfe95b097c357c315b5}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Disponible en: \url{https://www.springer.com/}}
@@ -453,8 +453,8 @@
       \strng{authorbibnamehash}{b3f470949e657cad8df206f52095e2a1}
       \strng{authornamehash}{b3f470949e657cad8df206f52095e2a1}
       \strng{authorfullhash}{b3f470949e657cad8df206f52095e2a1}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Disponible en: \url{https://doi.org/10.1109/CCE.2019.00006}}
@@ -476,8 +476,8 @@
       \strng{authorbibnamehash}{a4688ffad46b5654ca8ee4fd8013ca0e}
       \strng{authornamehash}{a4688ffad46b5654ca8ee4fd8013ca0e}
       \strng{authorfullhash}{a4688ffad46b5654ca8ee4fd8013ca0e}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Disponible en: \url{https://doi.org/10.1109/2.56867}}
@@ -514,8 +514,8 @@
       \strng{authorbibnamehash}{742bce4a3cb5cb945ba51d3d46eea7cb}
       \strng{authornamehash}{742bce4a3cb5cb945ba51d3d46eea7cb}
       \strng{authorfullhash}{d31b04cf42ac2bfa98031dbb6614a3c4}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Disponible en: \url{http://www.sil.org/silesr/2000/2000-002/}}
@@ -537,8 +537,8 @@
       \strng{authorbibnamehash}{55e42d0e5a36141fc3902e27e130bc29}
       \strng{authornamehash}{55e42d0e5a36141fc3902e27e130bc29}
       \strng{authorfullhash}{55e42d0e5a36141fc3902e27e130bc29}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Disponible en: \url{http://www.libreacceso.org/wp-content/uploads/2014/04/EstrategiaPedagogica.pdf}}
@@ -565,8 +565,8 @@
       \strng{authorbibnamehash}{d65b46e13ef85699e9640bb205eb1807}
       \strng{authornamehash}{d65b46e13ef85699e9640bb205eb1807}
       \strng{authorfullhash}{d65b46e13ef85699e9640bb205eb1807}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{En Linguistic human rights: Overcoming linguistic discrimination}
@@ -588,8 +588,8 @@
       \strng{authorbibnamehash}{2e6b86df27b199af6c41dd61ffe70bb2}
       \strng{authornamehash}{2e6b86df27b199af6c41dd61ffe70bb2}
       \strng{authorfullhash}{2e6b86df27b199af6c41dd61ffe70bb2}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Tesis de licenciatura, Universidad Tecnológica de la Mixteca}
@@ -611,8 +611,8 @@
       \strng{authorbibnamehash}{b123d73c3ebf79b3b32e29d371cc4af0}
       \strng{authornamehash}{b123d73c3ebf79b3b32e29d371cc4af0}
       \strng{authorfullhash}{b123d73c3ebf79b3b32e29d371cc4af0}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Blackwell Publishing}
@@ -634,8 +634,8 @@
       \strng{authorbibnamehash}{5f9f1f2de1d35fa3eaebab697267b1d7}
       \strng{authornamehash}{5f9f1f2de1d35fa3eaebab697267b1d7}
       \strng{authorfullhash}{5f9f1f2de1d35fa3eaebab697267b1d7}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Disponible en: \url{https://pdh.cdmx.gob.mx/storage/app/media/banner/Dic\_LSM\%202.pdf}}
@@ -660,8 +660,8 @@
       \strng{authorbibnamehash}{ee8421d34caec3e82cb173ee0b886956}
       \strng{authornamehash}{ee8421d34caec3e82cb173ee0b886956}
       \strng{authorfullhash}{ee8421d34caec3e82cb173ee0b886956}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Scrum y XP desde las trincheras: Cómo hacemos Scrum}
@@ -679,8 +679,8 @@
       \strng{authorbibnamehash}{ae22becbf547df5d94867f034c1a6ce2}
       \strng{authornamehash}{ae22becbf547df5d94867f034c1a6ce2}
       \strng{authorfullhash}{ae22becbf547df5d94867f034c1a6ce2}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Disponible en: https://asana.com/es/resources/what-is-scrum}
@@ -717,8 +717,8 @@
       \strng{authorbibnamehash}{0bb3f954248e9191a22ee65692e2e020}
       \strng{authornamehash}{0bb3f954248e9191a22ee65692e2e020}
       \strng{authorfullhash}{3a25597b540d9682aa762ea2c7de5851}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Disponible en: \url{https://www.springer.com/}}
@@ -738,8 +738,8 @@
       \strng{authorbibnamehash}{8b36e9207c24c76e6719268e49201d94}
       \strng{authornamehash}{8b36e9207c24c76e6719268e49201d94}
       \strng{authorfullhash}{8b36e9207c24c76e6719268e49201d94}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Disponible en: \url{https://ai.google.dev/edge/mediapipe/solutions/vision/holistic_landmarker?hl=es-419}}
@@ -764,8 +764,8 @@
       \strng{authornamehash}{1cf05abc2b2b84afca6c05d765b5c42b}
       \strng{authorfullhash}{1cf05abc2b2b84afca6c05d765b5c42b}
       \field{extraname}{2}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Disponible en: \url{https://www.tensorflow.org}}
@@ -795,8 +795,8 @@
       \strng{authorbibnamehash}{ec9a65c16571c721d3a4629bc5ed0c33}
       \strng{authornamehash}{ec9a65c16571c721d3a4629bc5ed0c33}
       \strng{authorfullhash}{ec9a65c16571c721d3a4629bc5ed0c33}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2018 IEEE 16th World Symposium on Applied Machine Intelligence and Informatics (SAMI)}
@@ -822,8 +822,8 @@
       \strng{authorbibnamehash}{88673233c2eaeaef9b30bcb5de1f892d}
       \strng{authornamehash}{88673233c2eaeaef9b30bcb5de1f892d}
       \strng{authorfullhash}{88673233c2eaeaef9b30bcb5de1f892d}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Análisis lingüístico de la Lengua de Señas Mexicana}
@@ -846,8 +846,8 @@
       \strng{authorbibnamehash}{1e5a6f2efe2816bb056061ab04d16620}
       \strng{authornamehash}{1e5a6f2efe2816bb056061ab04d16620}
       \strng{authorfullhash}{1e5a6f2efe2816bb056061ab04d16620}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Building microservices}
@@ -880,8 +880,8 @@
       \strng{authorbibnamehash}{1f816338bc25f8e49e38a25afe884d07}
       \strng{authornamehash}{1f816338bc25f8e49e38a25afe884d07}
       \strng{authorfullhash}{1f816338bc25f8e49e38a25afe884d07}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2018 6th International Conference on Control Engineering & Information Technology (CEIT)}
@@ -904,8 +904,8 @@
       \strng{authorbibnamehash}{3d621d313c7434fc52c5939d555b3ebe}
       \strng{authornamehash}{3d621d313c7434fc52c5939d555b3ebe}
       \strng{authorfullhash}{3d621d313c7434fc52c5939d555b3ebe}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Tesis de Ingeniería en Mecatrónica, Instituto Politécnico Nacional, UPIITA}
@@ -937,8 +937,8 @@
       \strng{authorbibnamehash}{b845b78cf298c437071a7d5e185ff96e}
       \strng{authornamehash}{b845b78cf298c437071a7d5e185ff96e}
       \strng{authorfullhash}{b845b78cf298c437071a7d5e185ff96e}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Revista Científica de Ingeniería y Tecnología}
@@ -974,8 +974,8 @@
       \strng{authorbibnamehash}{bd674bfdc0669b9f455262faddffb5ed}
       \strng{authornamehash}{bd674bfdc0669b9f455262faddffb5ed}
       \strng{authorfullhash}{bd674bfdc0669b9f455262faddffb5ed}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Revista Científica de Ingeniería y Tecnología}
@@ -1002,8 +1002,8 @@
       \strng{authorbibnamehash}{c8e541eb1db3275293c761b04a3b9044}
       \strng{authornamehash}{c8e541eb1db3275293c761b04a3b9044}
       \strng{authorfullhash}{c8e541eb1db3275293c761b04a3b9044}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Desarrollo de un intérprete de 20 frases en lengua de señas ecuatoriana a voz en tiempo real usando redes neuronales recurrentes}
@@ -1027,8 +1027,8 @@
       \strng{authorbibnamehash}{3eaa6f8c9a77b69df3ac187695922aa1}
       \strng{authornamehash}{3eaa6f8c9a77b69df3ac187695922aa1}
       \strng{authorfullhash}{3eaa6f8c9a77b69df3ac187695922aa1}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Las redes neuronales convolucionales en el uso de lenguaje de señas en la gestión académica de los estudiantes para SENATI}
@@ -1049,8 +1049,8 @@
       \strng{authorbibnamehash}{ea7a261c309c49595c0e2d0509cab1bf}
       \strng{authornamehash}{ea7a261c309c49595c0e2d0509cab1bf}
       \strng{authorfullhash}{ea7a261c309c49595c0e2d0509cab1bf}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Trabajo de titulación de Ingeniería en Telecomunicaciones, Escuela Superior Politécnica de Chimborazo}
@@ -1087,8 +1087,8 @@
       \strng{authorbibnamehash}{f2ccc90b98882ba6ec85bcedd41a9a1b}
       \strng{authornamehash}{f2ccc90b98882ba6ec85bcedd41a9a1b}
       \strng{authorfullhash}{bceee7b9fcd8249f4153c18fceaa3019}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{XIKUA Boletín Científico de la Escuela Superior de Tlahuelilpan}
@@ -1117,8 +1117,8 @@
       \strng{authorbibnamehash}{8ef784a1fa7bc518665a6032717ab020}
       \strng{authornamehash}{8ef784a1fa7bc518665a6032717ab020}
       \strng{authorfullhash}{8ef784a1fa7bc518665a6032717ab020}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Desarrollo de algoritmos para Traductor automático de lenguaje de señas Mexicanas (LSM)}
@@ -1142,8 +1142,8 @@
       \strng{authorbibnamehash}{3dc13fa938fbf70b9653cdf1188ebe56}
       \strng{authornamehash}{3dc13fa938fbf70b9653cdf1188ebe56}
       \strng{authorfullhash}{3dc13fa938fbf70b9653cdf1188ebe56}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Sistema multi-agente de reconocimiento de frases en LSM utilizando CBR}
@@ -1167,8 +1167,8 @@
       \strng{authorbibnamehash}{4244949a47f57bc55127de6dc23191ec}
       \strng{authornamehash}{4244949a47f57bc55127de6dc23191ec}
       \strng{authorfullhash}{4244949a47f57bc55127de6dc23191ec}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Modelos Computacionales Aplicados a la Lengua de Señas Mexicana}
@@ -1192,8 +1192,8 @@
       \strng{authorbibnamehash}{cd55e14e3eb986978791f59505adabfd}
       \strng{authornamehash}{cd55e14e3eb986978791f59505adabfd}
       \strng{authorfullhash}{cd55e14e3eb986978791f59505adabfd}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Modelo para la creación y uso de un repositorio digital de segmentos visuales en lengua de señas mexicanas utilizando Inteligencias Artificial}

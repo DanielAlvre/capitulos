@@ -97,10 +97,15 @@ Las CNN se caracterizan por la inclusión de capas convolucionales. Estas capas 
 
 La convolución  se puede definir como la integral del producto de dos funciones después de desplazar una de ellas una distancia $t$, como se observa en la ecuación \ref{eq:convolucion_continua}:
 
-\begin{equation}
-    S(t) = \int_{-\infty}^{\infty} x(a)w(t-a) da
-    \label{eq:convolucion_continua}
-\end{equation}
+
+\indexedequation{Convolucion Definición general}{
+    f(x) = \begin{equation}
+               S(t) = \int_{-\infty}^{\infty} x(a)w(t-a) da
+               \label{eq:convolucion_continua}
+    \end{equation}
+}
+
+
 
 donde:
 
@@ -117,20 +122,29 @@ La salida ($S$) se conoce como mapa de características.
 
 Al tener que procesar datos en una computadora, el tiempo y la señal de entrada se discretizan.  En consecuencia, la operación de convolución se adapta al dominio discreto, como se expresa en la ecuación \ref{eq:convolucion_discreta}:
 
-\begin{equation}
-    S(t) = (x * w)(t) = \sum_{a = -\infty}^{\infty} x(a)w(t-a)
-    \label{eq:convolucion_discreta}
-\end{equation}
+\indexedequation{Convolucion Discreta}{
+    \begin{equation}
+        S(t) = (x * w)(t) = \sum_{a = -\infty}^{\infty} x(a)w(t-a)
+        \label{eq:convolucion_discreta}
+    \end{equation}
+}
 
 
-\subsubsection{Convolución en Dos Dimensiones}
+
+
+
+\subsubsection{Convolución en 2 Dimensiones}
 
 Las imágenes son datos bidimensionales, por lo que la convolución se extiende a dos dimensiones. Si $I$ representa la imagen de entrada y $K$ representa el kernel, la convolución 2D se define como:
 
-\begin{equation}
-    S(i,j) = (I * K)(i,j) =  \sum_{m} \sum_{n} I(m,n) K(i-m, j-n)
-    \label{eq:convolucion_2d}
-\end{equation}
+\indexedequation{Convolución en 2 Dimensiones}{
+    \begin{equation}
+        S(i,j) = (I * K)(i,j) =  \sum_{m} \sum_{n} I(m,n) K(i-m, j-n)
+        \label{eq:convolucion_2d}
+    \end{equation}
+}
+
+
 
 donde:
 
@@ -196,10 +210,6 @@ donde:
 \paragraph{Complemento a la red neuronal convolucional}
 
 En el proyecto de identificación de señas LSM, las LSTM complementan a las CNN al procesar la información temporal de las secuencias de imágenes. Mientras que las CNN extraen características espaciales de cada imagen, las LSTM modelan la evolución de estas características a lo largo del tiempo, capturando la dinámica de las señas. Esta combinación de CNN y LSTM permite un análisis más completo de las señas, mejorando la precisión del sistema de reconocimiento.
-
-\paragraph{Ejemplo}
-
-Para reconocer la seña "hola" en LSM, que implica un movimiento de la mano, las CNN podrían identificar la forma de la mano y su posición inicial, mientras que las LSTM analizarían la trayectoria de la mano a lo largo del tiempo para confirmar que se trata del movimiento característico de la seña "hola".
 
 En resumen, la incorporación de LSTM en el proyecto de identificación de señas LSM permite un análisis más preciso y robusto de las señas dinámicas, al considerar la información temporal en conjunto con las características espaciales extraídas por las CNN.
 \section{Funciones de Activación}
@@ -271,7 +281,7 @@ f(x) = \begin{cases}
 
 La función tangencial hiperbólica (tanh), se define mediante la siguiente fórmula:
 
-\indexedequation{Función tanh}{
+\indexedequation{Definición tanh}{
 \tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}} \label{eq:tanh_formula}
 }
 

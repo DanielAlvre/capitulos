@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.6)  6 NOV 2024 14:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.6)  7 NOV 2024 19:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -572,10 +572,6 @@ Package caption Info: Standard document class detected.
 \c@continuedfloat=\count299
 Package caption Info: float package is loaded.
 )
-(/usr/local/texlive/2024/texmf-dist/tex/latex/emptypage/emptypage.sty
-Package: emptypage 2010/05/30 v1.2 Suppress page numbers and headings on empty 
-pages
-)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2023/05/13 v2.17o AMS math features
 \@mathmargin=\skip61
@@ -703,6 +699,20 @@ Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 \c@equdepth=\count316
 \cftbeforeequtitleskip=\skip103
 \cftafterequtitleskip=\skip104
+
+
+./main.tex:68: LaTeX Error: Command \listofmyequations already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.68 }
+      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/biblatex.sty
 Package: biblatex 2023/03/05 v3.19 programmable bibliographies (PK/MW)
@@ -980,31 +990,38 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 
 \@quotelevel=\count445
 \@quotereset=\count446
-(out/main.aux (out/CAPITULOS/PORTADA/portada.aux)
+(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.aux
+(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/PORTADA/portad
+a.aux)
 LaTeX Info: Redefining \. on input line 10.
 LaTeX Info: Redefining \% on input line 10.
 
-(out/CAPITULOS/capitulo1/capitulo1.aux) (out/CAPITULOS/capitulo2/capitulo2.aux)
-(out/CAPITULOS/capitulo3/capitulo3.aux) (out/CAPITULOS/capitulo4/capitulo4.aux)
-)
+(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo1/capi
+tulo1.aux)
+(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo2/capi
+tulo2.aux)
+(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo3/capi
+tulo3.aux)
+(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo4/capi
+tulo4.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Info: Redefining \. on input line 68.
-LaTeX Info: Redefining \% on input line 68.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Info: Redefining \. on input line 74.
+LaTeX Info: Redefining \% on input line 74.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1085,7 +1102,7 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
 
-(out/main.bbl
+(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.bbl
 
 Package biblatex Warning: The following entry could not be found
 (biblatex)                in the database:
@@ -1094,8 +1111,8 @@ Package biblatex Warning: The following entry could not be found
 (biblatex)                LaTeX afterwards.
 
 )
-Package biblatex Info: Reference section=0 on input line 68.
-Package biblatex Info: Reference segment=0 on input line 68.
+Package biblatex Info: Reference section=0 on input line 74.
+Package biblatex Info: Reference segment=0 on input line 74.
 \openout2 = `CAPITULOS/PORTADA/portada.aux'.
 
  (./CAPITULOS/PORTADA/portada.tex
@@ -1143,18 +1160,19 @@ Underfull \vbox (badness 10000) detected at line 29
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
 al/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc} <./CAPITUL
 OS/PORTADA/ipn.png> <./CAPITULOS/PORTADA/barra2.jpg> <./CAPITULOS/PORTADA/upiit
-a.jpeg>]) (out/main.toc
+a.jpeg>]) (/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.toc
 LaTeX Info: Redefining \sptext on input line 1.
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
- [2
+
+[2
 
 
 ])
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
- [3] (out/main.lof
+ [3] (/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.lof
 LaTeX Info: Redefining \sptext on input line 1.
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
@@ -1162,7 +1180,8 @@ LaTeX Info: Redefining \% on input line 1.
 \tf@lof=\write6
 \openout6 = `main.lof'.
 
- [4] (out/main.lot
+
+[4] (/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.lot
 LaTeX Info: Redefining \sptext on input line 1.
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
@@ -1171,13 +1190,14 @@ LaTeX Info: Redefining \% on input line 1.
 \openout7 = `main.lot'.
 
  [5]
-(out/main.equ)
+(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.equ)
 \tf@equ=\write8
 \openout8 = `main.equ'.
 
  [6] [7
 
-] [8
+]
+[8
 
 ]
 \openout2 = `CAPITULOS/capitulo1/capitulo1.aux'.
@@ -1239,14 +1259,394 @@ File: CAPITULOS/capitulo2/hand-landmarks.png Graphic file (type png)
 Package pdftex.def Info: CAPITULOS/capitulo2/hand-landmarks.png  used on input 
 line 47.
 (pdftex.def)             Requested size: 430.80186pt x 149.35535pt.
- [17 <./CAPITULOS/capitulo2/hand-landmarks.png>] [18] [19] [20] [21]
-[22] [23
+ [17 <./CAPITULOS/capitulo2/hand-landmarks.png>] [18]
 
-] [24
+LaTeX Warning: Reference `eq:convolucion_continua' on page 19 undefined on inpu
+t line 98.
 
-] [25
 
-] [26
+./CAPITULOS/capitulo2/capitulo2.tex:106: LaTeX Error: No counter 'equ' defined.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.106 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./CAPITULOS/capitulo2/capitulo2.tex:106: LaTeX Error: Bad math environment deli
+miter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.106 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./CAPITULOS/capitulo2/capitulo2.tex:106: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.106 }
+       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+./CAPITULOS/capitulo2/capitulo2.tex:106: LaTeX Error: Bad math environment deli
+miter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.106 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./CAPITULOS/capitulo2/capitulo2.tex:106: LaTeX Error: \begin{document} ended by
+ \end{equation}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.106 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./CAPITULOS/capitulo2/capitulo2.tex:106: Missing $ inserted.
+<inserted text> 
+                $
+l.106 }
+       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./CAPITULOS/capitulo2/capitulo2.tex:106: Display math should end with $$.
+<to be read again> 
+                   \endgroup 
+l.106 }
+       
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+./CAPITULOS/capitulo2/capitulo2.tex:106: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.106 }
+       
+Things are pretty mixed up, but I think the worst is over.
+
+
+LaTeX Warning: Reference `eq:convolucion_discreta' on page 19 undefined on inpu
+t line 123.
+
+
+./CAPITULOS/capitulo2/capitulo2.tex:130: LaTeX Error: No counter 'equ' defined.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.130 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./CAPITULOS/capitulo2/capitulo2.tex:130: LaTeX Error: Bad math environment deli
+miter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.130 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./CAPITULOS/capitulo2/capitulo2.tex:130: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.130 }
+       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+./CAPITULOS/capitulo2/capitulo2.tex:130: LaTeX Error: Bad math environment deli
+miter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.130 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./CAPITULOS/capitulo2/capitulo2.tex:130: LaTeX Error: \begin{document} ended by
+ \end{equation}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.130 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./CAPITULOS/capitulo2/capitulo2.tex:130: Missing $ inserted.
+<inserted text> 
+                $
+l.130 }
+       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./CAPITULOS/capitulo2/capitulo2.tex:130: Display math should end with $$.
+<to be read again> 
+                   \endgroup 
+l.130 }
+       
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+./CAPITULOS/capitulo2/capitulo2.tex:130: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.130 }
+       
+Things are pretty mixed up, but I think the worst is over.
+
+
+./CAPITULOS/capitulo2/capitulo2.tex:145: LaTeX Error: No counter 'equ' defined.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.145 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./CAPITULOS/capitulo2/capitulo2.tex:145: LaTeX Error: Bad math environment deli
+miter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.145 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./CAPITULOS/capitulo2/capitulo2.tex:145: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.145 }
+       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+[19]
+
+./CAPITULOS/capitulo2/capitulo2.tex:145: LaTeX Error: Bad math environment deli
+miter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.145 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./CAPITULOS/capitulo2/capitulo2.tex:145: LaTeX Error: \begin{document} ended by
+ \end{equation}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.145 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./CAPITULOS/capitulo2/capitulo2.tex:145: Missing $ inserted.
+<inserted text> 
+                $
+l.145 }
+       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./CAPITULOS/capitulo2/capitulo2.tex:145: Display math should end with $$.
+<to be read again> 
+                   \endgroup 
+l.145 }
+       
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+./CAPITULOS/capitulo2/capitulo2.tex:145: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.145 }
+       
+Things are pretty mixed up, but I think the worst is over.
+
+[20]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+./CAPITULOS/capitulo2/capitulo2.tex:246: LaTeX Error: No counter 'equ' defined.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.246 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[21] [22]
+
+./CAPITULOS/capitulo2/capitulo2.tex:280: LaTeX Error: No counter 'equ' defined.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.280 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./CAPITULOS/capitulo2/capitulo2.tex:286: LaTeX Error: No counter 'equ' defined.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.286 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[23
+
+]
+
+./CAPITULOS/capitulo2/capitulo2.tex:320: LaTeX Error: No counter 'equ' defined.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.320 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[24
+
+]
+
+./CAPITULOS/capitulo2/capitulo2.tex:353: LaTeX Error: No counter 'equ' defined.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.353 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[25
+
+]
+
+./CAPITULOS/capitulo2/capitulo2.tex:390: LaTeX Error: No counter 'equ' defined.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.390 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[26
 
 ]) [27]
 \openout2 = `CAPITULOS/capitulo3/capitulo3.aux'.
@@ -1275,7 +1675,7 @@ Underfull \vbox (badness 1038) has occurred while \output is active []
 
  (./CAPITULOS/capitulo4/capitulo4.tex
 Cap\'{\i }tulo 4.
-<CAPITULOS/capitulo4/Diagrama.jpeg, id=137, 614.295pt x 794.97pt>
+<CAPITULOS/capitulo4/Diagrama.jpeg, id=136, 614.295pt x 794.97pt>
 File: CAPITULOS/capitulo4/Diagrama.jpeg Graphic file (type jpg)
 <use CAPITULOS/capitulo4/Diagrama.jpeg>
 Package pdftex.def Info: CAPITULOS/capitulo4/Diagrama.jpeg  used on input line 
@@ -1419,7 +1819,7 @@ Underfull \hbox (badness 3271) in paragraph at lines 268--268
 
 ) [37]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-19.
+20.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 ) [38
@@ -1427,11 +1827,11 @@ File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 
 
 ]
-./main.tex:120: Misplaced alignment tab character &.
+./main.tex:121: Misplaced alignment tab character &.
 <argument> ... Conference on Control Engineering &
                                                    Information Technology (C...
-l.120 \end
-          {document}
+l.121 
+      
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -1439,18 +1839,28 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-[39] [40] (out/main.aux (out/CAPITULOS/PORTADA/portada.aux)
+[39] [40] (/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.aux
+(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/PORTADA/portad
+a.aux)
 LaTeX Info: Redefining \sptext on input line 10.
 LaTeX Info: Redefining \. on input line 10.
 LaTeX Info: Redefining \% on input line 10.
 
-(out/CAPITULOS/capitulo1/capitulo1.aux) (out/CAPITULOS/capitulo2/capitulo2.aux)
-(out/CAPITULOS/capitulo3/capitulo3.aux) (out/CAPITULOS/capitulo4/capitulo4.aux)
-)
+(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo1/capi
+tulo1.aux)
+(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo2/capi
+tulo2.aux)
+(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo3/capi
+tulo3.aux)
+(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo4/capi
+tulo4.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
+
+
+LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
@@ -1460,13 +1870,13 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 35763 strings out of 474116
- 856370 string characters out of 5743682
+ 35742 strings out of 474116
+ 857820 string characters out of 5743682
  1947187 words of memory out of 5000000
- 57571 multiletter control sequences out of 15000+600000
+ 57554 multiletter control sequences out of 15000+600000
  573611 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,19n,107p,1128b,3149s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,19n,107p,1132b,3149s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 ></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></
@@ -1485,16 +1895,16 @@ texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/te
 xmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texm
 f-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2024/texmf-
 dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2024/texmf-di
-st/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2024/texmf-dist
-/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/f
-onts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fon
-ts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2024/texmf-dist/fonts
-/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/t
-ype1/public/cm-super/sftt1000.pfb>
-Output written on out/main.pdf (40 pages, 1717440 bytes).
+st/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist
+/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/f
+onts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2024/texmf-dist/fon
+ts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2024/texmf-dist/fonts
+/type1/public/cm-super/sftt1000.pfb>
+Output written on /Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.pd
+f (40 pages, 1704570 bytes).
 PDF statistics:
- 273 PDF objects out of 1000 (max. 8388607)
- 171 compressed objects within 2 object streams
+ 268 PDF objects out of 1000 (max. 8388607)
+ 168 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  48 words of extra memory for PDF output out of 10000 (max. 10000000)
 

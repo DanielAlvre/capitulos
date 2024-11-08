@@ -1,7 +1,6 @@
 \babel@toc {spanish}{}\relax 
 \contentsline {chapter}{Índice de figuras}{4}{}%
 \contentsline {chapter}{Índice de tablas}{5}{}%
-\contentsline {chapter}{Índice de ecuaciones}{6}{}%
 \contentsline {chapter}{Resumen}{7}{}%
 \contentsline {chapter}{Abstract}{8}{}%
 \contentsline {chapter}{\numberline {1}Introducción}{9}{}%
@@ -28,15 +27,14 @@
 \contentsline {subsection}{\numberline {2.8.1}Redes Neuronales Convolucionales (CNN)}{19}{}%
 \contentsline {subsubsection}{Convolución: Definición General}{19}{}%
 \contentsline {subsubsection}{Convolución Discreta}{19}{}%
-\contentsline {subsubsection}{Convolución en Dos Dimensiones}{19}{}%
+\contentsline {subsubsection}{Convolución en 2 Dimensiones}{20}{}%
 \contentsline {subsection}{\numberline {2.8.2}Redes Neuronales Recurrentes (RNN) para el Análisis de Señas Dinámicas}{20}{}%
 \contentsline {subsubsection}{LSTM (Long Short-Term Memory)}{20}{}%
 \contentsline {paragraph}{Arquitectura de una celda LSTM}{20}{}%
-\contentsline {paragraph}{Ecuaciones de una celda LSTM}{20}{}%
+\contentsline {paragraph}{Ecuaciones de una celda LSTM}{21}{}%
 \contentsline {paragraph}{Complemento a la red neuronal convolucional}{21}{}%
-\contentsline {paragraph}{Ejemplo}{21}{}%
 \contentsline {section}{\numberline {2.9}Funciones de Activación}{21}{}%
-\contentsline {subsection}{\numberline {2.9.1}Función Sigmoide}{22}{}%
+\contentsline {subsection}{\numberline {2.9.1}Función Sigmoide}{21}{}%
 \contentsline {subsection}{\numberline {2.9.2}Función Tangencial Hiperbólica (tanh)}{23}{}%
 \contentsline {subsection}{\numberline {2.9.3}Función ReLU (Rectified Linear Unit)}{24}{}%
 \contentsline {subsection}{\numberline {2.9.4}Función Softmax}{25}{}%
