@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.6)  7 NOV 2024 21:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.6)  8 NOV 2024 17:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1010,19 +1010,19 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 
 \@quotelevel=\count446
 \@quotereset=\count447
-(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.aux
-(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/PORTADA/portad
+(/Users/josedanielalvarezramos/Documents/CAPITULOS/out/main.aux
+(/Users/josedanielalvarezramos/Documents/CAPITULOS/out/CAPITULOS/PORTADA/portad
 a.aux)
 LaTeX Info: Redefining \. on input line 10.
 LaTeX Info: Redefining \% on input line 10.
 
-(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo1/capi
+(/Users/josedanielalvarezramos/Documents/CAPITULOS/out/CAPITULOS/capitulo1/capi
 tulo1.aux)
-(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo2/capi
+(/Users/josedanielalvarezramos/Documents/CAPITULOS/out/CAPITULOS/capitulo2/capi
 tulo2.aux)
-(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo3/capi
+(/Users/josedanielalvarezramos/Documents/CAPITULOS/out/CAPITULOS/capitulo3/capi
 tulo3.aux)
-(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo4/capi
+(/Users/josedanielalvarezramos/Documents/CAPITULOS/out/CAPITULOS/capitulo4/capi
 tulo4.aux))
 \openout1 = `main.aux'.
 
@@ -1123,7 +1123,7 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
 
-(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.bbl
+(/Users/josedanielalvarezramos/Documents/CAPITULOS/out/main.bbl
 
 Package biblatex Warning: The following entry could not be found
 (biblatex)                in the database:
@@ -1181,7 +1181,7 @@ Underfull \vbox (badness 10000) detected at line 29
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
 al/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc} <./CAPITUL
 OS/PORTADA/ipn.png> <./CAPITULOS/PORTADA/barra2.jpg> <./CAPITULOS/PORTADA/upiit
-a.jpeg>]) (/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.toc
+a.jpeg>]) (/Users/josedanielalvarezramos/Documents/CAPITULOS/out/main.toc
 LaTeX Info: Redefining \sptext on input line 1.
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
@@ -1193,7 +1193,7 @@ LaTeX Info: Redefining \% on input line 1.
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
- [3] (/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.lof
+ [3] (/Users/josedanielalvarezramos/Documents/CAPITULOS/out/main.lof
 LaTeX Info: Redefining \sptext on input line 1.
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
@@ -1202,7 +1202,7 @@ LaTeX Info: Redefining \% on input line 1.
 \openout6 = `main.lof'.
 
 
-[4] (/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.lot
+[4] (/Users/josedanielalvarezramos/Documents/CAPITULOS/out/main.lot
 LaTeX Info: Redefining \sptext on input line 1.
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
@@ -1211,7 +1211,7 @@ LaTeX Info: Redefining \% on input line 1.
 \openout7 = `main.lot'.
 
  [5]
-(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.equ)
+(/Users/josedanielalvarezramos/Documents/CAPITULOS/out/main.equ)
 \tf@equ=\write8
 \openout8 = `main.equ'.
 
@@ -1833,665 +1833,584 @@ Underfull \hbox (badness 3271) in paragraph at lines 268--268
 []|\T1/cmr/bx/n/10 Descripción del re-que-ri-
  []
 
-[35]
-./CAPITULOS/capitulo4/capitulo4.tex:355: LaTeX Error: \begin{itemize} on input 
-line 355 ended by \end{itemidoes}.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.355     \end{tabularx}
-                        
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-./CAPITULOS/capitulo4/capitulo4.tex:355: LaTeX Error: \begin{itemize} on input 
-line 355 ended by \end{itemidoes}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.355     \end{tabularx}
-                        
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-Overfull \hbox (15.19495pt too wide) in paragraph at lines 355--355
-\T1/cmr/m/n/10 Escalabilidad  
+Underfull \hbox (badness 1360) in paragraph at lines 357--357
+\T1/cmr/m/n/10 Costo to-tal men-sual:
  []
 
 
-Overfull \hbox (6.1416pt too wide) in paragraph at lines 355--355
-\T1/cmr/m/n/10 Integración 
+Underfull \hbox (badness 7133) in paragraph at lines 357--357
+\T1/cmr/m/n/10 lec-tu-ra: $1.05023e-08
  []
 
 
-Overfull \hbox (12.50116pt too wide) in paragraph at lines 355--355
-\T1/cmr/m/n/10 Complejidad  
+Underfull \hbox (badness 1360) in paragraph at lines 357--357
+\T1/cmr/m/n/10 Costo to-tal men-sual:
  []
 
 
-Overfull \hbox (29.99689pt too wide) in paragraph at lines 355--355
-\T1/cmr/m/n/10 Almacenamiento  
- []
+Underfull \hbox (badness 10000) in paragraph at lines 357--357
 
-
-Overfull \hbox (15.19495pt too wide) in paragraph at lines 355--355
-\T1/cmr/m/n/10 Escalabilidad  
- []
-
-
-Overfull \hbox (12.64001pt too wide) in paragraph at lines 355--355
-\T1/cmr/m/n/10 Rendimiento  
- []
-
-
-Overfull \hbox (6.1416pt too wide) in paragraph at lines 355--355
-\T1/cmr/m/n/10 Integración 
- []
-
-
-Overfull \hbox (1.6427pt too wide) in paragraph at lines 355--355
-\T1/cmr/m/n/10 Desarrollo 
- []
-
-
-Overfull \hbox (6.1416pt too wide) in paragraph at lines 355--355
-\T1/cmr/m/n/10 Integración 
- []
-
-
-./CAPITULOS/capitulo4/capitulo4.tex:355: LaTeX Error: \begin{itemize} on input 
-line 355 ended by \end{itemidoes}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.355     \end{tabularx}
-                        
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-Overfull \hbox (9.74588pt too wide) in paragraph at lines 355--355
-\T1/cmr/m/n/10 Aplicaciones 
- []
-
-
-Overfull \hbox (21.2153pt too wide) in paragraph at lines 355--355
-\T1/cmr/m/n/10 Infraestructura  
- []
-
-
-Overfull \hbox (10.71786pt too wide) in paragraph at lines 355--355
-\T1/cmr/m/n/10 Limitaciones 
- []
-
-
-Overfull \hbox (28.2969pt too wide) in paragraph at lines 355--355
-\T1/cmr/m/n/10 Almacenamiento 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [36
-
-]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [37]
-Underfull \hbox (badness 10000) in paragraph at lines 378--379
+ [35]
+Underfull \hbox (badness 10000) in paragraph at lines 373--374
 []|\T1/cmr/bx/n/10 Principales
  []
 
 
-Underfull \hbox (badness 2310) in paragraph at lines 384--385
+Underfull \hbox (badness 2310) in paragraph at lines 379--380
 []\T1/cmr/m/n/10 Escalabilidad au-to-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 385--386
+Underfull \hbox (badness 10000) in paragraph at lines 380--381
 []\T1/cmr/m/n/10 Integración con
  []
 
 
-Underfull \hbox (badness 7221) in paragraph at lines 385--386
+Underfull \hbox (badness 7221) in paragraph at lines 380--381
 \T1/cmr/m/n/10 otros ser-vi-cios de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 386--387
+[]\T1/cmr/m/n/10 Complejidad
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 386--387
+\T1/cmr/m/n/10 de con-fi-gu-ra-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 391--392
-[]\T1/cmr/m/n/10 Complejidad
- []
-
-
-Underfull \hbox (badness 1072) in paragraph at lines 391--392
-\T1/cmr/m/n/10 de con-fi-gu-ra-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 396--397
 []
  []
 
 
-Overfull \hbox (22.30351pt too wide) in paragraph at lines 396--397
+Overfull \hbox (22.30351pt too wide) in paragraph at lines 391--392
 \T1/cmr/m/n/10 Aplicaciones
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 397--398
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
 []\T1/cmr/m/n/10 Bases
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 397--398
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
 \T1/cmr/m/n/10 de
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 398--399
+Underfull \hbox (badness 10000) in paragraph at lines 393--394
 []
  []
 
 
-Overfull \hbox (4.75224pt too wide) in paragraph at lines 398--399
+Overfull \hbox (4.75224pt too wide) in paragraph at lines 393--394
 \T1/cmr/m/n/10 Machine
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 398--399
+Underfull \hbox (badness 10000) in paragraph at lines 393--394
 \T1/cmr/m/n/10 Lear-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 402--402
+Underfull \hbox (badness 10000) in paragraph at lines 397--397
 []|\T1/cmr/m/n/10 Google
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 402--402
+Underfull \hbox (badness 10000) in paragraph at lines 397--397
 []|\T1/cmr/m/n/10 Google Com-pu-te
  []
 
 
-Underfull \hbox (badness 2310) in paragraph at lines 406--407
+Underfull \hbox (badness 2310) in paragraph at lines 401--402
 []\T1/cmr/m/n/10 Escalabilidad au-to-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 407--408
+Underfull \hbox (badness 10000) in paragraph at lines 402--403
 []\T1/cmr/m/n/10 Fácil in-te-gra-ción
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 413--414
+Underfull \hbox (badness 10000) in paragraph at lines 408--409
 []\T1/cmr/m/n/10 Curva de
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 418--419
+Underfull \hbox (badness 10000) in paragraph at lines 413--414
 []
  []
 
 
-Overfull \hbox (22.30351pt too wide) in paragraph at lines 418--419
+Overfull \hbox (22.30351pt too wide) in paragraph at lines 413--414
 \T1/cmr/m/n/10 Aplicaciones
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 419--420
+Underfull \hbox (badness 10000) in paragraph at lines 414--415
 []
  []
 
 
-Overfull \hbox (26.77464pt too wide) in paragraph at lines 419--420
+Overfull \hbox (26.77464pt too wide) in paragraph at lines 414--415
 \T1/cmr/m/n/10 Contenedores 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 420--421
+Underfull \hbox (badness 10000) in paragraph at lines 415--416
 []\T1/cmr/m/n/10 Big
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 424--424
+Underfull \hbox (badness 10000) in paragraph at lines 419--419
 []|\T1/cmr/m/n/10 Microsoft
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
+[]\T1/cmr/m/n/10 Complejidad
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 429--430
+\T1/cmr/m/n/10 de con-fi-gu-ra-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 434--435
-[]\T1/cmr/m/n/10 Complejidad
- []
-
-
-Underfull \hbox (badness 1072) in paragraph at lines 434--435
-\T1/cmr/m/n/10 de con-fi-gu-ra-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 439--440
 []
  []
 
 
-Overfull \hbox (22.30351pt too wide) in paragraph at lines 439--440
+Overfull \hbox (22.30351pt too wide) in paragraph at lines 434--435
 \T1/cmr/m/n/10 Aplicaciones
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 439--440
+Underfull \hbox (badness 10000) in paragraph at lines 434--435
 \T1/cmr/m/n/10 em-pre-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 440--441
+Underfull \hbox (badness 10000) in paragraph at lines 435--436
 []
  []
 
 
-Overfull \hbox (12.50035pt too wide) in paragraph at lines 440--441
+Overfull \hbox (12.50035pt too wide) in paragraph at lines 435--436
 \T1/cmr/m/n/10 Desarrollo
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 441--442
+Underfull \hbox (badness 10000) in paragraph at lines 436--437
 []
  []
 
 
-Overfull \hbox (33.77293pt too wide) in paragraph at lines 441--442
+Overfull \hbox (33.77293pt too wide) in paragraph at lines 436--437
 \T1/cmr/m/n/10 Infraestructura 
  []
 
 
-Overfull \hbox (86.46553pt too wide) in paragraph at lines 376--446
- [][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 460--461
-[]|\T1/cmr/bx/n/10 Principales
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 467--468
-[]\T1/cmr/m/n/10 Integración con
- []
-
-
-Underfull \hbox (badness 7221) in paragraph at lines 467--468
-\T1/cmr/m/n/10 otros ser-vi-cios de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 473--474
-[]\T1/cmr/m/n/10 Complejidad
- []
-
-
-Underfull \hbox (badness 1072) in paragraph at lines 473--474
-\T1/cmr/m/n/10 de con-fi-gu-ra-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 478--479
-[]
- []
-
-
-Overfull \hbox (40.85454pt too wide) in paragraph at lines 478--479
-\T1/cmr/m/n/10 Almacenamiento
- []
-
-
-Underfull \hbox (badness 2221) in paragraph at lines 478--479
-\T1/cmr/m/n/10 de da-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 479--480
-[]
- []
-
-
-Overfull \hbox (0.72545pt too wide) in paragraph at lines 479--480
-\T1/cmr/m/n/10 Backup
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 479--480
-\T1/cmr/m/n/10 pe-ra-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 484--484
-[]|\T1/cmr/m/n/10 Google
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 495--496
-[]\T1/cmr/m/n/10 Curva de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 500--501
-[]
- []
-
-
-Overfull \hbox (40.85454pt too wide) in paragraph at lines 500--501
-\T1/cmr/m/n/10 Almacenamiento
- []
-
-
-Underfull \hbox (badness 2221) in paragraph at lines 500--501
-\T1/cmr/m/n/10 de da-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 501--502
-[]
- []
-
-
-Overfull \hbox (4.75224pt too wide) in paragraph at lines 501--502
-\T1/cmr/m/n/10 Machine
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 501--502
-\T1/cmr/m/n/10 lear-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 502--503
-[]
- []
-
-
-Overfull \hbox (12.27818pt too wide) in paragraph at lines 502--503
-\T1/cmr/m/n/10 Archivado 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 506--506
-[]|\T1/cmr/m/n/10 Microsoft
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 517--518
-[]\T1/cmr/m/n/10 Complejidad
- []
-
-
-Underfull \hbox (badness 1072) in paragraph at lines 517--518
-\T1/cmr/m/n/10 de con-fi-gu-ra-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 522--523
-[]
- []
-
-
-Overfull \hbox (40.85454pt too wide) in paragraph at lines 522--523
-\T1/cmr/m/n/10 Almacenamiento
- []
-
-
-Underfull \hbox (badness 2221) in paragraph at lines 522--523
-\T1/cmr/m/n/10 de da-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 523--524
-[]
- []
-
-
-Overfull \hbox (0.72545pt too wide) in paragraph at lines 523--524
-\T1/cmr/m/n/10 Backup
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 523--524
-\T1/cmr/m/n/10 pe-ra-
- []
-
-
-Overfull \hbox (86.46553pt too wide) in paragraph at lines 458--529
- [][] 
- []
-
-[38]
-Underfull \hbox (badness 10000) in paragraph at lines 541--542
-[]|\T1/cmr/bx/n/10 Principales
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 548--549
-[]\T1/cmr/m/n/10 Integración con
- []
-
-
-Underfull \hbox (badness 7221) in paragraph at lines 548--549
-\T1/cmr/m/n/10 otros ser-vi-cios de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 554--555
-[]\T1/cmr/m/n/10 Complejidad
- []
-
-
-Underfull \hbox (badness 1072) in paragraph at lines 554--555
-\T1/cmr/m/n/10 de con-fi-gu-ra-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 559--560
-[]
- []
-
-
-Overfull \hbox (15.8051pt too wide) in paragraph at lines 559--560
-\T1/cmr/m/n/10 Desacoplar
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 559--560
-\T1/cmr/m/n/10 apli-ca-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 560--561
-[]
- []
-
-
-Overfull \hbox (31.63457pt too wide) in paragraph at lines 560--561
-\T1/cmr/m/n/10 Procesamiento
- []
-
-
-Underfull \hbox (badness 2221) in paragraph at lines 560--561
-\T1/cmr/m/n/10 de da-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 560--561
-\T1/cmr/m/n/10 tos
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 560--561
-\T1/cmr/m/n/10 asín-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 561--562
-[]
- []
-
-
-Overfull \hbox (29.91277pt too wide) in paragraph at lines 561--562
-\T1/cmr/m/n/10 Microservicios 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 565--565
-[]|\T1/cmr/m/n/10 Google
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 576--577
-[]\T1/cmr/m/n/10 Curva de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 581--582
-[]
- []
-
-
-Overfull \hbox (12.5559pt too wide) in paragraph at lines 581--582
-\T1/cmr/m/n/10 Streaming
- []
-
-
-Underfull \hbox (badness 2221) in paragraph at lines 581--582
-\T1/cmr/m/n/10 de da-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 582--583
-[]
- []
-
-
-Overfull \hbox (31.63457pt too wide) in paragraph at lines 582--583
-\T1/cmr/m/n/10 Procesamiento
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 582--583
-\T1/cmr/m/n/10 de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 582--583
-\T1/cmr/m/n/10 even-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 583--584
-[]
- []
-
-
-Overfull \hbox (16.99925pt too wide) in paragraph at lines 583--584
-\T1/cmr/m/n/10 Integración
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 583--584
-\T1/cmr/m/n/10 de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 583--584
-\T1/cmr/m/n/10 apli-ca-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 587--587
-[]|\T1/cmr/m/n/10 Microsoft
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 598--599
-[]\T1/cmr/m/n/10 Flexibilidad
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 603--604
-[]
- []
-
-
-Overfull \hbox (40.85454pt too wide) in paragraph at lines 603--604
-\T1/cmr/m/n/10 Almacenamiento
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 603--604
-\T1/cmr/m/n/10 de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 603--604
-\T1/cmr/m/n/10 men-sa-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 604--605
-[]
- []
-
-
-Overfull \hbox (29.46843pt too wide) in paragraph at lines 604--605
-\T1/cmr/m/n/10 Comunicación
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 604--605
-\T1/cmr/m/n/10 en-tre
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 604--605
-\T1/cmr/m/n/10 apli-ca-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 605--606
-[]
- []
-
-
-Overfull \hbox (31.63457pt too wide) in paragraph at lines 605--606
-\T1/cmr/m/n/10 Procesamiento
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 605--606
-\T1/cmr/m/n/10 asín-
- []
-
-
-Overfull \hbox (86.46553pt too wide) in paragraph at lines 539--610
+Overfull \hbox (86.46553pt too wide) in paragraph at lines 371--441
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [39] [40]
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--456
+[]|\T1/cmr/bx/n/10 Principales
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 462--463
+[]\T1/cmr/m/n/10 Integración con
+ []
+
+
+Underfull \hbox (badness 7221) in paragraph at lines 462--463
+\T1/cmr/m/n/10 otros ser-vi-cios de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 468--469
+[]\T1/cmr/m/n/10 Complejidad
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 468--469
+\T1/cmr/m/n/10 de con-fi-gu-ra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 473--474
+[]
+ []
+
+
+Overfull \hbox (40.85454pt too wide) in paragraph at lines 473--474
+\T1/cmr/m/n/10 Almacenamiento
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 473--474
+\T1/cmr/m/n/10 de da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 474--475
+[]
+ []
+
+
+Overfull \hbox (0.72545pt too wide) in paragraph at lines 474--475
+\T1/cmr/m/n/10 Backup
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 474--475
+\T1/cmr/m/n/10 pe-ra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 479--479
+[]|\T1/cmr/m/n/10 Google
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 490--491
+[]\T1/cmr/m/n/10 Curva de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 495--496
+[]
+ []
+
+
+Overfull \hbox (40.85454pt too wide) in paragraph at lines 495--496
+\T1/cmr/m/n/10 Almacenamiento
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 495--496
+\T1/cmr/m/n/10 de da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 496--497
+[]
+ []
+
+
+Overfull \hbox (4.75224pt too wide) in paragraph at lines 496--497
+\T1/cmr/m/n/10 Machine
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 496--497
+\T1/cmr/m/n/10 lear-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 497--498
+[]
+ []
+
+
+Overfull \hbox (12.27818pt too wide) in paragraph at lines 497--498
+\T1/cmr/m/n/10 Archivado 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 501--501
+[]|\T1/cmr/m/n/10 Microsoft
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 512--513
+[]\T1/cmr/m/n/10 Complejidad
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 512--513
+\T1/cmr/m/n/10 de con-fi-gu-ra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 517--518
+[]
+ []
+
+
+Overfull \hbox (40.85454pt too wide) in paragraph at lines 517--518
+\T1/cmr/m/n/10 Almacenamiento
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 517--518
+\T1/cmr/m/n/10 de da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 518--519
+[]
+ []
+
+
+Overfull \hbox (0.72545pt too wide) in paragraph at lines 518--519
+\T1/cmr/m/n/10 Backup
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 518--519
+\T1/cmr/m/n/10 pe-ra-
+ []
+
+
+Overfull \hbox (86.46553pt too wide) in paragraph at lines 453--524
+ [][] 
+ []
+
+
+Underfull \vbox (badness 3758) has occurred while \output is active []
+
+ [36]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 536--537
+[]|\T1/cmr/bx/n/10 Principales
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--544
+[]\T1/cmr/m/n/10 Integración con
+ []
+
+
+Underfull \hbox (badness 7221) in paragraph at lines 543--544
+\T1/cmr/m/n/10 otros ser-vi-cios de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 549--550
+[]\T1/cmr/m/n/10 Complejidad
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 549--550
+\T1/cmr/m/n/10 de con-fi-gu-ra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 554--555
+[]
+ []
+
+
+Overfull \hbox (15.8051pt too wide) in paragraph at lines 554--555
+\T1/cmr/m/n/10 Desacoplar
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 554--555
+\T1/cmr/m/n/10 apli-ca-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 555--556
+[]
+ []
+
+
+Overfull \hbox (31.63457pt too wide) in paragraph at lines 555--556
+\T1/cmr/m/n/10 Procesamiento
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 555--556
+\T1/cmr/m/n/10 de da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 555--556
+\T1/cmr/m/n/10 tos
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 555--556
+\T1/cmr/m/n/10 asín-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 556--557
+[]
+ []
+
+
+Overfull \hbox (29.91277pt too wide) in paragraph at lines 556--557
+\T1/cmr/m/n/10 Microservicios 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 560--560
+[]|\T1/cmr/m/n/10 Google
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 571--572
+[]\T1/cmr/m/n/10 Curva de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 576--577
+[]
+ []
+
+
+Overfull \hbox (12.5559pt too wide) in paragraph at lines 576--577
+\T1/cmr/m/n/10 Streaming
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 576--577
+\T1/cmr/m/n/10 de da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 577--578
+[]
+ []
+
+
+Overfull \hbox (31.63457pt too wide) in paragraph at lines 577--578
+\T1/cmr/m/n/10 Procesamiento
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 577--578
+\T1/cmr/m/n/10 de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 577--578
+\T1/cmr/m/n/10 even-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 578--579
+[]
+ []
+
+
+Overfull \hbox (16.99925pt too wide) in paragraph at lines 578--579
+\T1/cmr/m/n/10 Integración
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 578--579
+\T1/cmr/m/n/10 de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 578--579
+\T1/cmr/m/n/10 apli-ca-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 582--582
+[]|\T1/cmr/m/n/10 Microsoft
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 593--594
+[]\T1/cmr/m/n/10 Flexibilidad
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 598--599
+[]
+ []
+
+
+Overfull \hbox (40.85454pt too wide) in paragraph at lines 598--599
+\T1/cmr/m/n/10 Almacenamiento
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 598--599
+\T1/cmr/m/n/10 de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 598--599
+\T1/cmr/m/n/10 men-sa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 599--600
+[]
+ []
+
+
+Overfull \hbox (29.46843pt too wide) in paragraph at lines 599--600
+\T1/cmr/m/n/10 Comunicación
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 599--600
+\T1/cmr/m/n/10 en-tre
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 599--600
+\T1/cmr/m/n/10 apli-ca-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 600--601
+[]
+ []
+
+
+Overfull \hbox (31.63457pt too wide) in paragraph at lines 600--601
+\T1/cmr/m/n/10 Procesamiento
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 600--601
+\T1/cmr/m/n/10 asín-
+ []
+
+
+Overfull \hbox (86.46553pt too wide) in paragraph at lines 534--605
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [37] [38] [39]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
 23.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-[41
+[40
 
 
 
@@ -2508,20 +2427,20 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-[42] [43] (/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.aux
-(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/PORTADA/portad
+[41] [42] (/Users/josedanielalvarezramos/Documents/CAPITULOS/out/main.aux
+(/Users/josedanielalvarezramos/Documents/CAPITULOS/out/CAPITULOS/PORTADA/portad
 a.aux)
 LaTeX Info: Redefining \sptext on input line 10.
 LaTeX Info: Redefining \. on input line 10.
 LaTeX Info: Redefining \% on input line 10.
 
-(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo1/capi
+(/Users/josedanielalvarezramos/Documents/CAPITULOS/out/CAPITULOS/capitulo1/capi
 tulo1.aux)
-(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo2/capi
+(/Users/josedanielalvarezramos/Documents/CAPITULOS/out/CAPITULOS/capitulo2/capi
 tulo2.aux)
-(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo3/capi
+(/Users/josedanielalvarezramos/Documents/CAPITULOS/out/CAPITULOS/capitulo3/capi
 tulo3.aux)
-(/Users/josedanielalvarezramos/Downloads/CAPITULOS/out/CAPITULOS/capitulo4/capi
+(/Users/josedanielalvarezramos/Documents/CAPITULOS/out/CAPITULOS/capitulo4/capi
 tulo4.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
@@ -2532,10 +2451,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 35828 strings out of 474116
- 859674 string characters out of 5743682
- 1954187 words of memory out of 5000000
- 57637 multiletter control sequences out of 15000+600000
+ 35820 strings out of 474116
+ 859489 string characters out of 5743682
+ 1961187 words of memory out of 5000000
+ 57629 multiletter control sequences out of 15000+600000
  573611 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,19n,107p,1132b,3149s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2562,11 +2481,11 @@ st/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist
 onts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2024/texmf-dist/fon
 ts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2024/texmf-dist/fonts
 /type1/public/cm-super/sftt1000.pfb>
-Output written on /Users/josedanielalvarezramos/Downloads/CAPITULOS/out/main.pd
-f (43 pages, 3032200 bytes).
+Output written on /Users/josedanielalvarezramos/Documents/CAPITULOS/out/main.pd
+f (42 pages, 3031804 bytes).
 PDF statistics:
- 280 PDF objects out of 1000 (max. 8388607)
- 175 compressed objects within 2 object streams
+ 276 PDF objects out of 1000 (max. 8388607)
+ 172 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  53 words of extra memory for PDF output out of 10000 (max. 10000000)
 

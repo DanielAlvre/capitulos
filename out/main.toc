@@ -59,7 +59,8 @@
 \contentsline {section}{\numberline {4.1}Análisis de Requerimientos del Sistema}{30}{}%
 \contentsline {subsection}{\numberline {4.1.1}Funcionalidad del sistema}{30}{}%
 \contentsline {section}{\numberline {4.2}Requerimientos Funcionales (RF)}{32}{}%
-\contentsline {subsection}{\numberline {4.2.1}Comparación de plataformas de nube}{36}{}%
-\contentsline {subsection}{\numberline {4.2.2}Comparación de VM para Kubernetes de GKE}{38}{}%
-\contentsline {subsection}{\numberline {4.2.3}Comparación de Buckets}{39}{}%
-\contentsline {subsection}{\numberline {4.2.4}Comparación de Sistemas de Mensajería (SQS)}{39}{}%
+\contentsline {subsection}{\numberline {4.2.1}Comparación de herramientas de plataformas en la nube}{35}{}%
+\contentsline {subsection}{\numberline {4.2.2}Comparacion base de datos en la nube}{35}{}%
+\contentsline {subsection}{\numberline {4.2.3}Comparación de VM para Kubernetes de GKE}{36}{}%
+\contentsline {subsection}{\numberline {4.2.4}Comparación de Buckets}{37}{}%
+\contentsline {subsection}{\numberline {4.2.5}Comparación de Sistemas de Mensajería (SQS)}{37}{}%

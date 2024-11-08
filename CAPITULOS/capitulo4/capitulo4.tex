@@ -276,75 +276,65 @@ Los requerimientos del sistema, derivados del análisis realizado a través del 
 \label{tab:rf-captura-sena-bucket}
 \end{table}
 
-\clearpage
-\subsection{Comparación de plataformas de nube}
 
+\subsection{Comparación de herramientas de plataformas en la nube}
+\subsection{Comparacion base de datos en la nube}
 En la Tabla \ref{tabla_comparativa_plataformas_nube} se presenta una comparativa de las principales plataformas de nube consideradas para el desarrollo del proyecto, junto con las bases de datos que ofrecen, sus principales usos y su idoneidad para el procesamiento de datos de LSM.
 
 \begin{table}[H]
     \centering
     \caption{Comparación de características entre diferentes plataformas de nube.}
     \label{tabla_comparativa_plataformas_nube}
-    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\centering\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{1cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}X|>{\centering\arraybackslash}X|>{\raggedright\arraybackslash}X|}
         \hline
-        \textbf{Plataforma} & \textbf{Base de datos} & \textbf{Ventajas para LSM} & \textbf{Desventajas para LSM} & \textbf{Costes} & \textbf{Principales usos} \\
+        \textbf{Nube} & \textbf{Base de datos} & \textbf{Ventajas} & \textbf{Costes} & \textbf{Principales usos} \\
         \hline
-        AWS & Amazon RDS, DynamoDB &
+        AWS & Amazon DynamoDB &
         \begin{itemize}
             \item Amplia gama de servicios
             \item Escalabilidad
             \item Integración con servicios de IA
+            \item Base de datos NoSQL
+            \item Sin servidor
         \end{itemize} &
-        \begin{itemize}
-            \item Costo
-            \item Complejidad
-        \end{itemize} & Variable &
+        \begin{minipage}[t]{\linewidth}
+            Variable\\
+            Costo total mensual: \$26.14 USD\\
+            Costo por petición de lectura: \$1.05023e-08 USD\\
+            Costo por petición de escritura: \$2.22412e-08 USD
+        \end{minipage} &
         \begin{itemize}
             \item Cómputo
             \item Almacenamiento
             \item Machine Learning
         \end{itemize} \\
         \hline
-        Google Cloud & Cloud SQL, Cloud Spanner &
+        GCP & Cloud SQL &
         \begin{itemize}
             \item Escalabilidad
-            \item Rendimiento
             \item Integración con TensorFlow
+            \item Base de datos relacional
         \end{itemize} &
-        \begin{itemize}
-            \item Costo
-            \item Curva de aprendizaje
-        \end{itemize} & Variable &
+        \begin{minipage}[t]{\linewidth}
+            Variable\\
+            Usando MySQL \\
+            Arquitectura VM \\
+            db-f1-micro \\
+            vCPUs: 1\\
+            RAM: 3.75 GiB \\
+            Costo total mensual: \$24.665 USD\\
+
+        \end{minipage} &
         \begin{itemize}
             \item Big Data
             \item Machine Learning
-            \item Desarrollo de aplicaciones
         \end{itemize} \\
         \hline
-        Microsoft Azure & Azure SQL Database, Cosmos DB &
-        \begin{itemize}
-            \item Integración con herramientas de Microsoft
-            \item Facilidad de uso
-        \end{itemize} &
-        \begin{itemize}
-            \item Costo
-            \item Flexibilidad
-        \end{itemidoes} & Variable &
-        \begin{itemize}
-            \item Aplicaciones empresariales
-            \item Bases de datos
-            \item Infraestructura
-        \end{itemize} \\
-        \hline
-        Firebase & Firestore, Realtime Database &
+        GCP & Firebase &
         \begin{itemize}
             \item Fácil integración con aplicaciones móviles y web
-            \item Realtime database
-            \item Amplio soporte para desarrollo rápido
-        \end{itemize} &
-        \begin{itemize}
-            \item Limitaciones en el manejo de grandes volúmenes de datos
-            \item Costo para grandes aplicaciones
+            \item Soporte para desarrollo rápido de apps
+            \item Base de datos NoSQL
         \end{itemize} & Freemium &
         \begin{itemize}
             \item Desarrollo de apps móviles
@@ -352,17 +342,22 @@ En la Tabla \ref{tabla_comparativa_plataformas_nube} se presenta una comparativa
             \item Almacenamiento en la nube
         \end{itemize} \\
         \hline
+        Azure & Azure SQL Database &
+        \begin{itemize}
+            \item Integración con herramientas de Microsoft
+            \item Facilidad de uso
+            \item Base de datos relacional
+        \end{itemize} & Variable &
+        \begin{itemize}
+            \item Aplicaciones empresariales
+            \item Bases de datos
+            \item Infraestructura
+        \end{itemize} \\
+        \hline
     \end{tabularx}
 \end{table}
 
-\begin{description}
-    \item[Plataforma:] Nombre de la plataforma de nube (AWS, Google Cloud, Azure, Firebase).
-    \item[Base de datos:] Opciones de bases de datos que ofrece la plataforma.
-    \item[Ventajas para LSM:] Ventajas específicas de la plataforma para el desarrollo de tu sistema LSM (ej. escalabilidad para manejar grandes volúmenes de datos, integración con herramientas de IA para el procesamiento de imágenes, etc.).
-    \item[Desventajas para LSM:] Posibles desventajas de la plataforma para tu proyecto (ej. costo, complejidad, limitaciones en la flexibilidad, etc.).
-    \item[Costes:]  Modelo de coste general de la plataforma (ej. "Pago por uso", "Suscripción", "Freemium").
-    \item[Principales usos:]  Casos de uso comunes de la plataforma.
-\end{description}
+
 
 
 \subsection{Comparación de VM para Kubernetes de GKE}
