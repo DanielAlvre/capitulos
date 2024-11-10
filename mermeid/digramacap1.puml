@@ -1,0 +1,94 @@
+@startuml
+skinparam sequence {
+  ParticipantBorderColor black
+  ParticipantBackgroundColor white
+  ActorBorderColor black
+  ActorBackgroundColor white
+  LifeLineBorderColor black
+  ArrowColor black
+}
+
+participant Usuario
+participant "Programa de Grabación" as Grabador
+participant Cámara
+participant "Procesador de Video o fotos" as Procesador
+participant "Almacenamiento Local" as Almacenamiento
+participant S3
+participant EventBridge
+participant Lambda
+participant SQS
+participant Microservicio
+participant MediaPipe
+participant Entrenador
+participant "TensorFlow/Keras" as TF
+participant "Almacenamiento" as AlmacenamientoPesos
+participant "Programa de Traducción" as Traductor
+participant "[Cámara Local]" as CamaraLocal
+participant Modelo
+participant Pantalla
+participant "API de Text-To-Speech" as TTS
+participant Altavoz
+
+Usuario -> Grabador: Iniciar Grabación
+activate Grabador
+Grabador -> Cámara: Capturar Video
+activate Cámara
+Cámara --> Grabador: Video Capturado
+deactivate Cámara
+Grabador -> Procesador: Dividir en Fotogramas
+activate Procesador
+Procesador -> Almacenamiento: Almacenar Fotogramas
+activate Almacenamiento
+Almacenamiento -> S3: Subir Fotogramas
+activate S3
+deactivate Almacenamiento
+deactivate Procesador
+
+S3 -> EventBridge: Notificar Nuevo Archivo
+activate EventBridge
+EventBridge -> Lambda: Invocar Función
+activate Lambda
+Lambda -> S3: Obtener Fotogramas
+Lambda -> SQS: Enviar Paquete de 30 Frames
+activate SQS
+deactivate Lambda
+SQS -> Microservicio: Recibir Datos
+activate Microservicio
+Microservicio -> MediaPipe: Procesar Frames
+activate MediaPipe
+MediaPipe --> Microservicio: Puntos Clave Obtenidos
+deactivate MediaPipe
+Microservicio -> SQS: Enviar DataFrame
+deactivate Microservicio
+SQS -> Entrenador: Recibir DataFrame
+activate Entrenador
+Entrenador -> TF: Entrenar Modelo
+activate TF
+TF --> Entrenador: Pesos Entrenados
+deactivate TF
+Entrenador -> AlmacenamientoPesos: Guardar Pesos
+deactivate Entrenador
+deactivate SQS
+deactivate S3
+deactivate EventBridge
+
+Usuario -> Traductor: Iniciar Traducción
+activate Traductor
+Traductor -> CamaraLocal: Capturar Frames
+activate CamaraLocal
+CamaraLocal --> Traductor: Frames Capturados
+deactivate CamaraLocal
+Traductor -> Modelo: Predecir Palabra
+activate Modelo
+Modelo --> Traductor: Palabra Traducida
+deactivate Modelo
+Traductor -> Pantalla: Mostrar Palabra
+Traductor -> TTS: Generar Audio
+activate TTS
+TTS --> Traductor: Audio Generado
+deactivate TTS
+Traductor -> Altavoz: Reproducir Audio
+deactivate Traductor
+deactivate Grabador
+
+@enduml
