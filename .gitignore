@@ -1,1 +1,27 @@
 /out/
+  *.aux
+   *.bbl
+   *.blg
+   *.brf
+   *.fls
+   *.fdb_latexmk
+   *.ilg
+   *.ind
+   *.lof
+   *.log
+   *.lot
+   *.lol
+   *.maf
+   *.mtc
+   *.mtc0
+   *.nav
+   *.nlo
+   *.out
+   *.pdfsync
+   *.ptc
+   *.synctex.gz
+   *.run.xml
+   *.toc
+   *.tpt
+   *.vrb
+   *.xdv
