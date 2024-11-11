@@ -277,7 +277,8 @@ Los requerimientos del sistema, derivados del análisis realizado a través del 
 \end{table}
 
 
-\subsection{Comparación de herramientas de plataformas en la nube}
+\section{Comparación de herramientas de plataformas en la nube}
+
 \subsection{Comparacion base de datos en la nube}
 En la Tabla \ref{tabla_comparativa_plataformas_nube} se presenta una comparativa de las principales plataformas de nube consideradas para el desarrollo del proyecto, junto con las bases de datos que ofrecen, sus principales usos y su idoneidad para el procesamiento de datos de LSM.
 
@@ -364,89 +365,77 @@ En la Tabla \ref{tabla_comparativa_plataformas_nube} se presenta una comparativa
 
 En la Tabla \ref{tabla_comparativa_vm_kubernetes} se presenta una comparativa de las principales VM para Kubernetes de GKE de las principales nubes.
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
-    \caption{Comparación de VM para Kubernetes de GKE en diferentes plataformas de nube.}
-    \label{tabla_comparativa_vm_kubernetes}
-    \begin{tabular}{|p{2cm}|p{3cm}|p{4cm}|p{3cm}|p{2cm}|p{2cm}|}
+    \caption{Comparación de opciones para alojar microservicios en diferentes plataformas de nube.}
+    \label{tabla_comparativa_microservicios}
+    \begin{tabular}{|p{3cm}|p{2cm}|p{5cm}|p{2cm}|}
         \hline
-        \textbf{Plataforma} & \textbf{VM} & \textbf{Ventajas} & \textbf{Desventajas} & \textbf{Costes} & \textbf{Principales usos} \\
+        \textbf{Servicio} & \textbf{Plataforma} & \textbf{Ventajas} & \textbf{Costes} \\
         \hline
-        AWS & Amazon EC2 &
+        Amazon EC2 & AWS &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Amplia variedad de tipos de instancias
-                \item Escalabilidad automática
-                \item Integración con otros servicios de AWS
+                \item Variedad de tipos de instancias para diferentes cargas de trabajo
+                \item Escalabilidad automática y opciones de balanceo de carga
+                \item Integración con el ecosistema de AWS (RDS, S3, IAM, etc.)
             \end{itemize}
-        \end{minipage} &
-        \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Costo
-                \item Complejidad de configuración
-            \end{itemize}
-        \end{minipage} & Variable &
-        \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Aplicaciones web
-                \item Bases de datos
-                \item Machine Learning
-            \end{itemize}
-        \end{minipage} \\
+        \end{minipage} & Basado en uso por hora y tipo de instancia \\
         \hline
-        Google Cloud & Google Compute Engine (GCE) &
+        Amazon EKS & AWS &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Rendimiento
-                \item Escalabilidad automática
-                \item Fácil integración con GKE
+                \item Kubernetes gestionado con alta disponibilidad
+                \item Fácil integración con otros servicios de AWS
+                \item Escalabilidad automatizada de clústeres y nodos
             \end{itemize}
-        \end{minipage} &
-        \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Costo
-                \item Curva de aprendizaje
-            \end{itemize}
-        \end{minipage} & Variable &
-        \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Aplicaciones web
-                \item Contenedores
-                \item Big Data
-            \end{itemize}
-        \end{minipage} \\
+        \end{minipage} & Tarifas fijas por clúster más costes de instancias \\
         \hline
-        Microsoft Azure & Azure Virtual Machines &
+        Google Compute Engine (GCE) & Google Cloud &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Integración con servicios de Microsoft
-                \item Amplia variedad de tipos de instancias
+                \item Alto rendimiento y opciones de personalización
+                \item Escalabilidad automática y soporte de GPU/TPU
+                \item Integración nativa con GKE para contenedores
             \end{itemize}
-        \end{minipage} &
+        \end{minipage} & Basado en uso por segundo y tipo de máquina \\
+        \hline
+        Google Kubernetes Engine (GKE) & Google Cloud &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Costo
-                \item Complejidad de configuración
+                \item Kubernetes gestionado con escalabilidad automática
+                \item Herramientas de monitoreo y gestión avanzadas
+                \item Integración con el ecosistema de Google Cloud (BigQuery, Pub/Sub, etc.)
             \end{itemize}
-        \end{minipage} & Variable &
+        \end{minipage} & Coste base por clúster, más coste de recursos usados \\
+        \hline
+        Azure Virtual Machines & Microsoft Azure &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Aplicaciones empresariales
-                \item Desarrollo de software
-                \item Infraestructura
+                \item Integración con otros servicios de Microsoft (Active Directory, SQL Server)
+                \item Amplia variedad de opciones de instancias y series
+                \item Alta disponibilidad con zonas de disponibilidad
             \end{itemize}
-        \end{minipage} \\
+        \end{minipage} & Basado en uso por hora y tipo de instancia \\
+        \hline
+        Azure Kubernetes Service (AKS) & Microsoft Azure &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Kubernetes gestionado con integración nativa en Azure
+                \item Integración con herramientas de seguridad de Microsoft (Azure AD)
+                \item Escalabilidad automática de pods y nodos
+            \end{itemize}
+        \end{minipage} & Sin coste por el servicio de AKS, solo pago por recursos \\
         \hline
     \end{tabular}
 \end{table}
-
 
 
 \subsection{Comparación de Buckets}
 
 En la Tabla \ref{tabla_comparativa_buckets} se presenta una comparativa de los servicios de almacenamiento de buckets en las principales plataformas de nube.
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \caption{Comparación de servicios de almacenamiento de buckets en diferentes plataformas de nube.}
     \label{tabla_comparativa_buckets}
@@ -603,3 +592,67 @@ En la Tabla \ref{tabla_comparativa_sqs} se presenta una comparativa de los siste
         \hline
     \end{tabular}
 \end{table}
+
+\section{Estructura de las colecciones de Firebase}
+
+A continuación se muestra la estructura de las colecciones de Firebase después de la migración:
+
+\subsection{Colección usuarios}
+
+\begin{lstlisting}[style=json, caption=Documento de ejemplo en la colección 'usuarios', label=lst:usuarios]
+{
+  "uid1": {
+    "nombre": "Usuario 1",
+    "correo": "usuario1@example.com",
+    "rolId": "admin", // Referencia al documento 'admin' en la colección 'roles'
+    "fechaCreacion": "2024-11-09T12:00:00Z",
+    "ultimaModificacion": "2024-11-09T12:00:00Z",
+    "activo": true,
+    "destacados": {
+      "conteo": 10,
+      "fechaCreacion": "2024-11-09T12:00:00Z",
+      "ultimaModificacion": "2024-11-09T12:00:00Z",
+      "activo": true
+    }
+  },
+  "uid2": {
+    // ... otros usuarios
+  }
+}
+\end{lstlisting}
+
+\subsection{Colección senias}
+
+\begin{lstlisting}[style=json, caption=Documento de ejemplo en la colección 'senias', label=lst:senias]
+{
+  "senia1": {
+    "nombre": "Seña 1",
+    "descripcion": "Descripción de la Seña 1",
+    "videoUrl": "https://example.com/senia1.mp4",
+    "usuarioId": "uid1", // Referencia al documento 'uid1' en la colección 'usuarios'
+    "fechaCreacion": "2024-11-09T12:00:00Z",
+    "ultimaModificacion": "2024-11-09T12:00:00Z",
+    "activo": true
+  },
+  "senia2": {
+    // ... otras señas
+  }
+}
+\end{lstlisting}
+
+\subsection{Colección roles}
+
+\begin{lstlisting}[style=json, caption=Documento de ejemplo en la colección 'roles', label=lst:roles]
+{
+  "admin": {
+    "nombre": "Administrador",
+    "activo": true
+  },
+  "usuario": {
+    // ... otros roles
+  }
+}
+\end{lstlisting}
+
+% ... (tu documento) ...
+

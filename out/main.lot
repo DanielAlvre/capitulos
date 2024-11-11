@@ -16,6 +16,6 @@
 \contentsline {table}{\numberline {4.11}{\ignorespaces Requerimiento: Registra Información de Seña DLM}}{35}{}%
 \contentsline {table}{\numberline {4.12}{\ignorespaces Requerimiento: Captura de Seña en Bucket}}{35}{}%
 \contentsline {table}{\numberline {4.13}{\ignorespaces Comparación de características entre diferentes plataformas de nube.}}{36}{}%
-\contentsline {table}{\numberline {4.14}{\ignorespaces Comparación de VM para Kubernetes de GKE en diferentes plataformas de nube.}}{37}{}%
+\contentsline {table}{\numberline {4.14}{\ignorespaces Comparación de opciones para alojar microservicios en diferentes plataformas de nube.}}{37}{}%
 \contentsline {table}{\numberline {4.15}{\ignorespaces Comparación de servicios de almacenamiento de buckets en diferentes plataformas de nube.}}{38}{}%
-\contentsline {table}{\numberline {4.16}{\ignorespaces Comparación de sistemas de mensajería (SQS) en diferentes plataformas de nube.}}{39}{}%
+\contentsline {table}{\numberline {4.16}{\ignorespaces Comparación de sistemas de mensajería (SQS) en diferentes plataformas de nube.}}{41}{}%

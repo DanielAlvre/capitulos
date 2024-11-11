@@ -7,6 +7,26 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 
+\usepackage{listings}
+\usepackage{color}
+
+% Definir un color amarillo claro
+\definecolor{codebg}{rgb}{1.0, 1.0, 0.8}
+
+% Definir el estilo json para lstlisting
+\lstdefinestyle{json} {
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily,
+    language=json,
+    stepnumber=1,
+    numberstyle=\tiny,
+    breaklines=true,
+    captionpos=b,
+    frame=single,
+    frameround=tttt,
+    rulecolor=\color{black}
+}
+
 % --- Configuración de márgenes ---
 \geometry{
     verbose,
@@ -26,9 +46,7 @@
 \usepackage{tocloft}  % Para crear el índice de ecuaciones
 \usepackage{rotating}
 \usepackage{float}
-\documentclass{article}
 \usepackage{tabularx}
-
 
 % --- Configura la sangría y el espacio entre párrafos ---
 \setlength{\parindent}{0pt}  % Elimina la sangría de primera línea

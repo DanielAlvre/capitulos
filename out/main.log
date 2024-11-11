@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.6)  8 NOV 2024 17:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.6)  11 NOV 2024 11:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -519,15 +519,44 @@ File: tikzlibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmar
 ks.code.tex
 File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
-))) (/usr/local/texlive/2024/texmf-dist/tex/latex/tools/array.sty
+)))
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count297
+\lst@gtempboxa=\box63
+\lst@token=\toks41
+\lst@length=\count298
+\lst@currlwidth=\dimen272
+\lst@column=\count299
+\lst@pos=\count300
+\lst@lostspace=\dimen273
+\lst@width=\dimen274
+\lst@newlines=\count301
+\lst@lineno=\count302
+\lst@maxwidth=\dimen275
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstpatch.sty
+File: lstpatch.sty 2024/02/21 1.10 (Carsten Heinz)
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/02/21 1.10 (Carsten Heinz)
+\c@lstnumber=\count303
+\lst@skipnumbers=\count304
+\lst@framebox=\box64
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2024/02/21 1.10 listings configuration
+))
+Package: listings 2024/02/21 1.10 (Carsten Heinz)
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/tools/array.sty
 Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
-\col@sep=\dimen272
-\ar@mcellbox=\box63
-\extrarowheight=\dimen273
-\NC@list=\toks41
+\col@sep=\dimen276
+\ar@mcellbox=\box65
+\extrarowheight=\dimen277
+\NC@list=\toks42
 \extratabsurround=\skip50
 \backup@length=\skip51
-\ar@cellbox=\box64
+\ar@cellbox=\box66
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
@@ -550,18 +579,19 @@ Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen274
-\captionmargin=\dimen275
-\caption@leftmargin=\dimen276
-\caption@rightmargin=\dimen277
-\caption@width=\dimen278
-\caption@indent=\dimen279
-\caption@parindent=\dimen280
-\caption@hangindent=\dimen281
+\caption@tempdima=\dimen278
+\captionmargin=\dimen279
+\caption@leftmargin=\dimen280
+\caption@rightmargin=\dimen281
+\caption@width=\dimen282
+\caption@indent=\dimen283
+\caption@parindent=\dimen284
+\caption@hangindent=\dimen285
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count297
-\c@continuedfloat=\count298
+\c@caption@flags=\count305
+\c@continuedfloat=\count306
+Package caption Info: listings package is loaded.
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2023/05/13 v2.17o AMS math features
@@ -573,61 +603,61 @@ Package: amstext 2021/08/26 v2.01 AMS text
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks42
-\ex@=\dimen282
+\@emptytoks=\toks43
+\ex@=\dimen286
 ))
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen283
+\pmbraise@=\dimen287
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count299
+\inf@bad=\count307
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count300
-\leftroot@=\count301
+\uproot@=\count308
+\leftroot@=\count309
 LaTeX Info: Redefining \overline on input line 399.
 LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count302
-\DOTSCASE@=\count303
+\classnum@=\count310
+\DOTSCASE@=\count311
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box65
-\strutbox@=\box66
+\Mathstrutbox@=\box67
+\strutbox@=\box68
 LaTeX Info: Redefining \big on input line 722.
 LaTeX Info: Redefining \Big on input line 723.
 LaTeX Info: Redefining \bigg on input line 724.
 LaTeX Info: Redefining \Bigg on input line 725.
-\big@size=\dimen284
+\big@size=\dimen288
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count304
+\macc@depth=\count312
 LaTeX Info: Redefining \bmod on input line 905.
 LaTeX Info: Redefining \pmod on input line 910.
 LaTeX Info: Redefining \smash on input line 940.
 LaTeX Info: Redefining \relbar on input line 970.
 LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count305
+\c@MaxMatrixCols=\count313
 \dotsspace@=\muskip16
-\c@parentequation=\count306
-\dspbrk@lvl=\count307
-\tag@help=\toks43
-\row@=\count308
-\column@=\count309
-\maxfields@=\count310
-\andhelp@=\toks44
-\eqnshift@=\dimen285
-\alignsep@=\dimen286
-\tagshift@=\dimen287
-\tagwidth@=\dimen288
-\totwidth@=\dimen289
-\lineht@=\dimen290
-\@envbody=\toks45
+\c@parentequation=\count314
+\dspbrk@lvl=\count315
+\tag@help=\toks44
+\row@=\count316
+\column@=\count317
+\maxfields@=\count318
+\andhelp@=\toks45
+\eqnshift@=\dimen289
+\alignsep@=\dimen290
+\tagshift@=\dimen291
+\tagwidth@=\dimen292
+\totwidth@=\dimen293
+\lineht@=\dimen294
+\@envbody=\toks46
 \multlinegap=\skip62
 \multlinetaggap=\skip63
-\mathdisplay@stack=\toks46
+\mathdisplay@stack=\toks47
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )
@@ -663,8 +693,8 @@ Package tocloft Info: The document has chapter divisions on input line 51.
 \cftbeforefigskip=\skip90
 \cftfigindent=\skip91
 \cftfignumwidth=\skip92
-\c@lofdepth=\count311
-\c@lotdepth=\count312
+\c@lofdepth=\count319
+\c@lotdepth=\count320
 \cftbeforelottitleskip=\skip93
 \cftafterlottitleskip=\skip94
 \cftbeforetabskip=\skip95
@@ -677,58 +707,47 @@ Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 )
-\c@r@tfl@t=\count313
+\c@r@tfl@t=\count321
 \rotFPtop=\skip98
 \rotFPbot=\skip99
-\rot@float@box=\box67
-\rot@mess@toks=\toks47
+\rot@float@box=\box69
+\rot@mess@toks=\toks48
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count314
-\float@exts=\toks48
-\float@box=\box68
-\@float@everytoks=\toks49
-\@floatcapt=\box69
+\c@float@type=\count322
+\float@exts=\toks49
+\float@box=\box70
+\@float@everytoks=\toks50
+\@floatcapt=\box71
 )
-
-./main.tex:29: LaTeX Error: Two \documentclass or \documentstyle commands.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.29 \documentclass{
-                    article}
-The document may only declare one class.
-
 (/usr/local/texlive/2024/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2023/07/08 v2.11c `tabularx' package (DPC)
-\TX@col@width=\dimen291
-\TX@old@table=\dimen292
-\TX@old@col=\dimen293
-\TX@target=\dimen294
-\TX@delta=\dimen295
-\TX@cols=\count315
-\TX@ftn=\toks50
+\TX@col@width=\dimen295
+\TX@old@table=\dimen296
+\TX@old@col=\dimen297
+\TX@target=\dimen298
+\TX@delta=\dimen299
+\TX@cols=\count323
+\TX@ftn=\toks51
 )
-\c@myequations=\count316
+\c@myequations=\count324
 \cftbeforemyequationsskip=\skip100
 \cftmyequationsindent=\skip101
 \cftmyequationsnumwidth=\skip102
-\c@equdepth=\count317
+\c@equdepth=\count325
 \cftbeforeequtitleskip=\skip103
 \cftafterequtitleskip=\skip104
 
 
-./main.tex:71: LaTeX Error: Command \listofmyequations already defined.
+./main.tex:89: LaTeX Error: Command \listofmyequations already defined.
                Or name \end... illegal, see p.192 of the manual.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.71 }
+l.89 }
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -753,7 +772,7 @@ Package pdftexcmds Info: \pdfdraftmode found.
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count318
+\etb@tempcnta=\count326
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
@@ -763,7 +782,7 @@ Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 ))
 (/usr/local/texlive/2024/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count319
+\lrq@indent=\count327
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
@@ -772,49 +791,49 @@ File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-\c@tabx@nest=\count320
-\c@listtotal=\count321
-\c@listcount=\count322
-\c@liststart=\count323
-\c@liststop=\count324
-\c@citecount=\count325
-\c@citetotal=\count326
-\c@multicitecount=\count327
-\c@multicitetotal=\count328
-\c@instcount=\count329
-\c@maxnames=\count330
-\c@minnames=\count331
-\c@maxitems=\count332
-\c@minitems=\count333
-\c@citecounter=\count334
-\c@maxcitecounter=\count335
-\c@savedcitecounter=\count336
-\c@uniquelist=\count337
-\c@uniquename=\count338
-\c@refsection=\count339
-\c@refsegment=\count340
-\c@maxextratitle=\count341
-\c@maxextratitleyear=\count342
-\c@maxextraname=\count343
-\c@maxextradate=\count344
-\c@maxextraalpha=\count345
-\c@abbrvpenalty=\count346
-\c@highnamepenalty=\count347
-\c@lownamepenalty=\count348
-\c@maxparens=\count349
-\c@parenlevel=\count350
-\blx@tempcnta=\count351
-\blx@tempcntb=\count352
-\blx@tempcntc=\count353
-\c@blx@maxsection=\count354
-\blx@maxsegment@0=\count355
-\blx@notetype=\count356
-\blx@parenlevel@text=\count357
-\blx@parenlevel@foot=\count358
-\blx@sectionciteorder@0=\count359
-\blx@sectionciteorderinternal@0=\count360
-\blx@entrysetcounter=\count361
-\blx@biblioinstance=\count362
+\c@tabx@nest=\count328
+\c@listtotal=\count329
+\c@listcount=\count330
+\c@liststart=\count331
+\c@liststop=\count332
+\c@citecount=\count333
+\c@citetotal=\count334
+\c@multicitecount=\count335
+\c@multicitetotal=\count336
+\c@instcount=\count337
+\c@maxnames=\count338
+\c@minnames=\count339
+\c@maxitems=\count340
+\c@minitems=\count341
+\c@citecounter=\count342
+\c@maxcitecounter=\count343
+\c@savedcitecounter=\count344
+\c@uniquelist=\count345
+\c@uniquename=\count346
+\c@refsection=\count347
+\c@refsegment=\count348
+\c@maxextratitle=\count349
+\c@maxextratitleyear=\count350
+\c@maxextraname=\count351
+\c@maxextradate=\count352
+\c@maxextraalpha=\count353
+\c@abbrvpenalty=\count354
+\c@highnamepenalty=\count355
+\c@lownamepenalty=\count356
+\c@maxparens=\count357
+\c@parenlevel=\count358
+\blx@tempcnta=\count359
+\blx@tempcntb=\count360
+\blx@tempcntc=\count361
+\c@blx@maxsection=\count362
+\blx@maxsegment@0=\count363
+\blx@notetype=\count364
+\blx@parenlevel@text=\count365
+\blx@parenlevel@foot=\count366
+\blx@sectionciteorder@0=\count367
+\blx@sectionciteorderinternal@0=\count368
+\blx@entrysetcounter=\count369
+\blx@biblioinstance=\count370
 \labelnumberwidth=\skip105
 \labelalphawidth=\skip106
 \biblabelsep=\skip107
@@ -826,9 +845,9 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \blx@bcfin=\read4
 \blx@bcfout=\write4
 \blx@langwohyphens=\language90
-\c@mincomprange=\count363
-\c@maxcomprange=\count364
-\c@mincompwidth=\count365
+\c@mincomprange=\count371
+\c@maxcomprange=\count372
+\c@mincompwidth=\count373
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
@@ -839,74 +858,74 @@ Package biblatex Info: Trying to load biblatex style data model...
 Package biblatex Info: ... file 'numeric.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count366
-\c@savedafterword=\count367
-\c@annotator=\count368
-\c@savedannotator=\count369
-\c@author=\count370
-\c@savedauthor=\count371
-\c@bookauthor=\count372
-\c@savedbookauthor=\count373
-\c@commentator=\count374
-\c@savedcommentator=\count375
-\c@editor=\count376
-\c@savededitor=\count377
-\c@editora=\count378
-\c@savededitora=\count379
-\c@editorb=\count380
-\c@savededitorb=\count381
-\c@editorc=\count382
-\c@savededitorc=\count383
-\c@foreword=\count384
-\c@savedforeword=\count385
-\c@holder=\count386
-\c@savedholder=\count387
-\c@introduction=\count388
-\c@savedintroduction=\count389
-\c@namea=\count390
-\c@savednamea=\count391
-\c@nameb=\count392
-\c@savednameb=\count393
-\c@namec=\count394
-\c@savednamec=\count395
-\c@translator=\count396
-\c@savedtranslator=\count397
-\c@shortauthor=\count398
-\c@savedshortauthor=\count399
-\c@shorteditor=\count400
-\c@savedshorteditor=\count401
-\c@labelname=\count402
-\c@savedlabelname=\count403
-\c@institution=\count404
-\c@savedinstitution=\count405
-\c@lista=\count406
-\c@savedlista=\count407
-\c@listb=\count408
-\c@savedlistb=\count409
-\c@listc=\count410
-\c@savedlistc=\count411
-\c@listd=\count412
-\c@savedlistd=\count413
-\c@liste=\count414
-\c@savedliste=\count415
-\c@listf=\count416
-\c@savedlistf=\count417
-\c@location=\count418
-\c@savedlocation=\count419
-\c@organization=\count420
-\c@savedorganization=\count421
-\c@origlocation=\count422
-\c@savedoriglocation=\count423
-\c@origpublisher=\count424
-\c@savedorigpublisher=\count425
-\c@publisher=\count426
-\c@savedpublisher=\count427
-\c@language=\count428
-\c@savedlanguage=\count429
-\c@origlanguage=\count430
-\c@savedoriglanguage=\count431
-\c@pageref=\count432
-\c@savedpageref=\count433
+\c@afterword=\count374
+\c@savedafterword=\count375
+\c@annotator=\count376
+\c@savedannotator=\count377
+\c@author=\count378
+\c@savedauthor=\count379
+\c@bookauthor=\count380
+\c@savedbookauthor=\count381
+\c@commentator=\count382
+\c@savedcommentator=\count383
+\c@editor=\count384
+\c@savededitor=\count385
+\c@editora=\count386
+\c@savededitora=\count387
+\c@editorb=\count388
+\c@savededitorb=\count389
+\c@editorc=\count390
+\c@savededitorc=\count391
+\c@foreword=\count392
+\c@savedforeword=\count393
+\c@holder=\count394
+\c@savedholder=\count395
+\c@introduction=\count396
+\c@savedintroduction=\count397
+\c@namea=\count398
+\c@savednamea=\count399
+\c@nameb=\count400
+\c@savednameb=\count401
+\c@namec=\count402
+\c@savednamec=\count403
+\c@translator=\count404
+\c@savedtranslator=\count405
+\c@shortauthor=\count406
+\c@savedshortauthor=\count407
+\c@shorteditor=\count408
+\c@savedshorteditor=\count409
+\c@labelname=\count410
+\c@savedlabelname=\count411
+\c@institution=\count412
+\c@savedinstitution=\count413
+\c@lista=\count414
+\c@savedlista=\count415
+\c@listb=\count416
+\c@savedlistb=\count417
+\c@listc=\count418
+\c@savedlistc=\count419
+\c@listd=\count420
+\c@savedlistd=\count421
+\c@liste=\count422
+\c@savedliste=\count423
+\c@listf=\count424
+\c@savedlistf=\count425
+\c@location=\count426
+\c@savedlocation=\count427
+\c@organization=\count428
+\c@savedorganization=\count429
+\c@origlocation=\count430
+\c@savedoriglocation=\count431
+\c@origpublisher=\count432
+\c@savedorigpublisher=\count433
+\c@publisher=\count434
+\c@savedpublisher=\count435
+\c@language=\count436
+\c@savedlanguage=\count437
+\c@origlanguage=\count438
+\c@savedoriglanguage=\count439
+\c@pageref=\count440
+\c@savedpageref=\count441
 \shorthandwidth=\skip113
 \shortjournalwidth=\skip114
 \shortserieswidth=\skip115
@@ -932,19 +951,19 @@ Package biblatex Info: ... file 'biblatex.def' found.
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
-\c@textcitecount=\count434
-\c@textcitetotal=\count435
-\c@textcitemaxnames=\count436
-\c@biburlbigbreakpenalty=\count437
-\c@biburlbreakpenalty=\count438
-\c@biburlnumpenalty=\count439
-\c@biburlucpenalty=\count440
-\c@biburllcpenalty=\count441
+\c@textcitecount=\count442
+\c@textcitetotal=\count443
+\c@textcitemaxnames=\count444
+\c@biburlbigbreakpenalty=\count445
+\c@biburlbreakpenalty=\count446
+\c@biburlnumpenalty=\count447
+\c@biburlucpenalty=\count448
+\c@biburllcpenalty=\count449
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count442
+\c@smartand=\count450
 )
 Package biblatex Info: Trying to load bibliography style 'numeric'...
 Package biblatex Info: ... file 'numeric.bbx' found.
@@ -956,8 +975,8 @@ Package biblatex Info: ... file 'standard.bbx' found.
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count443
-\c@bbx:relatedtotal=\count444
+\c@bbx:relatedcount=\count451
+\c@bbx:relatedtotal=\count452
 ))
 Package biblatex Info: Trying to load citation style 'numeric'...
 Package biblatex Info: ... file 'numeric.cbx' found.
@@ -990,8 +1009,8 @@ Package: expl3 2024-02-20 L3 programming layer (loader)
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count445
-\l__pdf_internal_box=\box70
+\l__color_backend_stack_int=\count453
+\l__pdf_internal_box=\box72
 ))
 Package biblatex Info: ... and expl3
 (biblatex)             2024-02-20 L3 programming layer (loader) 
@@ -1008,14 +1027,14 @@ Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count446
-\@quotereset=\count447
+\@quotelevel=\count454
+\@quotereset=\count455
 (/Users/josedanielalvarezramos/Documents/CAPITULOS/out/main.aux
+LaTeX Info: Redefining \. on input line 9.
+LaTeX Info: Redefining \% on input line 9.
+
 (/Users/josedanielalvarezramos/Documents/CAPITULOS/out/CAPITULOS/PORTADA/portad
 a.aux)
-LaTeX Info: Redefining \. on input line 10.
-LaTeX Info: Redefining \% on input line 10.
-
 (/Users/josedanielalvarezramos/Documents/CAPITULOS/out/CAPITULOS/capitulo1/capi
 tulo1.aux)
 (/Users/josedanielalvarezramos/Documents/CAPITULOS/out/CAPITULOS/capitulo2/capi
@@ -1026,22 +1045,22 @@ tulo3.aux)
 tulo4.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Info: Redefining \. on input line 77.
-LaTeX Info: Redefining \% on input line 77.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Info: Redefining \. on input line 95.
+LaTeX Info: Redefining \% on input line 95.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1083,17 +1102,17 @@ Package geometry Warning: The marginal notes overrun the paper.
 
 (/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count448
-\scratchdimen=\dimen296
-\scratchbox=\box71
-\nofMPsegments=\count449
-\nofMParguments=\count450
-\everyMPshowfont=\toks51
-\MPscratchCnt=\count451
-\MPscratchDim=\dimen297
-\MPnumerator=\count452
-\makeMPintoPDFobject=\count453
-\everyMPtoPDFconversion=\toks52
+\scratchcounter=\count456
+\scratchdimen=\dimen300
+\scratchbox=\box73
+\nofMPsegments=\count457
+\nofMParguments=\count458
+\everyMPshowfont=\toks52
+\MPscratchCnt=\count459
+\MPscratchDim=\dimen301
+\MPnumerator=\count460
+\makeMPintoPDFobject=\count461
+\everyMPtoPDFconversion=\toks53
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -1106,6 +1125,7 @@ e
 Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
+\c@lstlisting=\count462
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: rotating package is loaded.
@@ -1132,8 +1152,8 @@ Package biblatex Warning: The following entry could not be found
 (biblatex)                LaTeX afterwards.
 
 )
-Package biblatex Info: Reference section=0 on input line 77.
-Package biblatex Info: Reference segment=0 on input line 77.
+Package biblatex Info: Reference section=0 on input line 95.
+Package biblatex Info: Reference segment=0 on input line 95.
 \openout2 = `CAPITULOS/PORTADA/portada.aux'.
 
  (./CAPITULOS/PORTADA/portada.tex
@@ -1834,22 +1854,22 @@ Underfull \hbox (badness 3271) in paragraph at lines 268--268
  []
 
 
-Underfull \hbox (badness 1360) in paragraph at lines 357--357
+Underfull \hbox (badness 1360) in paragraph at lines 358--358
 \T1/cmr/m/n/10 Costo to-tal men-sual:
  []
 
 
-Underfull \hbox (badness 7133) in paragraph at lines 357--357
+Underfull \hbox (badness 7133) in paragraph at lines 358--358
 \T1/cmr/m/n/10 lec-tu-ra: $1.05023e-08
  []
 
 
-Underfull \hbox (badness 1360) in paragraph at lines 357--357
+Underfull \hbox (badness 1360) in paragraph at lines 358--358
 \T1/cmr/m/n/10 Costo to-tal men-sual:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 357--357
+Underfull \hbox (badness 10000) in paragraph at lines 358--358
 
  []
 
@@ -1857,568 +1877,821 @@ Underfull \hbox (badness 10000) in paragraph at lines 357--357
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [35]
-Underfull \hbox (badness 10000) in paragraph at lines 373--374
-[]|\T1/cmr/bx/n/10 Principales
+
+LaTeX Warning: Reference `tabla_comparativa_vm_kubernetes' on page 36 undefined
+ on input line 366.
+
+
+Underfull \hbox (badness 1565) in paragraph at lines 380--381
+\T1/cmr/m/n/10 op-cio-nes de ba-lan-ceo de
  []
 
 
-Underfull \hbox (badness 2310) in paragraph at lines 379--380
-[]\T1/cmr/m/n/10 Escalabilidad au-to-
+Underfull \hbox (badness 10000) in paragraph at lines 383--384
+[]|\T1/cmr/m/n/10 Basado en
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 380--381
-[]\T1/cmr/m/n/10 IntegraciÛn con
+Underfull \hbox (badness 10000) in paragraph at lines 383--384
+\T1/cmr/m/n/10 y ti-po de
  []
 
 
-Underfull \hbox (badness 7221) in paragraph at lines 380--381
-\T1/cmr/m/n/10 otros ser-vi-cios de
+Underfull \hbox (badness 1147) in paragraph at lines 390--391
+[]\T1/cmr/m/n/10 Escalabilidad au-to-ma-ti-za-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 386--387
-[]\T1/cmr/m/n/10 Complejidad
- []
-
-
-Underfull \hbox (badness 1072) in paragraph at lines 386--387
-\T1/cmr/m/n/10 de con-fi-gu-ra-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 391--392
-[]
- []
-
-
-Overfull \hbox (22.30351pt too wide) in paragraph at lines 391--392
-\T1/cmr/m/n/10 Aplicaciones
+Underfull \hbox (badness 4531) in paragraph at lines 392--393
+[]|\T1/cmr/m/n/10 Tarifas fi-jas
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 392--393
-[]\T1/cmr/m/n/10 Bases
+\T1/cmr/m/n/10 por cl˙s-ter
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 392--393
-\T1/cmr/m/n/10 de
+\T1/cmr/m/n/10 m·s cos-tes
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 393--394
-[]
- []
-
-
-Overfull \hbox (4.75224pt too wide) in paragraph at lines 393--394
-\T1/cmr/m/n/10 Machine
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 393--394
-\T1/cmr/m/n/10 Lear-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 397--397
-[]|\T1/cmr/m/n/10 Google
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 397--397
+Underfull \hbox (badness 10000) in paragraph at lines 394--394
 []|\T1/cmr/m/n/10 Google Com-pu-te
  []
 
 
-Underfull \hbox (badness 2310) in paragraph at lines 401--402
-[]\T1/cmr/m/n/10 Escalabilidad au-to-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 402--403
-[]\T1/cmr/m/n/10 F·cil in-te-gra-ciÛn
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 408--409
-[]\T1/cmr/m/n/10 Curva de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 413--414
-[]
- []
-
-
-Overfull \hbox (22.30351pt too wide) in paragraph at lines 413--414
-\T1/cmr/m/n/10 Aplicaciones
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 414--415
-[]
- []
-
-
-Overfull \hbox (26.77464pt too wide) in paragraph at lines 414--415
-\T1/cmr/m/n/10 Contenedores 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 415--416
-[]\T1/cmr/m/n/10 Big
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 419--419
-[]|\T1/cmr/m/n/10 Microsoft
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 429--430
-[]\T1/cmr/m/n/10 Complejidad
- []
-
-
-Underfull \hbox (badness 1072) in paragraph at lines 429--430
-\T1/cmr/m/n/10 de con-fi-gu-ra-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 434--435
-[]
- []
-
-
-Overfull \hbox (22.30351pt too wide) in paragraph at lines 434--435
-\T1/cmr/m/n/10 Aplicaciones
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 434--435
-\T1/cmr/m/n/10 em-pre-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 435--436
-[]
- []
-
-
-Overfull \hbox (12.50035pt too wide) in paragraph at lines 435--436
-\T1/cmr/m/n/10 Desarrollo
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 436--437
-[]
- []
-
-
-Overfull \hbox (33.77293pt too wide) in paragraph at lines 436--437
-\T1/cmr/m/n/10 Infraestructura 
- []
-
-
-Overfull \hbox (86.46553pt too wide) in paragraph at lines 371--441
- [][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 455--456
-[]|\T1/cmr/bx/n/10 Principales
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 462--463
-[]\T1/cmr/m/n/10 IntegraciÛn con
- []
-
-
-Underfull \hbox (badness 7221) in paragraph at lines 462--463
-\T1/cmr/m/n/10 otros ser-vi-cios de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 468--469
-[]\T1/cmr/m/n/10 Complejidad
- []
-
-
-Underfull \hbox (badness 1072) in paragraph at lines 468--469
-\T1/cmr/m/n/10 de con-fi-gu-ra-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 473--474
-[]
- []
-
-
-Overfull \hbox (40.85454pt too wide) in paragraph at lines 473--474
-\T1/cmr/m/n/10 Almacenamiento
- []
-
-
-Underfull \hbox (badness 2221) in paragraph at lines 473--474
-\T1/cmr/m/n/10 de da-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 474--475
-[]
- []
-
-
-Overfull \hbox (0.72545pt too wide) in paragraph at lines 474--475
-\T1/cmr/m/n/10 Backup
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 474--475
-\T1/cmr/m/n/10 pe-ra-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 479--479
+Underfull \hbox (badness 10000) in paragraph at lines 394--394
 []|\T1/cmr/m/n/10 Google
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 490--491
-[]\T1/cmr/m/n/10 Curva de
+Underfull \hbox (badness 10000) in paragraph at lines 399--400
+[]\T1/cmr/m/n/10 IntegraciÛn na-ti-va con
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 495--496
-[]
+Underfull \hbox (badness 10000) in paragraph at lines 401--402
+[]|\T1/cmr/m/n/10 Basado en
  []
 
 
-Overfull \hbox (40.85454pt too wide) in paragraph at lines 495--496
-\T1/cmr/m/n/10 Almacenamiento
+Underfull \hbox (badness 2150) in paragraph at lines 401--402
+\T1/cmr/m/n/10 uso por se-
  []
 
 
-Underfull \hbox (badness 2221) in paragraph at lines 495--496
-\T1/cmr/m/n/10 de da-
+Underfull \hbox (badness 10000) in paragraph at lines 403--403
+[]|\T1/cmr/m/n/10 Google
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 496--497
-[]
+Underfull \hbox (badness 10000) in paragraph at lines 410--411
+[]|\T1/cmr/m/n/10 Coste ba-se
  []
 
 
-Overfull \hbox (4.75224pt too wide) in paragraph at lines 496--497
-\T1/cmr/m/n/10 Machine
+Underfull \hbox (badness 7667) in paragraph at lines 410--411
+\T1/cmr/m/n/10 por cl˙s-ter,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 496--497
-\T1/cmr/m/n/10 lear-
+Underfull \hbox (badness 10000) in paragraph at lines 410--411
+\T1/cmr/m/n/10 m·s cos-te
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 497--498
-[]
+Underfull \hbox (badness 10000) in paragraph at lines 410--411
+\T1/cmr/m/n/10 de re-cur-sos
  []
 
 
-Overfull \hbox (12.27818pt too wide) in paragraph at lines 497--498
-\T1/cmr/m/n/10 Archivado 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 501--501
+Underfull \hbox (badness 10000) in paragraph at lines 412--412
 []|\T1/cmr/m/n/10 Microsoft
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 512--513
-[]\T1/cmr/m/n/10 Complejidad
+Underfull \hbox (badness 10000) in paragraph at lines 419--420
+[]|\T1/cmr/m/n/10 Basado en
  []
 
 
-Underfull \hbox (badness 1072) in paragraph at lines 512--513
-\T1/cmr/m/n/10 de con-fi-gu-ra-
+Underfull \hbox (badness 10000) in paragraph at lines 419--420
+\T1/cmr/m/n/10 y ti-po de
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 517--518
-[]
+Underfull \hbox (badness 5592) in paragraph at lines 421--421
+[]|\T1/cmr/m/n/10 Azure Ku-ber-ne-tes
  []
 
 
-Overfull \hbox (40.85454pt too wide) in paragraph at lines 517--518
-\T1/cmr/m/n/10 Almacenamiento
+Underfull \hbox (badness 10000) in paragraph at lines 421--421
+[]|\T1/cmr/m/n/10 Microsoft
  []
 
 
-Underfull \hbox (badness 2221) in paragraph at lines 517--518
-\T1/cmr/m/n/10 de da-
+Underfull \hbox (badness 7704) in paragraph at lines 426--427
+[]\T1/cmr/m/n/10 Escalabilidad au-to-m·-ti-ca
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 518--519
-[]
+Underfull \hbox (badness 10000) in paragraph at lines 428--429
+\T1/cmr/m/n/10 AKS, so-lo
  []
 
 
-Overfull \hbox (0.72545pt too wide) in paragraph at lines 518--519
-\T1/cmr/m/n/10 Backup
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 518--519
-\T1/cmr/m/n/10 pe-ra-
- []
-
-
-Overfull \hbox (86.46553pt too wide) in paragraph at lines 453--524
- [][] 
+Underfull \hbox (badness 10000) in paragraph at lines 428--429
+\T1/cmr/m/n/10 pa-go por
  []
 
 
 Underfull \vbox (badness 3758) has occurred while \output is active []
 
  [36]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 536--537
+Underfull \hbox (badness 10000) in paragraph at lines 444--445
 []|\T1/cmr/bx/n/10 Principales
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 543--544
+Underfull \hbox (badness 10000) in paragraph at lines 451--452
 []\T1/cmr/m/n/10 IntegraciÛn con
  []
 
 
-Underfull \hbox (badness 7221) in paragraph at lines 543--544
+Underfull \hbox (badness 7221) in paragraph at lines 451--452
 \T1/cmr/m/n/10 otros ser-vi-cios de
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 549--550
+Underfull \hbox (badness 10000) in paragraph at lines 457--458
 []\T1/cmr/m/n/10 Complejidad
  []
 
 
-Underfull \hbox (badness 1072) in paragraph at lines 549--550
+Underfull \hbox (badness 1072) in paragraph at lines 457--458
 \T1/cmr/m/n/10 de con-fi-gu-ra-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 554--555
+Underfull \hbox (badness 10000) in paragraph at lines 462--463
 []
  []
 
 
-Overfull \hbox (15.8051pt too wide) in paragraph at lines 554--555
-\T1/cmr/m/n/10 Desacoplar
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 554--555
-\T1/cmr/m/n/10 apli-ca-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 555--556
-[]
- []
-
-
-Overfull \hbox (31.63457pt too wide) in paragraph at lines 555--556
-\T1/cmr/m/n/10 Procesamiento
- []
-
-
-Underfull \hbox (badness 2221) in paragraph at lines 555--556
-\T1/cmr/m/n/10 de da-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 555--556
-\T1/cmr/m/n/10 tos
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 555--556
-\T1/cmr/m/n/10 asÌn-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 556--557
-[]
- []
-
-
-Overfull \hbox (29.91277pt too wide) in paragraph at lines 556--557
-\T1/cmr/m/n/10 Microservicios 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 560--560
-[]|\T1/cmr/m/n/10 Google
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 571--572
-[]\T1/cmr/m/n/10 Curva de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 576--577
-[]
- []
-
-
-Overfull \hbox (12.5559pt too wide) in paragraph at lines 576--577
-\T1/cmr/m/n/10 Streaming
- []
-
-
-Underfull \hbox (badness 2221) in paragraph at lines 576--577
-\T1/cmr/m/n/10 de da-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 577--578
-[]
- []
-
-
-Overfull \hbox (31.63457pt too wide) in paragraph at lines 577--578
-\T1/cmr/m/n/10 Procesamiento
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 577--578
-\T1/cmr/m/n/10 de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 577--578
-\T1/cmr/m/n/10 even-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 578--579
-[]
- []
-
-
-Overfull \hbox (16.99925pt too wide) in paragraph at lines 578--579
-\T1/cmr/m/n/10 IntegraciÛn
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 578--579
-\T1/cmr/m/n/10 de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 578--579
-\T1/cmr/m/n/10 apli-ca-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 582--582
-[]|\T1/cmr/m/n/10 Microsoft
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 593--594
-[]\T1/cmr/m/n/10 Flexibilidad
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 598--599
-[]
- []
-
-
-Overfull \hbox (40.85454pt too wide) in paragraph at lines 598--599
+Overfull \hbox (40.85454pt too wide) in paragraph at lines 462--463
 \T1/cmr/m/n/10 Almacenamiento
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 598--599
-\T1/cmr/m/n/10 de
+Underfull \hbox (badness 2221) in paragraph at lines 462--463
+\T1/cmr/m/n/10 de da-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 598--599
-\T1/cmr/m/n/10 men-sa-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 599--600
+Underfull \hbox (badness 10000) in paragraph at lines 463--464
 []
  []
 
 
-Overfull \hbox (29.46843pt too wide) in paragraph at lines 599--600
-\T1/cmr/m/n/10 ComunicaciÛn
+Overfull \hbox (0.72545pt too wide) in paragraph at lines 463--464
+\T1/cmr/m/n/10 Backup
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 599--600
-\T1/cmr/m/n/10 en-tre
+Underfull \hbox (badness 10000) in paragraph at lines 463--464
+\T1/cmr/m/n/10 pe-ra-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 599--600
+Underfull \hbox (badness 10000) in paragraph at lines 468--468
+[]|\T1/cmr/m/n/10 Google
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 479--480
+[]\T1/cmr/m/n/10 Curva de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 484--485
+[]
+ []
+
+
+Overfull \hbox (40.85454pt too wide) in paragraph at lines 484--485
+\T1/cmr/m/n/10 Almacenamiento
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 484--485
+\T1/cmr/m/n/10 de da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 485--486
+[]
+ []
+
+
+Overfull \hbox (4.75224pt too wide) in paragraph at lines 485--486
+\T1/cmr/m/n/10 Machine
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 485--486
+\T1/cmr/m/n/10 lear-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 486--487
+[]
+ []
+
+
+Overfull \hbox (12.27818pt too wide) in paragraph at lines 486--487
+\T1/cmr/m/n/10 Archivado 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 490--490
+[]|\T1/cmr/m/n/10 Microsoft
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 501--502
+[]\T1/cmr/m/n/10 Complejidad
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 501--502
+\T1/cmr/m/n/10 de con-fi-gu-ra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 506--507
+[]
+ []
+
+
+Overfull \hbox (40.85454pt too wide) in paragraph at lines 506--507
+\T1/cmr/m/n/10 Almacenamiento
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 506--507
+\T1/cmr/m/n/10 de da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 507--508
+[]
+ []
+
+
+Overfull \hbox (0.72545pt too wide) in paragraph at lines 507--508
+\T1/cmr/m/n/10 Backup
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 507--508
+\T1/cmr/m/n/10 pe-ra-
+ []
+
+
+Overfull \hbox (86.46553pt too wide) in paragraph at lines 442--513
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [37]
+Underfull \hbox (badness 10000) in paragraph at lines 525--526
+[]|\T1/cmr/bx/n/10 Principales
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--533
+[]\T1/cmr/m/n/10 IntegraciÛn con
+ []
+
+
+Underfull \hbox (badness 7221) in paragraph at lines 532--533
+\T1/cmr/m/n/10 otros ser-vi-cios de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 538--539
+[]\T1/cmr/m/n/10 Complejidad
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 538--539
+\T1/cmr/m/n/10 de con-fi-gu-ra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--544
+[]
+ []
+
+
+Overfull \hbox (15.8051pt too wide) in paragraph at lines 543--544
+\T1/cmr/m/n/10 Desacoplar
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--544
 \T1/cmr/m/n/10 apli-ca-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 600--601
+Underfull \hbox (badness 10000) in paragraph at lines 544--545
 []
  []
 
 
-Overfull \hbox (31.63457pt too wide) in paragraph at lines 600--601
+Overfull \hbox (31.63457pt too wide) in paragraph at lines 544--545
 \T1/cmr/m/n/10 Procesamiento
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 600--601
+Underfull \hbox (badness 2221) in paragraph at lines 544--545
+\T1/cmr/m/n/10 de da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 544--545
+\T1/cmr/m/n/10 tos
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 544--545
 \T1/cmr/m/n/10 asÌn-
  []
 
 
-Overfull \hbox (86.46553pt too wide) in paragraph at lines 534--605
+Underfull \hbox (badness 10000) in paragraph at lines 545--546
+[]
+ []
+
+
+Overfull \hbox (29.91277pt too wide) in paragraph at lines 545--546
+\T1/cmr/m/n/10 Microservicios 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 549--549
+[]|\T1/cmr/m/n/10 Google
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 560--561
+[]\T1/cmr/m/n/10 Curva de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 565--566
+[]
+ []
+
+
+Overfull \hbox (12.5559pt too wide) in paragraph at lines 565--566
+\T1/cmr/m/n/10 Streaming
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 565--566
+\T1/cmr/m/n/10 de da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 566--567
+[]
+ []
+
+
+Overfull \hbox (31.63457pt too wide) in paragraph at lines 566--567
+\T1/cmr/m/n/10 Procesamiento
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 566--567
+\T1/cmr/m/n/10 de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 566--567
+\T1/cmr/m/n/10 even-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 567--568
+[]
+ []
+
+
+Overfull \hbox (16.99925pt too wide) in paragraph at lines 567--568
+\T1/cmr/m/n/10 IntegraciÛn
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 567--568
+\T1/cmr/m/n/10 de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 567--568
+\T1/cmr/m/n/10 apli-ca-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 571--571
+[]|\T1/cmr/m/n/10 Microsoft
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 582--583
+[]\T1/cmr/m/n/10 Flexibilidad
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 587--588
+[]
+ []
+
+
+Overfull \hbox (40.85454pt too wide) in paragraph at lines 587--588
+\T1/cmr/m/n/10 Almacenamiento
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 587--588
+\T1/cmr/m/n/10 de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 587--588
+\T1/cmr/m/n/10 men-sa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 588--589
+[]
+ []
+
+
+Overfull \hbox (29.46843pt too wide) in paragraph at lines 588--589
+\T1/cmr/m/n/10 ComunicaciÛn
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 588--589
+\T1/cmr/m/n/10 en-tre
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 588--589
+\T1/cmr/m/n/10 apli-ca-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 589--590
+[]
+ []
+
+
+Overfull \hbox (31.63457pt too wide) in paragraph at lines 589--590
+\T1/cmr/m/n/10 Procesamiento
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 589--590
+\T1/cmr/m/n/10 asÌn-
+ []
+
+
+Overfull \hbox (86.46553pt too wide) in paragraph at lines 523--594
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [37] [38] [39]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-23.
- (/usr/local/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [38]
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/02/21 1.10 listings language file
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2024/02/21 1.10 listings language file
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang3.sty
+File: lstlang3.sty 2024/02/21 1.10 listings language file
+)
+
+./CAPITULOS/capitulo4/capitulo4.tex:602: Package Listings Error: Couldn't load 
+requested language.
+
+See the Listings package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.602 ...olecci√≥n 'usuarios', label=lst:usuarios]
+                                                  
+The following languages weren't loadable:
+    ,json$
+This may cause errors in the sequel.
+
+
+./CAPITULOS/capitulo4/capitulo4.tex:602: Package Listings Error: language json 
+undefined.
+
+See the Listings package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.602 ...olecci√≥n 'usuarios', label=lst:usuarios]
+                                                  
+The language is not loadable. Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 6
+02.
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-[40
+
+./CAPITULOS/capitulo4/capitulo4.tex:607: LaTeX Error: Invalid UTF-8 byte sequen
+ce (√\expandafter).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.607 ...ia al documento 'admin' en la colecci√≥n 
+                                                  'roles'
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+./CAPITULOS/capitulo4/capitulo4.tex:607: LaTeX Error: Invalid UTF-8 byte "B3.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.607 ...ia al documento 'admin' en la colecci√≥n 
+                                                  'roles'
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/02/21 1.10 listings language file
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2024/02/21 1.10 listings language file
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang3.sty
+File: lstlang3.sty 2024/02/21 1.10 listings language file
+)
+
+./CAPITULOS/capitulo4/capitulo4.tex:626: Package Listings Error: Couldn't load 
+requested language.
+
+See the Listings package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.626 ...la colecci√≥n 'senias', label=lst:senias]
+                                                  
+The following languages weren't loadable:
+    ,json$
+This may cause errors in the sequel.
+
+
+./CAPITULOS/capitulo4/capitulo4.tex:626: Package Listings Error: language json 
+undefined.
+
+See the Listings package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.626 ...la colecci√≥n 'senias', label=lst:senias]
+                                                  
+The language is not loadable. Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./CAPITULOS/capitulo4/capitulo4.tex:629: LaTeX Error: Invalid UTF-8 byte sequen
+ce (√\expandafter).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.629     "nombre": "Se√±a 
+                           1",
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+./CAPITULOS/capitulo4/capitulo4.tex:629: LaTeX Error: Invalid UTF-8 byte "B1.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.629     "nombre": "Se√±a 
+                           1",
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+./CAPITULOS/capitulo4/capitulo4.tex:630: LaTeX Error: Invalid UTF-8 byte sequen
+ce (√\expandafter).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.630     "descripcion": "Descripci√≥n 
+                                       de la Se√±a 1",
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+./CAPITULOS/capitulo4/capitulo4.tex:630: LaTeX Error: Invalid UTF-8 byte "B3.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.630     "descripcion": "Descripci√≥n 
+                                       de la Se√±a 1",
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+./CAPITULOS/capitulo4/capitulo4.tex:630: LaTeX Error: Invalid UTF-8 byte sequen
+ce (√\expandafter).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.630 ..."descripcion": "Descripci√≥n de la Se√±a 
+                                                  1",
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+./CAPITULOS/capitulo4/capitulo4.tex:630: LaTeX Error: Invalid UTF-8 byte "B1.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.630 ..."descripcion": "Descripci√≥n de la Se√±a 
+                                                  1",
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+./CAPITULOS/capitulo4/capitulo4.tex:632: LaTeX Error: Invalid UTF-8 byte sequen
+ce (√\expandafter).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.632 ...cia al documento 'uid1' en la colecci√≥n 
+                                                  'usuarios'
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+./CAPITULOS/capitulo4/capitulo4.tex:632: LaTeX Error: Invalid UTF-8 byte "B3.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.632 ...cia al documento 'uid1' en la colecci√≥n 
+                                                  'usuarios'
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+./CAPITULOS/capitulo4/capitulo4.tex:638: LaTeX Error: Invalid UTF-8 byte sequen
+ce (√\expandafter).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.638     // ... otras se√±as
+                             
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+./CAPITULOS/capitulo4/capitulo4.tex:638: LaTeX Error: Invalid UTF-8 byte "B1.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.638     // ... otras se√±as
+                             
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/02/21 1.10 listings language file
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2024/02/21 1.10 listings language file
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang3.sty
+File: lstlang3.sty 2024/02/21 1.10 listings language file
+)
+
+./CAPITULOS/capitulo4/capitulo4.tex:645: Package Listings Error: Couldn't load 
+requested language.
+
+See the Listings package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.645 ...n la colecci√≥n 'roles', label=lst:roles]
+                                                  
+The following languages weren't loadable:
+    ,json$
+This may cause errors in the sequel.
+
+
+./CAPITULOS/capitulo4/capitulo4.tex:645: Package Listings Error: language json 
+undefined.
+
+See the Listings package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.645 ...n la colecci√≥n 'roles', label=lst:roles]
+                                                  
+The language is not loadable. Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[39]) [40] [41] [42
 
 
 
 ]
-./main.tex:124: Misplaced alignment tab character &.
+./main.tex:142: Misplaced alignment tab character &.
 <argument> ... Conference on Control Engineering &
                                                    Information Technology (C...
-l.124 
+l.142 
       
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -2427,7 +2700,7 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-[41] [42] (/Users/josedanielalvarezramos/Documents/CAPITULOS/out/main.aux
+[43] [44] (/Users/josedanielalvarezramos/Documents/CAPITULOS/out/main.aux
 (/Users/josedanielalvarezramos/Documents/CAPITULOS/out/CAPITULOS/PORTADA/portad
 a.aux)
 LaTeX Info: Redefining \sptext on input line 10.
@@ -2446,15 +2719,22 @@ tulo4.aux))
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 35820 strings out of 474116
- 859489 string characters out of 5743682
- 1961187 words of memory out of 5000000
- 57629 multiletter control sequences out of 15000+600000
+ 37491 strings out of 474116
+ 883026 string characters out of 5743682
+ 2116187 words of memory out of 5000000
+ 59267 multiletter control sequences out of 15000+600000
  573611 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,19n,107p,1132b,3149s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2470,22 +2750,23 @@ xlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
 live/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texli
 ve/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive
 /2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2
-024/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/202
-4/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2024/
-texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/te
-xmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texm
-f-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2024/texmf-
-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2024/texmf-di
-st/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist
-/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/f
-onts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2024/texmf-dist/fon
-ts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2024/texmf-dist/fonts
-/type1/public/cm-super/sftt1000.pfb>
+024/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/local/te
+xlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texl
+ive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texliv
+e/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/
+2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/20
+24/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2024
+/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2024/t
+exmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/tex
+mf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf
+-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2024/texmf-d
+ist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2024/texmf-dis
+t/fonts/type1/public/cm-super/sftt1000.pfb>
 Output written on /Users/josedanielalvarezramos/Documents/CAPITULOS/out/main.pd
-f (42 pages, 3031804 bytes).
+f (44 pages, 3041841 bytes).
 PDF statistics:
- 276 PDF objects out of 1000 (max. 8388607)
- 172 compressed objects within 2 object streams
+ 288 PDF objects out of 1000 (max. 8388607)
+ 180 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  53 words of extra memory for PDF output out of 10000 (max. 10000000)
 
