@@ -987,66 +987,6 @@ En la Tabla \ref{tabla_comparativa_iaas} se presenta una comparativa de los prin
 \end{table}
 
 
-\section{Estructura de las colecciones de Firebase}
-
-A continuación se muestra la estructura de las colecciones de Firebase después de la migración:
-
-\subsection{Colección usuarios}
-
-\begin{lstlisting}[style=json, caption=Documento de ejemplo en la colección 'usuarios', label=lst:usuarios]
-{
-  "uid1": {
-    "nombre": "jose daniel alvarez ramos",
-    "correo": "jalvarezr1001@alumno.ipn.mx",
-    "rolId": "admin", // Referencia al documento 'admin' de 'roles'
-    "fechaCreacion": "2024-11-09T12:00:00Z",
-    "ultimaModificacion": "2024-11-09T12:00:00Z",
-    "activo": true,
-    "destacados": {
-      "conteo": 10,
-      "fechaCreacion": "2024-11-09T12:00:00Z",
-      "ultimaModificacion": "2024-11-09T12:00:00Z",
-      "activo": true
-    }
-  },
-  "uid2": {
-    // ... otros usuarios
-  }
-}
-\end{lstlisting}
-
-\subsection{Colección señas}
-
-\begin{lstlisting}[style=json, caption=Documento de ejemplo en la colección 'senas', label=lst:senas]
-{
-  "sena": {
-    "nombre": "Hola",
-    "descripcion": "Descripción de la Seña "hola"",
-    "videoUrl": "https://bucket.com/hola.mp4",
-    "usuarioId": "uid1", // Referencia al documento 'uid1' de 'usuarios'
-    "fechaCreacion": "2024-11-09T12:00:00Z",
-    "ultimaModificacion": "2024-11-09T12:00:00Z",
-    "activo": true
-  },
-  "sena": {
-    // ... otras senas
-  }
-}
-\end{lstlisting}
-
-\subsection{Colección roles}
-
-\begin{lstlisting}[style=json, caption=Documento de ejemplo en la colección 'roles', label=lst:roles]
-{
-  "admin": {
-    "nombre": "Administrador",
-    "activo": true
-  },
-  "usuario": {
-    // ... otros roles
-  }
-}
-\end{lstlisting}
 
 % ... (tu documento) ...
 

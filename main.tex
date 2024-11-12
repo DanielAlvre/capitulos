@@ -6,10 +6,19 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-
+\usepackage{pdfpages}
 \usepackage{listings}
 \usepackage{color}
-
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage[center,font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+\usepackage{amsmath}
+\usepackage{tocloft}  % Para crear el índice de ecuaciones
+\usepackage{rotating}
+\usepackage{float}
+\usepackage{tabularx}
 % Definir un color amarillo claro
 \definecolor{codebg}{rgb}{1.0, 1.0, 0.8}
 
@@ -37,16 +46,7 @@
 %bindingoffset=0cm,  % Ajusta este valor si tienes encuadernación
 }
 
-\usepackage{array}
-\usepackage{graphicx}
-\usepackage{setspace}
-\usepackage{fancyhdr}
-\usepackage[center,font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
-\usepackage{amsmath}
-\usepackage{tocloft}  % Para crear el índice de ecuaciones
-\usepackage{rotating}
-\usepackage{float}
-\usepackage{tabularx}
+
 
 % --- Configura la sangría y el espacio entre párrafos ---
 \setlength{\parindent}{0pt}  % Elimina la sangría de primera línea
@@ -136,7 +136,7 @@
     \include{CAPITULOS/capitulo2/capitulo2}
     \include{CAPITULOS/capitulo3/capitulo3}
     \include{CAPITULOS/capitulo4/capitulo4}
-
+    \include{CAPITULOS/capitulo5/capitulo5}
 % Añadir bibliografía
     \printbibliography
 

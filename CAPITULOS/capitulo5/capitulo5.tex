@@ -1,42 +1,16 @@
 \chapter{Diseño}
-\section{Desarrollo de un Sistema de Reconocimiento de Señas}
-El sistema de reconocimiento de señas que se desarrollará utilizará principalmente la información de la posición de las falanges de la mano y el antebrazo, capturada a través de una cámara web. Para el seguimiento de manos, se empleará \textbf{MediaPipe Holistic} u otra API de \textbf{hand tracking} que cumpla con criterios de precisión, velocidad, facilidad de integración y soporte para el reconocimiento de la \textbf{Lengua de Señas Mexicana (LSM)}.
 
-Este trabajo se centra en la configuración manual, es decir, en la forma y posición de las manos y los antebrazos durante la realización de una seña. Es importante tener en cuenta que el uso de una cámara implica limitaciones en el campo de visión. Aunque ofrece mayor flexibilidad que algunos sensores, factores como el entorno y la distancia a la cámara pueden afectar la calidad de la captura de datos. Por ello, el sistema se enfocará en la parte superior del cuerpo del usuario, desde los antebrazos hacia arriba, incluyendo las manos, que son las áreas clave para la expresión en LSM.
+\section{Arquitectura general del sistema}
+\label{sec:arquitectura_general_sistema}
 
-El flujo de trabajo del sistema, ilustrado en el diagrama \ref{fig:diagrama_composicion}, se desarrolla de la siguiente manera:
+Se diseñó el servidor del sistema con los componentes que se observan en la figura \ref{fig:diagrama_componentes}, los cuales interactúan entre ellos para proveer los servicios que usa la aplicación móvil.
 
-\begin{itemize}
-    \item \textbf{Iniciar Grabación/Toma de Fotos}: El usuario inicia el proceso, lo que activa la captura de video o fotos.
-    \item \textbf{Captura y Procesamiento de Datos}: El sistema divide el video en frames y almacena estos datos localmente antes de subirlos a la nube.
-    \item \textbf{Almacenamiento y Notificación}: Los frames se almacenan en un bucket de S3, y se envían notificaciones a través de \textbf{EventBridge}.
-    \item \textbf{Invocación de Microservicios}: Se invoca un microservicio que procesa los frames utilizando \textbf{MediaPipe} para extraer características relevantes de las manos y antebrazos.
-    \item \textbf{Entrenamiento y Predicción}: Los modelos de machine learning se entrenan con los datos procesados. Cuando el usuario inicia la traducción, el sistema captura frames, predice las palabras en base a un modelo local y genera el audio correspondiente a la seña.
-\end{itemize}
-
-El sistema no solo busca reconocer las señas de manera precisa, sino también facilitar la comunicación efectiva mediante la generación de audio en tiempo real, que se reproducirá para el usuario. Además, el enfoque en la parte superior del cuerpo garantiza que se capture adecuadamente la expresión manual esencial para el reconocimiento de la LSM.
-
-
-\begin{figure}[h]
-  \includegraphics[scale=0.17]{CAPITULOS/capitulo1/segundo.png}
-  \centering
-  \caption[Diagrama de secuencia composición del sistema ]{Diagrama de secuencia composición del sistema}
-  \label{fig:diagrama_composicion}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{CAPITULOS/capitulo5/Untitled} % No se incluye la extensión .pdf
+\caption{Diagrama de componentes del sistema.}
+\label{fig:diagrama_componentes}
 \end{figure}
-
-\clearpage
-\section{Proceso de Muestreo}
-
-El proceso de reconocimiento comenzará cuando el usuario realice un gesto específico de inicio, como alzar la mano. A partir de ese momento, se capturarán fotogramas (frames) de la seña. Estos datos se almacenarán en la nube, utilizando un servicio como Amazon S3, para su posterior procesamiento.
-
-\section{Proceso de Extracción de Datos y Entrenamiento}
-
-La API de MediaPipe Holistic (u otra similar) se encargará de procesar los fotogramas y extraer la posición de los puntos de referencia relevantes en las manos y antebrazos. Una vez que se hayan recopilado suficientes muestras de entrenamiento, se utilizará un microservicio en Python que utilice TensorFlow o Keras para entrenar un modelo de aprendizaje profundo capaz de reconocer las señas. Este modelo se desplegará en la nube para garantizar la escalabilidad y el manejo eficiente de las solicitudes de entrenamiento.
-
-\section{Reconocimiento y Traducción de Señas}
-
-El algoritmo entrenado clasificará la seña emitida, comparándola con las señas previamente clasificadas y entradas. Para ello, utilizará la información de la posición de los puntos de referencia proporcionada por la API de hand tracking y realizará un mapeo a la configuración manual de la seña, como entrada al modelo. Una vez que se logre el reconocimiento de una seña dentro de la LSM, el sistema proporcionará la traducción al español, seguida de un mensaje de voz generado mediante una API de Text-To-Speech.
-
 \section{Arquitectura del Sistema}
 
 \begin{itemize}
@@ -56,3 +30,234 @@ El algoritmo entrenado clasificará la seña emitida, comparándola con las señ
     \item Microservicios, SQS, Lambda, EventBridge: Componentes para la arquitectura en la nube (si se opta por esa opción).
     \item Tecnologías web: Sistema web (en conjunto con su framework).
 \end{itemize}
+
+\section{Desarrollo de un Sistema de Reconocimiento de Señas}
+El sistema de reconocimiento de señas que se desarrollará utilizará principalmente la información de la posición de las falanges de la mano y el antebrazo, capturada a través de una cámara web. Para el seguimiento de manos, se empleará \textbf{MediaPipe Holistic} u otra API de \textbf{hand tracking} que cumpla con criterios de precisión, velocidad, facilidad de integración y soporte para el reconocimiento de la \textbf{Lengua de Señas Mexicana (LSM)}.
+
+Este trabajo se centra en la configuración manual, es decir, en la forma y posición de las manos y los antebrazos durante la realización de una seña. Es importante tener en cuenta que el uso de una cámara implica limitaciones en el campo de visión. Aunque ofrece mayor flexibilidad que algunos sensores, factores como el entorno y la distancia a la cámara pueden afectar la calidad de la captura de datos. Por ello, el sistema se enfocará en la parte superior del cuerpo del usuario, desde los antebrazos hacia arriba, incluyendo las manos, que son las áreas clave para la expresión en LSM.
+
+El flujo de trabajo del sistema, ilustrado en el diagrama \ref{fig:diagrama_composicion}, se desarrolla de la siguiente manera:
+
+\begin{itemize}
+    \item \textbf{Iniciar Grabación/Toma de Fotos}: El usuario inicia el proceso, lo que activa la captura de video o fotos.
+    \item \textbf{Captura y Procesamiento de Datos}: El sistema divide el video en frames y almacena estos datos localmente antes de subirlos a la nube.
+    \item \textbf{Almacenamiento y Notificación}: Los frames se almacenan en un bucket de S3, y se envían notificaciones a través de \textbf{EventBridge}.
+    \item \textbf{Invocación de Microservicios}: Se invoca un microservicio que procesa los frames utilizando \textbf{MediaPipe} para extraer características relevantes de las manos y antebrazos.
+    \item \textbf{Entrenamiento y Predicción}: Los modelos de machine learning se entrenan con los datos procesados. Cuando el usuario inicia la traducción, el sistema captura frames, predice las palabras en base a un modelo local y genera el audio correspondiente a la seña.
+\end{itemize}
+
+El sistema no solo busca reconocer las señas de manera precisa, sino también facilitar la comunicación efectiva mediante la generación de audio en tiempo real, que se reproducirá para el usuario. Además, el enfoque en la parte superior del cuerpo garantiza que se capture adecuadamente la expresión manual esencial para el reconocimiento de la LSM.
+
+
+\begin{figure}[h]
+    \includegraphics[scale=0.17]{CAPITULOS/capitulo1/segundo.png}
+    \centering
+    \caption[Diagrama de secuencia composición del sistema ]{Diagrama de secuencia composición del sistema}
+    \label{fig:diagrama_composicion}
+\end{figure}
+
+\clearpage
+\section{Proceso de Muestreo}
+
+El proceso de reconocimiento comenzará cuando el usuario realice un gesto específico de inicio, como alzar la mano. A partir de ese momento, se capturarán fotogramas (frames) de la seña. Estos datos se almacenarán en la nube, utilizando un servicio como Amazon S3, para su posterior procesamiento.
+
+\section{Proceso de Extracción de Datos y Entrenamiento}
+
+La API de MediaPipe Holistic (u otra similar) se encargará de procesar los fotogramas y extraer la posición de los puntos de referencia relevantes en las manos y antebrazos. Una vez que se hayan recopilado suficientes muestras de entrenamiento, se utilizará un microservicio en Python que utilice TensorFlow o Keras para entrenar un modelo de aprendizaje profundo capaz de reconocer las señas. Este modelo se desplegará en la nube para garantizar la escalabilidad y el manejo eficiente de las solicitudes de entrenamiento.
+
+\section{Reconocimiento y Traducción de Señas}
+
+El algoritmo entrenado clasificará la seña emitida, comparándola con las señas previamente clasificadas y entradas. Para ello, utilizará la información de la posición de los puntos de referencia proporcionada por la API de hand tracking y realizará un mapeo a la configuración manual de la seña, como entrada al modelo. Una vez que se logre el reconocimiento de una seña dentro de la LSM, el sistema proporcionará la traducción al español, seguida de un mensaje de voz generado mediante una API de Text-To-Speech.
+
+
+
+\section{Base de datos}
+\label{sec:base_datos}
+
+
+Para este módulo se decidió utilizar una base de datos documental (NoSQL).
+
+\subsection{Estructura de las colecciones de Firebase}
+
+A continuación se muestra la estructura de las colecciones de Firebase:
+
+\subsection{Colección usuarios}
+
+\begin{lstlisting}[style=json, caption=Documento de ejemplo en la colección 'usuarios', label=lst:usuarios]
+{
+  "uid1": {
+    "nombre": "jose daniel alvarez ramos",
+    "correo": "jalvarezr1001@alumno.ipn.mx",
+    "rolId": "admin", // Referencia al documento 'admin' de 'roles'
+    "fechaCreacion": "2024-11-09T12:00:00Z",
+    "ultimaModificacion": "2024-11-09T12:00:00Z",
+    "activo": true,
+    "destacados": {
+      "conteo": 10,
+      "fechaCreacion": "2024-11-09T12:00:00Z",
+      "ultimaModificacion": "2024-11-09T12:00:00Z",
+      "activo": true
+    }
+  },
+  "uid2": {
+    // ... otros usuarios
+  }
+}
+\end{lstlisting}
+
+\subsection{Colección señas}
+
+\begin{lstlisting}[style=json, caption=Documento de ejemplo en la colección 'senas', label=lst:senas]
+{
+  "sena": {
+    "nombre": "Hola",
+    "descripcion": "Descripción de la Seña "hola"",
+    "videoUrl": "https://bucket.com/hola.mp4",
+    "usuarioId": "uid1", // Referencia al documento 'uid1' de 'usuarios'
+    "fechaCreacion": "2024-11-09T12:00:00Z",
+    "ultimaModificacion": "2024-11-09T12:00:00Z",
+    "activo": true
+  },
+  "sena": {
+    // ... otras senas
+  }
+}
+\end{lstlisting}
+
+\subsection{Colección roles}
+
+\begin{lstlisting}[style=json, caption=Documento de ejemplo en la colección 'roles', label=lst:roles]
+{
+  "admin": {
+    "nombre": "Administrador",
+    "activo": true
+  },
+  "usuario": {
+    // ... otros roles
+  }
+}
+\end{lstlisting}
+
+\section{Interfaz de usuario de la aplicación}
+
+La aplicación móvil se ha diseñado con una interfaz intuitiva y fácil de usar, con el objetivo de proporcionar una experiencia de usuario fluida y accesible. A continuación, se describen las principales pantallas de la aplicación:
+
+\subsection{Pantalla principal}
+
+La pantalla principal es la primera pantalla que el usuario ve al iniciar la aplicación. Su función principal es proporcionar acceso a las diferentes secciones de la aplicación.
+
+\subsubsection{Diseño}
+
+El diseño de la pantalla principal es simple y directo. En la parte superior se encuentra el logo de la aplicación, y en la parte central se muestran las opciones principales, como "Traducir", "Diccionario" y "Configuración". Cada opción se representa con un icono y un texto descriptivo.
+
+\subsubsection{Funcionalidad}
+
+Al tocar una de las opciones, el usuario es redirigido a la pantalla correspondiente. Por ejemplo, al tocar "Traducir", se abre la pantalla de traducción en tiempo real.
+
+\subsection{Pantalla de traducción}
+
+La pantalla de traducción permite a los usuarios traducir señas en tiempo real utilizando la cámara del dispositivo.
+
+\subsubsection{Diseño}
+
+En la parte superior de la pantalla se muestra la imagen capturada por la cámara. En la parte inferior, se muestra la traducción de la seña reconocida. El diseño es limpio y minimalista, para que el usuario se concentre en la traducción.
+
+\subsubsection{Funcionalidad}
+
+La cámara captura las imágenes de las manos del usuario y el sistema de reconocimiento de señas las procesa en tiempo real. La traducción de la seña se muestra en la pantalla, y también se puede generar un mensaje de voz utilizando la API de Text-To-Speech.
+
+\subsection{Pantalla del diccionario}
+
+La pantalla del diccionario proporciona acceso al diccionario LSM, donde los usuarios pueden buscar señas, ver sus traducciones y descripciones, y reproducir los videos.
+
+\subsubsection{Diseño}
+
+La pantalla se divide en dos secciones: una barra de búsqueda en la parte superior y una lista de señas en la parte inferior. Al buscar una seña, la lista se actualiza para mostrar las señas que coinciden con la búsqueda.
+
+\subsubsection{Funcionalidad}
+
+Los usuarios pueden buscar señas por nombre o categoría. Al seleccionar una seña, se muestra su traducción, descripción y un video que muestra la ejecución correcta de la seña.
+
+\subsection{Pantalla de configuración}
+
+La pantalla de configuración permite a los usuarios configurar las opciones de la aplicación, como el idioma, la velocidad de reproducción de los videos y el tamaño del texto.
+
+\subsubsection{Diseño}
+
+La pantalla muestra una lista de opciones de configuración, cada una con un control para ajustar su valor.
+
+\subsubsection{Funcionalidad}
+
+Los usuarios pueden ajustar las opciones de la aplicación según sus preferencias. Los cambios se guardan automáticamente.
+
+% ... (Puedes añadir más pantallas según sea necesario) ...
+
+\section{Diccionario LSM}
+
+El diccionario LSM es un componente fundamental del sistema de traducción. Su propósito es proporcionar una base de datos completa y precisa de señas en Lengua de Señas Mexicana (LSM), que sirva como referencia para el reconocimiento y la traducción de señas.
+
+\subsection{Contenido}
+
+El diccionario incluirá:
+
+* \textbf{Señas:} Un conjunto de señas en LSM, que abarque el alfabeto, números, palabras comunes, frases y expresiones faciales.
+* \textbf{Traducciones:} La traducción al español de cada seña.
+* \textbf{Descripciones:} Una descripción detallada de cada seña, incluyendo la configuración de las manos, la posición del cuerpo, las expresiones faciales y otros elementos relevantes.
+* \textbf{Videos:} Videos que muestren la ejecución correcta de cada seña.
+
+\subsection{Estructura}
+
+El diccionario se estructurará de forma que sea fácil de navegar y buscar. Se organizará por categorías, como el alfabeto, números, temas (ej. familia, trabajo, salud) y niveles de dificultad. Se incluirá un buscador que permita a los usuarios encontrar rápidamente la seña que necesitan.
+
+\subsection{Integración con la aplicación}
+
+El diccionario se integrará con la aplicación móvil, de forma que los usuarios puedan acceder a él en cualquier momento. La aplicación permitirá a los usuarios buscar señas, ver sus traducciones y descripciones, y reproducir los videos.
+
+\subsubsection{Pantalla del diccionario}
+
+La pantalla del diccionario es la interfaz principal para interactuar con el diccionario LSM dentro de la aplicación.
+
+\paragraph{Diseño}
+
+La pantalla se divide en dos secciones principales:
+
+* \textbf{Barra de búsqueda:}  Ubicada en la parte superior, permite a los usuarios buscar señas por nombre, categoría o palabra clave.
+* \textbf{Lista de señas:}  Muestra las señas que coinciden con la búsqueda del usuario, o bien, un listado de categorías de señas si no se ha realizado ninguna búsqueda.
+
+\paragraph{Funcionalidad}
+
+* \textbf{Búsqueda de señas:}  Los usuarios pueden introducir el nombre de la seña o una palabra clave en la barra de búsqueda para encontrar la seña deseada.
+* \textbf{Navegación por categorías:}  Los usuarios pueden navegar por las diferentes categorías de señas (ej. alfabeto, números, saludos, familia) para explorar el diccionario.
+* \textbf{Visualización de señas:}  Al seleccionar una seña de la lista, se muestra la siguiente información:
+* \textbf{Nombre de la seña:}  El nombre de la seña en LSM.
+* \textbf{Traducción:}  La traducción al español de la seña.
+* \textbf{Descripción:}  Una descripción detallada de la seña, incluyendo la configuración de las manos, la posición del cuerpo y las expresiones faciales.
+* \textbf{Video:}  Un video que muestra la ejecución correcta de la seña.
+
+\subsubsection{Integración con la pantalla de traducción}
+
+El diccionario LSM también se integra con la pantalla de traducción en tiempo real. Cuando el sistema reconoce una seña, la aplicación busca la seña en el diccionario y muestra su traducción al usuario. Esto permite que los usuarios no solo vean la traducción de la seña, sino que también aprendan más sobre ella, incluyendo su descripción y cómo se realiza correctamente.
+
+\section{Seña 1}
+\label{sec:seña_1}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Seña 1 - Imagen 1\label{fig:seña_1_imagen_1}]{%
+        \includepdf[pages=1,scale=0.45,trim=0 0.25\paperheight 0.5\paperwidth 0.5\paperheight,clip]{CAPITULOS/capitulo5/bien.pdf}
+    }
+    \hfill
+    \subfloat[Seña 1 - Imagen 2\label{fig:seña_1_imagen_2}]{%
+        \includepdf[pages=2,scale=0.45,trim=0.5\paperwidth 0.25\paperheight 0 0.5\paperheight,clip]{CAPITULOS/capitulo5/bien.pdf}
+    }
+    \\
+    \subfloat[Seña 1 - Imagen 3\label{fig:seña_1_imagen_3}]{%
+        \includepdf[pages=3,scale=0.45,trim=0 0 0.5\paperwidth 0.75\paperheight,clip]{CAPITULOS/capitulo5/bien.pdf}
+    }
+    \hfill
+    \subfloat[Seña 1 - Imagen 4\label{fig:seña_1_imagen_4}]{%
+        \includepdf[pages=4,scale=0.45,trim=0.5\paperwidth 0 0 0.75\paperheight,clip]{CAPITULOS/capitulo5/bien.pdf}
+    }
+    \caption{Diferentes perspectivas de la Seña 1}
+    \label{fig:seña_1}
+\end{figure}
