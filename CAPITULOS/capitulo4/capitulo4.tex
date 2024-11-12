@@ -361,7 +361,7 @@ En la Tabla \ref{tabla_comparativa_plataformas_nube} se presenta una comparativa
 
 
 
-\subsection{Comparación de VM para Kubernetes de GKE}
+\subsection{Comparación de VM y Kubernetes de GKE}
 
 En la Tabla \ref{tabla_comparativa_vm_kubernetes} se presenta una comparativa de las principales VM para Kubernetes de GKE de las principales nubes.
 
@@ -369,9 +369,9 @@ En la Tabla \ref{tabla_comparativa_vm_kubernetes} se presenta una comparativa de
     \centering
     \caption{Comparación de opciones para alojar microservicios en diferentes plataformas de nube.}
     \label{tabla_comparativa_microservicios}
-    \begin{tabular}{|p{3cm}|p{2cm}|p{5cm}|p{2cm}|}
+    \begin{tabular}{|p{2.3cm}|p{1.3cm}|p{6cm}|p{6cm}|}
         \hline
-        \textbf{Servicio} & \textbf{Plataforma} & \textbf{Ventajas} & \textbf{Costes} \\
+        \textbf{Servicio} & \textbf{Nube} & \textbf{Ventajas} & \textbf{Costes} \\
         \hline
         Amazon EC2 & AWS &
         \begin{minipage}[t]{\linewidth}
@@ -380,7 +380,17 @@ En la Tabla \ref{tabla_comparativa_vm_kubernetes} se presenta una comparativa de
                 \item Escalabilidad automática y opciones de balanceo de carga
                 \item Integración con el ecosistema de AWS (RDS, S3, IAM, etc.)
             \end{itemize}
-        \end{minipage} & Basado en uso por hora y tipo de instancia \\
+        \end{minipage} &
+        \begin{minipage}[t]{\linewidth}
+            Basado en uso por hora y tipo de instancia\\
+            t4g.micro - \$6.13 USD por mes\\
+            \begin{itemize}
+                \item vCPUs: 2
+                \item Memoria: 1 GiB
+                \item Rendimiento de red: Hasta 5 Gigabit
+            \end{itemize}
+        \end{minipage}
+        \\
         \hline
         Amazon EKS & AWS &
         \begin{minipage}[t]{\linewidth}
@@ -389,7 +399,11 @@ En la Tabla \ref{tabla_comparativa_vm_kubernetes} se presenta una comparativa de
                 \item Fácil integración con otros servicios de AWS
                 \item Escalabilidad automatizada de clústeres y nodos
             \end{itemize}
-        \end{minipage} & Tarifas fijas por clúster más costes de instancias \\
+        \end{minipage} &
+        \begin{minipage}[t]{\linewidth}
+            Tarifas fijas por clúster más costes de instancias\\
+            1 clúster - \$365.00 USD por mes
+        \end{minipage} \\
         \hline
         Google Compute Engine (GCE) & Google Cloud &
         \begin{minipage}[t]{\linewidth}
@@ -398,7 +412,16 @@ En la Tabla \ref{tabla_comparativa_vm_kubernetes} se presenta una comparativa de
                 \item Escalabilidad automática y soporte de GPU/TPU
                 \item Integración nativa con GKE para contenedores
             \end{itemize}
-        \end{minipage} & Basado en uso por segundo y tipo de máquina \\
+        \end{minipage} &
+        \begin{minipage}[t]{\linewidth}
+            Costo mensual estimado: \$5.55 USD
+            \begin{itemize}
+                \item Número de instancias: 1
+                \item Tiempo total de uso de la instancia: 730 horas/mes
+                \item Sistema operativo/software: Ubuntu
+                \item Tipo de máquina: f1-micro (familia de propósito general, serie N1) con 1 vCPU y 0.9 GiB de RAM
+            \end{itemize}
+        \end{minipage} \\
         \hline
         Google Kubernetes Engine (GKE) & Google Cloud &
         \begin{minipage}[t]{\linewidth}
@@ -407,7 +430,16 @@ En la Tabla \ref{tabla_comparativa_vm_kubernetes} se presenta una comparativa de
                 \item Herramientas de monitoreo y gestión avanzadas
                 \item Integración con el ecosistema de Google Cloud (BigQuery, Pub/Sub, etc.)
             \end{itemize}
-        \end{minipage} & Coste base por clúster, más coste de recursos usados \\
+        \end{minipage} &
+        \begin{minipage}[t]{\linewidth}
+            Coste base por clúster, más recursos usados:\\
+            \$152.55 USD por mes
+            \begin{itemize}
+                \item Machine Family: GP
+                \item Series: N1
+                \item Machine: f1-micro
+            \end{itemize}
+        \end{minipage} \\
         \hline
         Azure Virtual Machines & Microsoft Azure &
         \begin{minipage}[t]{\linewidth}
@@ -416,7 +448,15 @@ En la Tabla \ref{tabla_comparativa_vm_kubernetes} se presenta una comparativa de
                 \item Amplia variedad de opciones de instancias y series
                 \item Alta disponibilidad con zonas de disponibilidad
             \end{itemize}
-        \end{minipage} & Basado en uso por hora y tipo de instancia \\
+        \end{minipage} &
+        \begin{minipage}[t]{\linewidth}
+           Costo mensual estimado: \$14.60
+            \begin{itemize}
+                \item Instancia: A0 (1 núcleo, 0.75 GB RAM) - \$0.020/hora
+                \item Sistema operativo: Windows (licencia incluida)
+
+            \end{itemize}
+        \end{minipage} \\
         \hline
         Azure Kubernetes Service (AKS) & Microsoft Azure &
         \begin{minipage}[t]{\linewidth}
@@ -425,173 +465,527 @@ En la Tabla \ref{tabla_comparativa_vm_kubernetes} se presenta una comparativa de
                 \item Integración con herramientas de seguridad de Microsoft (Azure AD)
                 \item Escalabilidad automática de pods y nodos
             \end{itemize}
-        \end{minipage} & Sin coste por el servicio de AKS, solo pago por recursos \\
+        \end{minipage} &
+        \begin{minipage}[t]{\linewidth}
+            Costo mensual estimado: \$158.41
+            \begin{itemize}
+                \item Costo del clúster: \$73.00
+                \item Nodos:
+                \begin{itemize}
+                    \item Sistema operativo: Linux
+                    \item Instancia: D2 v3 (2 vCPUs, 8 GB RAM) - \$0.117/hora \\
+                \end{itemize}
+            \end{itemize}
+        \end{minipage} \\
         \hline
     \end{tabular}
 \end{table}
 
-
-\subsection{Comparación de Buckets}
-
-En la Tabla \ref{tabla_comparativa_buckets} se presenta una comparativa de los servicios de almacenamiento de buckets en las principales plataformas de nube.
-
+\subsection{Comparación de los servicios de almacenamiento (Bucket)}
 \begin{table}[H]
     \centering
     \caption{Comparación de servicios de almacenamiento de buckets en diferentes plataformas de nube.}
     \label{tabla_comparativa_buckets}
-    \begin{tabular}{|p{2cm}|p{3cm}|p{4cm}|p{3cm}|p{2cm}|p{2cm}|}
+    \begin{tabular}{|p{1.3cm}|p{1.3cm}|p{4.5cm}|p{4.5cm}|p{4cm}|}
         \hline
-        \textbf{Plataforma} & \textbf{Buckets} & \textbf{Ventajas} & \textbf{Desventajas} & \textbf{Costes} & \textbf{Principales usos} \\
+        \textbf{Nube} & \textbf{Bucket} & \textbf{Ventajas} & \textbf{Costes} & \textbf{Principales usos} \\
         \hline
         AWS & Amazon S3 &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Escalabilidad
-                \item Seguridad
-                \item Integración con otros servicios de AWS
+                \item Alta escalabilidad y durabilidad
+                \item Seguridad avanzada (cifrado automático y políticas de acceso granular)
+                \item Integración con servicios de AWS (Machine Learning, RedShift, etc.)
+                \item Amplia documentación y soporte
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Costo
-                \item Complejidad de configuración
+                \item \textbf{Almacenamiento:} \$115.01 USD (5 TB mensuales en S3 Standard)
+                \item \textbf{S3 Select:} \$0.0028 USD (datos devueltos), \$0.008 USD (datos escaneados).
+                \item \textbf{Total:} \$115.01 USD mensuales (incluyendo S3 Standard, solicitudes de datos y S3 Select).
             \end{itemize}
-        \end{minipage} & Variable &
+        \end{minipage} &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Almacenamiento de datos
-                \item Backup y recuperación
-                \item Big data
+                \item Almacenamiento de datos y multimedia
+                \item Backup y recuperación ante desastres
+                \item Análisis de grandes volúmenes de datos
             \end{itemize}
         \end{minipage} \\
         \hline
         Google Cloud & Google Cloud Storage &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Rendimiento
-                \item Seguridad
-                \item Escalabilidad
+                \item Rendimiento optimizado para grandes datos
+                \item Cifrado automático y opciones avanzadas de seguridad
+                \item Integración con BigQuery y otras herramientas de análisis de datos
+                \item Disponibilidad global con opciones de redundancia
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Costo
-                \item Curva de aprendizaje
+                \item \textbf{Almacenamiento:} \$99.90 USD (5 TB mensuales en Standard Storage).
+                \item \textbf{Transferencias de datos:} Ingreso gratuito, salida desde \$0.12/GB.
+                \item \textbf{Operaciones:} \$0.005 por 10,000 operaciones de clase A.
             \end{itemize}
-        \end{minipage} & Variable &
+        \end{minipage} &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
                 \item Almacenamiento de datos
-                \item Machine learning
-                \item Archivado
+                \item Entrenamiento de modelos de Machine Learning
+                \item Archivado y recuperación
+                \item Análisis de grandes volúmenes de datos
             \end{itemize}
         \end{minipage} \\
         \hline
         Microsoft Azure & Azure Blob Storage &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Integración con servicios de Microsoft
-                \item Escalabilidad
-                \item Seguridad
+                \item Integración con ecosistema de Microsoft (Office, Power BI, etc.)
+                \item Escalabilidad con opciones de redundancia (LRS, GRS)
+                \item Seguridad con cifrado en tránsito y en reposo
+                \item Soporte para migraciones híbridas (Azure Arc)
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Costo
-                \item Complejidad de configuración
+                \item \textbf{Standard (GPv2):} Hot (\$0.018/GB), Cool (\$0.01/GB), Archive (\$0.002/GB).
+                \item \textbf{Premium:} Optimizado para baja latencia, \$0.15/GB.
+                \item \textbf{Reservado:} 100 TB (1 año, \$1,545 Hot), 1 PB (1 año, \$15,050).
+                \item \textbf{Early Deletion Penalty:} 30 días (Cool), 90 días (Cold), 180 días (Archive).
+                \item \textbf{Operaciones:} \$0.065 por 10,000 operaciones de escritura en Hot. \\
             \end{itemize}
-        \end{minipage} & Variable &
+        \end{minipage} &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Almacenamiento de datos
-                \item Backup y recuperación
-                \item Big data
+                \item Almacenamiento de datos no estructurados
+                \item Respaldo y recuperación ante desastres
+                \item Analítica avanzada
+                \item Archivo de documentos y multimedia
             \end{itemize}
         \end{minipage} \\
         \hline
     \end{tabular}
 \end{table}
 
+
+
 \subsection{Comparación de Sistemas de Mensajería (SQS)}
 
 En la Tabla \ref{tabla_comparativa_sqs} se presenta una comparativa de los sistemas de mensajería (SQS) en las principales plataformas de nube.
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \caption{Comparación de sistemas de mensajería (SQS) en diferentes plataformas de nube.}
     \label{tabla_comparativa_sqs}
-    \begin{tabular}{|p{2cm}|p{3cm}|p{4cm}|p{3cm}|p{2cm}|p{2cm}|}
+    \begin{tabular}{|p{2cm}|p{3cm}|p{6cm}|p{4cm}|}
         \hline
-        \textbf{Plataforma} & \textbf{SQS} & \textbf{Ventajas} & \textbf{Desventajas} & \textbf{Costes} & \textbf{Principales usos} \\
+        \textbf{Plataforma} & \textbf{SQS} & \textbf{Ventajas} & \textbf{Principales usos} \\
         \hline
         AWS & Amazon SQS &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Escalabilidad
-                \item Seguridad
-                \item Integración con otros servicios de AWS
+                \item Alta escalabilidad para manejar millones de mensajes.
+                \item Seguridad avanzada con control de acceso mediante políticas IAM.
+                \item Integración directa con otros servicios de AWS (como Lambda para funciones sin servidor).
+                \item Modelos de colas FIFO (First-In-First-Out) y Standard para flexibilidad en el procesamiento.
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Costo
-                \item Complejidad de configuración
-            \end{itemize}
-        \end{minipage} & Variable &
-        \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Desacoplar aplicaciones
-                \item Procesamiento de datos asíncrono
-                \item Microservicios
+                \item Desacoplamiento de componentes en sistemas distribuidos.
+                \item Procesamiento de datos asíncrono en aplicaciones de gran escala.
+                \item Microservicios y aplicaciones que requieren alta disponibilidad y procesamiento confiable de mensajes.
             \end{itemize}
         \end{minipage} \\
         \hline
         Google Cloud & Google Pub/Sub &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Escalabilidad
-                \item Seguridad
-                \item Rendimiento
+                \item Escalabilidad automática con baja latencia para transmisión masiva de datos.
+                \item Alta seguridad con encriptación en tránsito y reposo, y políticas detalladas de acceso.
+                \item Rendimiento consistente en el procesamiento de grandes volúmenes de eventos en tiempo real.
+                \item Integración nativa con servicios de Google Cloud, como Dataflow y BigQuery.
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Costo
-                \item Curva de aprendizaje
-            \end{itemize}
-        \end{minipage} & Variable &
-        \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Streaming de datos
-                \item Procesamiento de eventos
-                \item Integración de aplicaciones
+                \item Procesamiento y análisis de flujos de datos en tiempo real (streaming).
+                \item Integración de sistemas y aplicaciones distribuidas.
+                \item Procesamiento de eventos y alertas en sistemas de monitoreo y análisis.
             \end{itemize}
         \end{minipage} \\
         \hline
         Microsoft Azure & Azure Queue Storage &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Integración con servicios de Microsoft
-                \item Escalabilidad
-                \item Sencillez
+                \item Fácil integración con el ecosistema de servicios de Microsoft Azure.
+                \item Alta disponibilidad y durabilidad, con almacenamiento redundante.
+                \item Interfaz simple para el almacenamiento y recuperación de mensajes.
+                \item Opción económica para aplicaciones que necesitan almacenamiento temporal de mensajes.
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Costo
-                \item Flexibilidad limitada
-            \end{itemize}
-        \end{minipage} & Variable &
-        \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Almacenamiento de mensajes
-                \item Comunicación entre aplicaciones
-                \item Procesamiento asíncrono
+                \item Comunicación entre aplicaciones dentro de arquitecturas de microservicios.
+                \item Procesamiento asincrónico de trabajos o tareas en segundo plano.
+                \item Almacenamiento temporal de mensajes y tareas en cola para aplicaciones distribuidas.
             \end{itemize}
         \end{minipage} \\
         \hline
     \end{tabular}
 \end{table}
+
+\subsection{Comparación de Function as a Service (FaaS)}
+
+En la Tabla \ref{tabla_comparativa_faas} se presenta una comparativa de los servicios de Function as a Service (FaaS) en las principales plataformas de nube.
+
+\begin{table}[H]
+    \centering
+    \caption{Comparación de Function as a Service en diferentes plataformas de nube.}
+    \label{tabla_comparativa_faas}
+    \begin{tabular}{|p{1.5cm}|p{1.5cm}|p{4cm}|p{4cm}|p{4cm}|}
+        \hline
+        \textbf{nube} & \textbf{FaaS} & \textbf{Ventajas} & \textbf{Principales usos} & \textbf{Lenguajes soportados} \\
+        \hline
+        AWS & AWS Lambda &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Escalabilidad automática
+                \item Integración con otros servicios de AWS
+                \item Pago por uso
+            \end{itemize}
+        \end{minipage} &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Procesamiento de datos
+                \item Backend para aplicaciones web
+            \end{itemize}
+        \end{minipage} &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Python, Node.js, Java, Ruby, entre otros
+            \end{itemize}
+        \end{minipage} \\
+        \hline
+        Google Cloud & Google Cloud Functions &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Escalabilidad y seguridad
+                \item Integración con Google Cloud
+            \end{itemize}
+        \end{minipage} &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Automatización
+                \item Procesamiento de eventos
+            \end{itemize}
+        \end{minipage} &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Node.js, Python, Go, entre otros
+            \end{itemize}
+        \end{minipage} \\
+        \hline
+        Microsoft Azure & Azure Functions &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Integración con servicios de Microsoft
+                \item Buen soporte para CI/CD
+            \end{itemize}
+        \end{minipage} &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Procesamiento de datos
+                \item Backend para aplicaciones móviles
+            \end{itemize}
+        \end{minipage} &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item C#, JavaScript, Python, Java, entre otros
+            \end{itemize}
+        \end{minipage} \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Comparación de APIs de Text-to-Speech}
+
+En la Tabla \ref{tabla_comparativa_tts} se presenta una comparativa de las APIs de Text-to-Speech (TTS) en las principales plataformas de nube.
+
+\begin{table}[H]
+    \centering
+    \caption{Comparación de APIs de Text-to-Speech en diferentes plataformas de nube.}
+    \label{tabla_comparativa_tts}
+    \begin{tabular}{|p{2.5cm}|p{3cm}|p{4cm}|p{2.5cm}|p{3cm}|}
+        \hline
+        \textbf{Plataforma} & \textbf{API de TTS} & \textbf{Características} & \textbf{Idiomas soportados} & \textbf{Principales usos} \\
+        \hline
+        AWS & Amazon Polly &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Voces naturales
+                \item Opciones de personalización
+                \item Soporte SSML
+            \end{itemize}
+        \end{minipage} &
+        Más de 30 &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Asistentes de voz
+                \item Lectura de textos
+            \end{itemize}
+        \end{minipage} \\
+        \hline
+        Google Cloud & Google Text-to-Speech &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Tecnología WaveNet
+                \item Personalización con SSML
+            \end{itemize}
+        \end{minipage} &
+        Más de 30 &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Respuestas automáticas
+                \item Asistentes virtuales
+            \end{itemize}
+        \end{minipage} \\
+        \hline
+        Microsoft Azure & Azure Speech &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Soporte de voz neural
+                \item Personalización de tonos
+            \end{itemize}
+        \end{minipage} &
+        Más de 40 &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Sistemas de ayuda en línea
+                \item Narración de audiolibros
+            \end{itemize}
+        \end{minipage} \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Comparación de Frameworks de Aprendizaje Automático para Reconocimiento}
+
+En la Tabla \ref{tabla_comparativa_frameworks} se presenta una comparativa de los frameworks de aprendizaje automático más utilizados en tareas de reconocimiento.
+
+\begin{table}[H]
+    \centering
+    \caption{Comparación de frameworks de aprendizaje automático para reconocimiento.}
+    \label{tabla_comparativa_frameworks}
+    \begin{tabular}{|p{1.8cm}|p{2.5cm}|p{6cm}|p{6cm}|}
+        \hline
+        \textbf{Framework} & \textbf{Compatibilidad} & \textbf{Ventajas} & \textbf{Principales usos} \\
+        \hline
+        TensorFlow &
+        Multiplataforma (Linux, macOS, Windows) y dispositivos móviles (Android, iOS) &
+        \begin{itemize}
+            \item Amplia comunidad y soporte
+            \item Alto rendimiento en procesamiento
+            \item Integración con Keras
+        \end{itemize} &
+        \begin{itemize}
+            \item Reconocimiento de imágenes
+            \item Procesamiento de lenguaje natural
+            \item Modelado de series temporales
+        \end{itemize} \\
+        \hline
+        PyTorch &
+        Multiplataforma y soporte para GPUs de Nvidia &
+        \begin{itemize}
+            \item Flexible y fácil de usar
+            \item Soporte de redes neuronales dinámicas
+            \item Amplio uso en investigación
+        \end{itemize} &
+        \begin{itemize}
+            \item Reconocimiento de voz
+            \item Clasificación de imágenes
+            \item Generación de texto
+        \end{itemize} \\
+        \hline
+        Caffe &
+        Enfoque en Linux; soporte limitado en Windows y macOS &
+        \begin{itemize}
+            \item Eficiencia en redes convolucionales
+            \item Buen rendimiento en visión por computadora
+            \item Soporte para modelos preentrenados
+        \end{itemize} &
+        \begin{itemize}
+            \item Clasificación y detección de objetos
+            \item Visión por computadora
+        \end{itemize} \\
+        \hline
+        MXNet &
+        Multiplataforma; soporte para GPU y CPU &
+        \begin{itemize}
+            \item Alta escalabilidad
+            \item Soporte para aprendizaje distribuido
+            \item Integración con Apache
+        \end{itemize} &
+        \begin{itemize}
+            \item Visión por computadora
+            \item Procesamiento de lenguaje natural
+            \item Reconocimiento de patrones
+        \end{itemize} \\
+        \hline
+        OpenCV &
+        Multiplataforma y optimizado para visión por computadora &
+        \begin{itemize}
+            \item Biblioteca extensa de algoritmos de visión
+            \item Ideal para aplicaciones en tiempo real
+            \item Compatibilidad con C++ y Python
+        \end{itemize} &
+        \begin{itemize}
+            \item Detección y reconocimiento de rostros
+            \item Seguimiento de objetos
+            \item Reconocimiento de texto (OCR)
+        \end{itemize} \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Comparación de algoritmos de Aprendizaje Automático para Reconocimiento}
+
+En la Tabla \ref{tabla_comparativa_algoritmos} se resume las principales características, ventajas y usos de cada algoritmo.
+\begin{table}[H]
+    \centering
+    \caption{Comparación de algoritmos de aprendizaje automático para el procesamiento de imágenes y videos.}
+    \label{tabla_comparativa_algoritmos}
+    \begin{tabular}{|p{2cm}|p{4.7cm}|p{4.7cm}|p{4.7cm}|}
+        \hline
+        \textbf{Algoritmo} & \textbf{Características} & \textbf{Aplicación en imágenes y videos} & \textbf{Relación con CNN y LSTM} \\
+        \hline
+        Redes Neuronales Convolucionales (CNN) &
+        \begin{itemize}
+            \item Excelentes para la extracción de características espaciales y patrones en imágenes.
+            \item Utilizan capas convolucionales para detectar bordes, texturas y formas.
+        \end{itemize} &
+        \begin{itemize}
+            \item Clasificación de imágenes, como en la detección de objetos y rostros.
+            \item Segmentación de imágenes, útil en áreas como visión por computadora médica.
+        \end{itemize} &
+        \begin{itemize}
+            \item Son la base en sistemas de visión artificial.
+            \item Combinadas con LSTM, analizan secuencias de imágenes en tareas de reconocimiento de lenguaje de señas (LSM).
+        \end{itemize} \\
+        \hline
+        Redes Neuronales Recurrentes (RNN) con LSTM &
+        \begin{itemize}
+            \item Diseñadas para el procesamiento secuencial de datos, capturando relaciones temporales.
+            \item Memoria de corto y largo plazo: retienen información de estados previos.
+        \end{itemize} &
+        \begin{itemize}
+            \item Clasificación de videos y reconocimiento de acciones.
+            \item Generación de subtítulos automáticos a partir de secuencias de video.
+        \end{itemize} &
+        \begin{itemize}
+            \item Complementan las CNN al procesar temporalmente la información.
+            \item Al usarse junto a CNN, se logra un análisis temporal y espacial en el reconocimiento de patrones en LSM.
+        \end{itemize} \\
+        \hline
+        Support Vector Machines (SVM) &
+        \begin{itemize}
+            \item Clasificación eficiente en tareas binarias, separando clases mediante un hiperplano óptimo.
+            \item Uso de funciones kernel para datos no lineales, aumentando su flexibilidad.
+        \end{itemize} &
+        \begin{itemize}
+            \item Clasificación de imágenes en tareas como detección de objetos.
+            \item Usado en reconocimiento de caracteres y rostros.
+        \end{itemize} &
+        \begin{itemize}
+            \item Alternativa ligera a las CNN en tareas de clasificación de imágenes.
+            \item Menos eficiente que CNN en grandes conjuntos de datos o problemas altamente dimensionales.
+        \end{itemize} \\
+        \hline
+        K-Nearest Neighbors (KNN) &
+        \begin{itemize}
+            \item Clasificación basada en la cercanía a los vecinos más próximos en el espacio de características.
+            \item Algoritmo intuitivo y fácil de implementar.
+        \end{itemize} &
+        \begin{itemize}
+            \item Reconocimiento de patrones básicos, útil en clasificación de imágenes simples.
+            \item Clasificación en tareas donde la simplicidad y rapidez son clave.
+        \end{itemize} &
+        \begin{itemize}
+            \item Alternativa a CNN en clasificaciones rápidas o simples.
+            \item Puede carecer de precisión frente a CNN en tareas de imágenes complejas.
+        \end{itemize} \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Comparación de lenguajes y frameworks para IaaS}
+
+En la Tabla \ref{tabla_comparativa_iaas} se presenta una comparativa de los principales lenguajes y frameworks utilizados para la gestión de infraestructura como servicio (IaaS), como AWS CloudFormation, Terraform y el marco de trabajo Serverless Application Model (SAM). Estos frameworks permiten la automatización de la infraestructura en la nube, facilitando la creación, configuración y despliegue de recursos de manera eficiente y escalable.
+
+\begin{table}[H]
+    \centering
+    \caption{Comparación de lenguajes y frameworks para la gestión de infraestructura como servicio (IaaS).}
+    \label{tabla_comparativa_iaas}
+    \begin{tabular}{|p{2cm}|p{4.5cm}|p{4cm}|p{4cm}|}
+        \hline
+        \textbf{Framework / Lenguaje} & \textbf{Plataforma Compatible} & \textbf{Ventajas} & \textbf{Principales Usos} \\
+        \hline
+        AWS CloudFormation &
+        AWS &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Integración nativa con AWS.
+                \item Soporte para la gestión de recursos complejos.
+                \item Escalabilidad y automatización de infraestructuras.
+            \end{itemize}
+        \end{minipage} &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Despliegue de infraestructuras completas en AWS.
+                \item Gestión de entornos de producción, desarrollo y prueba.
+                \item Creación de pilas de recursos (stacks) en AWS.
+            \end{itemize}
+        \end{minipage} \\
+        \hline
+        Terraform &
+        Multicloud (AWS, Azure, Google Cloud, entre otros) &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Multicloud (compatible con múltiples proveedores).
+                \item Declarativo y con amplio soporte de proveedores de nube.
+                \item Gestión de infraestructura como código (IaC).
+            \end{itemize}
+        \end{minipage} &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Gestión de infraestructuras en entornos multicloud.
+                \item Definición de infraestructura como código para automatizar el aprovisionamiento.
+                \item Creación y mantenimiento de entornos a través de archivos de configuración.
+            \end{itemize}
+        \end{minipage} \\
+        \hline
+        AWS SAM (Serverless Application Model) &
+        AWS (específicamente para aplicaciones sin servidor) &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Simplificación de aplicaciones sin servidor en AWS.
+                \item Integración directa con AWS Lambda y otros servicios sin servidor.
+                \item Simplificación del proceso de despliegue con plantillas.
+            \end{itemize}
+        \end{minipage} &
+        \begin{minipage}[t]{\linewidth}
+            \begin{itemize}
+                \item Despliegue de aplicaciones sin servidor (serverless) en AWS.
+                \item Integración de funciones Lambda, API Gateway y DynamoDB.
+                \item Simplificación de la gestión de recursos sin servidor y microservicios.
+            \end{itemize}
+        \end{minipage} \\
+        \hline
+    \end{tabular}
+\end{table}
+
 
 \section{Estructura de las colecciones de Firebase}
 
@@ -602,9 +996,9 @@ A continuación se muestra la estructura de las colecciones de Firebase después
 \begin{lstlisting}[style=json, caption=Documento de ejemplo en la colección 'usuarios', label=lst:usuarios]
 {
   "uid1": {
-    "nombre": "Usuario 1",
-    "correo": "usuario1@example.com",
-    "rolId": "admin", // Referencia al documento 'admin' en la colección 'roles'
+    "nombre": "jose daniel alvarez ramos",
+    "correo": "jalvarezr1001@alumno.ipn.mx",
+    "rolId": "admin", // Referencia al documento 'admin' de 'roles'
     "fechaCreacion": "2024-11-09T12:00:00Z",
     "ultimaModificacion": "2024-11-09T12:00:00Z",
     "activo": true,
@@ -621,21 +1015,21 @@ A continuación se muestra la estructura de las colecciones de Firebase después
 }
 \end{lstlisting}
 
-\subsection{Colección senias}
+\subsection{Colección señas}
 
-\begin{lstlisting}[style=json, caption=Documento de ejemplo en la colección 'senias', label=lst:senias]
+\begin{lstlisting}[style=json, caption=Documento de ejemplo en la colección 'senas', label=lst:senas]
 {
-  "senia1": {
-    "nombre": "Seña 1",
-    "descripcion": "Descripción de la Seña 1",
-    "videoUrl": "https://example.com/senia1.mp4",
-    "usuarioId": "uid1", // Referencia al documento 'uid1' en la colección 'usuarios'
+  "sena": {
+    "nombre": "Hola",
+    "descripcion": "Descripción de la Seña "hola"",
+    "videoUrl": "https://bucket.com/hola.mp4",
+    "usuarioId": "uid1", // Referencia al documento 'uid1' de 'usuarios'
     "fechaCreacion": "2024-11-09T12:00:00Z",
     "ultimaModificacion": "2024-11-09T12:00:00Z",
     "activo": true
   },
-  "senia2": {
-    // ... otras señas
+  "sena": {
+    // ... otras senas
   }
 }
 \end{lstlisting}

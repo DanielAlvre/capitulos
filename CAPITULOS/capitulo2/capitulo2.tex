@@ -1,7 +1,65 @@
 \chapter{Marco Teórico}
 
+\subsection{Medidas de tendencia central}
 
+Las medidas de tendencia central son herramientas estadísticas que nos permiten resumir la localización de los datos, es decir, nos ayudan a identificar el valor alrededor del cual se centran los datos. Estas medidas son esenciales para el análisis de datos en cualquier investigación, incluyendo el análisis de las muestras de Lengua de Señas Mexicana (LSM) en este proyecto.
 
+Algunos de los objetivos de la utilización de las medidas de tendencia central son:
+
+\begin{itemize}
+    \item Mostrar en qué lugar se ubica el elemento promedio o típico del grupo.
+    \item Comparar o interpretar cualquier valor en relación con el puntaje central o típico.
+    \item Comparar el valor adquirido por una misma variable en dos diferentes ocasiones.
+    \item Comparar los resultados medios obtenidos por dos o más grupos.
+\end{itemize}
+
+En el contexto del análisis de las muestras de LSM, las medidas de tendencia central nos permiten:
+
+\begin{itemize}
+    \item Identificar la posición promedio de las manos, la cabeza o el cuerpo en las señas.
+    \item Comparar la posición de las manos en diferentes señas.
+    \item Analizar la variabilidad en la ejecución de las señas entre diferentes individuos.
+    \item Comparar la posición de las manos en la misma seña realizada en diferentes momentos.
+\end{itemize}
+
+Las medidas de tendencia central que se utilizarán en este proyecto son:
+
+\begin{itemize}
+    \item \textbf{Media:} La media aritmética es el valor obtenido al sumar todos los valores de un conjunto de datos y dividir entre el número de datos. En el análisis de LSM, la media puede utilizarse para calcular la posición promedio de las manos en una seña.
+\end{itemize}
+\indexedequation{Media aritmética}{
+\begin{equation}
+    \bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}
+    \label{eq:media}
+\end{equation}
+}
+donde:
+
+\begin{itemize}
+    \item $\bar{x}$ es la media aritmética.
+    \item $x_i$ son los valores de los datos.
+    \item $n$ es el número de datos.
+    \item \textbf{Moda:} La moda es el valor que más se repite en un conjunto de datos. En el análisis de LSM, la moda puede utilizarse para identificar la posición más común de las manos en una seña.
+\end{itemize}
+
+\textbf{Desviación Estándar:}
+
+La desviación estándar es una medida de dispersión que indica cuánto varían los datos alrededor de la media. Una desviación estándar alta indica que los datos están más dispersos, mientras que una desviación estándar baja indica que los datos están más agrupados alrededor de la media.
+
+La fórmula para calcular la desviación estándar es:
+\indexedequation{Desviación estándar}{
+\begin{equation}
+    \sigma = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}}
+    \label{eq:desviacion_estandar}
+\end{equation}
+}
+donde:
+\begin{itemize}
+    \item $\sigma$ es la desviación estándar.
+    \item $x_i$ son los valores de los datos.
+    \item $\bar{x}$ es la media aritmética.
+    \item $n$ es el número de datos.
+\end{itemize}
 \section{MediaPipe Holistic}
 
 MediaPipe Holistic es una solución integral de Google para el seguimiento del cuerpo humano en tiempo real. El modelo de Holistic combina  modelos de aprendizaje profundo para detectar y rastrear puntos (posiciones flotantes en un  plano x, y) clave en el rostro, las manos y el cuerpo completo. Esta capacidad de análisis detallado de los movimientos corporales es esencial para la captura expresiva de la Lengua de Señas Mexicana (LSM), donde la posición del cuerpo y los movimientos de las manos son fundamentales para recibir y generar la comunicación.

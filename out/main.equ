@@ -1,9 +1,11 @@
-\contentsline {myequations}{\numberline {2.0}Convolucion Definición general}{19}{}%
-\contentsline {myequations}{\numberline {2.1}Convolucion Discreta}{19}{}%
-\contentsline {myequations}{\numberline {2.2}Convolución en 2 Dimensiones}{20}{}%
-\contentsline {myequations}{\numberline {2.3}Función de activacion Sigmoide}{22}{}%
-\contentsline {myequations}{\numberline {2.4}Función de activacion (tanh)}{22}{}%
-\contentsline {myequations}{\numberline {2.5}Definición tanh}{23}{}%
-\contentsline {myequations}{\numberline {2.6}Función de activacion Relu}{23}{}%
-\contentsline {myequations}{\numberline {2.7}Función de activación Softmax}{24}{}%
-\contentsline {myequations}{\numberline {2.8}Matriz A}{25}{}%
+\contentsline {myequations}{\numberline {2.0}Media aritmética}{16}{}%
+\contentsline {myequations}{\numberline {2.1}Desviación estándar}{17}{}%
+\contentsline {myequations}{\numberline {2.2}Convolucion Definición general}{20}{}%
+\contentsline {myequations}{\numberline {2.3}Convolucion Discreta}{20}{}%
+\contentsline {myequations}{\numberline {2.4}Convolución en 2 Dimensiones}{21}{}%
+\contentsline {myequations}{\numberline {2.5}Función de activacion Sigmoide}{23}{}%
+\contentsline {myequations}{\numberline {2.6}Función de activacion (tanh)}{23}{}%
+\contentsline {myequations}{\numberline {2.7}Definición tanh}{24}{}%
+\contentsline {myequations}{\numberline {2.8}Función de activacion Relu}{24}{}%
+\contentsline {myequations}{\numberline {2.9}Función de activación Softmax}{25}{}%
+\contentsline {myequations}{\numberline {2.10}Matriz A}{26}{}%
