@@ -138,6 +138,169 @@ A continuación se muestra la estructura de las colecciones de Firebase:
 }
 \end{lstlisting}
 
+\section{Diccionario LSM}
+\label{sec:diccionario_LSM}
+
+El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, diseñado para almacenar y organizar un extenso repertorio de señas en Lengua de Señas Mexicana (LSM). Este diccionario proporciona las referencias necesarias para el reconocimiento y la correcta traducción de señas, facilitando tanto el aprendizaje de LSM como la interacción entre personas oyentes y personas sordas.
+
+\subsection{Señas y Descripciones}
+
+\begin{itemize}
+        % Seña "Bien" con 4 fotogramas
+    \item \textbf{Seña: "Bien"} \\
+    La figura a continuación muestra diferentes perspectivas para realizar la seña "Bien" en LSM.
+    \begin{figure}[H]
+        \centering
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[1]{%
+                \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/bien.pdf}
+            }
+        \end{minipage}%
+        \hspace{0.05\textwidth}
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[2]{%
+                \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/bien.pdf}
+            }
+        \end{minipage}
+
+        \vspace{10pt}
+
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[3]{%
+                \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/bien.pdf}
+            }
+        \end{minipage}%
+        \hspace{0.05\textwidth}
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[4]{%
+                \includegraphics[page=4, width=\textwidth]{CAPITULOS/capitulo5/bien.pdf}
+            }
+        \end{minipage}
+
+        \caption{Composición de la Seña "Bien" en LSM}
+        \label{fig:seña_bien}
+    \end{figure}
+
+    % Seña "Hola" con 3 fotogramas
+    \item \textbf{Seña: "Hola"} \\
+    \begin{figure}[H]
+        \centering
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[1]{%
+                \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/hola.pdf}
+            }
+        \end{minipage}%
+        \hspace{0.05\textwidth}
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[2]{%
+                \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/hola.pdf}
+            }
+        \end{minipage}
+
+        \vspace{10pt}
+
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[3]{%
+                \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/hola.pdf}
+            }
+        \end{minipage}
+
+        \caption{Composición de la Seña "Hola" en LSM}
+        \label{fig:seña_hola}
+    \end{figure}
+
+    % Seña "Mal" con 4 fotogramas
+    \item \textbf{Seña: "Mal"} \\
+    \begin{figure}[H]
+        \centering
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[1]{%
+                \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/mal.pdf}
+            }
+        \end{minipage}%
+        \hspace{0.05\textwidth}
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[2]{%
+                \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/mal.pdf}
+            }
+        \end{minipage}
+
+        \vspace{10pt}
+
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[3]{%
+                \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/mal.pdf}
+            }
+        \end{minipage}%
+        \hspace{0.05\textwidth}
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[4]{%
+                \includegraphics[page=4, width=\textwidth]{CAPITULOS/capitulo5/mal.pdf}
+            }
+        \end{minipage}
+
+        \caption{Composición de la Seña "Mal" en LSM}
+        \label{fig:seña_mal}
+    \end{figure}
+
+    % Seña "¿Cómo estás?" con 5 fotogramas
+    \item \textbf{Seña: "¿Cómo estás?"} \\
+    \begin{figure}[H]
+        \centering
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[1]{%
+                \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/como.pdf}
+            }
+        \end{minipage}%
+        \hspace{0.05\textwidth}
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[2]{%
+                \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/como.pdf}
+            }
+        \end{minipage}
+
+        \vspace{10pt}
+
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[3]{%
+                \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/como.pdf}
+            }
+        \end{minipage}%
+        \hspace{0.05\textwidth}
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[4]{%
+                \includegraphics[page=4, width=\textwidth]{CAPITULOS/capitulo5/como.pdf}
+            }
+        \end{minipage}
+
+        \vspace{10pt}
+
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \subfloat[5]{%
+                \includegraphics[page=5, width=\textwidth]{CAPITULOS/capitulo5/como.pdf}
+            }
+        \end{minipage}
+
+        \caption{Composición de la Seña "¿Cómo estás?" en LSM}
+        \label{fig:seña_como_estas}
+    \end{figure}
+\end{itemize}
 \section{Interfaz de usuario de la aplicación}
 
 La aplicación móvil se ha diseñado con una interfaz intuitiva y fácil de usar, con el objetivo de proporcionar una experiencia de usuario fluida y accesible. A continuación, se describen las principales pantallas de la aplicación:
@@ -154,110 +317,35 @@ El diseño de la pantalla principal es simple y directo. En la parte superior se
 
 Al tocar una de las opciones, el usuario es redirigido a la pantalla correspondiente. Por ejemplo, al tocar "Traducir", se abre la pantalla de traducción en tiempo real.
 
-\subsection{Pantalla de traducción}
-
-La pantalla de traducción permite a los usuarios traducir señas en tiempo real utilizando la cámara del dispositivo.
-
-\subsubsection{Diseño}
-
-En la parte superior de la pantalla se muestra la imagen capturada por la cámara. En la parte inferior, se muestra la traducción de la seña reconocida. El diseño es limpio y minimalista, para que el usuario se concentre en la traducción.
-
-\subsubsection{Funcionalidad}
-
-La cámara captura las imágenes de las manos del usuario y el sistema de reconocimiento de señas las procesa en tiempo real. La traducción de la seña se muestra en la pantalla, y también se puede generar un mensaje de voz utilizando la API de Text-To-Speech.
-
 \subsection{Pantalla del diccionario}
 
 La pantalla del diccionario proporciona acceso al diccionario LSM, donde los usuarios pueden buscar señas, ver sus traducciones y descripciones, y reproducir los videos.
 
 \subsubsection{Diseño}
 
-La pantalla se divide en dos secciones: una barra de búsqueda en la parte superior y una lista de señas en la parte inferior. Al buscar una seña, la lista se actualiza para mostrar las señas que coinciden con la búsqueda.
+La pantalla se organiza en dos áreas clave:
+
+\begin{itemize}
+    \item \textbf{Barra de búsqueda:} Permite a los usuarios realizar búsquedas rápidas ingresando el nombre de una seña, categoría o palabra clave.
+    \item \textbf{Lista de señas:} Muestra las señas encontradas tras una búsqueda o bien un listado de categorías en caso de que no se haya especificado un término de búsqueda.
+\end{itemize}
 
 \subsubsection{Funcionalidad}
 
-Los usuarios pueden buscar señas por nombre o categoría. Al seleccionar una seña, se muestra su traducción, descripción y un video que muestra la ejecución correcta de la seña.
+\begin{itemize}
+    \item \textbf{Búsqueda de señas:} A través de la barra de búsqueda, los usuarios pueden introducir palabras clave para encontrar señas específicas.
+    \item \textbf{Navegación por categorías:} Facilita la exploración del diccionario por temas como el alfabeto, saludos o familia.
+    \item \textbf{Visualización de señas:} Al seleccionar una seña, se despliega la siguiente información:
+    \begin{itemize}
+        \item \textbf{Nombre de la seña:} Término en LSM.
+        \item \textbf{Traducción:} Interpretación en español de la seña.
+        \item \textbf{Descripción:} Explicación detallada de cómo realizar la seña.
+        \item \textbf{Video:} Reproducción de la ejecución de la seña en LSM.
+    \end{itemize}
+\end{itemize}
 
-\subsection{Pantalla de configuración}
+\subsubsection{Integración con la Pantalla de Traducción}
 
-La pantalla de configuración permite a los usuarios configurar las opciones de la aplicación, como el idioma, la velocidad de reproducción de los videos y el tamaño del texto.
+El diccionario LSM también se sincroniza con la pantalla de traducción en tiempo real. Cuando se detecta una seña, la aplicación muestra su traducción y detalles adicionales, permitiendo que los usuarios obtengan información completa de la seña en cuestión, incluyendo su descripción y video.
 
-\subsubsection{Diseño}
 
-La pantalla muestra una lista de opciones de configuración, cada una con un control para ajustar su valor.
-
-\subsubsection{Funcionalidad}
-
-Los usuarios pueden ajustar las opciones de la aplicación según sus preferencias. Los cambios se guardan automáticamente.
-
-% ... (Puedes añadir más pantallas según sea necesario) ...
-
-\section{Diccionario LSM}
-
-El diccionario LSM es un componente fundamental del sistema de traducción. Su propósito es proporcionar una base de datos completa y precisa de señas en Lengua de Señas Mexicana (LSM), que sirva como referencia para el reconocimiento y la traducción de señas.
-
-\subsection{Contenido}
-
-El diccionario incluirá:
-
-* \textbf{Señas:} Un conjunto de señas en LSM, que abarque el alfabeto, números, palabras comunes, frases y expresiones faciales.
-* \textbf{Traducciones:} La traducción al español de cada seña.
-* \textbf{Descripciones:} Una descripción detallada de cada seña, incluyendo la configuración de las manos, la posición del cuerpo, las expresiones faciales y otros elementos relevantes.
-* \textbf{Videos:} Videos que muestren la ejecución correcta de cada seña.
-
-\subsection{Estructura}
-
-El diccionario se estructurará de forma que sea fácil de navegar y buscar. Se organizará por categorías, como el alfabeto, números, temas (ej. familia, trabajo, salud) y niveles de dificultad. Se incluirá un buscador que permita a los usuarios encontrar rápidamente la seña que necesitan.
-
-\subsection{Integración con la aplicación}
-
-El diccionario se integrará con la aplicación móvil, de forma que los usuarios puedan acceder a él en cualquier momento. La aplicación permitirá a los usuarios buscar señas, ver sus traducciones y descripciones, y reproducir los videos.
-
-\subsubsection{Pantalla del diccionario}
-
-La pantalla del diccionario es la interfaz principal para interactuar con el diccionario LSM dentro de la aplicación.
-
-\paragraph{Diseño}
-
-La pantalla se divide en dos secciones principales:
-
-* \textbf{Barra de búsqueda:}  Ubicada en la parte superior, permite a los usuarios buscar señas por nombre, categoría o palabra clave.
-* \textbf{Lista de señas:}  Muestra las señas que coinciden con la búsqueda del usuario, o bien, un listado de categorías de señas si no se ha realizado ninguna búsqueda.
-
-\paragraph{Funcionalidad}
-
-* \textbf{Búsqueda de señas:}  Los usuarios pueden introducir el nombre de la seña o una palabra clave en la barra de búsqueda para encontrar la seña deseada.
-* \textbf{Navegación por categorías:}  Los usuarios pueden navegar por las diferentes categorías de señas (ej. alfabeto, números, saludos, familia) para explorar el diccionario.
-* \textbf{Visualización de señas:}  Al seleccionar una seña de la lista, se muestra la siguiente información:
-* \textbf{Nombre de la seña:}  El nombre de la seña en LSM.
-* \textbf{Traducción:}  La traducción al español de la seña.
-* \textbf{Descripción:}  Una descripción detallada de la seña, incluyendo la configuración de las manos, la posición del cuerpo y las expresiones faciales.
-* \textbf{Video:}  Un video que muestra la ejecución correcta de la seña.
-
-\subsubsection{Integración con la pantalla de traducción}
-
-El diccionario LSM también se integra con la pantalla de traducción en tiempo real. Cuando el sistema reconoce una seña, la aplicación busca la seña en el diccionario y muestra su traducción al usuario. Esto permite que los usuarios no solo vean la traducción de la seña, sino que también aprendan más sobre ella, incluyendo su descripción y cómo se realiza correctamente.
-
-\section{Seña 1}
-\label{sec:seña_1}
-
-\begin{figure}[H]
-    \centering
-    \subfloat[Seña 1 - Imagen 1\label{fig:seña_1_imagen_1}]{%
-        \includepdf[pages=1,scale=0.45,trim=0 0.25\paperheight 0.5\paperwidth 0.5\paperheight,clip]{CAPITULOS/capitulo5/bien.pdf}
-    }
-    \hfill
-    \subfloat[Seña 1 - Imagen 2\label{fig:seña_1_imagen_2}]{%
-        \includepdf[pages=2,scale=0.45,trim=0.5\paperwidth 0.25\paperheight 0 0.5\paperheight,clip]{CAPITULOS/capitulo5/bien.pdf}
-    }
-    \\
-    \subfloat[Seña 1 - Imagen 3\label{fig:seña_1_imagen_3}]{%
-        \includepdf[pages=3,scale=0.45,trim=0 0 0.5\paperwidth 0.75\paperheight,clip]{CAPITULOS/capitulo5/bien.pdf}
-    }
-    \hfill
-    \subfloat[Seña 1 - Imagen 4\label{fig:seña_1_imagen_4}]{%
-        \includepdf[pages=4,scale=0.45,trim=0.5\paperwidth 0 0 0.75\paperheight,clip]{CAPITULOS/capitulo5/bien.pdf}
-    }
-    \caption{Diferentes perspectivas de la Seña 1}
-    \label{fig:seña_1}
-\end{figure}
