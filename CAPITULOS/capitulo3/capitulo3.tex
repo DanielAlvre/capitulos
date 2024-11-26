@@ -1,6 +1,10 @@
 \chapter{Estado del arte}
 
-Se han encontrado diversos trabajos relacionados, la mayoría con el propósito de ayudar a personas con hipoacusia que conocen alguna lengua de señas, tanto dentro del IPN como en otras universidades.
+Se han encontrado diversos trabajos relacionados, la mayoría con el propósito de ayudar a personas sordas que conocen alguna lengua de señas, tanto en el IPN como en otras centros educativos.
+
+\section {Gramática de la lengua de señas mexicana \cite{ref42}}
+
+La tesis de Miroslava Cruz Aldrete (2008) realiza una descripción detallada de la gramática de la Lengua de Señas Mexicana (LSM), abordando desde aspectos fonológicos hasta estructuras sintácticas complejas. Este estudio representa un esfuerzo significativo por documentar y analizar una lengua visogestual que ha sido históricamente poco explorada, ofreciendo datos sólidos que pueden servir como base para investigaciones futuras en el campo de la lingüística aplicada a las lenguas de señas. Entre los aportes más destacados, se encuentra la exposición de las características fonológicas y morfosintácticas de la LSM, así como la relevancia de los elementos no manuales en la construcción de significado, reafirmando que estas lenguas poseen una estructura gramatical compleja y autónoma comparable a la de cualquier lengua oral.
 
 \section{Dispositivo traductor de LSM a español escrito para la extremidad superior derecha \cite{ref8}}
 
@@ -51,3 +55,39 @@ Esta tesis se enfoca en el desarrollo y evaluación de un sistema para reconocer
 \section{Modelo para la creación y uso de un repositorio digital de segmentos visuales en lengua de señas mexicanas utilizando Inteligencias Artificial \cite{ref33}}
 
 Esta tesis propone un modelo para crear y utilizar un repositorio digital de segmentos visuales en Lengua de Señas Mexicana (LSM) usando inteligencia artificial. El objetivo es mejorar la plataforma de traducción español-LSM desarrollada previamente en el Instituto Tecnológico de Hermosillo, facilitando la comunicación entre personas sordas y oyentes en contextos educativos.  El repositorio almacena segmentos visuales de señas en LSM extraídos de videos disponibles en la web.  Utiliza técnicas de visión e inteligencia artificial para extraer automáticamente las señas y su  texto correspondiente de los videos.  Además, convierte los segmentos de video en representaciones 3D animadas utilizando el modelo SMPL, permitiendo una visualización más realista y versátil.  Desarrollado por Maria Luisa Galaz Palma en el Instituto Tecnológico de Hermosillo.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Comparativa de proyectos relacionados con el reconocimiento de lenguaje de señas}
+    \resizebox{1.15\textwidth}{!}{ % Ajusta el ancho de la tabla
+        \begin{tabular}{|p{7cm}|c|c|c|c|c|c|c|c|c|}
+            \hline
+            \textbf{Nombre del Proyecto} &
+            \rotatebox{90}{\textbf{Captura de video o imágenes}} &
+            \rotatebox{90}{\textbf{Tiempo real}} &
+            \rotatebox{90}{\textbf{MediaPipe}} &
+            \rotatebox{90}{\textbf{AWS o nube}} &
+            \rotatebox{90}{\textbf{Texto o voz}} &
+            \rotatebox{90}{\textbf{Redes neuronales}} &
+            \rotatebox{90}{\textbf{Segmentación}} &
+            \rotatebox{90}{\textbf{LSM}} &
+            \rotatebox{90}{\textbf{Text-To-Speech}} \\ \hline
+            \textbf{Sistema de reconocimiento de señas de detección de palabras para el lenguaje de señas LSM} & Sí & Sí & Sí & Sí & Sí & Sí & Sí & Sí & Sí \\ \hline
+            Dispositivo traductor de LSM a español         & Sí & No & No & No & Sí & Sí & No & Sí & No \\ \hline
+            Reconocimiento de señas estáticas del LSM      & Sí & No & Sí & No & No & Sí & No & Sí & No \\ \hline
+            Sistema de interpretación de imágenes          & Sí & Sí & No & No & No & No & Sí & No & No \\ \hline
+            Intérprete en tiempo real de LSEC              & No & Sí & No & No & Sí & Sí & No & No & No \\ \hline
+            Reconocimiento de señas en gestión académica   & No & No & No & No & No & Sí & No & No & No \\ \hline
+            Traducción de señas dactilológicas             & Sí & No & Sí & No & Sí & Sí & No & No & No \\ \hline
+            Reconocimiento de alfabeto dactilológico       & Sí & No & No & No & No & Sí & No & Sí & No \\ \hline
+            Sistema web intérprete de LSA                  & Sí & Sí & Sí & No & Sí & Sí & No & No & No \\ \hline
+            Traductor automático de LSM                    & Sí & No & No & No & No & Sí & Sí & Sí & No \\ \hline
+            Sistema multi-agente para frases en LSM        & No & Sí & No & No & Sí & No & No & Sí & No \\ \hline
+            Modelos computacionales aplicados a LSM        & Sí & No & Sí & No & No & Sí & No & Sí & No \\ \hline
+            Repositorio digital para segmentos visuales    & Sí & No & No & No & No & Sí & No & Sí & No \\ \hline
+        \end{tabular}
+    }
+    \label{tab:comparativa_proyectos}
+\end{table}
+
+
