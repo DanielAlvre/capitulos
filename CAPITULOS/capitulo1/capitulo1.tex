@@ -1,40 +1,63 @@
 \chapter{Introducción}
 
-La comunicación efectiva entre profesionales de la salud y pacientes es un pilar fundamental para brindar una atención médica de calidad.  Esta comunicación bidireccional permite a los pacientes expresar sus síntomas con claridad, comprender los diagnósticos y las indicaciones médicas, y participar activamente en la toma de decisiones sobre su salud.  Sin embargo, para las personas con discapacidad auditiva, este proceso se ve obstaculizado por barreras significativas que limitan su acceso a una atención médica plena e inclusiva.
+La Lengua de Señas Mexicana (LSM) es la lengua natural utilizada por la comunidad sorda en México. A pesar de su importancia, la comunicación entre personas sordas y oyentes sigue siendo un desafío debido a la falta de intérpretes y al desconocimiento generalizado de la LSM. Este proyecto busca abordar esta problemática mediante el desarrollo de un sistema de reconocimiento de señas que utiliza tecnología de aprendizaje profundo (\textit{deep learning}) para traducir la LSM al español.
 
-Un estudio reciente  \cite{ref1}  revela una preocupante realidad en México: solo el 12.9\% de los profesionales de la salud cuentan con recursos adecuados para atender a pacientes sordos. Esta falta de preparación y recursos se traduce en una  dificultad considerable para comunicarse con pacientes sordos, lo que puede resultar en una atención médica deficiente, diagnósticos erróneos, tratamientos inadecuados y, en última instancia, en la exclusión de este grupo de personas del sistema de salud  \cite{ref2}.  De hecho, la mayoría de los profesionales de la salud encuestados en el estudio reportaron no contar con ningún tipo de recurso de apoyo para la comunicación con pacientes sordos, como intérpretes de Lengua de Señas Mexicana, televisores con subtítulos, o material gráfico. Esta carencia de herramientas dificulta la interacción entre el personal médico y los pacientes sordos, lo que puede generar frustración, ansiedad e incluso poner en riesgo la salud de estos últimos.
+El sistema se enfoca en el reconocimiento de señas con movimiento, particularmente en el ámbito médico, donde la comunicación clara y precisa es crucial. Para lograr este objetivo, se empleará \textbf{MediaPipe} \cite{ref3} para el seguimiento y procesamiento de los movimientos de las manos, capturando la configuración manual esencial para la interpretación de la LSM. Los modelos de aprendizaje profundo, implementados con \textbf{TensorFlow/Keras} \cite{ref4} , permitirán una mayor precisión en la interpretación de las señas.
 
-El análisis de los datos mediante una Red Neuronal Artificial (RNA)  \cite{ref1}  reveló que el factor que más impacta en la actitud inclusiva del personal de salud hacia los pacientes sordos es la capacitación (12.2\%), seguido por el género, el contacto con pacientes sordos y la experiencia profesional (10\% cada uno).  Estos resultados resaltan la importancia de la capacitación en LSM y en estrategias de comunicación inclusivas para el personal de salud, así como la necesidad de brindarles herramientas que les permitan interactuar de manera efectiva con los pacientes sordos.
+Además, la integración de servicios en la nube, como \textbf{AWS S3} y \textbf{SQS} \cite{ref5}, garantizará la escalabilidad y el procesamiento eficiente de los datos. Complementando estas tecnologías, se incorporará una API de \textbf{Text-To-Speech} u otras alternativas similares, permitiendo que el sistema traduzca las señas a palabras tanto visuales como auditivas. Esto ofrecerá una interacción más inclusiva y accesible, especialmente en contextos donde la comunicación efectiva es fundamental.
 
-En este contexto, surge la necesidad de desarrollar soluciones tecnológicas que faciliten la comunicación entre pacientes sordos y profesionales de la salud.  El presente proyecto se centra en el diseño e implementación de un sistema de reconocimiento de señas de la LSM  enfocado en el ámbito médico.  Este sistema,  basado en  aprendizaje profundo, busca traducir en tiempo real señas con movimiento relacionadas con la salud a español,  abriendo así una puerta hacia una comunicación más fluida e inclusiva.
-
-Para lograr este objetivo, se  utilizarán tecnologías como MediaPipe  \cite{ref3} para el seguimiento y procesamiento de los movimientos de las manos,  y TensorFlow/Keras  \cite{ref4}  para la creación de modelos de aprendizaje profundo que permitan una mayor precisión en la interpretación de las señas.  Además,  la integración de servicios en la nube, como AWS S3 y SQS  \cite{ref5},  garantizará la escalabilidad y el procesamiento eficiente de los datos.
-
-Al integrar una API de Text-To-Speech u otras alternativas similares, se  generará un sistema versátil que convierte las señas en palabras tanto visuales como auditivas, ofreciendo una interacción más inclusiva y accesible para las personas con discapacidad auditiva.
-
+El objetivo final de este proyecto es cerrar la brecha de comunicación entre personas con discapacidad auditiva y oyentes, promoviendo una mayor inclusión y accesibilidad en México. Al facilitar la interacción en entornos como el médico, este sistema busca empoderar a las personas sordas y mejorar su acceso a servicios esenciales.
 \clearpage
 \section{Planteamiento del problema}
 
-Las personas que cuentan con la condición de hipoacusia tienen la perentoriedad de recurrir a herramientas, en su mayoría tecnológicas, que les ayuden o permitan entablar contacto con una inmensa mayoría que desconoce su modo de comunicación \cite{ref6}. Estas personas enfrentan desafíos significativos al comunicarse con quienes no conocen la lengua de señas, lo que limita sus interacciones sociales, laborales y educativas, creando barreras que dificultan su inclusión en la sociedad \cite{ref10}. Aunque existen herramientas que facilitan la traducción de español a Lengua de Señas Mexicana (LSM), la traducción inversa de LSM a español sigue siendo un área poco explorada, con un gran potencial de mejora \cite{ref12}.
+Las personas con hipoacusia enfrentan desafíos significativos al comunicarse con quienes no conocen la lengua de señas, lo que limita sus interacciones sociales, laborales y educativas, creando barreras que dificultan su inclusión en la sociedad \cite{ref10}.  Para superar estas barreras,  es crucial  desarrollar  herramientas  que  faciliten  la  comunicación  entre  las  personas  sordas  y  la  comunidad  oyente. La  traducción  inversa,  de  LSM  a  español,  sigue  siendo  un  área  poco  explorada  \cite{ref12},  a  pesar  de  la  creciente  necesidad  de  que  las  personas  sordas  puedan  expresarse  en  español  y  ser  comprendidas  por  quienes  no  conocen  la  LSM  \cite{ref6}.
 
-Una forma de cerrar esta brecha de comunicación es identificar la palabra que corresponde a la seña interpretada. Para ello, se han creado diversas herramientas lingüísticas, siendo el diccionario una de las principales, donde cada palabra es representada por una o varias imágenes y una descripción escrita que presenta el paso a paso para realizar la seña \cite{ref15}.
+Un  estudio  reciente  \cite{ref1}  revela  una  preocupante  realidad  en  el  ámbito  de  la  salud  en  México:  solo  el  12.9\%  de  los  profesionales  cuentan  con  recursos  adecuados  para  atender  a  pacientes  sordos.  Esta  falta  de  preparación  y  recursos  se  traduce  en  una  dificultad  considerable  para  la  comunicación,  lo  que  puede  resultar  en  una  atención  médica  deficiente,  diagnósticos  erróneos,  tratamientos  inadecuados  y,  en  última  instancia,  en  la  exclusión  de  las  personas  sordas  del  sistema  de  salud  \cite{ref2}.  La  mayoría  de  los  profesionales  de  la  salud  encuestados  en  el  estudio  reportaron  no  contar  con  ningún  tipo  de  recurso  de  apoyo  para  la  comunicación  con  pacientes  sordos,  como  intérpretes  de  Lengua  de  Señas  Mexicana,  televisores  con  subtítulos,  o  material  gráfico.  Esta  carencia  de  herramientas  dificulta  la  interacción  entre  el  personal  médico  y  los  pacientes  sordos,  lo  que  puede  generar  frustración,  ansiedad  e  incluso  poner  en  riesgo  la  salud  de  estos  últimos.
 
-En el marco tecnológico, uno de los principales retos es la correcta interpretación de las señas. El uso de sensores presenta oportunidades; sin embargo, herramientas como Kinect no son suficientes debido a sus limitaciones en la detección precisa de las posiciones de las manos \cite{ref14}. Dispositivos como Leap Motion ofrecen una mejor captura de los movimientos, pero aún se necesita desarrollar un sistema que interprete las señas de manera efectiva \cite{ref13}.
+El  análisis  de  los  datos  del  estudio  mediante  una  Red  Neuronal  Artificial  (RNA)  \cite{ref1}  reveló  que  el  factor  que  más  impacta  en  la  actitud  inclusiva  del  personal  de  salud  hacia  los  pacientes  sordos  es  la  capacitación  (12.2\%),  seguido  por  el  género,  el  contacto  con  pacientes  sordos  y  la  experiencia  profesional  (10\%  cada  uno).  Estos  resultados  resaltan  la  importancia  de  la  capacitación  en  LSM  y  en  estrategias  de  comunicación  inclusivas  para  el  personal  de  salud,  así  como  la  necesidad  de  brindarles  herramientas  que  les  permitan  interactuar  de  manera  efectiva  con  los  pacientes  sordos.
 
+En  el  ámbito  tecnológico,  el  desarrollo  de  sistemas  de  traducción  automática  de  LSM  a  español  presenta  desafíos  importantes.  Si  bien  se  han  creado  diversas  herramientas  lingüísticas,  como  diccionarios  con  imágenes  y  descripciones  escritas  de  las  señas  \cite{ref15},  la  interpretación  automática  de  las  señas  en  tiempo  real  requiere  de  tecnologías  más  sofisticadas.  El  uso  de  sensores  para  la  captura  de  movimientos  ha  abierto  nuevas  posibilidades,  pero  herramientas  como  Kinect  presentan  limitaciones  en  la  detección  precisa  de  las  posiciones  de  las  manos  \cite{ref14}.  Dispositivos  como  Leap  Motion  ofrecen  una  mejor  captura  de  los  movimientos  \cite{ref13},  pero  aún  se  necesita  desarrollar  un  sistema  que  interprete  las  señas  de  manera  efectiva  y  precisa.
+
+A partir de los desafíos planteados, surge la siguiente pregunta de investigación:
+
+\textbf{¿Cómo  diseñar  un  sistema  de  traducción  de  LSM  a  español  que  sea  accesible,  usable  y  relevante  para  pacientes  sordos  y  profesionales  de  la  salud  en  el  contexto  médico  mexicano?}
+\clearpage
+\section{Propuesta de solución}
 Para abordar esta problemática, proponemos un sistema innovador que utiliza tecnologías avanzadas como MediaPipe y TensorFlow/Keras. El objetivo primordial de este sistema es enfocarse en las señas de detención estática. Sin embargo, este es solo el primer paso; se prevé que en caso de contar con tiempo, se podrían incluir otros tipos de señas a través de video (secuencia de fotogramas). Ejemplos de estas otras señas podrían incluir saludos, preguntas básicas o expresiones emocionales. El proceso inicia con el usuario grabando su comunicación en LSM mediante un programa que captura video o imágenes.
 Estos archivos de fotogramas son enviados a un almacenamiento en la nube para su procesamiento.
 
 A través de un microservicio, los fotogramas se procesan para extraer puntos clave que representan las señas, utilizando principalmente la captura de las manos mediante MediaPipe. Estos puntos clave se visualizan en la secuencia de fotogramas representativa de la seña o en la imagen, facilitando la identificación de las posiciones y movimientos correspondientes. Estos datos son empleados para entrenar un modelo de aprendizaje profundo que mejora la precisión de la traducción de LSM a español \cite{ref9}. Una vez entrenado, el modelo permite al usuario traducir las señas que se capturan a través de una cámara.
 
 El sistema no solo genera una representación visual de la palabra traducida en pantalla, sino que también utiliza una API (de Text-To-Speech o similar) para reproducir el audio correspondiente, facilitando así una comunicación inclusiva y efectiva \cite{ref11}. Este enfoque integral no solo cierra la brecha comunicativa, sino que también empodera a las personas con hipoacusia, brindándoles herramientas que fomentan su participación en la sociedad.
-\clearpage
-\section{Propuesta de solución}
+
 
 \subsection{Descripción del sistema}
 
 
 
-En la Figura \ref{fig:diagrama_sistema}, se observa el principio básico del funcionamiento del sistema:
+En la Figura \ref{fig:diagrama_sistema}, se observa el funcionamiento del sistema para la parte del entrenamiento:
+
+% ---  Ajusta el caption para que sea vertical ---
+
+\begin{figure}[H]
+    \includegraphics[scale=0.20]{CAPITULOS/capitulo1/DIAGRAMAINTRO}
+    \centering
+    \caption[Diagrama del funcionamiento del entrenamiento del sistema]{Diagrama del funcionamiento del entrenamiento del sistema}
+    \label{fig:diagrama_sistema}
+\end{figure}
+
+En la Figura \ref{fig:diagrama_sistema2}, se observa el funcionamiento del sistema para la parte del reconocimiento:
+
+% ---  Ajusta el caption para que sea vertical ---
+
+\begin{figure}[H]
+    \includegraphics[scale=0.5]{CAPITULOS/capitulo1/Diagrama2}
+    \centering
+    \caption[Diagrama del funcionamiento del reconocimiento del sistema]{Diagrama del funcionamiento del reconocimiento del sistema}
+    \label{fig:diagrama_sistema2}
+\end{figure}
+
+Proceso de Conversión del sistema
 
 \begin{enumerate}
 \item Iniciar Grabación o toma de la muestra: El usuario inicia el programa de grabación o toma de fotos.
@@ -58,22 +81,6 @@ En la Figura \ref{fig:diagrama_sistema}, se observa el principio básico del fun
 \item Genera Audio con Text-To-Speech: Se envía la palabra a una API de Text-To-Speech para generar audio.
 \item Reproducir Audio en Altavoz: El audio generado se reproduce a través de un altavoz.
 \end{enumerate}
-
-% ---  Ajusta el caption para que sea vertical ---
-
-\begin{figure}[h]
-  \begin{sideways}
-   \includegraphics[scale=0.17]{CAPITULOS/capitulo1/digramacap1.png}
-  \end{sideways}
-  \centering
-  \caption[Diagrama del funcionamiento del sistema]{Diagrama del funcionamiento del sistema}
-  \label{fig:diagrama_sistema}
-\end{figure}
-
-
-
-\clearpage
-
 
 \section{Alcances y limitaciones}
 
@@ -130,7 +137,6 @@ En la \ref{fig:imagen_scrum} se presenta un esquema de las etapas que conforman 
   \label{fig:imagen_scrum}
 \end{figure}
 
-\clearpage
 
 \section{Objetivos}
 

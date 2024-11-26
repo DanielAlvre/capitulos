@@ -2,45 +2,34 @@
 
 \subsection{Medidas de tendencia central}
 
-Las medidas de tendencia central son herramientas estadísticas que nos permiten resumir la localización de los datos, es decir, nos ayudan a identificar el valor alrededor del cual se centran los datos. Estas medidas son esenciales para el análisis de datos en cualquier investigación, incluyendo el análisis de las muestras de Lengua de Señas Mexicana (LSM) en este proyecto.
+Las medidas de tendencia central son herramientas estadísticas que nos permiten resumir la localización de los datos, es decir, nos ayudan a identificar el valor alrededor del cual se centran los datos. Estas medidas son esenciales para el análisis de datos en cualquier investigación, incluyendo el análisis de las muestras de Lengua de Señas Mexicana (LSM).
 
-Algunos de los objetivos de la utilización de las medidas de tendencia central son:
+\textbf{Medidas de tendencia central:}
 
-\begin{itemize}
-    \item Mostrar en qué lugar se ubica el elemento promedio o típico del grupo.
-    \item Comparar o interpretar cualquier valor en relación con el puntaje central o típico.
-    \item Comparar el valor adquirido por una misma variable en dos diferentes ocasiones.
-    \item Comparar los resultados medios obtenidos por dos o más grupos.
-\end{itemize}
+\textbf{Media:}
 
-En el contexto del análisis de las muestras de LSM, las medidas de tendencia central nos permiten:
+La media aritmética es el valor obtenido al sumar todos los valores de un conjunto de datos y dividir entre el número de datos. En el análisis de LSM, la media puede utilizarse para calcular la posición promedio de las manos en una seña.
 
-\begin{itemize}
-    \item Identificar la posición promedio de las manos, la cabeza o el cuerpo en las señas.
-    \item Comparar la posición de las manos en diferentes señas.
-    \item Analizar la variabilidad en la ejecución de las señas entre diferentes individuos.
-    \item Comparar la posición de las manos en la misma seña realizada en diferentes momentos.
-\end{itemize}
-
-Las medidas de tendencia central que se utilizarán en este proyecto son:
-
-\begin{itemize}
-    \item \textbf{Media:} La media aritmética es el valor obtenido al sumar todos los valores de un conjunto de datos y dividir entre el número de datos. En el análisis de LSM, la media puede utilizarse para calcular la posición promedio de las manos en una seña.
-\end{itemize}
 \indexedequation{Media aritmética}{
 \begin{equation}
     \bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}
     \label{eq:media}
 \end{equation}
 }
-donde:
 
-\begin{itemize}
-    \item $\bar{x}$ es la media aritmética.
-    \item $x_i$ son los valores de los datos.
-    \item $n$ es el número de datos.
-    \item \textbf{Moda:} La moda es el valor que más se repite en un conjunto de datos. En el análisis de LSM, la moda puede utilizarse para identificar la posición más común de las manos en una seña.
-\end{itemize}
+
+\textbf{Varianza:}
+
+La varianza es una medida de dispersión que indica cuánto varían los datos alrededor de la media. Una varianza alta indica que los datos están más dispersos, mientras que una varianza baja indica que los datos están más agrupados alrededor de la media.
+
+La fórmula para calcular la varianza es:
+\indexedequation{Varianza}{
+    \begin{equation}
+        \sigma^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}
+        \label{eq:varianza}
+    \end{equation}
+}
+
 
 \textbf{Desviación Estándar:}
 
@@ -53,13 +42,7 @@ La fórmula para calcular la desviación estándar es:
     \label{eq:desviacion_estandar}
 \end{equation}
 }
-donde:
-\begin{itemize}
-    \item $\sigma$ es la desviación estándar.
-    \item $x_i$ son los valores de los datos.
-    \item $\bar{x}$ es la media aritmética.
-    \item $n$ es el número de datos.
-\end{itemize}
+
 \section{MediaPipe Holistic}
 
 MediaPipe Holistic es una solución integral de Google para el seguimiento del cuerpo humano en tiempo real. El modelo de Holistic combina  modelos de aprendizaje profundo para detectar y rastrear puntos (posiciones flotantes en un  plano x, y) clave en el rostro, las manos y el cuerpo completo. Esta capacidad de análisis detallado de los movimientos corporales es esencial para la captura expresiva de la Lengua de Señas Mexicana (LSM), donde la posición del cuerpo y los movimientos de las manos son fundamentales para recibir y generar la comunicación.
@@ -137,13 +120,73 @@ AWS proporciona una amplia gama de servicios en la nube que son fundamentales pa
 \section{Lingüística de la Lengua de Señas Mexicana (LSM)}
 La LSM, como cualquier lengua natural, posee una gramática compleja que incluye aspectos como la configuración manual, la ubicación, la orientación y el movimiento de las manos, así como las expresiones faciales. El proyecto incorpora conocimientos lingüísticos de la LSM para asegurar una traducción precisa y culturalmente apropiada. La Matriz Segmental, que describe la estructura de las señas en términos de segmentos secuenciales, es una herramienta clave para el análisis y la representación de las señas en el sistema \cite{ref36}.
 
-\section{Diccionarios y Bases de Datos de LSM}
-Aunque existen diccionarios de LSM como "Manos con Voz", la falta de bases de datos estructuradas que contengan la gramática y el léxico de la LSM representa un desafío. El proyecto busca contribuir a la creación de tales recursos, beneficiando no solo a la traducción automática, sino también a la investigación y la enseñanza de la LSM.
+\section{Composición de una seña en la Lengua de Señas Mexicana (LSM)}
+
+La Lengua de Señas Mexicana (LSM), al igual que otras lenguas de señas, se caracteriza por ser una lengua visual-gestual donde la información se transmite a través de la combinación de movimientos y configuraciones de las manos, expresiones faciales y movimientos del cuerpo. Para comprender la estructura de la LSM, es fundamental analizar los elementos que componen una seña.  \cite{ref42}
+
+Una seña en LSM se compone de la articulación simultánea de tres matrices principales:
+
+\subsection{Matriz Segmental:}
+
+Esta matriz se centra en la descripción de la actividad manual,  analizando el movimiento y la detención de la mano.
+
+\begin{itemize}
+    \item \textbf{Segmentos:} Se distinguen dos tipos de segmentos:
+    \begin{itemize}
+        \item \textbf{Movimiento (M):}  Existe un cambio en la configuración o ubicación de la mano en el espacio.
+        \item \textbf{Detención (D):} La mano mantiene su posición sin cambios.
+    \end{itemize}
+
+    \item \textbf{Tipos de movimiento:}
+    \begin{itemize}
+        \item \textbf{Movimientos de contorno:}  Describen una trayectoria en el espacio, como lineal, arco, círculo, zigzag, etc.
+        \item \textbf{Movimientos locales:} No describen una trayectoria espacial, como movimientos ondulatorios, circulares o de cabeceo.
+    \end{itemize}
+
+    \item \textbf{Cualidades de los rasgos:}
+    \begin{itemize}
+        \item \textbf{Temporal:} Describe la duración del movimiento (sostenido, abreviado, lento, etc.).
+        \item \textbf{No temporal:} Describe alteraciones físicas en la ejecución del movimiento (tenso, menguado, ampliado).
+        \item \textbf{Contacto:} Describe la relación de proximidad entre la mano y otra parte del cuerpo o el espacio (rozando, rebote).
+    \end{itemize}
+
+    \item \textbf{Cualidad espacial:} Describe la orientación de la trayectoria del movimiento en el espacio (plano horizontal, vertical, etc.).
+\end{itemize}
+
+
+\subsection{Matriz Articulatoria:}
+
+Esta matriz describe la postura de la mano en la producción de la seña, considerando diferentes parámetros:
+
+\begin{itemize}
+    \item \textbf{Configuración de la mano (CM):} Especifica la forma que adopta la mano, incluyendo la posición de los dedos y el pulgar.  Por ejemplo, mano extendida, mano en puño, dedos flexionados, etc.
+
+    \item \textbf{Ubicación (UB):} Indica el lugar donde se realiza la seña con respecto al cuerpo o el espacio de señalización. Puede ser en la frente, la cabeza, el pecho, el espacio neutro frente al cuerpo, etc.
+
+    \item \textbf{Dirección (DI):} Indica hacia dónde se dirige la palma de la mano durante la ejecución de la seña.  Las opciones incluyen palma arriba, palma abajo, palma hacia el cuerpo, palma hacia afuera, etc.
+
+    \item \textbf{Orientación (OR):} Describe la orientación de la mano con respecto al plano horizontal.  Puede ser con la palma hacia arriba (base), la palma hacia abajo (dorso), o con la palma lateral.
+\end{itemize}
+
+\subsection{Matriz de Rasgos No Manuales (RNM):}
+
+Esta matriz se refiere a los elementos no manuales que acompañan la producción de la seña y que contribuyen a su significado.
+
+\begin{itemize}
+    \item \textbf{Expresiones faciales:} Incluyen movimientos de las cejas (levantadas, fruncidas), ojos (abiertos, cerrados), nariz (arrugada), boca (sonrisa, labios fruncidos) que modifican la interpretación de la seña.
+
+    \item \textbf{Movimientos de la cabeza:}  Involucran movimientos como el cabeceo (afirmación, negación), la inclinación lateral, o la rotación de la cabeza, que complementan el significado de la seña.
+
+    \item \textbf{Posturas del cuerpo:} Se refiere a la posición general del cuerpo durante la señalización, como la inclinación del torso, los hombros encogidos, etc.
+\end{itemize}
+
+
 
 \section{ Arquitectura de Microservicios}
 El proyecto adopta una arquitectura de microservicios en la parte del entrenamiento del modelo, donde cada componente del sistema se implementa como un servicio independiente y autónomo. Esta modularidad facilita el desarrollo, la implementación y el mantenimiento del sistema, permitiendo escalar y actualizar componentes individuales sin afectar el funcionamiento global \cite{ref37}.
 
 \section{Redes Neuronales}
+Las redes neuronales son un conjunto de algoritmos inspirados en la estructura del cerebro humano, diseñados para reconocer patrones. Se componen de nodos interconectados, organizados en capas, que procesan y transmiten información.
 \subsection{Redes Neuronales Convolucionales (CNN)}
 
 Las Redes Neuronales Convolucionales (CNN) son una red neuronal profunda con gran eficacia en el procesamiento de imágenes y videos. Esta capacidad se debe a su estructura, enfoca analizar datos organizados en forma de grilla, como es el caso de las imágenes. En el contexto de la traducción de la Lengua de Señas Mexicana (LSM), las CNN tienen un rol fundamental, ya que facilitan el análisis de las imágenes que capturan las señas realizadas por el usuario.
@@ -423,8 +466,22 @@ La función ReLU, en particular, ha demostrado ser extremadamente eficaz en rede
 Finalmente, la función Softmax permite realizar clasificaciones categóricas multiclase y se aplica en las capas de salida, facilitando la interpretación de las salidas de la red como probabilidades, lo que es fundamental para muchas aplicaciones de inteligencia artificial.
 
 
-\section{Entrada de Arreglos Fila (Vectores)}
-La entrada de datos al modelo de aprendizaje profundo se realiza en forma de arreglos fila o vectores, que representan las características extraídas de las señas capturadas por la cámara. Estos vectores contienen información sobre la seña en cada cuadro de la secuencia, permitiendo al modelo aprender a reconocer patrones y clasificar las señas\cite{ref38}.
+\section{Entrada de Datos al Modelo}
+
+La entrada de datos al modelo de aprendizaje profundo se realiza en forma de arreglos fila o vectores, que representan las características extraídas de las señas capturadas por la cámara. Estos vectores contienen información sobre la seña en cada cuadro de la secuencia, gracias a un enfoque holístico, permitiendo al modelo aprender a reconocer patrones y clasificar las señas\cite{ref38}.
+
+\indexedequation{Matriz A}{
+    A = \begin{pmatrix} a_1 & a_2 & a_3 & \cdots & a_n \end{pmatrix} \label{eq:matrizA}
+}
+
+Donde:
+
+\begin{itemize}
+    \item $A$ representa el vector de características.
+    \item $a_1, a_2, a_3, \ldots, a_n$ son las características individuales extraídas de la seña, como la posición de la mano, la forma de la mano, la orientación, el movimiento, etc.
+\end{itemize}
+
+Este enfoque de representación de datos permite que el modelo capture la información espacial y temporal de la seña de manera eficiente, lo que es fundamental para un reconocimiento preciso de la Lengua de Señas Mexicana (LSM).
 
 \section{Datasets para el Reconocimiento de LSM}
 
@@ -435,27 +492,10 @@ El desarrollo de un sistema de traducción de LSM requiere un conjunto de datos 
 Los datasets ideales para el reconocimiento de LSM deben cumplir con las siguientes características:
 
 \begin{itemize}
-    \item \textbf{Variedad de Señas:} Incluir un amplio repertorio de señas, abarcando el alfabeto, números,  palabras comunes,  expresiones faciales y gramática de la LSM.
-    \item \textbf{Diversidad de Signantes:}  Contener muestras de diferentes signantes con variaciones en edad, género,  etnia,  experiencia en LSM y estilo de señas. 
-    \item \textbf{Etiquetado Preciso:} Cada muestra debe estar etiquetada correctamente con su correspondiente traducción al español, incluyendo información sobre la  seña,  significado,  y contexto gramatical.
-    \item \textbf{Tamaño del Dataset:}  Un mayor número de muestras generalmente mejora el rendimiento del modelo,  permitiendo un aprendizaje más robusto y una mejor generalización.
-    \item \textbf{Formato de Datos:}  Los datos deben estar en un formato adecuado para el entrenamiento de modelos de aprendizaje profundo,  como imágenes,  videos,  o secuencias de datos.
+    \item \textbf{Variedad de Señas:} Incluir un amplio repertorio de señas, abarcando el alfabeto, números, palabras comunes, expresiones faciales y gramática de la LSM.
+    \item \textbf{Diversidad de Signantes:} Contener muestras de diferentes signantes con variaciones en edad, género, etnia, experiencia en LSM y estilo de señas.
+    \item \textbf{Etiquetado Preciso:} Cada muestra debe estar etiquetada correctamente con su correspondiente traducción al español, incluyendo información sobre la seña, significado y contexto gramatical.
+    \item \textbf{Tamaño del Dataset:} Un mayor número de muestras generalmente mejora el rendimiento del modelo, permitiendo un aprendizaje más robusto y una mejor generalización.
+    \item \textbf{Formato de Datos:} Los datos deben estar en un formato adecuado para el entrenamiento de modelos de aprendizaje profundo, como imágenes, videos o secuencias de datos.
 \end{itemize}
-
-\subsection{Entrada de Datos al Modelo}
-
-La entrada de datos al modelo de aprendizaje profundo se realiza en forma de arreglos fila o vectores, que representan las características extraídas de las señas capturadas por la cámara. Estos vectores contienen información sobre la seña en cada cuadro de la secuencia, gracias a un enfoque holístico, permitiendo al modelo aprender a reconocer patrones y clasificar las señas\cite{ref38}.
-\indexedequation{Matriz A}{
-A = \begin{pmatrix} a_1 & a_2 & a_3 & \cdots & a_n \end{pmatrix} \label{eq:matrizA}
-}
-
-Donde:
-
-\begin{itemize}
-    \item  $A$ representa el vector de características.
-    \item  $a_1, a_2, a_3, ..., a_n$ son las características individuales extraídas de la seña, como la posición de la mano, la forma de la mano, la orientación, el movimiento, etc.
-\end{itemize}
-
-
-
-Este enfoque de representación de datos permite que el modelo capture la información espacial y temporal de la seña de manera eficiente, lo que es fundamental para un reconocimiento preciso de la LSM.
+cc
