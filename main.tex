@@ -20,6 +20,12 @@
 \usepackage{float}
 \usepackage{tabularx}
 \usepackage{lmodern}
+\usepackage[es-tabla]{babel}  % Configura 'tabla' en lugar de 'cuadro'
+\usepackage{cleveref}          % Para las referencias cruzadas
+
+\addto\captionsspanish{%
+    \renewcommand{\tablename}{Tabla} % Reemplaza 'Cuadro' por 'Tabla' globalmente
+}
 \setlength{\fboxsep}{1pt} % Espacio entre la imagen y el borde
 \setlength{\fboxrule}{1pt} % Grosor del borde
 
