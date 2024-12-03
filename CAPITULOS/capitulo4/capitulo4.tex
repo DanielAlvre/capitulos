@@ -3,15 +3,270 @@
 En este capítulo se describen los requerimientos para el funcionamiento del sistema, así como los componentes de hardware y software que se deberán seleccionar para su correcto desarrollo e implementación.
 
 \section{Análisis de Requerimientos del Sistema}
-Se presenta un desglose de las capacidades principales del sistema, visualizadas mediante diversas representaciones, como diagrama de casos de uso, tablas de requerimientos y otros elementos complementarios.
+Se presenta un desglose de las capacidades principales del sistema, visualizadas mediante diversas representaciones, como  tablas de requerimientos, diagrama de casos de uso  y otros elementos complementarios.
 
 \section{Requerimientos Funcionales (RF)}
+
+Los requerimientos del sistema, derivados del análisis realizado de las necesidades funcionales, se detallan en las Tablas 4.1 a 4.8. Estos requerimientos se centran en las funcionalidades que permiten la interacción del usuario con el sistema para el reconocimiento y la interpretación de la Lengua de Señas Mexicana (LSM). A continuación, se presentan estos requerimientos de manera organizada:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
+        \hline
+        \textbf{Identificación del requerimiento} & RF01 \\
+        \hline
+        \textbf{Nombre del requerimiento} & Registro de Usuario \\
+        \hline
+        \textbf{Definición del requerimiento} & El sistema debe permitir registrar a un usuario que emitirá muestras. \\
+        \hline
+        \textbf{Descripción del requerimiento} & El sistema debe permitir que el usuario señante se registre ingresando su correo y contraseña. \\
+        \hline
+        \textbf{Precondiciones requeridas} & El sistema debe tener habilitadas las opciones de registro de usuario. \\
+        \hline
+        \textbf{Prioridad del requerimiento} & Alta \\
+        \hline
+    \end{tabular}
+    \caption{Requerimiento: Registro de Usuario}
+    \label{tab:rf-registro-usuario}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
+        \hline
+        \textbf{Identificación del requerimiento} & RF02 \\
+        \hline
+        \textbf{Nombre del requerimiento} & Inicio de la App \\
+        \hline
+        \textbf{Definición del requerimiento} & El sistema debe iniciar la aplicación para tomar las muestras. \\
+        \hline
+        \textbf{Descripción del requerimiento} & El usuario debe poder abrir la app para comenzar la captura de señas. \\
+        \hline
+        \textbf{Precondiciones requeridas} & El sistema debe estar instalado y operativo. \\
+        \hline
+        \textbf{Prioridad del requerimiento} & Alta \\
+        \hline
+    \end{tabular}
+    \caption{Requerimiento: Inicio de la App}
+    \label{tab:rf-inicio-app}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
+        \hline
+        \textbf{Identificación del requerimiento} & RF03 \\
+        \hline
+        \textbf{Nombre del requerimiento} & Login \\
+        \hline
+        \textbf{Definición del requerimiento} & El sistema debe permitir que los usuarios inicien sesión. \\
+        \hline
+        \textbf{Descripción del requerimiento} & El sistema debe autenticar al usuario mediante un inicio de sesión seguro con correo y contraseña. \\
+        \hline
+        \textbf{Precondiciones requeridas} & El usuario debe haber sido registrado previamente en el sistema. \\
+        \hline
+        \textbf{Prioridad del requerimiento} & Alta \\
+        \hline
+    \end{tabular}
+    \caption{Requerimiento: Login}
+    \label{tab:rf-login}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
+        \hline
+        \textbf{Identificación del requerimiento} & RF04 \\
+        \hline
+        \textbf{Nombre del requerimiento} & Autenticación de Credenciales \\
+        \hline
+        \textbf{Definición del requerimiento} & El sistema debe autenticar las credenciales de los usuarios. \\
+        \hline
+        \textbf{Descripción del requerimiento} & El sistema debe verificar que el usuario persista en el sistema y que la contraseña coincida con la registrada. \\
+        \hline
+        \textbf{Precondiciones requeridas} & El usuario debe existir en el \textit{bucket S3} del sistema. \\
+        \hline
+        \textbf{Prioridad del requerimiento} & Alta \\
+        \hline
+    \end{tabular}
+    \caption{Requerimiento: Autenticación de Credenciales}
+    \label{tab:rf-auth-credenciales}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
+        \hline
+        \textbf{Identificación del requerimiento} & RF05 \\
+        \hline
+        \textbf{Nombre del requerimiento} & Perfil \\
+        \hline
+        \textbf{Definición del requerimiento} & El sistema debe permitir al usuario gestionar su perfil. \\
+        \hline
+        \textbf{Descripción del requerimiento} & El usuario puede ver y actualizar sus datos personales, como nombre, correo y foto de perfil. \\
+        \hline
+        \textbf{Precondiciones requeridas} & El usuario debe haber iniciado sesión correctamente. \\
+        \hline
+        \textbf{Prioridad del requerimiento} & Alta \\
+        \hline
+    \end{tabular}
+    \caption{Requerimiento: Perfil}
+    \label{tab:rf-perfil}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
+        \hline
+        \textbf{Identificación del requerimiento} & RF06 \\
+        \hline
+        \textbf{Nombre del requerimiento} & Destacados \\
+        \hline
+        \textbf{Definición del requerimiento} & Ver nombre de los usuarios destacados (destacan por la cantidad de señas que emiten). \\
+        \hline
+        \textbf{Descripción del requerimiento} & El sistema debe permitir al SEÑANTE ver la lista de usuarios que más han emitido muestras de señas para el sistema. \\
+        \hline
+        \textbf{Precondiciones requeridas} & El usuario señante debe estar autenticado. \\
+        \hline
+        \textbf{Prioridad del requerimiento} & Media \\
+        \hline
+    \end{tabular}
+    \caption{Requerimiento: Destacados}
+    \label{tab:rf-destacados-revision}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
+        \hline
+        \textbf{Identificación del requerimiento} & RF07 \\
+        \hline
+        \textbf{Nombre del requerimiento} & DLM (Ver Información de la Seña) \\
+        \hline
+        \textbf{Definición del requerimiento} & El sistema debe permitir al usuario ver información detallada de la seña seleccionada. \\
+        \hline
+        \textbf{Descripción del requerimiento} & El usuario debe acceder a información completa de una seña específica que persista en el sistema y en el \textit{bucket S3}. \\
+        \hline
+        \textbf{Precondiciones requeridas} & El usuario debe estar autenticado. \\
+        \hline
+        \textbf{Prioridad del requerimiento} & Alta \\
+        \hline
+    \end{tabular}
+    \caption{Requerimiento: DLM (Ver Información de la Seña)}
+    \label{tab:rf-dlm-ver-informacion}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
+        \hline
+        \textbf{Identificación del requerimiento} & RF08 \\
+        \hline
+        \textbf{Nombre del requerimiento} & Inicio del Sistema \\
+        \hline
+        \textbf{Definición del requerimiento} & El sistema debe permitir iniciar la plataforma correctamente para que los usuarios puedan emitir la seña. \\
+        \hline
+        \textbf{Descripción del requerimiento} & El sistema debe cargar los componentes necesarios al inicio para permitir la interacción del usuario con la aplicación. \\
+        \hline
+        \textbf{Precondiciones requeridas} & El sistema debe estar instalado correctamente en el dispositivo del usuario. \\
+        \hline
+        \textbf{Prioridad del requerimiento} & Alta \\
+        \hline
+    \end{tabular}
+    \caption{Requerimiento: Inicio del Sistema}
+    \label{tab:rf-inicio-sistema}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
+        \hline
+        \textbf{Identificación del requerimiento} & RF09 \\
+        \hline
+        \textbf{Nombre del requerimiento} & Captura de Seña a Identificar \\
+        \hline
+        \textbf{Definición del requerimiento} & El sistema debe permitir la captura de una seña para su posterior identificación. \\
+        \hline
+        \textbf{Descripción del requerimiento} & El usuario deberá capturar una seña y el sistema la procesará para intentar identificarla. \\
+        \hline
+        \textbf{Precondiciones requeridas} & El sistema debe tener la capacidad de procesar imágenes o secuencias de video. \\
+        \hline
+        \textbf{Prioridad del requerimiento} & Alta \\
+        \hline
+    \end{tabular}
+    \caption{Requerimiento: Captura de Seña a Identificar}
+    \label{tab:rf-captura-sena-identificar}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
+        \hline
+        \textbf{Identificación del requerimiento} & RF10 \\
+        \hline
+        \textbf{Nombre del requerimiento} & Reconocer \\
+        \hline
+        \textbf{Definición del requerimiento} & El sistema debe reconocer la seña capturada. \\
+        \hline
+        \textbf{Descripción del requerimiento} & El sistema debe procesar la seña capturada y devolver el nombre o significado asociado. \\
+        \hline
+        \textbf{Precondiciones requeridas} & La seña debe estar correctamente capturada y registrada en el sistema, en el \textit{bucket S3}, y debe estar entrenado el algoritmo. \\
+        \hline
+        \textbf{Prioridad del requerimiento} & Alta \\
+        \hline
+    \end{tabular}
+    \caption{Requerimiento: Reconocer}
+    \label{tab:rf-reconocer}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
+        \hline
+        \textbf{Identificación del requerimiento} & RF11 \\
+        \hline
+        \textbf{Nombre del requerimiento} & Registra Información de Seña DLM \\
+        \hline
+        \textbf{Definición del requerimiento} & El sistema debe permitir registrar información detallada de cada seña en el sistema y en el \textit{bucket S3}. \\
+        \hline
+        \textbf{Descripción del requerimiento} & El usuario administrador debe poder registrar nueva información de señas en el sistema, incluyendo su nombre, descripción y animación. \\
+        \hline
+        \textbf{Precondiciones requeridas} & El usuario debe tener permisos de administrador. \\
+        \hline
+        \textbf{Prioridad del requerimiento} & Alta \\
+        \hline
+    \end{tabular}
+    \caption{Requerimiento: Registra Información de Seña DLM}
+    \label{tab:rf-registra-informacion-dlm}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
+        \hline
+        \textbf{Identificación del requerimiento} & RF12 \\
+        \hline
+        \textbf{Nombre del requerimiento} & Captura de Seña en Bucket \\
+        \hline
+        \textbf{Definición del requerimiento} & El sistema debe permitir la captura de señas para almacenarlas en el \textit{bucket S3}. \\
+        \hline
+        \textbf{Descripción del requerimiento} & El sistema debe capturar señas a través de la cámara y almacenarlas en el \textit{bucket S3} para su posterior identificación. \\
+        \hline
+        \textbf{Precondiciones requeridas} & El sistema debe tener configurado un \textit{bucket S3} con la capacidad de almacenar las imágenes y datos relacionados con las señas. \\
+        \hline
+        \textbf{Prioridad del requerimiento} & Alta \\
+        \hline
+    \end{tabular}
+    \caption{Requerimiento: Captura de Seña en Bucket}
+    \label{tab:rf-captura-sena-bucket}
+\end{table}
+
 
 \subsection{Funcionalidad del sistema}
 
 A continuación, se presenta un análisis exhaustivo de las capacidades principales del sistema, visualizadas mediante un diagrama de casos de uso.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{CAPITULOS/capitulo4/Diagrama.jpeg}
     \caption{Diagrama de casos de uso del Sistema Principal}
@@ -26,259 +281,6 @@ Asimismo, el diagrama incluye al usuario administrador (ADMIN), quien desempeña
 
 
 
-Los requerimientos del sistema, derivados del análisis realizado a través del Diagrama de Casos de Uso, se detallan en las Tablas 4.1 a 4.8. Estos requerimientos se centran en las funcionalidades que permiten la interacción del usuario con el sistema para el reconocimiento y la interpretación de la Lengua de Señas Mexicana (LSM). A continuación, se presentan estos requerimientos de manera organizada:
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
-\hline
-\textbf{Identificación del requerimiento} & RF01 \\
-\hline
-\textbf{Nombre del requerimiento} & Registro de Usuario \\
-\hline
-\textbf{Definición del requerimiento} & El sistema debe permitir registrar a un usuario que emitirá muestras. \\
-\hline
-\textbf{Descripción del requerimiento} & El sistema debe permitir que el usuario señante se registre ingresando su correo y contraseña. \\
-\hline
-\textbf{Precondiciones requeridas} & El sistema debe tener habilitadas las opciones de registro de usuario. \\
-\hline
-\textbf{Prioridad del requerimiento} & Alta \\
-\hline
-\end{tabular}
-\caption{Requerimiento: Registro de Usuario}
-\label{tab:rf-registro-usuario}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
-\hline
-\textbf{Identificación del requerimiento} & RF02 \\
-\hline
-\textbf{Nombre del requerimiento} & Inicio de la App \\
-\hline
-\textbf{Definición del requerimiento} & El sistema debe iniciar la aplicación para tomar las muestras. \\
-\hline
-\textbf{Descripción del requerimiento} & El usuario debe poder abrir la app para comenzar la captura de señas. \\
-\hline
-\textbf{Precondiciones requeridas} & El sistema debe estar instalado y operativo. \\
-\hline
-\textbf{Prioridad del requerimiento} & Alta \\
-\hline
-\end{tabular}
-\caption{Requerimiento: Inicio de la App}
-\label{tab:rf-inicio-app}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
-\hline
-\textbf{Identificación del requerimiento} & RF03 \\
-\hline
-\textbf{Nombre del requerimiento} & Login \\
-\hline
-\textbf{Definición del requerimiento} & El sistema debe permitir que los usuarios inicien sesión. \\
-\hline
-\textbf{Descripción del requerimiento} & El sistema debe autenticar al usuario mediante un inicio de sesión seguro con correo y contraseña. \\
-\hline
-\textbf{Precondiciones requeridas} & El usuario debe haber sido registrado previamente en el sistema. \\
-\hline
-\textbf{Prioridad del requerimiento} & Alta \\
-\hline
-\end{tabular}
-\caption{Requerimiento: Login}
-\label{tab:rf-login}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
-\hline
-\textbf{Identificación del requerimiento} & RF04 \\
-\hline
-\textbf{Nombre del requerimiento} & Autenticación de Credenciales \\
-\hline
-\textbf{Definición del requerimiento} & El sistema debe autenticar las credenciales de los usuarios. \\
-\hline
-\textbf{Descripción del requerimiento} & El sistema debe verificar que el usuario persista en el sistema y que la contraseña coincida con la registrada. \\
-\hline
-\textbf{Precondiciones requeridas} & El usuario debe existir en el \textit{bucket S3} del sistema. \\
-\hline
-\textbf{Prioridad del requerimiento} & Alta \\
-\hline
-\end{tabular}
-\caption{Requerimiento: Autenticación de Credenciales}
-\label{tab:rf-auth-credenciales}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
-\hline
-\textbf{Identificación del requerimiento} & RF05 \\
-\hline
-\textbf{Nombre del requerimiento} & Perfil \\
-\hline
-\textbf{Definición del requerimiento} & El sistema debe permitir al usuario gestionar su perfil. \\
-\hline
-\textbf{Descripción del requerimiento} & El usuario puede ver y actualizar sus datos personales, como nombre, correo y foto de perfil. \\
-\hline
-\textbf{Precondiciones requeridas} & El usuario debe haber iniciado sesión correctamente. \\
-\hline
-\textbf{Prioridad del requerimiento} & Alta \\
-\hline
-\end{tabular}
-\caption{Requerimiento: Perfil}
-\label{tab:rf-perfil}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
-\hline
-\textbf{Identificación del requerimiento} & RF06 \\
-\hline
-\textbf{Nombre del requerimiento} & Destacados \\
-\hline
-\textbf{Definición del requerimiento} & Ver nombre de los usuarios destacados (destacan por la cantidad de señas que emiten). \\
-\hline
-\textbf{Descripción del requerimiento} & El sistema debe permitir al SEÑANTE ver la lista de usuarios que más han emitido muestras de señas para el sistema. \\
-\hline
-\textbf{Precondiciones requeridas} & El usuario señante debe estar autenticado. \\
-\hline
-\textbf{Prioridad del requerimiento} & Media \\
-\hline
-\end{tabular}
-\caption{Requerimiento: Destacados}
-\label{tab:rf-destacados-revision}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
-\hline
-\textbf{Identificación del requerimiento} & RF07 \\
-\hline
-\textbf{Nombre del requerimiento} & DLM (Ver Información de la Seña) \\
-\hline
-\textbf{Definición del requerimiento} & El sistema debe permitir al usuario ver información detallada de la seña seleccionada. \\
-\hline
-\textbf{Descripción del requerimiento} & El usuario debe acceder a información completa de una seña específica que persista en el sistema y en el \textit{bucket S3}. \\
-\hline
-\textbf{Precondiciones requeridas} & El usuario debe estar autenticado. \\
-\hline
-\textbf{Prioridad del requerimiento} & Alta \\
-\hline
-\end{tabular}
-\caption{Requerimiento: DLM (Ver Información de la Seña)}
-\label{tab:rf-dlm-ver-informacion}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
-\hline
-\textbf{Identificación del requerimiento} & RF08 \\
-\hline
-\textbf{Nombre del requerimiento} & Inicio del Sistema \\
-\hline
-\textbf{Definición del requerimiento} & El sistema debe permitir iniciar la plataforma correctamente para que los usuarios puedan emitir la seña. \\
-\hline
-\textbf{Descripción del requerimiento} & El sistema debe cargar los componentes necesarios al inicio para permitir la interacción del usuario con la aplicación. \\
-\hline
-\textbf{Precondiciones requeridas} & El sistema debe estar instalado correctamente en el dispositivo del usuario. \\
-\hline
-\textbf{Prioridad del requerimiento} & Alta \\
-\hline
-\end{tabular}
-\caption{Requerimiento: Inicio del Sistema}
-\label{tab:rf-inicio-sistema}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
-\hline
-\textbf{Identificación del requerimiento} & RF09 \\
-\hline
-\textbf{Nombre del requerimiento} & Captura de Seña a Identificar \\
-\hline
-\textbf{Definición del requerimiento} & El sistema debe permitir la captura de una seña para su posterior identificación. \\
-\hline
-\textbf{Descripción del requerimiento} & El usuario deberá capturar una seña y el sistema la procesará para intentar identificarla. \\
-\hline
-\textbf{Precondiciones requeridas} & El sistema debe tener la capacidad de procesar imágenes o secuencias de video. \\
-\hline
-\textbf{Prioridad del requerimiento} & Alta \\
-\hline
-\end{tabular}
-\caption{Requerimiento: Captura de Seña a Identificar}
-\label{tab:rf-captura-sena-identificar}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
-\hline
-\textbf{Identificación del requerimiento} & RF10 \\
-\hline
-\textbf{Nombre del requerimiento} & Reconocer \\
-\hline
-\textbf{Definición del requerimiento} & El sistema debe reconocer la seña capturada. \\
-\hline
-\textbf{Descripción del requerimiento} & El sistema debe procesar la seña capturada y devolver el nombre o significado asociado. \\
-\hline
-\textbf{Precondiciones requeridas} & La seña debe estar correctamente capturada y registrada en el sistema, en el \textit{bucket S3}, y debe estar entrenado el algoritmo. \\
-\hline
-\textbf{Prioridad del requerimiento} & Alta \\
-\hline
-\end{tabular}
-\caption{Requerimiento: Reconocer}
-\label{tab:rf-reconocer}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
-\hline
-\textbf{Identificación del requerimiento} & RF11 \\
-\hline
-\textbf{Nombre del requerimiento} & Registra Información de Seña DLM \\
-\hline
-\textbf{Definición del requerimiento} & El sistema debe permitir registrar información detallada de cada seña en el sistema y en el \textit{bucket S3}. \\
-\hline
-\textbf{Descripción del requerimiento} & El usuario administrador debe poder registrar nueva información de señas en el sistema, incluyendo su nombre, descripción y animación. \\
-\hline
-\textbf{Precondiciones requeridas} & El usuario debe tener permisos de administrador. \\
-\hline
-\textbf{Prioridad del requerimiento} & Alta \\
-\hline
-\end{tabular}
-\caption{Requerimiento: Registra Información de Seña DLM}
-\label{tab:rf-registra-informacion-dlm}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|p{0.3\linewidth}|p{0.6\linewidth}|}
-\hline
-\textbf{Identificación del requerimiento} & RF12 \\
-\hline
-\textbf{Nombre del requerimiento} & Captura de Seña en Bucket \\
-\hline
-\textbf{Definición del requerimiento} & El sistema debe permitir la captura de señas para almacenarlas en el \textit{bucket S3}. \\
-\hline
-\textbf{Descripción del requerimiento} & El sistema debe capturar señas a través de la cámara y almacenarlas en el \textit{bucket S3} para su posterior identificación. \\
-\hline
-\textbf{Precondiciones requeridas} & El sistema debe tener configurado un \textit{bucket S3} con la capacidad de almacenar las imágenes y datos relacionados con las señas. \\
-\hline
-\textbf{Prioridad del requerimiento} & Alta \\
-\hline
-\end{tabular}
-\caption{Requerimiento: Captura de Seña en Bucket}
-\label{tab:rf-captura-sena-bucket}
-\end{table}
 
 
 \section{Comparación de herramientas de plataformas en la nube}
@@ -367,7 +369,7 @@ En la Tabla \ref{tabla_comparativa_plataformas_nube} se presenta una comparativa
 
 \subsection{Comparación de VM y Kubernetes de GKE}
 
-En la Tabla \ref{tabla_comparativa_vm_kubernetes} se presenta una comparativa de las principales VM para Kubernetes de GKE de las principales nubes.
+En la Tabla \ref{tabla_comparativa_microservicios} se presenta una comparativa de las principales VM para Kubernetes de GKE de las principales nubes.
 
 \begin{table}[H]
     \centering
