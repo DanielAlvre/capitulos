@@ -273,6 +273,18 @@ A continuación, se presenta un análisis exhaustivo de las capacidades principa
     \label{fig:diagrama_casos_uso}
 \end{figure}
 
+\subsection{Diagrama de Clases del Sistema}
+
+El diagrama de clases que se presenta a continuación proporciona una representación detallada de las principales entidades y sus relaciones dentro del sistema. Este diagrama visualiza cómo los distintos componentes interactúan entre sí y define las clases principales del sistema, como los usuarios, roles, actividades y las señas que el sistema maneja. A través de este diagrama, se puede observar la estructura del sistema y cómo las funciones específicas, como la autenticación, el reconocimiento de señas y la gestión de roles, están organizadas en el contexto del sistema de procesamiento de la Lengua de Señas Mexicana (LSM).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.93\textwidth]{CAPITULOS/capitulo4/clases.png} % Asegúrate de cambiar el nombre y la extensión de la imagen si es necesario
+    \caption{Diagrama de clases del Sistema}
+    \label{fig:diagrama_clases}
+\end{figure}
+
+El diagrama de clases también ilustra las relaciones entre los distintos roles de usuario (como el usuario regular y el administrador), y cómo estas relaciones afectan a las actividades que pueden realizarse dentro del sistema. Este modelo es fundamental para comprender la arquitectura orientada a objetos que respalda el funcionamiento del sistema y permite que se realicen tareas como la captura y el reconocimiento de señas de manera eficiente.
 
 \subsection{Comparacion base de datos en la nube}
 En la Tabla \ref{tabla_comparativa_plataformas_nube} se presenta una comparativa de las principales plataformas de nube consideradas para el desarrollo del proyecto, junto con las bases de datos que ofrecen, sus principales usos y su idoneidad para el procesamiento de datos de LSM.
@@ -972,5 +984,24 @@ En la Tabla \ref{tabla_comparativa_iaas} se presenta una comparativa de los prin
     \end{tabular}
 \end{table}
 
+\clearpage
 
+\subsection{Tecnologías Utilizadas}
 
+A continuación, se detallan las principales tecnologías que serán utilizadas para el desarrollo del sistema:
+
+\begin{itemize}
+    \item \textbf{MediaPipe Holistic (o API similar)}: Captura y procesamiento de datos de la cámara, utilizada para detectar y rastrear las señas realizadas por el usuario.
+    \item \textbf{TensorFlow}: Framework de aprendizaje profundo utilizado para entrenar y desplegar modelos de redes neuronales, como las Redes Neuronales Convolucionales (CNN) y las LSTM (Long Short-Term Memory).
+    \item \textbf{Amazon S3}: Almacenamiento de fotogramas y datos en la nube, utilizado para almacenar imágenes, videos y otros archivos relacionados con las señas.
+    \item \textbf{Python}: Lenguaje de programación principal para el desarrollo de la lógica del sistema, procesamiento de datos y entrenamiento de modelos.
+    \item \textbf{API de Text-To-Speech}: Generación de mensajes de voz que ayudarán en la interacción del usuario con el sistema.
+    \item \textbf{Microservicios, SQS, Lambda, EventBridge}: Componentes para la arquitectura en la nube (si se opta por esa opción), utilizados para la gestión de servicios distribuidos y la automatización de procesos en la nube.
+    \item \textbf{Tecnologías web}: Sistema web (en conjunto con su framework), utilizado para la interfaz de usuario y la interacción con la plataforma.
+    \item \textbf{Firebase}: Plataforma para el desarrollo de aplicaciones móviles y web, utilizada para la autenticación de usuarios y el almacenamiento en tiempo real de datos.
+    \item \textbf{Amazon EC2}: Servicio de computación en la nube de Amazon Web Services (AWS), utilizado para desplegar y ejecutar instancias de servidor que soporten el procesamiento y la ejecución de tareas del sistema.
+    \item \textbf{Amazon SQS}: Servicio de colas de mensajes de AWS, que se utilizará para gestionar y procesar los mensajes de manera asíncrona dentro de la arquitectura distribuida.
+    \item \textbf{AWS Lambda}: Servicio de computación sin servidor de AWS, empleado para ejecutar código en respuesta a eventos, como la captura y procesamiento de datos.
+    \item \textbf{AWS CloudFormation}: Servicio de AWS para automatizar el despliegue de recursos y la gestión de infraestructura como código, permitiendo la creación y gestión de recursos en la nube de manera automatizada.
+    \item \textbf{AWS SAM (Serverless Application Model)}: Modelo de aplicación sin servidor de AWS, utilizado para desarrollar, probar y desplegar aplicaciones sin servidor en la infraestructura de AWS.
+\end{itemize}

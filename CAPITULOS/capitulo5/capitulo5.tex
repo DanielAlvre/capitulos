@@ -19,56 +19,75 @@ Se diseñó el servidor del sistema con los componentes que se observan en la fi
     \item La decisión de desplegar el sistema de traducción en la nube o en un entorno on-premise se basará en un análisis de varios factores, como costo y latencia.
 \end{itemize}
 
-\section{Tecnologías Utilizadas}
-
-\begin{itemize}
-    \item MediaPipe Holistic (o API similar): Captura y procesamiento de datos de la cámara.
-    \item TensorFlow: Entrenamiento y despliegue del modelo de aprendizaje profundo.
-    \item Amazon S3: Almacenamiento de fotogramas y datos en la nube.
-    \item Python: Lenguaje de programación principal.
-    \item API de Text-To-Speech: Generación de mensajes de voz.
-    \item Microservicios, SQS, Lambda, EventBridge: Componentes para la arquitectura en la nube (si se opta por esa opción).
-    \item Tecnologías web: Sistema web (en conjunto con su framework).
-\end{itemize}
 
 \section{Desarrollo de un Sistema de Reconocimiento de Señas}
-El sistema de reconocimiento de señas que se desarrollará utilizará principalmente la información de la posición de las falanges de la mano y el antebrazo, capturada a través de una cámara web. Para el seguimiento de manos, se empleará \textbf{MediaPipe Holistic} u otra API de \textbf{hand tracking} que cumpla con criterios de precisión, velocidad, facilidad de integración y soporte para el reconocimiento de la \textbf{Lengua de Señas Mexicana (LSM)}.
 
-Este trabajo se centra en la configuración manual, es decir, en la forma y posición de las manos y los antebrazos durante la realización de una seña. Es importante tener en cuenta que el uso de una cámara implica limitaciones en el campo de visión. Aunque ofrece mayor flexibilidad que algunos sensores, factores como el entorno y la distancia a la cámara pueden afectar la calidad de la captura de datos. Por ello, el sistema se enfocará en la parte superior del cuerpo del usuario, desde los antebrazos hacia arriba, incluyendo las manos, que son las áreas clave para la expresión en LSM.
+El sistema de reconocimiento de señas que se desarrollará tiene como objetivo principal la captura y procesamiento de la información de la posición de las falanges de la mano y el antebrazo, utilizando una cámara web. Para el seguimiento de las manos, se empleará \textbf{MediaPipe Holistic} o una API similar de \textbf{hand tracking}, que cumpla con los criterios de precisión, velocidad, facilidad de integración y soporte para el reconocimiento de la \textbf{Lengua de Señas Mexicana (LSM)}.
 
-El flujo de trabajo del sistema, ilustrado en el diagrama \ref{fig:diagrama_composicion}, se desarrolla de la siguiente manera:
+Este trabajo se enfoca en la configuración manual de la forma y posición de las manos y antebrazos durante la ejecución de las señas. Es relevante considerar que, al usar una cámara, se presentan ciertas limitaciones en cuanto al campo de visión. Aunque este enfoque ofrece mayor flexibilidad en comparación con algunos sensores, factores como el entorno y la distancia a la cámara pueden afectar la calidad de la captura. Por lo tanto, el sistema estará centrado en la parte superior del cuerpo del usuario, desde los antebrazos hacia arriba, incluyendo las manos, que son las áreas clave para la expresión en LSM.
+
+A continuación, se describe el flujo de trabajo del sistema, ilustrado en los diagramas de secuencia. Estos diagramas proporcionan una visión detallada de cómo se lleva a cabo el proceso de captura, procesamiento y predicción de las señas.
+
+El flujo de trabajo del sistema se desglosa de la siguiente manera:
 
 \begin{itemize}
-    \item \textbf{Iniciar Grabación/Toma de Fotos}: El usuario inicia el proceso, lo que activa la captura de video o fotos.
-    \item \textbf{Captura y Procesamiento de Datos}: El sistema divide el video en frames y almacena estos datos localmente antes de subirlos a la nube.
+    \item \textbf{Iniciar Grabación/Toma de Fotos}: El usuario inicia el proceso, activando la captura de video o fotos.
+    \item \textbf{Captura y Procesamiento de Datos}: El sistema divide el video en frames y almacena los datos localmente antes de subirlos a la nube.
     \item \textbf{Almacenamiento y Notificación}: Los frames se almacenan en un bucket de S3, y se envían notificaciones a través de \textbf{EventBridge}.
-    \item \textbf{Invocación de Microservicios}: Se invoca un microservicio que procesa los frames utilizando \textbf{MediaPipe} para extraer características relevantes de las manos y antebrazos.
-    \item \textbf{Entrenamiento y Predicción}: Los modelos de machine learning se entrenan con los datos procesados. Cuando el usuario inicia la traducción, el sistema captura frames, predice las palabras en base a un modelo local y genera el audio correspondiente a la seña.
+    \item \textbf{Invocación de Microservicios}: Un microservicio se activa para procesar los frames, utilizando \textbf{MediaPipe} para extraer las características relevantes de las manos y antebrazos.
+    \item \textbf{Entrenamiento y Predicción}: Los modelos de aprendizaje automático se entrenan con los datos procesados. Cuando el usuario inicia la traducción, el sistema captura nuevos frames, predice las palabras en base a un modelo local y genera el audio correspondiente a la seña.
 \end{itemize}
 
-El sistema no solo busca reconocer las señas de manera precisa, sino también facilitar la comunicación efectiva mediante la generación de audio en tiempo real, que se reproducirá para el usuario. Además, el enfoque en la parte superior del cuerpo garantiza que se capture adecuadamente la expresión manual esencial para el reconocimiento de la LSM.
+El sistema no solo tiene como objetivo el reconocimiento preciso de las señas, sino también la facilitación de la comunicación mediante la generación de audio en tiempo real, que se reproducirá para el usuario. Además, el enfoque en la parte superior del cuerpo garantiza una captura adecuada de la expresión manual, fundamental para el reconocimiento de la LSM.
 
-
-\begin{figure}[h]
-    \includegraphics[scale=0.17]{CAPITULOS/capitulo1/segundo.png}
+En el diagrama de secuencia a continuación ilustran el flujo completo del sistema. En el primer diagrama (Figura \ref{fig:diagrama_composicion}), se describe el proceso general desde la captura de los datos hasta su procesamiento.
+\begin{figure}[H]
+    \includegraphics[scale=0.13]{CAPITULOS/capitulo5/parte1.png}
     \centering
     \caption[Diagrama de secuencia composición del sistema ]{Diagrama de secuencia composición del sistema}
     \label{fig:diagrama_composicion}
 \end{figure}
 
-\clearpage
-\section{Proceso de Muestreo}
+\begin{itemize}
+    \item \textbf{Proceso de Muestreo}
+    \begin{itemize}
+        \item El proceso de reconocimiento comienza cuando el usuario realiza un gesto específico de inicio, como alzar la mano.
+        \item A partir de ese momento, se capturan fotogramas (frames) de la seña.
+        \item Los fotogramas capturados se almacenan en la nube (por ejemplo, Amazon S3).
+        \item Los datos almacenados serán procesados posteriormente.
+    \end{itemize}
 
-El proceso de reconocimiento comenzará cuando el usuario realice un gesto específico de inicio, como alzar la mano. A partir de ese momento, se capturarán fotogramas (frames) de la seña. Estos datos se almacenarán en la nube, utilizando un servicio como Amazon S3, para su posterior procesamiento.
+    \item \textbf{Proceso de Extracción de Datos y Entrenamiento}
+    \begin{itemize}
+        \item La API de MediaPipe Holistic (u otra similar) se encargará de procesar los fotogramas y extraer la posición de los puntos de referencia relevantes en las manos y antebrazos.
+        \item Se recopilan suficientes muestras de entrenamiento.
+        \item Un microservicio en Python con TensorFlow o Keras entrenará un modelo de aprendizaje profundo.
+        \item El modelo entrenado se desplegará en la nube para garantizar escalabilidad y manejo eficiente de las solicitudes de entrenamiento.
+    \end{itemize}
 
-\section{Proceso de Extracción de Datos y Entrenamiento}
+    \item \textbf{Reconocimiento y Traducción de Señas}
+    \begin{itemize}
+        \item El sistema realiza el reconocimiento de las señas utilizando el modelo entrenado.
+        \item Las señas reconocidas se traducen a texto o audio.
+        \item El sistema proporciona una respuesta en tiempo real, facilitando la comunicación.
+    \end{itemize}
+\end{itemize}
 
-La API de MediaPipe Holistic (u otra similar) se encargará de procesar los fotogramas y extraer la posición de los puntos de referencia relevantes en las manos y antebrazos. Una vez que se hayan recopilado suficientes muestras de entrenamiento, se utilizará un microservicio en Python que utilice TensorFlow o Keras para entrenar un modelo de aprendizaje profundo capaz de reconocer las señas. Este modelo se desplegará en la nube para garantizar la escalabilidad y el manejo eficiente de las solicitudes de entrenamiento.
-
-\section{Reconocimiento y Traducción de Señas}
 
 El algoritmo entrenado clasificará la seña emitida, comparándola con las señas previamente clasificadas y entradas. Para ello, utilizará la información de la posición de los puntos de referencia proporcionada por la API de hand tracking y realizará un mapeo a la configuración manual de la seña, como entrada al modelo. Una vez que se logre el reconocimiento de una seña dentro de la LSM, el sistema proporcionará la traducción al español, seguida de un mensaje de voz generado mediante una API de Text-To-Speech.
 
+En este segundo diagrama (Figura \ref{fig:diagrama_procesamiento}), se profundiza en las etapas posteriores, que incluyen el entrenamiento del modelo y la predicción de las palabras.
+
+
+\begin{figure}[H]
+    \includegraphics[scale=0.14]{CAPITULOS/capitulo5/parte2.png}
+    \centering
+    \caption[Diagrama de secuencia procesamiento y predicción del sistema ]{Diagrama de secuencia procesamiento y predicción del sistema}
+    \label{fig:diagrama_procesamiento}
+\end{figure}
+
+
+\clearpage
 
 
 \section{Base de datos}
@@ -138,12 +157,14 @@ A continuación se muestra la estructura de las colecciones de Firebase:
 }
 \end{lstlisting}
 
-\section{Diccionario LSM}
-\label{sec:diccionario_LSM}
+\section{Señas para reconocimiento de LSM}
+\label{sec:señas_reconocimiento_LSM}
 
-El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, diseñado para almacenar y organizar un extenso repertorio de señas en Lengua de Señas Mexicana (LSM). Este diccionario proporciona las referencias necesarias para el reconocimiento y la correcta traducción de señas, facilitando tanto el aprendizaje de LSM como la interacción entre personas oyentes y personas sordas.
+A continuación, se presentan las imágenes de las señas que serán utilizadas para el reconocimiento en el sistema. Estas imágenes ilustran los gestos que el modelo de reconocimiento utilizará como entradas para su procesamiento una vez que el entrenamiento haya sido completado.
 
-\subsection{Señas y Descripciones}
+En esta sección, se incluirán las imágenes correspondientes a las señas que formarán parte del conjunto de datos utilizado para el entrenamiento del modelo y su posterior uso en la predicción y traducción de las señas en tiempo real. Cada una de las señas será entrenada para su correcta interpretación, lo que facilitará la interacción entre personas sordas y oyentes, así como el aprendizaje de la Lengua de Señas Mexicana (LSM).
+
+Estas imágenes servirán como base para el proceso de entrenamiento que permitirá que el sistema reconozca y traduzca las señas de manera eficiente.
 
 \begin{itemize}
         % Seña "Bien" con 4 fotogramas
@@ -151,14 +172,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
     La figura a continuación muestra diferentes perspectivas para realizar la seña ``Bien'' en LSM.
     \begin{figure}[H]
         \centering
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[1]{%
                 \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/bien.pdf}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[2]{%
                 \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/bien.pdf}
@@ -167,14 +188,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
 
         \vspace{10pt}
 
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[3]{%
                 \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/bien.pdf}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[4]{%
                 \includegraphics[page=4, width=\textwidth]{CAPITULOS/capitulo5/bien.pdf}
@@ -189,14 +210,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
     \item \textbf{Seña: Hola} \\
     \begin{figure}[H]
         \centering
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[1]{%
                 \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/hola.pdf}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[2]{%
                 \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/hola.pdf}
@@ -205,7 +226,7 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
 
         \vspace{10pt}
 
-        \begin{minipage}{0.45\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[3]{%
                 \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/hola.pdf}
@@ -220,14 +241,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
     \item \textbf{Seña: Mal} \\
     \begin{figure}[H]
         \centering
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[1]{%
                 \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/mal.pdf}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[2]{%
                 \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/mal.pdf}
@@ -236,14 +257,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
 
         \vspace{10pt}
 
-        \begin{minipage}{0.45\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[3]{%
                 \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/mal.pdf}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.45\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[4]{%
                 \includegraphics[page=4, width=\textwidth]{CAPITULOS/capitulo5/mal.pdf}
@@ -258,14 +279,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
     \item \textbf{Seña: ¿Cómo estás?} \\
     \begin{figure}[H]
         \centering
-        \begin{minipage}{0.28\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[1]{%
                 \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/como.pdf}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.28\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[2]{%
                 \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/como.pdf}
@@ -274,14 +295,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
 
         \vspace{10pt}
 
-        \begin{minipage}{0.28\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[3]{%
                 \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/como.pdf}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.28\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[4]{%
                 \includegraphics[page=4, width=\textwidth]{CAPITULOS/capitulo5/como.pdf}
@@ -290,7 +311,7 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
 
         \vspace{10pt}
 
-        \begin{minipage}{0.3\textwidth}
+        \begin{minipage}{0.2\textwidth}
             \centering
             \subfloat[5]{%
                 \includegraphics[page=5, width=\textwidth]{CAPITULOS/capitulo5/como.pdf}
@@ -304,14 +325,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
     \item \textbf{Seña: Doctor} \\
     \begin{figure}[H]
         \centering
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[1]{%
                 \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/doctor}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[2]{%
                 \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/doctor}
@@ -320,7 +341,7 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
 
         \vspace{10pt}
 
-        \begin{minipage}{0.45\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[3]{%
                 \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/doctor}
@@ -335,14 +356,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
     \item \textbf{Seña: Emergencia} \\
     \begin{figure}[H]
         \centering
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[1]{%
                 \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/emergencia}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[2]{%
                 \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/emergencia}
@@ -351,14 +372,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
 
         \vspace{10pt}
 
-        \begin{minipage}{0.45\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[3]{%
                 \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/emergencia}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.45\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[4]{%
                 \includegraphics[page=4, width=\textwidth]{CAPITULOS/capitulo5/emergencia}
@@ -373,14 +394,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
     \item \textbf{Seña: Por favor} \\
     \begin{figure}[H]
         \centering
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[1]{%
                 \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/porfavor}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[2]{%
                 \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/porfavor}
@@ -389,7 +410,7 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
 
         \vspace{10pt}
 
-        \begin{minipage}{0.45\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[3]{%
                 \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/porfavor}
@@ -404,14 +425,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
     \item \textbf{Seña: Síntoma} \\
     \begin{figure}[H]
         \centering
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[1]{%
                 \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/sintoma}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[2]{%
                 \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/sintoma}
@@ -420,14 +441,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
 
         \vspace{10pt}
 
-        \begin{minipage}{0.45\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[3]{%
                 \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/sintoma}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.45\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[4]{%
                 \includegraphics[page=4, width=\textwidth]{CAPITULOS/capitulo5/sintoma}
@@ -441,14 +462,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
     \item \textbf{Seña: Temperatura} \\
     \begin{figure}[H]
         \centering
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[1]{%
                 \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/temperatura}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[2]{%
                 \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/temperatura}
@@ -457,14 +478,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
 
         \vspace{10pt}
 
-        \begin{minipage}{0.45\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[3]{%
                 \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/temperatura}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.45\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[4]{%
                 \includegraphics[page=4, width=\textwidth]{CAPITULOS/capitulo5/temperatura}
@@ -478,14 +499,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
     \item \textbf{Seña: Enfermo} \\
     \begin{figure}[H]
         \centering
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[1]{%
                 \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/enfermo}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.42\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[2]{%
                 \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/enfermo}
@@ -494,14 +515,14 @@ El \textbf{Diccionario LSM} es un recurso clave en el sistema de traducción, di
 
         \vspace{10pt}
 
-        \begin{minipage}{0.45\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[3]{%
                 \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/enfermo}
             }
         \end{minipage}%
         \hspace{0.05\textwidth}
-        \begin{minipage}{0.45\textwidth}
+        \begin{minipage}{0.20\textwidth}
             \centering
             \subfloat[4]{%
                 \includegraphics[page=4, width=\textwidth]{CAPITULOS/capitulo5/enfermo}
