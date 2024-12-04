@@ -1,13 +1,14 @@
 \chapter{Análisis}
-
 En este capítulo se describen los requerimientos para el funcionamiento del sistema, así como los componentes de hardware y software que se deberán seleccionar para su correcto desarrollo e implementación.
 
+
 \section{Análisis de Requerimientos del Sistema}
-Se presenta un desglose de las capacidades principales del sistema, visualizadas mediante diversas representaciones, como  tablas de requerimientos, diagrama de casos de uso  y otros elementos complementarios.
+Se presenta un desglose de las capacidades principales del sistema, visualizadas mediante diversas representaciones, como tablas de requerimientos, diagrama de casos de uso y otros elementos complementarios.
 
-\section{Requerimientos Funcionales (RF)}
+\subsection{Requerimientos Funcionales (RF)} \label{sec:requerimientos_funcionales}
 
-Los requerimientos del sistema, derivados del análisis realizado de las necesidades funcionales, se detallan en las Tablas 4.1 a 4.8. Estos requerimientos se centran en las funcionalidades que permiten la interacción del usuario con el sistema para el reconocimiento y la interpretación de la Lengua de Señas Mexicana (LSM). A continuación, se presentan estos requerimientos de manera organizada:
+
+Los requerimientos del sistema, derivados del análisis realizado de las necesidades funcionales, se detallan en las Tablas 4.1 a 4.12. Estos requerimientos se centran en las funcionalidades que permiten la interacción del usuario con el sistema para el reconocimiento y la interpretación de la Lengua de Señas Mexicana (LSM). A continuación, se presentan estos requerimientos de manera organizada:
 
 \begin{table}[H]
     \centering
@@ -261,29 +262,17 @@ Los requerimientos del sistema, derivados del análisis realizado de las necesid
     \label{tab:rf-captura-sena-bucket}
 \end{table}
 
+\clearpage
 
 \subsection{Funcionalidad del sistema}
-
-A continuación, se presenta un análisis exhaustivo de las capacidades principales del sistema, visualizadas mediante un diagrama de casos de uso.
-
+A continuación, se presenta un análisis exhaustivo de las capacidades principales del sistema, visualizadas mediante un diagrama de casos de uso. Estos casos de uso son una consecuencia directa de los requerimientos funcionales previamente definidos en la sección \ref{sec:requerimientos_funcionales}, los cuales establecen las bases para la interacción del usuario con el sistema y el procesamiento de la Lengua de Señas Mexicana (LSM).
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{CAPITULOS/capitulo4/Diagrama.jpeg}
+    \includegraphics[width=0.93\textwidth]{CAPITULOS/capitulo4/Diagrama.jpeg}
     \caption{Diagrama de casos de uso del Sistema Principal}
     \label{fig:diagrama_casos_uso}
 \end{figure}
 
-La Figura \ref{fig:diagrama_casos_uso} presenta el diagrama de casos de uso denominado "Sistema General", en el que el actor principal es el SEÑANTE. Este actor puede realizar dos acciones fundamentales dentro del sistema: acceder al sistema e interactuar con el módulo de LSM. Estas acciones reflejan las interacciones básicas necesarias para que el SEÑANTE pueda utilizar las funcionalidades del sistema asociadas a la Lengua de Señas Mexicana (LSM).
-
-Asimismo, el diagrama incluye al usuario administrador (ADMIN), quien desempeña un rol específico en el sistema y tiene asignadas diversas tareas relacionadas con la gestión de la plataforma.
-
-\clearpage
-
-
-
-
-
-\section{Comparación de herramientas de plataformas en la nube}
 
 \subsection{Comparacion base de datos en la nube}
 En la Tabla \ref{tabla_comparativa_plataformas_nube} se presenta una comparativa de las principales plataformas de nube consideradas para el desarrollo del proyecto, junto con las bases de datos que ofrecen, sus principales usos y su idoneidad para el procesamiento de datos de LSM.
@@ -329,8 +318,7 @@ En la Tabla \ref{tabla_comparativa_plataformas_nube} se presenta una comparativa
             db-f1-micro \\
             vCPUs: 1\\
             RAM: 3.75 GiB \\
-            Costo total mensual: \$24.665 USD\\
-
+            Costo total mensual: \$24.665 USD
         \end{minipage} &
         \begin{itemize}
             \item Big Data
@@ -365,8 +353,6 @@ En la Tabla \ref{tabla_comparativa_plataformas_nube} se presenta una comparativa
 \end{table}
 
 
-
-
 \subsection{Comparación de VM y Kubernetes de GKE}
 
 En la Tabla \ref{tabla_comparativa_microservicios} se presenta una comparativa de las principales VM para Kubernetes de GKE de las principales nubes.
@@ -388,12 +374,12 @@ En la Tabla \ref{tabla_comparativa_microservicios} se presenta una comparativa d
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
+            Costo mensual estimado:\$6.13 \\
             Basado en uso por hora y tipo de instancia\\
-            t4g.micro - \$6.13 USD por mes\\
             \begin{itemize}
                 \item vCPUs: 2
                 \item Memoria: 1 GiB
-                \item Rendimiento de red: Hasta 5 Gigabit
+                \item  t4g.micro
             \end{itemize}
         \end{minipage}
         \\
@@ -403,12 +389,13 @@ En la Tabla \ref{tabla_comparativa_microservicios} se presenta una comparativa d
             \begin{itemize}
                 \item Kubernetes gestionado con alta disponibilidad
                 \item Fácil integración con otros servicios de AWS
-                \item Escalabilidad automatizada de clústeres y nodos
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
-            Tarifas fijas por clúster más costes de instancias\\
-            1 clúster - \$365.00 USD por mes
+            Costo mensual estimado:  \$365.00 USD por mes
+            \begin{itemize}
+                \item 1 clúster
+            \end{itemize}
         \end{minipage} \\
         \hline
         Google Compute Engine (GCE) & Google Cloud &
@@ -422,7 +409,6 @@ En la Tabla \ref{tabla_comparativa_microservicios} se presenta una comparativa d
         \begin{minipage}[t]{\linewidth}
             Costo mensual estimado: \$5.55 USD
             \begin{itemize}
-                \item Número de instancias: 1
                 \item Tiempo total de uso de la instancia: 730 horas/mes
                 \item Sistema operativo/software: Ubuntu
                 \item Tipo de máquina: f1-micro (familia de propósito general, serie N1) con 1 vCPU y 0.9 GiB de RAM
@@ -433,17 +419,15 @@ En la Tabla \ref{tabla_comparativa_microservicios} se presenta una comparativa d
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
                 \item Kubernetes gestionado con escalabilidad automática
-                \item Herramientas de monitoreo y gestión avanzadas
                 \item Integración con el ecosistema de Google Cloud (BigQuery, Pub/Sub, etc.)
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
-            Coste base por clúster, más recursos usados:\\
-            \$152.55 USD por mes
+            Costo Mensual estimado: \$152.55 USD
+            Coste base por clúster, más recursos usados:
             \begin{itemize}
-                \item Machine Family: GP
-                \item Series: N1
-                \item Machine: f1-micro
+                \item Machine Family: GP Series:
+                \item N1 Machine: f1-micro
             \end{itemize}
         \end{minipage} \\
         \hline
@@ -456,7 +440,7 @@ En la Tabla \ref{tabla_comparativa_microservicios} se presenta una comparativa d
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
-           Costo mensual estimado: \$14.60
+            Costo mensual estimado: \$14.60
             \begin{itemize}
                 \item Instancia: A0 (1 núcleo, 0.75 GB RAM) - \$0.020/hora
                 \item Sistema operativo: Windows (licencia incluida)
@@ -468,26 +452,24 @@ En la Tabla \ref{tabla_comparativa_microservicios} se presenta una comparativa d
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
                 \item Kubernetes gestionado con integración nativa en Azure
-                \item Integración con herramientas de seguridad de Microsoft (Azure AD)
                 \item Escalabilidad automática de pods y nodos
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
-            Costo mensual estimado: \$158.41
-            \begin{itemize}
-                \item Costo del clúster: \$73.00
-                \item Nodos:
+            Costo mensual estimado: \$158.41\\
+            Nodos:
                 \begin{itemize}
                     \item Sistema operativo: Linux
                     \item Instancia: D2 v3 (2 vCPUs, 8 GB RAM) - \$0.117/hora \\
                 \end{itemize}
-            \end{itemize}
+
         \end{minipage} \\
         \hline
     \end{tabular}
 \end{table}
 
 \subsection{Comparación de los servicios de almacenamiento (Bucket)}
+
 \begin{table}[H]
     \centering
     \caption{Comparación de servicios de almacenamiento de buckets en diferentes plataformas de nube.}
@@ -574,8 +556,6 @@ En la Tabla \ref{tabla_comparativa_microservicios} se presenta una comparativa d
         \hline
     \end{tabular}
 \end{table}
-
-
 
 \subsection{Comparación de Sistemas de Mensajería (SQS)}
 
@@ -993,6 +973,4 @@ En la Tabla \ref{tabla_comparativa_iaas} se presenta una comparativa de los prin
 \end{table}
 
 
-
-% ... (tu documento) ...
 

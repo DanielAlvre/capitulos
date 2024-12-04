@@ -1,0 +1,80 @@
+@startuml
+
+' Configuración para distribución vertical
+top to bottom direction
+
+' Clases principales
+class Usuario {
+  - id: String
+  - nombre: String
+  - correo: String
+  - rol: Rol
+  // ... otros atributos
+}
+
+class Rol {
+  - id: String
+  - nombre: String
+  // ... otros atributos
+}
+
+class Sena {
+  - id: String
+  - nombre: String
+  - descripcion: String
+  - videoUrl: String
+  - usuarioId: String  // Referencia al usuario que creó la seña
+  // ... otros atributos
+}
+
+' Actividades base
+abstract class Actividades {
+    +login(): void
+    +autenticarCredenciales(): void
+    +iniciarApp(): void
+}
+
+' Clases de Tareas
+class TareasUsuario {
+    +iniciarApp(): void
+    +login(): void
+    +autenticarCredenciales(): void
+}
+
+' Actividades específicas para el usuario
+class ActividadesUsuario extends Actividades {
+    - senas: List<Sena>
+    +capturaSenaAIdentificar(): void
+    +capturaSenaMuestra(): void
+    +verInformacionSena(): void
+    +consultarUsuariosDestacados(): void
+    +actualizarInformacionPerfil(): void
+    +consultarInformacionPerfil(): void
+}
+
+' Actividades específicas para el admin
+class ActividadesAdmin extends Actividades {
+    +registrarSenaBase(Sena sena): void
+    +registrarInformacionSenaDLM(): void
+}
+
+' Actividades específicas para el algoritmo
+class ActividadesAlgoritmo {
+    +reconocerSena(Sena sena): void
+}
+
+' Relaciones entre las clases
+Usuario -- Rol : tiene
+Usuario --> TareasUsuario : "Realiza"
+TareasUsuario --> ActividadesUsuario : "Incluye"
+TareasUsuario --> ActividadesAdmin : "Opcional para rol admin"
+ActividadesUsuario --> Sena : "captura"
+ActividadesUsuario --> Sena : "ver"
+ActividadesAdmin --> Sena : "registra"
+ActividadesAlgoritmo --> Sena : "reconoce"
+
+' Definir que el rol determina las actividades disponibles
+Rol --> ActividadesUsuario : "Asigna acceso"
+Rol --> ActividadesAdmin : "Asigna acceso"
+
+@enduml

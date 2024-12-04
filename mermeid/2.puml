@@ -1,0 +1,86 @@
+@startuml
+
+' Configuración para distribución
+top to bottom direction
+
+' Mejora de la distribución de clases y líneas
+skinparam classAttributeIconSize 0
+skinparam classPadding 15
+skinparam classBorderThickness 2
+skinparam lineThickness 2
+skinparam nodesep 30
+skinparam ranksep 40
+
+' Definir los paquetes para agrupar las clases
+package "Usuarios y Roles" {
+  class Usuario {
+    - id: String
+    - nombre: String
+    - correo: String
+    - rol: Rol
+  }
+
+  class Rol {
+    - id: String
+    - nombre: String
+  }
+}
+
+package "Sena" {
+  class Sena {
+    - id: String
+    - nombre: String
+    - descripcion: String
+    - videoUrl: String
+    - usuarioId: String  // Referencia al usuario que creó la seña
+  }
+}
+
+package "Actividades y Tareas" {
+  abstract class Actividades {
+    +login(): void
+    +autenticarCredenciales(): void
+    +iniciarApp(): void
+  }
+
+  class TareasUsuario {
+    +iniciarApp(): void
+    +login(): void
+    +autenticarCredenciales(): void
+  }
+
+  class ActividadesUsuario extends Actividades {
+    - senas: List<Sena>
+    +capturaSenaAIdentificar(): void
+    +capturaSenaMuestra(): void
+    +verInformacionSena(): void
+    +consultarUsuariosDestacados(): void
+    +actualizarInformacionPerfil(): void
+    +consultarInformacionPerfil(): void
+  }
+
+  class ActividadesAdmin extends Actividades {
+    +registrarSenaBase(Sena sena): void
+    +registrarInformacionSenaDLM(): void
+  }
+
+  class ActividadesAlgoritmo {
+    +reconocerSena(Sena sena): void
+  }
+}
+
+' Relaciones entre las clases
+Usuario -- Rol : tiene
+Usuario --> TareasUsuario : "Realiza"
+TareasUsuario --> ActividadesUsuario : "Incluye"
+TareasUsuario --> ActividadesAdmin : "Opcional para rol admin"
+ActividadesUsuario --> Sena : "captura"
+ActividadesUsuario --> Sena : "ver"
+ActividadesAdmin --> Sena : "registra"
+ActividadesAlgoritmo --> Sena : "reconoce"
+
+' Definir que el rol determina las actividades disponibles
+Rol --> ActividadesUsuario : "Asigna acceso"
+Rol --> ActividadesAdmin : "Asigna acceso"
+
+@enduml

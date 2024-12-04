@@ -1,0 +1,45 @@
+@startuml
+
+actor "Usuario" as usuario
+actor "Admin" as admin
+actor "Algoritmo" as algoritmo
+
+usecase "Iniciar App" as UC1
+usecase "Login" as UC2
+usecase "Autenticar Credenciales" as UC3
+usecase "Captura Seña a Identificar" as UC4
+usecase "Captura Seña Muestra" as UC5
+usecase "Ver Información de la Seña" as UC6
+usecase "Consultar Usuarios Destacados" as UC7
+usecase "Actualizar Información del Perfil" as UC8
+usecase "Consultar Información del Perfil" as UC9
+
+usecase "Captura Seña Base" as UC10
+usecase "Registrar Información de Seña DLM" as UC11
+
+usecase "Reconocer Seña" as UC12
+
+' Relaciones de los actores con los casos de uso
+usuario --> UC1 : "Realiza"
+usuario --> UC2 : "Realiza"
+usuario --> UC3 : "Realiza"
+usuario --> UC4 : "Realiza"
+usuario --> UC5 : "Realiza"
+usuario --> UC6 : "Realiza"
+usuario --> UC7 : "Realiza"
+usuario --> UC8 : "Realiza"
+usuario --> UC9 : "Realiza"
+
+admin --> UC1 : "Realiza"
+admin --> UC2 : "Realiza"
+admin --> UC3 : "Realiza"
+admin --> UC10 : "Realiza"
+admin --> UC11 : "Realiza"
+
+algoritmo --> UC12 : "Ejecuta"
+
+' Inclusión de casos de uso
+UC1 .u.> UC2 : include
+UC1 .u.> UC3 : include
+
+@enduml
