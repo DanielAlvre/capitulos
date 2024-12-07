@@ -526,30 +526,55 @@ En las siguientes figuras se muestra diferentes pasos para realizar las señas q
     \item \textbf{Seña: Farmacia} \\
     \begin{figure}[H]
         \centering
-        \begin{minipage}{0.2\textwidth}
+        \begin{minipage}{0.3\textwidth}
             \centering
             \subfloat[1]{%
                 \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/farmacia1}
             }
-        \end{minipage}%
-        \hspace{0.05\textwidth}
-        \begin{minipage}{0.2\textwidth}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.3\textwidth}
             \centering
             \subfloat[2]{%
                 \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/farmacia1}
             }
         \end{minipage}
-
-        \vspace{10pt}
-
-        \begin{minipage}{0.2\textwidth}
+        \hfill
+        \begin{minipage}{0.3\textwidth}
             \centering
             \subfloat[3]{%
                 \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/farmacia1}
             }
-        \end{minipage}%
-        \caption{Composición de la Seña ``farmacia'' en LSM}
+        \end{minipage}
+        \caption{Composición de la Seña ``Farmacia'' en LSM}
         \label{fig:seña_farmacia}
+    \end{figure}
+
+    \item \textbf{Seña: Inyección} \\
+    \begin{figure}[H]
+        \centering
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \subfloat[1]{%
+                \includegraphics[page=1, width=\textwidth]{CAPITULOS/capitulo5/inyeccion}
+            }
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \subfloat[2]{%
+                \includegraphics[page=2, width=\textwidth]{CAPITULOS/capitulo5/inyeccion}
+            }
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \subfloat[3]{%
+                \includegraphics[page=3, width=\textwidth]{CAPITULOS/capitulo5/inyeccion}
+            }
+        \end{minipage}
+        \caption{Composición de la Seña ``Inyección'' en LSM}
+        \label{fig:seña_inyeccion}
     \end{figure}
 \end{itemize}
 
@@ -559,7 +584,7 @@ La aplicación móvil se ha diseñado con una interfaz intuitiva y fácil de usa
 
 \subsection{Splash Screen}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \fbox{\includegraphics[page=1, scale=0.5]{CAPITULOS/capitulo5/proyecto}}
     \caption{Splash Screen de la aplicación.}
@@ -569,7 +594,7 @@ Esta es la primera pantalla que se muestra al iniciar la aplicación. Su funció
 
 \subsection{Login}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \fbox{\includegraphics[page=2, scale=0.5]{CAPITULOS/capitulo5/proyecto}}
     \caption{Pantalla de inicio de sesión.}
@@ -584,45 +609,64 @@ Esta pantalla permite a todos los usuarios iniciar sesión en la aplicación. Se
     \item \textbf{Inicio de sesión con Google:} Disponible solo para usuarios con rol general.
     \item \textbf{Registro de nuevo usuario:} Permite a los usuarios que no están registrados crear una cuenta utilizando su correo electrónico y contraseña, o a través de su cuenta de Google.
 \end{itemize}
-\subsection{Pantalla principal (Usuario general)}
+\subsection{Pantalla de registro (Usuario general)}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \fbox{\includegraphics[page=3, scale=0.5]{CAPITULOS/capitulo5/proyecto}}
-    \caption{Pantalla principal para usuarios con rol general.}
+    \caption{Pantalla de resgistro de usuatrios}
 \end{figure}
 
-Esta es la pantalla principal a la que acceden los usuarios con rol general después de iniciar sesión.
-
-\subsubsection{Diseño}
-
-El diseño de la pantalla principal es simple y directo. En la parte superior se encuentra el logo de la aplicación, y en la parte central se muestran las opciones principales, como "Traducir" y "Diccionario". Cada opción se representa con un icono y un texto descriptivo.
+Esta es la pantalla por la cual los usuarios nuevos, pueden generar un registro.
 
 \subsubsection{Funcionalidad}
+\begin{itemize}
+    \item \textbf{Registro de nuevo usuario:} Permite a los usuarios que no están registrados crear una cuenta utilizando su correo electrónico y contraseña, o a través de su cuenta de Google.
+\end
 
-Al tocar una de las opciones, el usuario es redirigido a la pantalla correspondiente. Por ejemplo, al tocar "Traducir", se abre la pantalla de traducción en tiempo real.
 
-\subsection{Pantalla principal (Usuario administrador)}
+\subsection{Pantalla principal (Usuario general)}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \fbox{\includegraphics[page=4, scale=0.5]{CAPITULOS/capitulo5/proyecto}}
-    \caption{Pantalla principal para usuarios administradores.}
+    \caption{Pantalla principal para usuarios generales.}
 \end{figure}
 
-Esta es la pantalla principal a la que acceden los usuarios administradores después de iniciar sesión.
+Esta es la pantalla principal a la que acceden los usuarios generales después de iniciar sesión.
 
-[Aquí deberías describir el diseño y la funcionalidad específica de la pantalla principal para el usuario administrador, incluyendo las opciones adicionales a las que tiene acceso, como la gestión de usuarios, la edición del diccionario, etc.]
+\subsubsection{Funcionalidad}
+\begin{itemize}
+    \item \textbf{Acceder al diccionario de DLM:} Permite a los usuarios acceder al menu general, o elegir directamente la seña que quieran, para poder acceder a su descripción.
+    \item \textbf{Acceder a las opciones generales:} Todas las pantallas a partir de aca, cuentan con esa funcionalidad de permitir al usuario acceder al menu de acciones de acuerdo a su rol.
+\end
 
-\subsection{Pantalla del diccionario}
+\subsection{Pantalla descriptiva de la seña  (Usuario general)}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \fbox{\includegraphics[page=5, scale=0.5]{CAPITULOS/capitulo5/proyecto}}
     \caption{Pantalla del diccionario LSM.}
 \end{figure}
 
-[El resto de la descripción de la pantalla del diccionario se mantiene igual]
+Esta es la pantalla los usuarios generales pueden ver los recursos multimedia que describen a la seña.
 
+\subsubsection{Funcionalidad}
+\begin{itemize}
+    \item \textbf{Acceder a la descripción de la seña:} Muestra breve reseña de lo que significa la seña, asi como imágenes y videos relacionados con la seña, que nos muestran
+\end
 
+\section{Interfaz de Usuario - Aplicación Local}
 
+La aplicación local está diseñada para ejecutarse en un equipo de cómputo equipado con una cámara web, brindando una experiencia interactiva en tiempo real. La interfaz es intuitiva y fácil de usar, permitiendo a los usuarios escuchar las señas reconocidas a través del análisis de los puntos clave detectados por Mediapipe. En la Figura~\ref{fig:pantalla-local} se presenta una demostración del funcionamiento del aplicativo.
+
+\subsection{Pantalla del aplicativo local}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.2]{CAPITULOS/capitulo5/local.jpg}
+    \caption{Pantalla principal de la aplicación local.}
+    \label{fig:pantalla-local}
+\end{figure}
+
+Esta pantalla es visible para cualquier usuario que desee realizar el reconocimiento de señas. Una vez completada la carga de los pesos (previamente entrenados en la red neuronal y descargados automáticamente desde la nube mediante un script Bash), la aplicación comienza a capturar las señas desde la cámara web. Posteriormente, en tiempo real, se procesan los puntos clave de las manos y el torso mediante Mediapipe, permitiendo identificar las señas emitidas por el usuario.
