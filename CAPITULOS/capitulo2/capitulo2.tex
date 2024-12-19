@@ -55,7 +55,7 @@ MediaPipe Holistic se compone de tres modelos principales:
     \item \textbf{Pose Landmarker:}
     \begin{itemize}
         \item \textbf{Descripción:}  Este modelo detecta 33 puntos de referencia del cuerpo humano en una imagen o video, incluyendo la nariz, los ojos, las orejas, los hombros, los codos, las muñecas, las caderas, las rodillas y los tobillos. 
-        \item \textbf{Aplicaciones en LSM:}  Estos puntos son cruciales para interpretar las señas, ya que permiten analizar la postura general del cuerpo y la posición de los brazos y las manos en relación al torso. Por ejemplo, la posición de los codos y las muñecas es fundamental para distinguir señas como \textquotedblleft CASA\textquotedblright  u  \textquotedblleft HOLA\textquotedblright.
+        \item \textbf{Aplicaciones en lengua de señas mexicana:}  Estos puntos son cruciales para interpretar las señas, ya que permiten analizar la postura general del cuerpo y la posición de los brazos y las manos en relación al torso. Por ejemplo, la posición de los codos y las muñecas es fundamental para distinguir señas como \textquotedblleft CASA\textquotedblright  u  \textquotedblleft HOLA\textquotedblright.
         \item \textbf{Imágenes de referencia:} [Imagen de los 33 puntos de referencia de Pose Landmarker sobrepuestos en una persona signando]
         \item \textbf{Funcionamiento:} El modelo utiliza una red neuronal convolucional similar a MobileNetV2 y está optimizado para aplicaciones de entrenamiento en tiempo real y en el dispositivo.  Primero, detecta la presencia de cuerpos humanos en la imagen, y luego localiza los 33 puntos de referencia en el cuerpo detectado.
         \item \textbf{Opciones de configuración:}  
@@ -73,14 +73,14 @@ MediaPipe Holistic se compone de tres modelos principales:
     \begin{itemize}
         \item \textbf{Cantidad:} 468 puntos.
         \item \textbf{Descripción:}  Detecta puntos clave en el rostro, como los ojos, las cejas, la nariz, la boca y el contorno de la cara.
-        \item \textbf{Aplicaciones en LSM:} Se utilizan para analizar las expresiones faciales, que son un componente gramatical crucial en la LSM. Por ejemplo, las expresiones faciales pueden indicar preguntas, negación, o emociones.
+        \item \textbf{Aplicaciones de MediaPipe Holistic en el sistema:} Se utilizan para analizar las expresiones faciales, que son un componente gramatical crucial en la LSM. Por ejemplo, las expresiones faciales pueden indicar preguntas, negación, o emociones.
     \end{itemize}
 
     \item \textbf{Hand Landmarks:}
     \begin{itemize}
         \item \textbf{Cantidad:} 21 puntos por cada mano \cite{ref20}.
         \item \textbf{Descripción:} Detecta  puntos clave en las manos, como las puntas de los dedos, los nudillos y la palma.
-        \item \textbf{Aplicaciones en LSM:} Permite analizar la forma, orientación y movimiento de las manos, lo cual es fundamental para identificar los diferentes queremas (formas de la mano) en la LSM.
+        \item \textbf{Aplicaciones de MediaPipe Holistic en el sistema:} Permite analizar la forma, orientación y movimiento de las manos, lo cual es fundamental para identificar los diferentes queremas (formas de la mano) en la LSM.
     \end{itemize}
 \end{enumerate}
 
@@ -120,7 +120,7 @@ AWS proporciona una amplia gama de servicios en la nube que son fundamentales pa
 \section{Lingüística de la Lengua de Señas Mexicana (LSM)}
 La LSM, como cualquier lengua natural, posee una gramática compleja que incluye aspectos como la configuración manual, la ubicación, la orientación y el movimiento de las manos, así como las expresiones faciales. El proyecto incorpora conocimientos lingüísticos de la LSM para asegurar una traducción precisa y culturalmente apropiada. La Matriz Segmental, que describe la estructura de las señas en términos de segmentos secuenciales, es una herramienta clave para el análisis y la representación de las señas en el sistema \cite{ref36}.
 
-\section{Composición de una seña en la Lengua de Señas Mexicana (LSM)}
+\subsection{Composición de una seña en la Lengua de Señas Mexicana (LSM)}
 
 La Lengua de Señas Mexicana (LSM), al igual que otras lenguas de señas, se caracteriza por ser una lengua visual-gestual donde la información se transmite a través de la combinación de movimientos y configuraciones de las manos, expresiones faciales y movimientos del cuerpo. Para comprender la estructura de la LSM, es fundamental analizar los elementos que componen una seña.  \cite{ref42}
 
@@ -194,7 +194,7 @@ Las Redes Neuronales Convolucionales (CNN) son una red neuronal profunda con gra
 Las CNN se caracterizan por la inclusión de capas convolucionales. Estas capas emplean filtros (kernels), que se deslizan sobre la imagen de entrada para identificar y extraer características relevantes.
 
 
-\subsubsection{Convolución: Definición General}
+\section{Convolución: Definición General}
 
 La convolución  se puede definir como la integral del producto de dos funciones después de desplazar una de ellas una distancia $t$, como se observa en la ecuación \ref{eq:convolucion_continua}:
 
@@ -219,7 +219,7 @@ donde:
 La salida ($S$) se conoce como mapa de características.
 
 
-\subsubsection{Convolución Discreta}
+\subsection{Convolución Discreta}
 
 Al tener que procesar datos en una computadora, el tiempo y la señal de entrada se discretizan.  En consecuencia, la operación de convolución se adapta al dominio discreto, como se expresa en la ecuación \ref{eq:convolucion_discreta}:
 
@@ -234,7 +234,7 @@ Al tener que procesar datos en una computadora, el tiempo y la señal de entrada
 
 
 
-\subsubsection{Convolución en 2 Dimensiones}
+\subsection{Convolución en 2 Dimensiones}
 
 Las imágenes son datos bidimensionales, por lo que la convolución se extiende a dos dimensiones. Si $I$ representa la imagen de entrada y $K$ representa el kernel, la convolución 2D se define como:
 

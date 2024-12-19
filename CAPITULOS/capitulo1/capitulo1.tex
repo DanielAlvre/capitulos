@@ -1,16 +1,16 @@
 \chapter{Introducción}
 
-La Lengua de Señas Mexicana (LSM) es la lengua natural utilizada por la comunidad sorda en México. A pesar de su importancia, la comunicación entre personas sordas y oyentes sigue siendo un desafío debido a la falta de intérpretes y al desconocimiento generalizado de la LSM. Este proyecto busca abordar esta problemática mediante el desarrollo de un sistema de reconocimiento de señas que utiliza tecnología de aprendizaje profundo (\textit{deep learning}) para traducir la LSM al español.
+La Lengua de Señas Mexicana (LSM) es la lengua natural utilizada por la comunidad sorda en México. La comunicación entre personas sordas y oyentes se ve dificultada por la falta de intérpretes y el desconocimiento generalizado de la LSM, a pesar de la importancia de esta lengua. Este proyecto busca abordar la problemática de la falta de comunicación efectiva entre personas sordas y oyentes en México, específicamente en el contexto médico mediante el desarrollo de un sistema de reconocimiento de señas que utiliza tecnología de aprendizaje profundo (\textit{deep learning}) para traducir la LSM al español.
 
 El sistema se enfoca en el reconocimiento de señas con movimiento, particularmente en el ámbito médico, donde la comunicación clara y precisa es crucial. Para lograr este objetivo, se empleará \textbf{MediaPipe} \cite{ref3} para el seguimiento y procesamiento de los movimientos de las manos, capturando la configuración manual esencial para la interpretación de la LSM. Los modelos de aprendizaje profundo, implementados con \textbf{TensorFlow/Keras} \cite{ref4} , permitirán una mayor precisión en la interpretación de las señas.
 
-Además, la integración de servicios en la nube, como \textbf{AWS S3} y \textbf{SQS} \cite{ref5}, garantizará la escalabilidad y el procesamiento eficiente de los datos. Complementando estas tecnologías, se incorporará una API de \textbf{Text-To-Speech} u otras alternativas similares, permitiendo que el sistema traduzca las señas a palabras tanto visuales como auditivas. Esto ofrecerá una interacción más inclusiva y accesible, especialmente en contextos donde la comunicación efectiva es fundamental.
+Además, la integración de servicios en la nube, como \textbf{AWS S3} y \textbf{SQS} \cite{ref5}, garantizará la escalabilidad y el procesamiento eficiente de los datos. Complementando estas tecnologías, se incorporará una API de \textbf{Text-To-Speech} u otras alternativas similares, permitiendo que el sistema traduzca las señas a palabras tanto visuales como auditivas. Ofreciendo una interacción más integral y accesible, especialmente en contextos donde la comunicación efectiva es fundamental.
 
 El objetivo final de este proyecto es cerrar la brecha de comunicación entre personas con discapacidad auditiva y oyentes, promoviendo una mayor inclusión y accesibilidad en México. Al facilitar la interacción en entornos como el médico, este sistema busca empoderar a las personas sordas y mejorar su acceso a servicios esenciales.
 \clearpage
 \section{Planteamiento del problema}
 
-Las personas con hipoacusia enfrentan desafíos significativos al comunicarse con quienes no conocen la lengua de señas, lo que limita sus interacciones sociales, laborales y educativas, creando barreras que dificultan su inclusión en la sociedad \cite{ref10}.  Para superar estas barreras,  es crucial  desarrollar  herramientas  que  faciliten  la  comunicación  entre  las  personas  sordas  y  la  comunidad  oyente. La  traducción  inversa,  de  LSM  a  español,  sigue  siendo  un  área  poco  explorada  \cite{ref12},  a  pesar  de  la  creciente  necesidad  de  que  las  personas  sordas  puedan  expresarse  en  español  y  ser  comprendidas  por  quienes  no  conocen  la  LSM  \cite{ref6}.
+Las personas con hipoacusia enfrentan desafíos significativos al comunicarse con quienes no conocen la lengua de señas, lo que limita sus interacciones sociales, laborales y educativas, creando barreras que dificultan su inclusión en la sociedad \cite{ref10}.  Para superar estas barreras,  es crucial  desarrollar  herramientas  que  faciliten  la  comunicación  entre  las  personas  de la comunidad sorda  y  la  comunidad  oyente. La  traducción  inversa,  de  LSM  a  español,  sigue  siendo  un  área  poco  explorada  \cite{ref12},  a  pesar  de  la  creciente  necesidad  de  que  las  personas  sordas  puedan  expresarse  en  español  y  ser  comprendidas  por  quienes  no  conocen  la  LSM  \cite{ref6}.
 
 Un  estudio  reciente  \cite{ref1}  revela  una  preocupante  realidad  en  el  ámbito  de  la  salud  en  México:  solo  el  12.9\%  de  los  profesionales  cuentan  con  recursos  adecuados  para  atender  a  pacientes  sordos.  Esta  falta  de  preparación  y  recursos  se  traduce  en  una  dificultad  considerable  para  la  comunicación,  lo  que  puede  resultar  en  una  atención  médica  deficiente,  diagnósticos  erróneos,  tratamientos  inadecuados  y,  en  última  instancia,  en  la  exclusión  de  las  personas  sordas  del  sistema  de  salud  \cite{ref2}.  La  mayoría  de  los  profesionales  de  la  salud  encuestados  en  el  estudio  reportaron  no  contar  con  ningún  tipo  de  recurso  de  apoyo  para  la  comunicación  con  pacientes  sordos,  como  intérpretes  de  Lengua  de  Señas  Mexicana,  televisores  con  subtítulos,  o  material  gráfico.  Esta  carencia  de  herramientas  dificulta  la  interacción  entre  el  personal  médico  y  los  pacientes  sordos,  lo  que  puede  generar  frustración,  ansiedad  e  incluso  poner  en  riesgo  la  salud  de  estos  últimos.
 
@@ -23,7 +23,7 @@ A partir de los desafíos planteados, surge la siguiente pregunta de investigaci
 \textbf{¿Cómo  diseñar  un  sistema  de  traducción  de  LSM  a  español  que  sea  accesible,  usable  y  relevante  para  pacientes  sordos  y  profesionales  de  la  salud  en  el  contexto  médico  mexicano?}
 \clearpage
 \section{Propuesta de solución}
-Para abordar esta problemática, proponemos un sistema innovador que utiliza tecnologías avanzadas como MediaPipe y TensorFlow/Keras. El objetivo primordial de este sistema es enfocarse en las señas de detención estática. Sin embargo, este es solo el primer paso; se prevé que en caso de contar con tiempo, se podrían incluir otros tipos de señas a través de video (secuencia de fotogramas). Ejemplos de estas otras señas podrían incluir saludos, preguntas básicas o expresiones emocionales. El proceso inicia con el usuario grabando su comunicación en LSM mediante un programa que captura video o imágenes.
+Para abordar esta problemática, proponemos un sistema innovador que utiliza tecnologías avanzadas como MediaPipe y TensorFlow/Keras. El objetivo primordial de este sistema es enfocarse en las señas de detención estática. Sin embargo, este es solo el primer paso; se prevé que en caso de contar con tiempo, se podrían incluir otros tipos de señas a través de video (secuencia de fotogramas). Ejemplos de estas otras señas podrían incluir saludos, preguntas básicas o expresiones emocionales. El proceso inicia con el usuario capturando su comunicación en LSM mediante un programa que captura video o imágenes.
 Estos archivos de fotogramas son enviados a un almacenamiento en la nube para su procesamiento.
 
 A través de un microservicio, los fotogramas se procesan para extraer puntos clave que representan las señas, utilizando principalmente la captura de las manos mediante MediaPipe. Estos puntos clave se visualizan en la secuencia de fotogramas representativa de la seña o en la imagen, facilitando la identificación de las posiciones y movimientos correspondientes. Estos datos son empleados para entrenar un modelo de aprendizaje profundo que mejora la precisión de la traducción de LSM a español \cite{ref9}. Una vez entrenado, el modelo permite al usuario traducir las señas que se capturan a través de una cámara.
@@ -95,7 +95,7 @@ En resumen, los resultados que se esperan ser obtenidos son los siguientes:
     \item \textbf{Reconocimiento de Manos y Muñeca:} El sistema se limitará al reconocimiento de manos y muñeca, dentro del espectro permisible para la cámara y la API de hand tracking.
 \end{itemize}
 
-\section*{Limitaciones del Sistema}
+\section*{Limitaciones del sistema}
 
 Por el contrario, es pertinente mencionar lo que no se pretende con este sistema:
 
@@ -104,7 +104,7 @@ Por el contrario, es pertinente mencionar lo que no se pretende con este sistema
     \item \textbf{No Deletreo:} Tampoco se busca hacer el reconocimiento de palabras por medio de deletreo, dado que ya existen sistemas que realizan esta tarea, de igual manera no representa una manera eficiente de expresarse.
 \end{itemize}
 \section{Justificación}
-Según el Censo de Población y Vivienda 2020 \cite{ref41}, el 5.7\% de la población total de México (7,168,178 personas) tiene algún tipo de discapacidad. De este grupo, el 18\% (1,350,802 personas) presenta dificultades para oír, incluso usando un aparato auditivo.  Estas cifras evidencian la  relevancia  de  desarrollar  herramientas  que  faciliten  la  comunicación  e  inclusión  de  las  personas  con  discapacidad  auditiva  en  la  sociedad.
+Según el Censo de Población y Vivienda 2020 \cite{ref41}, el 5.7\% de la población total de México (7,168,178 personas) tiene algún tipo de discapacidad. De este grupo, el 18\% (1,350,802 personas) presenta dificultades para oír, incluso usando un aparato auditivo. Estas cifras evidencian la necesidad de desarrollar herramientas que permitan la inclusión social y mejoren la calidad de vida de las personas con discapacidad auditiva, al facilitar su acceso a servicios básicos como la salud.
 
 Para los miles de personas que dominan la Lengua de Señas Mexicana (LSM), este proyecto proporciona una plataforma que les permite transmitir mensajes a quienes no están familiarizados con esta lengua, enfatizando su importancia para la inclusión social \cite{ref16}.
 
@@ -128,7 +128,7 @@ Este enfoque se inspira en la práctica descrita por Kniberg (2007), quien desta
     \item \textbf{Simplicidad}: El proyecto se gestiona de manera simple, utilizando herramientas como tarjetas físicas para la organización del backlog del producto y del sprint.
     \item \textbf{Transparencia}: La transparencia en el progreso es fundamental, y se asegura mediante un tablón de tareas visible para todo el equipo y una página de información del sprint para mantener informada a toda la organización.
 \end{itemize}
-En la \ref{fig:imagen_scrum} se presenta un esquema de las etapas que conforman la metodología SCRUM:
+En la Figura \ref{fig:imagen_scrum} se presenta un esquema de las etapas que conforman la metodología SCRUM:
 
 \begin{figure}[h]
   \includegraphics[scale=0.17]{CAPITULOS/capitulo1/scrum.png}
