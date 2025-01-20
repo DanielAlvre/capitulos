@@ -23,6 +23,19 @@
 \usepackage[es-tabla]{babel}  % Configura 'tabla' en lugar de 'cuadro'
 \usepackage{cleveref}          % Para las referencias cruzadas
 
+% Definimos un nuevo comando para las imágenes de las pantallas
+\newcommand{\pantalla}[2]{
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \node[inner sep=0, outer sep=0, draw=black, line width=0.1cm]
+    {\includegraphics[page=#1, scale=0.4]{CAPITULOS/capitulo5/proyecto}};
+    \end{tikzpicture}
+    \caption{#2}
+    \end{figure}
+}
+
+
 \addto\captionsspanish{%
     \renewcommand{\tablename}{Tabla} % Reemplaza 'Cuadro' por 'Tabla' globalmente
 }

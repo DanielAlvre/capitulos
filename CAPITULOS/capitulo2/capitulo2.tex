@@ -1,6 +1,6 @@
 \chapter{Marco Teórico}
 
-\subsection{Medidas de tendencia central}
+\section{Medidas de tendencia central}
 
 Las medidas de tendencia central son herramientas estadísticas que nos permiten resumir la localización de los datos, es decir, nos ayudan a identificar el valor alrededor del cual se centran los datos. Estas medidas son esenciales para el análisis de datos en cualquier investigación, incluyendo el análisis de las muestras de Lengua de Señas Mexicana (LSM).
 
@@ -56,7 +56,6 @@ MediaPipe Holistic se compone de tres modelos principales:
     \begin{itemize}
         \item \textbf{Descripción:}  Este modelo detecta 33 puntos de referencia del cuerpo humano en una imagen o video, incluyendo la nariz, los ojos, las orejas, los hombros, los codos, las muñecas, las caderas, las rodillas y los tobillos. 
         \item \textbf{Aplicaciones en lengua de señas mexicana:}  Estos puntos son cruciales para interpretar las señas, ya que permiten analizar la postura general del cuerpo y la posición de los brazos y las manos en relación al torso. Por ejemplo, la posición de los codos y las muñecas es fundamental para distinguir señas como \textquotedblleft CASA\textquotedblright  u  \textquotedblleft HOLA\textquotedblright.
-        \item \textbf{Imágenes de referencia:} [Imagen de los 33 puntos de referencia de Pose Landmarker sobrepuestos en una persona signando]
         \item \textbf{Funcionamiento:} El modelo utiliza una red neuronal convolucional similar a MobileNetV2 y está optimizado para aplicaciones de entrenamiento en tiempo real y en el dispositivo.  Primero, detecta la presencia de cuerpos humanos en la imagen, y luego localiza los 33 puntos de referencia en el cuerpo detectado.
         \item \textbf{Opciones de configuración:}  
             \begin{itemize}
@@ -68,7 +67,12 @@ MediaPipe Holistic se compone de tres modelos principales:
                 \item \textbf{output\_segmentation\_masks:}  Si se generan máscaras de segmentación.
             \end{itemize}
     \end{itemize}
-
+    \begin{figure}[h]
+        \includegraphics[scale=0.4]{CAPITULOS/capitulo2/img.png}
+        \centering
+        \caption[Puntos de medipipe]{Puntos de medipipe Pose Landmarker \cite{ref20}}
+        \label{fig:imagen_medipipe_pose}
+    \end{figure}
     \item \textbf{Face Landmarks:}
     \begin{itemize}
         \item \textbf{Cantidad:} 468 puntos.
@@ -82,14 +86,15 @@ MediaPipe Holistic se compone de tres modelos principales:
         \item \textbf{Descripción:} Detecta  puntos clave en las manos, como las puntas de los dedos, los nudillos y la palma.
         \item \textbf{Aplicaciones de MediaPipe Holistic en el sistema:} Permite analizar la forma, orientación y movimiento de las manos, lo cual es fundamental para identificar los diferentes queremas (formas de la mano) en la LSM.
     \end{itemize}
+    \begin{figure}[h]
+              \includegraphics[scale=0.4]{CAPITULOS/capitulo2/hand-landmarks.png}
+              \centering
+              \caption[Puntos de medipipe ]{Puntos de medipipe Hand Landmarks\cite{ref20}}
+              \label{fig:imagen_medipipe_hand}
+    \end{figure}
+
 \end{enumerate}
 
-\begin{figure}[h]
-  \includegraphics[scale=0.4]{CAPITULOS/capitulo2/hand-landmarks.png}
-  \centering
-  \caption[Puntos de medipipe ]{Puntos de medipipe  \cite{ref20}}
-  \label{fig:imagen_medipipe}
-\end{figure}
 
 
 
