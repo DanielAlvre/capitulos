@@ -1,0 +1,50 @@
+@startuml
+actor Usuario
+
+' Fase 1: Fundamentos de Python y Dart
+package "Fase 1: Fundamentos de Python y Dart (29/01/2025 - 29/03/2025)" {
+  [Instalación de herramientas] --> [Sintaxis básica de Python y Dart]
+  [Sintaxis básica de Python y Dart] --> [Estructuras de control: if, for, while (Python, Dart)]
+  [Estructuras de control: if, for, while (Python, Dart)] --> [Funciones y manejo de excepciones (Python, Dart)]
+  [Funciones y manejo de excepciones (Python, Dart)] --> [OOP (Clases y Objetos) en Python y Dart]
+  [OOP (Clases y Objetos) en Python y Dart] --> [Uso de librerías: NumPy, Pandas, Matplotlib (Python) / Dart packages]
+}
+
+' Fase 2: Introducción a Machine Learning
+package "Fase 2: Introducción a Machine Learning (30/03/2025 - 29/05/2025)" {
+  [Conceptos básicos de ML] --> [Tipos de aprendizaje: supervisado vs no supervisado]
+  [Tipos de aprendizaje: supervisado vs no supervisado] --> [Modelos clásicos de ML (regresión, SVM, KNN)]
+  [Modelos clásicos de ML (regresión, SVM, KNN)] --> [Validación: Cross-validation, Overfitting, Underfitting]
+  [Validación: Cross-validation, Overfitting, Underfitting] --> [Instalación de TensorFlow y Keras]
+  [Instalación de TensorFlow y Keras] --> [Modelo simple con Keras]
+}
+
+' Fase 3: Preprocesamiento de imágenes y videos
+package "Fase 3: Preprocesamiento de imágenes y videos (30/05/2025 - 29/07/2025)" {
+  [Preprocesamiento de imágenes] --> [Redimensionar, Normalizar, Convertir a tensores]
+  [Redimensionar, Normalizar, Convertir a tensores] --> [Uso de OpenCV para videos]
+  [Uso de OpenCV para videos] --> [Extracción de frames de video]
+  [Extracción de frames de video] --> [Crear secuencia temporal de frames]
+}
+
+' Fase 4: Redes Neuronales Convolucionales (CNN) y LSTM
+package "Fase 4: CNN y LSTM (30/07/2025 - 29/09/2025)" {
+  [Fundamentos de CNN] --> [Implementar CNN para clasificación de imágenes]
+  [Implementar CNN para clasificación de imágenes] --> [Transfer Learning: Usar modelos preentrenados (ResNet, VGG)]
+  [Transfer Learning: Usar modelos preentrenados (ResNet, VGG)] --> [Aplicar CNN a videos]
+  [Aplicar CNN a videos] --> [Extraer características de cada frame]
+  [Extraer características de cada frame] --> [Implementar LSTM para secuencias temporales]
+}
+
+' Fase 5: Modelado completo con CNN + LSTM
+package "Fase 5: Modelado Completo con CNN + LSTM (30/09/2025 - 29/11/2025)" {
+  [Combinar CNN con LSTM] --> [Entrenar y ajustar modelo]
+  [Entrenar y ajustar modelo] --> [Ajuste de hiperparámetros: Learning rate, batch size]
+  [Ajuste de hiperparámetros: Learning rate, batch size] --> [Uso de regularización: Dropout, Early stopping]
+}
+
+' Finalización
+[Uso de regularización: Dropout, Early stopping] --> [Modelo entrenado listo para predicciones]
+@enduml
+
+
