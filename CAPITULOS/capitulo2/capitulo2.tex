@@ -359,95 +359,110 @@ En el proyecto de identificación de señas LSM, las LSTM complementan a las CNN
 
 En resumen, la incorporación de LSTM en el proyecto de identificación de señas LSM permite un análisis más preciso y robusto de las señas dinámicas, al considerar la información temporal en conjunto con las características espaciales extraídas por las CNN.
 \section{Funciones de Activación}
-Las funciones de activación introducen no linealidad en las redes neuronales, permitiendo que estas aprendan patrones complejos en los datos. Imaginemos que nuestra red se encuentra ante una bifurcación en el camino; las funciones de activación son responsables de decidir hacia dónde dirigirse.
+Las funciones de activación introducen no linealidad en las redes neuronales, permitiendo que  aprendan patrones complejos en los datos. Específicamente, estas funciones determinan si la neurona debe ser activada o no, en función del resultado de la suma ponderada de sus entradas.
+
+\section{Funciones de Activación}
+Las funciones de activación introducen no linealidad en las redes neuronales, permitiendo que  aprendan patrones complejos en los datos. Para entender su papel, considérese que si una red neuronal se encuentra ante una bifurcación en el camino, las funciones de activación son responsables de decidir hacia dónde debe dirigirse la señal.
+
+---
 
 \subsection{Función Sigmoide}
-La función sigmoide transforma cualquier valor de entrada a un rango entre 0 y 1. Esta función es especialmente útil en la capa de salida para problemas de clasificación binaria, como determinar si una seña corresponde a una palabra específica.
+La función sigmoide transforma cualquier valor de entrada a un rango entre 0 y 1, lo cual es útil para problemas de clasificación binaria. Su gráfica se presenta en la Figura 1, y su definición mediante la Ecuación \ref{eq:funcion_por_partes_sigmoide} muestra su dependencia del número de Euler ($e$).
 
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
-            xlabel={$x$},
-            ylabel={$\sigma(x)$},
-            xmin=-5, xmax=5,
-            ymin=-0.2, ymax=1.2,
-            legend pos=north west,
-            axis lines=middle,
-            grid=both,
-            minor tick num=4,
+        xlabel={$x$},
+        ylabel={$\sigma(x)$},
+        xmin=-5, xmax=5,
+        ymin=-0.2, ymax=1.2,
+        legend pos=north west,
+        axis lines=middle,
+        grid=both,
+        minor tick num=4,
         ]
         \addplot[domain=-5:5, samples=100, blue, thick] {1/(1+exp(-x))};
         \legend{Sigmoide}
         \end{axis}
     \end{tikzpicture}
     \caption{Gráfica de la función sigmoide.}
+    \label{fig:sigmoide} % Añadida etiqueta para referencia
 \end{figure}
 
-% Función por partes
-\indexedequation{Función de activacion Sigmoide}{
-f(x) = \begin{cases}
-      \frac{1}{1 + e^{-x}}
-   \end{cases} \label{eq:funcion_por_partes_sigmoide}
+% Función por partes (Sigmoide)
+\indexedequation{Ecuación 4. Función de activación Sigmoide}{
+    \begin{equation}
+        f(x) = \frac{1}{1 + e^{-x}}
+        \label{eq:funcion_por_partes_sigmoide}
+    \end{equation}
 }
 
 
 \subsection{Función Tangencial Hiperbólica (tanh)}
 
-La función tangencial hiperbólica, conocida como tanh, es otra función de activación que produce valores en el rango de (-1, 1). A diferencia de la sigmoide, que se limita a valores positivos, tanh puede asignar salidas tanto negativas como positivas. Esto la hace especialmente adecuada para problemas donde es necesario identificar tanto clases positivas como negativas, o en situaciones donde se requiere una salida centrada en cero.
+La función tangencial hiperbólica, conocida como tanh, produce valores en el rango de (-1, 1). A diferencia de la sigmoide, tanh asigna salidas tanto negativas como positivas, siendo adecuada para problemas que requieren una salida centrada en cero. Su comportamiento gráfico se observa en la Figura 2, y su definición se presenta a continuación.
 
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
-            xlabel={$x$},
-            ylabel={$\tanh(x)$},
-            xmin=-5, xmax=5,
-            ymin=-1.2, ymax=1.2,
-            legend pos=north west,
-            axis lines=middle,
-            grid=both,
-            minor tick num=4,
+        xlabel={$x$},
+        ylabel={$\tanh(x)$},
+        xmin=-5, xmax=5,
+        ymin=-1.2, ymax=1.2,
+        legend pos=north west,
+        axis lines=middle,
+        grid=both,
+        minor tick num=4,
         ]
         \addplot[domain=-5:5, samples=100, blue, thick] {tanh(x)};
         \legend{$\tanh(x)$}
         \end{axis}
     \end{tikzpicture}
     \caption{Gráfica de la función tangencial hiperbólica ($\tanh$).}
+    \label{fig:tanh} % Añadida etiqueta para referencia
 \end{figure}
 
+La función tangencial hiperbólica (tanh) se puede definir mediante su comportamiento límite, como se ve en la Ecuación \ref{eq:tanh}, o mediante su definición exponencial, la Ecuación \ref{eq:tanh_formula}.
+
 % Función por partes de tanh
-\indexedequation{Función de activacion (tanh)}{
-f(x) = \begin{cases}
-      -1, & \text{si } x \to -\infty \\
-      1, & \text{si } x \to +\infty \\
-      \tanh(x), & \text{de otra manera}
-   \end{cases} \label{eq:tanh}
+\indexedequation{Ecuación 5. Función de activación (tanh) por partes}{
+    \begin{equation}
+        f(x) = \begin{cases}
+                   -1, & \text{si } x \to -\infty \\
+                   1, & \text{si } x \to +\infty \\
+                   \tanh(x), & \text{de otra manera}
+        \end{cases}
+        \label{eq:tanh}
+    \end{equation}
 }
 
-La función tangencial hiperbólica (tanh), se define mediante la siguiente fórmula:
+La función tangencial hiperbólica (tanh), se define mediante la siguiente ecuación:
 
-\indexedequation{Definición tanh}{
-\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}} \label{eq:tanh_formula}
+\indexedequation{Ecuación 6. Definición tanh}{
+    \begin{equation}
+        \tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}
+        \label{eq:tanh_formula}
+    \end{equation}
 }
-
 
 
 \subsection{Función ReLU (Rectified Linear Unit)}
-La función ReLU es una función lineal que retorna 0 para entradas negativas y el valor de entrada para entradas positivas. Esta función ha ganado popularidad debido a su simplicidad y eficiencia computacional. En el contexto del reconocimiento de señas, ReLU puede ser utilizada en las capas ocultas de la red neuronal para mejorar la capacidad de aprendizaje del modelo.
+La función ReLU es una función lineal que retorna 0 para entradas negativas y el valor de entrada para entradas positivas. Esta función ha ganado popularidad debido a su simplicidad y eficiencia computacional. Su gráfica, mostrada en la Figura 3, ilustra su comportamiento lineal para valores positivos, y su definición se encuentra en la Ecuación \ref{eq:funcion_por_partes_relu}.
 
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
-            xlabel={$x$},
-            ylabel={$ReLU(x)$},
-            xmin=-5, xmax=5,
-            ymin=-0.2, ymax=5,
-            legend pos=north west,
-            axis lines=middle,
-            grid=both,
-            minor tick num=4,
+        xlabel={$x$},
+        ylabel={$ReLU(x)$},
+        xmin=-5, xmax=5,
+        ymin=-0.2, ymax=5,
+        legend pos=north west,
+        axis lines=middle,
+        grid=both,
+        minor tick num=4,
         ]
         \addplot[domain=-5:0, samples=100, blue, thick] {0};
         \addplot[domain=0:5, samples=100, blue, thick] {x};
@@ -455,59 +470,63 @@ La función ReLU es una función lineal que retorna 0 para entradas negativas y 
         \end{axis}
     \end{tikzpicture}
     \caption{Gráfica de la función ReLU.}
+    \label{fig:relu} % Añadida etiqueta para referencia
 \end{figure}
 
 % Función por partes
-\indexedequation{Función de activacion Relu}{
-f(x) = \begin{cases}
-      0, & \text{si } x < 0 \\
-      x, & \text{si } x \geq 0 
-   \end{cases} \label{eq:funcion_por_partes_relu}
+\indexedequation{Ecuación 7. Función de activación ReLU}{
+    \begin{equation}
+        f(x) = \begin{cases}
+                   0, & \text{si } x < 0 \\
+                   x, & \text{si } x \geq 0
+        \end{cases}
+        \label{eq:funcion_por_partes_relu}
+    \end{equation}
 }
 
 \subsection{Función Softmax}
-La función Softmax es frecuentemente utilizada en modelos de clasificación multiclase, ya que convierte las salidas de la red neuronal en probabilidades. Asigna a cada clase una probabilidad que refleja la certeza del modelo sobre su pertenencia, y la clase con la probabilidad más alta se selecciona como la predicción final. Esta función es esencial en muchas redes neuronales profundas, particularmente en la capa de salida de modelos que manejan múltiples categorías.
-
-
+La función Softmax es frecuentemente utilizada en modelos de clasificación multiclase, ya que convierte las salidas de la red neuronal en probabilidades. Asigna a cada clase una probabilidad que refleja la certeza del modelo sobre su pertenencia. Su definición matemática, la Ecuación \ref{eq:softmax}, se aplica a la capa de salida, y su representación gráfica para un sistema de tres clases se muestra en la Figura \ref{fig:softmax}.
 
 % Figura para la función Softmax
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
-            xlabel={$z$},
-            ylabel={$\sigma(z)_j$},
-            xmin=-5, xmax=5,
-            ymin=0, ymax=1,
-            legend pos=north west,
-            axis lines=middle,
-            grid=both,
-            minor tick num=4
+        xlabel={$z$},
+        ylabel={$\sigma(z)_j$},
+        xmin=-5, xmax=5,
+        ymin=0, ymax=1,
+        legend pos=north west,
+        axis lines=middle,
+        grid=both,
+        minor tick num=4
         ]
-            % Softmax example with three fixed components
-            \addplot[domain=-5:5, samples=100, blue, thick] 
-                {exp(x)/(exp(x) + exp(0) + exp(-1))};
-            \legend{Softmax}
+        % Softmax example with three fixed components
+        \addplot[domain=-5:5, samples=100, blue, thick]
+        {exp(x)/(exp(x) + exp(0) + exp(-1))};
+        \legend{Softmax}
         \end{axis}
     \end{tikzpicture}
     \caption{Gráfica de la función de activación Softmax considerando tres valores fijos \( z = -1, 0, 1 \).}
     \label{fig:softmax}
 \end{figure}
 
-\indexedequation{ Función de activación Softmax}
-\sigma(z)_j = \frac{e^{z_j}}{\sum_{k=1}^K e^{z_k}} \label{eq:softmax}
+\indexedequation{Ecuación 8. Función de activación Softmax}{
+    \begin{equation}
+        \sigma(z)_j = \frac{e^{z_j}}{\sum_{k=1}^K e^{z_k}}
+        \label{eq:softmax}
+    \end{equation}
+}
 
 
 
 Las funciones de activación juegan un papel crucial en la reducción de la complejidad computacional. Esto es particularmente relevante, dado que se ejecutan para cada neurona en la red, para cada muestra y en cada ciclo de entrenamiento. Por ejemplo, con un conjunto de 1500 muestras y 10 características en una red con 4 capas de 64 neuronas cada una, esto puede traducirse en millones de ejecuciones en cada iteración de entrenamiento.
 
-Sin funciones de activación, la red operaría de manera lineal, lo que limitaría su capacidad para aprender patrones complejos. 
-La función sigmoide, que limita los valores entre (0, 1), es útil para predecir probabilidades. Por otro lado, la tangente hiperbólica (tanh) ofrece un rango de (-1, 1) y es más efectiva para modelar relaciones donde las entradas negativas deben ser fuertemente negativas y las positivas fuertemente positivas.
+Sin funciones de activación, la red operaría de manera lineal, lo que limitaría su capacidad para aprender patrones complejos. La función sigmoide, que limita los valores entre (0, 1), es útil para predecir probabilidades. Por otro lado, la tangente hiperbólica (tanh) ofrece un rango de (-1, 1) y es más efectiva para modelar relaciones donde las entradas negativas deben ser fuertemente negativas y las positivas fuertemente positivas.
 
 La función ReLU, en particular, ha demostrado ser extremadamente eficaz en redes neuronales convolucionales y de aprendizaje profundo, ya que descarta las entradas negativas, lo que simplifica el proceso computacional. Por su parte, la variante Leaky ReLU evita el problema de perder información al permitir que algunos valores negativos pasen con un peso reducido.
 
 Finalmente, la función Softmax permite realizar clasificaciones categóricas multiclase y se aplica en las capas de salida, facilitando la interpretación de las salidas de la red como probabilidades, lo que es fundamental para muchas aplicaciones de inteligencia artificial.
-
 
 \section{Entrada de Datos al Modelo}
 
