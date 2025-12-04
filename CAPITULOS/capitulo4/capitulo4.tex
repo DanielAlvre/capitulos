@@ -287,7 +287,7 @@ El diagrama de clases que se presenta a continuación proporciona una representa
 El diagrama de clases también ilustra las relaciones entre los distintos roles de usuario (como el usuario regular y el administrador), y cómo estas relaciones afectan a las actividades que pueden realizarse dentro del sistema. Este modelo es fundamental para comprender la arquitectura orientada a objetos que respalda el funcionamiento del sistema y permite que se realicen tareas como la captura y el reconocimiento de señas de manera eficiente.
 
 \subsection{Comparacion base de datos en la nube}
-En la Tabla \ref{tabla_comparativa_plataformas_nube} se presenta una comparativa de las principales plataformas de nube consideradas para el desarrollo del proyecto, junto con las bases de datos que ofrecen, sus principales usos y su idoneidad para el procesamiento de datos de LSM.
+En la \textbf{Tabla \ref{tabla_comparativa_plataformas_nube}} se presenta una comparativa de las principales plataformas de nube consideradas para el desarrollo del proyecto, junto con las bases de datos que ofrecen, sus principales usos y su idoneidad para el procesamiento de datos de LSM.
 
 \begin{table}[H]
     \centering
@@ -364,10 +364,12 @@ En la Tabla \ref{tabla_comparativa_plataformas_nube} se presenta una comparativa
     \end{tabularx}
 \end{table}
 
+\paragraph{Justificación de la Elección: Amazon DynamoDB}
+es la que se ha decidió utilizar como la base de datos principal del sistema. Esta elección se basa en la necesidad de mantener una arquitectura unificada y optimizada, ya que DynamoDB es la solución NoSQL nativa de AWS, la plataforma cloud seleccionada para el despliegue de la aplicación. Su naturaleza sin servidor y su alta escalabilidad permiten una integración fluida con los demás servicios de AWS, como Lambda y S3, ofreciendo un rendimiento predecible y costos eficientes que no dependen solo del cálculo de la máquina virtual (VM), sino del consumo real de peticiones, lo cual es ideal para una aplicación con cargas de trabajo variables.
 
 \subsection{Comparación de VM y Kubernetes de GKE}
 
-En la Tabla \ref{tabla_comparativa_microservicios} se presenta una comparativa de las principales VM para Kubernetes de GKE de las principales nubes.
+En la \textbf{Tabla \ref{tabla_comparativa_microservicios}} se presenta una comparativa de las principales opciones de alojamiento, incluyendo Máquinas Virtuales (VM) y soluciones de contenedores gestionados (como Kubernetes de GKE, EKS y AKS), ofrecidas por las principales plataformas de nube.
 
 \begin{table}[H]
     \centering
@@ -385,13 +387,14 @@ En la Tabla \ref{tabla_comparativa_microservicios} se presenta una comparativa d
                 \item Integración con el ecosistema de AWS (RDS, S3, IAM, etc.)
             \end{itemize}
         \end{minipage} &
+        % COSTOS AJUSTADOS PARA USO MÍNIMO (10 HORAS)
         \begin{minipage}[t]{\linewidth}
-            Costo mensual estimado:\$6.13 \\
-            Basado en uso por hora y tipo de instancia\\
+            Costo estimado (\textbf{Instancia Spot}): \textbf{\$10.00 - \$16.00 USD/mes} (aprox.)\\
+            Costo basado en \textbf{10 horas de uso activo} de la instancia \textbf{G4dn.xlarge} (GPU):
             \begin{itemize}
-                \item vCPUs: 2
-                \item Memoria: 1 GiB
-                \item  t4g.micro
+                \item vCPUs: 4
+                \item Memoria: 16 GiB
+                \item GPU: 1 NVIDIA T4
             \end{itemize}
         \end{minipage}
         \\
@@ -404,7 +407,7 @@ En la Tabla \ref{tabla_comparativa_microservicios} se presenta una comparativa d
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
-            Costo mensual estimado:  \$365.00 USD por mes
+            Costo mensual estimado: \$365.00 USD por mes
             \begin{itemize}
                 \item 1 clúster
             \end{itemize}
@@ -470,17 +473,32 @@ En la Tabla \ref{tabla_comparativa_microservicios} se presenta una comparativa d
         \begin{minipage}[t]{\linewidth}
             Costo mensual estimado: \$158.41\\
             Nodos:
-                \begin{itemize}
-                    \item Sistema operativo: Linux
-                    \item Instancia: D2 v3 (2 vCPUs, 8 GB RAM) - \$0.117/hora \\
-                \end{itemize}
+            \begin{itemize}
+                \item Sistema operativo: Linux
+                \item Instancia: D2 v3 (2 vCPUs, 8 GB RAM) - \$0.117/hora \\
+            \end{itemize}
 
         \end{minipage} \\
         \hline
     \end{tabular}
 \end{table}
 
+\textbf{Justificación de la Elección: Amazon EC2 G4dn.xlarge (Spot)}
+
+La elección de la instancia \textbf{Amazon EC2 G4dn.xlarge} mediante el modelo de precios \textbf{Spot} se fundamenta en los requerimientos específicos del proyecto. El \textbf{modelo de Machine Learning} basado en una arquitectura de \textbf{red neuronal recurrente (BiLSTM)} para el reconocimiento de señas requiere de una aceleración de hardware intensiva, lo cual justifica el uso de una Unidad de Procesamiento Gráfico (\textbf{GPU}).
+
+Esta decisión técnica se sustenta en tres pilares clave:
+\begin{enumerate}[label=\arabic*., nosep, itemsep=0pt]
+    \item \textbf{Requerimiento de GPU:} La G4dn.xlarge proporciona una GPU NVIDIA T4, esencial para acelerar el procesamiento de \textbf{inferencia} del modelo y asegurar la baja latencia necesaria para las pruebas en tiempo real, incluso con uso esporádico.
+    \item \textbf{Optimización Extrema de Costos:} Dado que el tiempo de ejecución es \textbf{extremadamente limitado (aproximadamente 10 horas al mes)}, utilizar el modelo Spot reduce el costo por hora de cómputo (GPU intensivo) a su mínima expresión. El costo mensual resultante es bajo, ya que solo cubre una pequeña fracción de horas de cómputo variable y la tarifa base fija por el \textbf{almacenamiento persistente (EBS)} de los 80 GB.
+    \item \textbf{Simplicidad Arquitectónica:} La \textbf{Máquina Virtual dedicada (EC2)} simplifica la arquitectura y la gestión operativa para un uso de tan bajo volumen, evitando la complejidad y el costo base fijo de un clúster de orquestación de contenedores (EKS o GKE).
+\end{enumerate}
+\clearpage
+
 \subsection{Comparación de los servicios de almacenamiento (Bucket)}
+En la \textbf{Tabla \ref{tabla_comparativa_buckets}} se presenta una comparativa de las principales opciones de alojamiento de objetos (buckets) ofrecidas por las plataformas de nube.
+
+\vspace{-0.2cm} % <--- AÑADIDO PARA REDUCIR ESPACIO VERTICAL ANTES DE LA TABLA
 
 \begin{table}[H]
     \centering
@@ -554,7 +572,6 @@ En la Tabla \ref{tabla_comparativa_microservicios} se presenta una comparativa d
                 \item \textbf{Premium:} Optimizado para baja latencia, \$0.15/GB.
                 \item \textbf{Reservado:} 100 TB (1 año, \$1,545 Hot), 1 PB (1 año, \$15,050).
                 \item \textbf{Early Deletion Penalty:} 30 días (Cool), 90 días (Cold), 180 días (Archive).
-                \item \textbf{Operaciones:} \$0.065 por 10,000 operaciones de escritura en Hot. \\
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
@@ -569,105 +586,47 @@ En la Tabla \ref{tabla_comparativa_microservicios} se presenta una comparativa d
     \end{tabular}
 \end{table}
 
-\subsection{Comparación de Sistemas de Mensajería (SQS)}
+\paragraph{Justificación de la Elección: Amazon Simple Storage Service (S3)}
+Se ha seleccionado \textbf{Amazon S3} como el servicio de almacenamiento de objetos central del sistema. Esta elección se basa principalmente en la necesidad de integración nativa con la infraestructura AWS ya establecida (EC2 y DynamoDB), y la naturaleza crítica de los datos almacenados. S3 será utilizado para almacenar los siguientes activos:
 
-En la Tabla \ref{tabla_comparativa_sqs} se presenta una comparativa de los sistemas de mensajería (SQS) en las principales plataformas de nube.
+\begin{enumerate}[label=\arabic*., nosep, itemsep=0pt]
+    \item \textbf{Datos Crudos del Modelo (CSV de Keypoints):} Los archivos CSV que contienen las secuencias temporales de Keypoints, que son la materia prima para el entrenamiento y la inferencia del modelo BiLSTM, requieren la \textbf{durabilidad de 99.999999999\%} que ofrece S3 Standard para garantizar la integridad y persistencia de los datos del proyecto.
+    \item \textbf{Modelo Compilado:} El archivo del modelo de red neuronal entrenado debe estar disponible con alta fiabilidad para ser cargado por la instancia EC2 (\textbf{G4dn.xlarge}), beneficiándose de la baja latencia de acceso.
+    \item \textbf{Archivos de Perfil de Usuario:} Incluyendo fotos de perfil y otros archivos no estructurados que requieran seguridad y fácil gestión de acceso.
+\end{enumerate}
 
-\begin{table}[H]
-    \centering
-    \caption{Comparación de sistemas de mensajería (SQS) en diferentes plataformas de nube.}
-    \label{tabla_comparativa_sqs}
-    \begin{tabular}{|p{2cm}|p{3cm}|p{6cm}|p{4cm}|}
-        \hline
-        \textbf{Plataforma} & \textbf{SQS} & \textbf{Ventajas} & \textbf{Principales usos} \\
-        \hline
-        AWS & Amazon SQS &
-        \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Alta escalabilidad para manejar millones de mensajes.
-                \item Seguridad avanzada con control de acceso mediante políticas IAM.
-                \item Integración directa con otros servicios de AWS (como Lambda para funciones sin servidor).
-                \item Modelos de colas FIFO (First-In-First-Out) y Standard para flexibilidad en el procesamiento.
-            \end{itemize}
-        \end{minipage} &
-        \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Desacoplamiento de componentes en sistemas distribuidos.
-                \item Procesamiento de datos asíncrono en aplicaciones de gran escala.
-                \item Microservicios y aplicaciones que requieren alta disponibilidad y procesamiento confiable de mensajes.
-            \end{itemize}
-        \end{minipage} \\
-        \hline
-        Google Cloud & Google Pub/Sub &
-        \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Escalabilidad automática con baja latencia para transmisión masiva de datos.
-                \item Alta seguridad con encriptación en tránsito y reposo, y políticas detalladas de acceso.
-                \item Rendimiento consistente en el procesamiento de grandes volúmenes de eventos en tiempo real.
-                \item Integración nativa con servicios de Google Cloud, como Dataflow y BigQuery.
-            \end{itemize}
-        \end{minipage} &
-        \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Procesamiento y análisis de flujos de datos en tiempo real (streaming).
-                \item Integración de sistemas y aplicaciones distribuidas.
-                \item Procesamiento de eventos y alertas en sistemas de monitoreo y análisis.
-            \end{itemize}
-        \end{minipage} \\
-        \hline
-        Microsoft Azure & Azure Queue Storage &
-        \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Fácil integración con el ecosistema de servicios de Microsoft Azure.
-                \item Alta disponibilidad y durabilidad, con almacenamiento redundante.
-                \item Interfaz simple para el almacenamiento y recuperación de mensajes.
-                \item Opción económica para aplicaciones que necesitan almacenamiento temporal de mensajes.
-            \end{itemize}
-        \end{minipage} &
-        \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Comunicación entre aplicaciones dentro de arquitecturas de microservicios.
-                \item Procesamiento asincrónico de trabajos o tareas en segundo plano.
-                \item Almacenamiento temporal de mensajes y tareas en cola para aplicaciones distribuidas.
-            \end{itemize}
-        \end{minipage} \\
-        \hline
-    \end{tabular}
-\end{table}
+La integración nativa de S3 con AWS IAM (para políticas de seguridad) y la facilidad de conexión con la capa de cómputo hacen de esta opción la más eficiente y coherente para la arquitectura del proyecto.
 
 \subsection{Comparación de Function as a Service (FaaS)}
 
-En la Tabla \ref{tabla_comparativa_faas} se presenta una comparativa de los servicios de Function as a Service (FaaS) en las principales plataformas de nube.
+En la \textbf{Tabla \ref{tabla_comparativa_faas}} se presenta una comparativa de los servicios de Function as a Service (FaaS) en las principales plataformas de nube, incluyendo el modelo de costos basado en el consumo.
 
 \begin{table}[H]
     \centering
     \caption{Comparación de Function as a Service en diferentes plataformas de nube.}
     \label{tabla_comparativa_faas}
-    \begin{tabular}{|p{1.5cm}|p{1.5cm}|p{4cm}|p{4cm}|p{4cm}|}
+    \begin{tabular}{|p{1.5cm}|p{1.5cm}|p{4.5cm}|p{5cm}|p{3cm}|} % Se ajustaron los anchos de columna
         \hline
-        \textbf{nube} & \textbf{FaaS} & \textbf{Ventajas} & \textbf{Principales usos} & \textbf{Lenguajes soportados} \\
+        \textbf{Nube} & \textbf{FaaS} & \textbf{Ventajas} & \textbf{Costo Estimado (por 1 millón de peticiones)} & \textbf{Lenguajes Soportados} \\
         \hline
         AWS & AWS Lambda &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
                 \item Escalabilidad automática
-                \item Integración con otros servicios de AWS
-                \item Pago por uso
+                \item Integración nativa con DynamoDB, S3 y API Gateway.
+                \item Pago por uso.
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Procesamiento de datos
-                \item Backend para aplicaciones web
-            \end{itemize}
+            \textbf{Aprox. \$2.00 - \$4.00 USD} (Cálculo basado en solicitudes y GB-segundos, posterior a la capa gratuita).
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Python, Node.js, Java, Ruby, entre otros
+                \item Python, Node.js, Java, Ruby
             \end{itemize}
         \end{minipage} \\
         \hline
-        Google Cloud & Google Cloud Functions &
+        Google Cloud & Cloud Functions &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
                 \item Escalabilidad y seguridad
@@ -675,14 +634,11 @@ En la Tabla \ref{tabla_comparativa_faas} se presenta una comparativa de los serv
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Automatización
-                \item Procesamiento de eventos
-            \end{itemize}
+            \textbf{Aprox. \$2.50 - \$4.50 USD} (Similar a AWS, posterior a la capa gratuita).
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Node.js, Python, Go, entre otros
+                \item Node.js, Python, Go
             \end{itemize}
         \end{minipage} \\
         \hline
@@ -694,46 +650,54 @@ En la Tabla \ref{tabla_comparativa_faas} se presenta una comparativa de los serv
             \end{itemize}
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Procesamiento de datos
-                \item Backend para aplicaciones móviles
-            \end{itemize}
+            \textbf{Aprox. \$2.20 - \$4.20 USD} (Basado en el plan de consumo, posterior a la capa gratuita).
         \end{minipage} &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item C#, JavaScript, Python, Java, entre otros
+                \item C\#, JavaScript, Python, Java
             \end{itemize}
         \end{minipage} \\
         \hline
     \end{tabular}
 \end{table}
 
-\subsection{Comparación de APIs de Text-to-Speech}
+\paragraph{Justificación de la Elección: AWS Lambda}
+La selección de \textbf{AWS Lambda} se alinea con la estrategia de mantener una arquitectura de nube unificada en AWS (junto a DynamoDB, S3 y EC2). Lambda es la elección óptima para desacoplar y orquestar las tareas del backend sin incurrir en costos de cómputo inactivos, con un \textbf{costo marginal por petición muy bajo} una vez agotada la generosa capa gratuita.
 
-En la Tabla \ref{tabla_comparativa_tts} se presenta una comparativa de las APIs de Text-to-Speech (TTS) en las principales plataformas de nube.
+El diseño del sistema requiere la implementación de \textbf{cuatro funciones Lambda} distintas para manejar responsabilidades específicas, asegurando la escalabilidad e independencia de cada proceso:
+
+\begin{enumerate}[label=\arabic*., nosep, itemsep=0pt]
+    \item \textbf{Gestión de Autenticación/Usuarios:} Manejo de registro, inicio de sesión y validación de tokens de usuario.
+    \item \textbf{Control de Datos LSM:} Interacción directa con \textbf{DynamoDB} para consultar y almacenar información de la base de datos (metadatos de las señas y perfiles).
+    \item \textbf{Gestión de Archivos (S3 Trigger):} Activada por eventos de \textbf{S3}, como la subida de una nueva foto de perfil o un archivo CSV de entrenamiento, gestionando el acceso y la notificación.
+    \item \textbf{Orquestación de la Inferencia (EC2 Trigger):} Encargada de comunicarse con la instancia \textbf{EC2 G4dn.xlarge} para iniciar el proceso de inferencia del modelo BiLSTM cuando se recibe una solicitud de reconocimiento de seña.
+\end{enumerate}
+
+Este enfoque permite que cada componente del backend escale de forma independiente, pagando únicamente por los milisegundos de cómputo utilizados por cada una de las cuatro funciones.
+
+\subsection{Comparación de APIs de Text-to-Speech (TTS)}
+
+En la \textbf{Tabla \ref{tabla_comparativa_tts}} se presenta una comparativa de las APIs de Text-to-Speech (TTS) en las principales plataformas de nube y la solución nativa de Android.
 
 \begin{table}[H]
     \centering
-    \caption{Comparación de APIs de Text-to-Speech en diferentes plataformas de nube.}
+    \caption{Comparación de servicios Text-to-Speech (TTS): Soluciones en la nube vs. Solución nativa.}
     \label{tabla_comparativa_tts}
-    \begin{tabular}{|p{2.5cm}|p{3cm}|p{4cm}|p{2.5cm}|p{3cm}|}
+    \begin{tabular}{|p{2.5cm}|p{3cm}|p{4cm}|p{3cm}|p{3cm}|}
         \hline
-        \textbf{Plataforma} & \textbf{API de TTS} & \textbf{Características} & \textbf{Idiomas soportados} & \textbf{Principales usos} \\
+        \textbf{Plataforma} & \textbf{API de TTS} & \textbf{Características} & \textbf{Idiomas soportados} & \textbf{Costo Estimado} \\
         \hline
         AWS & Amazon Polly &
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Voces naturales
+                \item Voces naturales (Neural TTS)
                 \item Opciones de personalización
                 \item Soporte SSML
             \end{itemize}
         \end{minipage} &
         Más de 30 &
         \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Asistentes de voz
-                \item Lectura de textos
-            \end{itemize}
+            \textbf{Aprox. \$4.00 USD} por 1 millón de caracteres (TTS Estándar)
         \end{minipage} \\
         \hline
         Google Cloud & Google Text-to-Speech &
@@ -745,10 +709,7 @@ En la Tabla \ref{tabla_comparativa_tts} se presenta una comparativa de las APIs 
         \end{minipage} &
         Más de 30 &
         \begin{minipage}[t]{\linewidth}
-            \begin{itemize}
-                \item Respuestas automáticas
-                \item Asistentes virtuales
-            \end{itemize}
+            \textbf{Aprox. \$4.00 USD} por 1 millón de caracteres (TTS Estándar)
         \end{minipage} \\
         \hline
         Microsoft Azure & Azure Speech &
@@ -760,163 +721,187 @@ En la Tabla \ref{tabla_comparativa_tts} se presenta una comparativa de las APIs 
         \end{minipage} &
         Más de 40 &
         \begin{minipage}[t]{\linewidth}
+            \textbf{Aprox. \$4.00 USD} por 1 millón de caracteres (TTS Estándar)
+        \end{minipage} \\
+        \hline
+        Android Nativo & TextToSpeech &
+        \begin{minipage}[t]{\linewidth}
             \begin{itemize}
-                \item Sistemas de ayuda en línea
-                \item Narración de audiolibros
+                \item Ejecución local (client-side)
+                \item Latencia mínima (sin red)
+                \item Funcionalidad offline
             \end{itemize}
+        \end{minipage} &
+        Depende del dispositivo &
+        \begin{minipage}[t]{\linewidth}
+            \textbf{Costo de uso nulo} (Gratuito)
         \end{minipage} \\
         \hline
     \end{tabular}
 \end{table}
 
+\paragraph{Justificación de la Elección: API Nativa de Android (TextToSpeech)}
+Para la funcionalidad de respuesta de voz, el sistema ha optado por utilizar la API nativa de Android, `android.speech.tts.TextToSpeech`, en lugar de las soluciones basadas en la nube. Esta decisión se fundamenta en la arquitectura client-side (del lado del cliente) de la aplicación y en la optimización de recursos y costos:
+
+\begin{enumerate}[label=\arabic*., nosep, itemsep=0pt]
+    \item \textbf{Costo Cero (Free Tier):} El uso de la API nativa de Android no genera costos de transacción, consumo de caracteres o latencia de red, a diferencia de las APIs de nube que, aunque tienen una capa gratuita, comienzan a incurrir en gastos con el aumento de uso.
+    \item \textbf{Latencia y Rendimiento:} Al ejecutar la síntesis de voz directamente en el dispositivo (cliente), se elimina la latencia de red asociada con el envío de texto a la nube y la recepción del audio.
+\end{enumerate}
+
 \subsection{Comparación de Frameworks de Aprendizaje Automático para Reconocimiento}
 
-En la Tabla \ref{tabla_comparativa_frameworks} se presenta una comparativa de los frameworks de aprendizaje automático más utilizados en tareas de reconocimiento.
+En la \textbf{Tabla \ref{tabla_comparativa_frameworks}} se presenta una comparativa de los frameworks de aprendizaje automático más utilizados en tareas de reconocimiento de secuencias y visión.
 
 \begin{table}[H]
     \centering
-    \caption{Comparación de frameworks de aprendizaje automático para reconocimiento.}
+    \caption{Comparación de frameworks de aprendizaje automático para reconocimiento de secuencias.}
     \label{tabla_comparativa_frameworks}
-    \begin{tabular}{|p{1.8cm}|p{2.5cm}|p{6cm}|p{6cm}|}
+    \begin{tabular}{|p{1.8cm}|p{2.5cm}|p{6.5cm}|p{5cm}|} % Ajuste de anchos para optimizar el espacio
         \hline
-        \textbf{Framework} & \textbf{Compatibilidad} & \textbf{Ventajas} & \textbf{Principales usos} \\
+        \textbf{Framework} & \textbf{Compatibilidad} & \textbf{Ventajas} & \textbf{Ecosistema y Uso Típico} \\
         \hline
         TensorFlow &
-        Multiplataforma (Linux, macOS, Windows) y dispositivos móviles (Android, iOS) &
+        Multiplataforma (Linux, macOS, Windows) y móvil (Lite) &
         \begin{itemize}
-            \item Amplia comunidad y soporte
-            \item Alto rendimiento en procesamiento
-            \item Integración con Keras
+            \item Amplia comunidad, soporte y madurez industrial.
+            \item Alto rendimiento en producción y despliegue masivo.
+            \item Arquitectura flexible (gráficos estáticos).
         \end{itemize} &
         \begin{itemize}
-            \item Reconocimiento de imágenes
-            \item Procesamiento de lenguaje natural
-            \item Modelado de series temporales
+            \item Modelado de series temporales (RNN, LSTM).
+            \item Despliegue en producción (TF Serving, Lite).
+        \end{itemize} \\
+        \hline
+        Keras &
+        API de alto nivel para TensorFlow, PyTorch y Theano &
+        \begin{itemize}
+            \item Simplificación del desarrollo de redes neuronales (fácil y rápido).
+            \item Enfocado en la usabilidad y prototipado rápido.
+            \item Interfaz estandarizada e intuitiva.
+        \end{itemize} &
+        \begin{itemize}
+            \item Prototipado y desarrollo de Deep Learning.
+            \item Construcción de modelos LSTM y BiLSTM.
         \end{itemize} \\
         \hline
         PyTorch &
-        Multiplataforma y soporte para GPUs de Nvidia &
+        Multiplataforma y soporte nativo para GPUs de Nvidia &
         \begin{itemize}
-            \item Flexible y fácil de usar
-            \item Soporte de redes neuronales dinámicas
-            \item Amplio uso en investigación
+            \item Modelo de grafo dinámico (fácil de depurar y flexible).
+            \item Amplio uso en investigación y desarrollo de algoritmos de vanguardia.
+            \item Orientado a objetos y muy pitónico.
         \end{itemize} &
         \begin{itemize}
-            \item Reconocimiento de voz
-            \item Clasificación de imágenes
-            \item Generación de texto
+            \item Reconocimiento de voz y clasificación de imágenes.
+            \item Investigación y desarrollo de modelos nuevos.
         \end{itemize} \\
         \hline
-        Caffe &
-        Enfoque en Linux; soporte limitado en Windows y macOS &
+        MediaPipe &
+        C++, Python, JavaScript (Web), Android, iOS &
         \begin{itemize}
-            \item Eficiencia en redes convolucionales
-            \item Buen rendimiento en visión por computadora
-            \item Soporte para modelos preentrenados
+            \item Toolkit especializado en percepción multiplataforma.
+            \item Detección eficiente de keypoints 3D de Pose, Manos y Rostro.
+            \item Optimizado para aplicaciones en tiempo real y on-device.
         \end{itemize} &
         \begin{itemize}
-            \item Clasificación y detección de objetos
-            \item Visión por computadora
-        \end{itemize} \\
-        \hline
-        MXNet &
-        Multiplataforma; soporte para GPU y CPU &
-        \begin{itemize}
-            \item Alta escalabilidad
-            \item Soporte para aprendizaje distribuido
-            \item Integración con Apache
-        \end{itemize} &
-        \begin{itemize}
-            \item Visión por computadora
-            \item Procesamiento de lenguaje natural
-            \item Reconocimiento de patrones
+            \item Extracción de características (Preprocesamiento).
+            \item Seguimiento y reconocimiento de gestos.
         \end{itemize} \\
         \hline
         OpenCV &
-        Multiplataforma y optimizado para visión por computadora &
+        Multiplataforma; C++ y Python &
         \begin{itemize}
-            \item Biblioteca extensa de algoritmos de visión
-            \item Ideal para aplicaciones en tiempo real
-            \item Compatibilidad con C++ y Python
+            \item Biblioteca extensa de algoritmos de visión clásica.
+            \item Ideal para aplicaciones en tiempo real.
+            \item Compatibilidad con C++ y Python.
         \end{itemize} &
         \begin{itemize}
-            \item Detección y reconocimiento de rostros
-            \item Seguimiento de objetos
-            \item Reconocimiento de texto (OCR)
+            \item Detección y seguimiento de objetos.
+            \item Manipulación de píxeles (pre-procesamiento de video).
         \end{itemize} \\
         \hline
     \end{tabular}
 \end{table}
 
-\subsection{Comparación de algoritmos de Aprendizaje Automático para Reconocimiento}
+\paragraph{Justificación de la Elección: Keras, TensorFlow y MediaPipe}
+La arquitectura de software se basa en la API de \textbf{Keras} con \textbf{TensorFlow} como backend para el modelo BiLSTM, utilizando \textbf{MediaPipe} como herramienta de extracción de características. Esta decisión estratégica se justifica por:
 
-En la Tabla \ref{tabla_comparativa_algoritmos} se resume las principales características, ventajas y usos de cada algoritmo.
+\begin{enumerate}[label=\arabic*., nosep, itemsep=0pt]
+    \item \textbf{Eficiencia en Desarrollo (Keras):} La API de Keras simplifica drásticamente la construcción y el entrenamiento de la arquitectura \textbf{Deep BiLSTM}, reduciendo la complejidad del código y el tiempo de prototipado. Keras permite enfocarse en la estructura del modelo sin manejar el detalle de las operaciones de bajo nivel del grafo.
+    \item \textbf{Integración y Despliegue (TensorFlow):} Al utilizar TensorFlow como backend, el modelo se beneficia de un ecosistema maduro y enfocado en la producción. Esto facilita el proceso de guardar el modelo en formatos optimizados para el despliegue y su posterior carga en la instancia \textbf{EC2 G4dn.xlarge} para la fase de inferencia en producción.
+    \item \textbf{Herramienta de Entrada (MediaPipe):} La elección de \textbf{MediaPipe} es fundamental, ya que es la única biblioteca capaz de proporcionar de manera eficiente los \textbf{vectores de 195 dimensiones (Keypoints de Pose y Manos)} necesarios como entrada secuencial para el modelo BiLSTM. MediaPipe actúa como la capa de extracción de características críticas para el modelo.
+\end{enumerate}
+\clearpage
+
+\subsection{Comparación de Arquitecturas para el Reconocimiento de Secuencias}
+
+En la \textbf{Tabla \ref{tabla_comparativa_algoritmos}} se presenta una comparación enfocada en redes neuronales profundas, destacando la evolución hacia la arquitectura seleccionada para este proyecto.
+
 \begin{table}[H]
     \centering
-    \caption{Comparación de algoritmos de aprendizaje automático para el procesamiento de imágenes y videos.}
+    \caption{Comparación de arquitecturas de aprendizaje profundo para el reconocimiento de gestos y secuencias (LSM).}
     \label{tabla_comparativa_algoritmos}
-    \begin{tabular}{|p{2cm}|p{4.7cm}|p{4.7cm}|p{4.7cm}|}
+    \begin{tabular}{|p{2.5cm}|p{4.5cm}|p{4.5cm}|p{4.5cm}|}
         \hline
-        \textbf{Algoritmo} & \textbf{Características} & \textbf{Aplicación en imágenes y videos} & \textbf{Relación con CNN y LSTM} \\
+        \textbf{Arquitectura} & \textbf{Características Principales} & \textbf{Aplicación en Video/Señas} & \textbf{Relevancia para el Proyecto} \\
         \hline
-        Redes Neuronales Convolucionales (CNN) &
+        \textbf{CNN} \newline (Redes Neuronales Convolucionales) &
         \begin{itemize}
-            \item Excelentes para la extracción de características espaciales y patrones en imágenes.
-            \item Utilizan capas convolucionales para detectar bordes, texturas y formas.
+            \item Especializadas en procesar datos tipo rejilla (imágenes).
+            \item Extraen características \textbf{espaciales} (formas de manos, posición del cuerpo).
         \end{itemize} &
         \begin{itemize}
-            \item Clasificación de imágenes, como en la detección de objetos y rostros.
-            \item Segmentación de imágenes, útil en áreas como visión por computadora médica.
+            \item Base de herramientas como \textit{MediaPipe}.
+            \item Procesan cada fotograma de forma individual, sin memoria del pasado.
         \end{itemize} &
         \begin{itemize}
-            \item Son la base en sistemas de visión artificial.
-            \item Combinadas con LSTM, analizan secuencias de imágenes en tareas de reconocimiento de lenguaje de señas (LSM).
+            \item Se utilizan implícitamente en la fase de extracción de características (\textbf{MediaPipe}), pero por sí solas no capturan el movimiento temporal de la seña.
         \end{itemize} \\
         \hline
-        Redes Neuronales Recurrentes (RNN) con LSTM &
+        \textbf{LSTM} \newline (Long Short-Term Memory) &
         \begin{itemize}
-            \item Diseñadas para el procesamiento secuencial de datos, capturando relaciones temporales.
-            \item Memoria de corto y largo plazo: retienen información de estados previos.
+            \item Redes recurrentes con "celdas de memoria" para retener información a largo plazo.
+            \item Solucionan el problema de desvanecimiento de gradiente de las RNN simples.
         \end{itemize} &
         \begin{itemize}
-            \item Clasificación de videos y reconocimiento de acciones.
-            \item Generación de subtítulos automáticos a partir de secuencias de video.
+            \item Ideales para datos secuenciales (series de tiempo, texto, video).
+            \item Analizan el movimiento basándose solo en lo ocurrido en el pasado ($t-1$).
         \end{itemize} &
         \begin{itemize}
-            \item Complementan las CNN al procesar temporalmente la información.
-            \item Al usarse junto a CNN, se logra un análisis temporal y espacial en el reconocimiento de patrones en LSM.
+            \item Son capaces de aprender la secuencia de una seña, pero tienen limitaciones al no conocer el contexto futuro del gesto en movimientos complejos.
         \end{itemize} \\
         \hline
-        Support Vector Machines (SVM) &
+        \textbf{BiLSTM} \newline (Bidirectional LSTM) &
         \begin{itemize}
-            \item Clasificación eficiente en tareas binarias, separando clases mediante un hiperplano óptimo.
-            \item Uso de funciones kernel para datos no lineales, aumentando su flexibilidad.
+            \item \textbf{Arquitectura seleccionada.}
+            \item Entrena dos capas LSTM simultáneas: una procesa la secuencia de inicio a fin (Forward) y otra de fin a inicio (Backward).
         \end{itemize} &
         \begin{itemize}
-            \item Clasificación de imágenes en tareas como detección de objetos.
-            \item Usado en reconocimiento de caracteres y rostros.
+            \item Captura el contexto completo de la secuencia.
+            \item Crucial en LSM donde la intención de un movimiento inicial a menudo se clarifica por cómo termina la seña.
         \end{itemize} &
         \begin{itemize}
-            \item Alternativa ligera a las CNN en tareas de clasificación de imágenes.
-            \item Menos eficiente que CNN en grandes conjuntos de datos o problemas altamente dimensionales.
-        \end{itemize} \\
-        \hline
-        K-Nearest Neighbors (KNN) &
-        \begin{itemize}
-            \item Clasificación basada en la cercanía a los vecinos más próximos en el espacio de características.
-            \item Algoritmo intuitivo y fácil de implementar.
-        \end{itemize} &
-        \begin{itemize}
-            \item Reconocimiento de patrones básicos, útil en clasificación de imágenes simples.
-            \item Clasificación en tareas donde la simplicidad y rapidez son clave.
-        \end{itemize} &
-        \begin{itemize}
-            \item Alternativa a CNN en clasificaciones rápidas o simples.
-            \item Puede carecer de precisión frente a CNN en tareas de imágenes complejas.
+            \item \textbf{Elección del sistema:} Proporciona la mayor precisión al entender la "coarticulación" de los gestos.
+            \item Permite distinguir señas con movimientos similares pero contextos diferentes.
         \end{itemize} \\
         \hline
     \end{tabular}
 \end{table}
+
+\paragraph{Justificación de la Elección: Arquitectura Bidirectional LSTM (BiLSTM)}
+La arquitectura \textbf{BiLSTM} fue seleccionada como la columna vertebral del modelo de reconocimiento de señas por su superioridad inherente en el manejo de datos secuenciales con dependencia de contexto. Esta justificación se basa en tres puntos clave:
+
+\begin{enumerate}[label=\arabic*., nosep, itemsep=0pt]
+    \item \textbf{Captura de Contexto Completo:} A diferencia de la LSTM simple, la BiLSTM procesa la secuencia de \textbf{Keypoints} de dos formas: del inicio al final y del final al inicio. Esto es crucial en la Lengua de Señas Mexicana (LSM), donde el significado de un movimiento inicial (e.g., subir la mano) puede depender de la forma en que el gesto concluye. La BiLSTM tiene acceso a ese contexto "futuro" durante el entrenamiento, mejorando drásticamente la precisión.
+    \item \textbf{Manejo de Coarticulación:} La capacidad bidireccional permite a la red modelar la coarticulación de los gestos, es decir, cómo el movimiento de una seña influye o se anticipa al movimiento de la seña siguiente. Esto permite distinguir señas con movimientos muy similares pero con transiciones o terminaciones diferentes.
+    \item \textbf{Separación de Responsabilidades (CNN vs. BiLSTM):} Es fundamental notar que el sistema divide las tareas:
+    \begin{itemize}[nosep, itemsep=0pt] % Aquí se ajusta el espaciado
+        \item Las \textbf{CNN} (a través de \textbf{MediaPipe}) son responsables de la extracción de características espaciales (Keypoints) en cada fotograma.
+        \item La \textbf{BiLSTM} es responsable de analizar la \textbf{dimensión temporal} de esos Keypoints a lo largo de la secuencia de tiempo, lo que constituye la verdadera tarea de reconocimiento de la seña.
+    \end{itemize}
+\end{enumerate}
+Este enfoque garantiza que el modelo utilice la herramienta más avanzada para cada fase del procesamiento, optimizando la precisión del sistema final.
+\clearpage
 
 \subsection{Comparación de lenguajes y frameworks para IaaS}
 
@@ -984,24 +969,191 @@ En la Tabla \ref{tabla_comparativa_iaas} se presenta una comparativa de los prin
     \end{tabular}
 \end{table}
 
+\paragraph{Justificación de la Elección: AWS CloudFormation}
+
+La elección de \textbf{AWS CloudFormation} como framework principal para la gestión de infraestructura como servicio (IaaS) se fundamenta en su capacidad para proporcionar un control exhaustivo y nativo sobre el ciclo de vida de los recursos dentro de la nube de Amazon Web Services (AWS). Aunque alternativas como Terraform ofrecen un enfoque multicloud y AWS SAM simplifica el serverless, CloudFormation se alinea mejor con los requisitos de un sistema robusto y centrado exclusivamente en AWS, por las siguientes razones:
+
+\begin{enumerate}[label=\arabic*., nosep, itemsep=0pt]
+    \item \textbf{Integración Nativa y Profunda:} Al ser una herramienta nativa de AWS, CloudFormation garantiza una integración de primer nivel con todos los servicios de AWS, incluyendo los más recientes y complejos. Esto minimiza los posibles retrasos o incompatibilidades que pueden surgir con herramientas de terceros (como Terraform) al gestionar servicios específicos de AWS.
+    \item \textbf{Gestión de Ciclo de Vida del Stack:} Permite manejar colecciones de recursos (denominadas stacks) como una única unidad. Esta característica es vital para entornos de producción y prueba, ya que asegura que la creación, actualización o eliminación de la infraestructura se realice de manera atómica, garantizando la consistencia y reduciendo el riesgo de dejar recursos huérfanos o en estados inconsistentes.
+    \item \textbf{Seguridad y Gobernanza:} Las plantillas de CloudFormation se validan y procesan a través de los mecanismos de AWS, lo que facilita la implementación de políticas de seguridad y cumplimiento normativo. La creación de Change Sets permite previsualizar exactamente qué recursos serán modificados antes de aplicar los cambios a la infraestructura, ofreciendo una capa crítica de seguridad operacional.
+    \item \textbf{Control de Costos:} Al ser una herramienta declarativa y nativa, CloudFormation proporciona una visión clara de los recursos desplegados dentro de un stack, lo cual es fundamental para el monitoreo y la optimización de costos en la plataforma AWS.
+\end{enumerate}
+
+Este enfoque nativo proporciona la estabilidad, el control y la escalabilidad necesarias para gestionar eficientemente la infraestructura que soporta la aplicación de reconocimiento de secuencias.
+
 \clearpage
+\subsection{Lenguajes de Programación para el Backend}
+
+Para el desarrollo del backend, se ha optado por un enfoque híbrido que aprovecha las fortalezas de dos lenguajes de programación principales: Python y JavaScript (Node.js). Esta estrategia permite optimizar el rendimiento y la eficiencia de costos en la arquitectura de microservicios de AWS. En la \textbf{Tabla \ref{tabla_comparativa_backend}} se presenta una comparación de los lenguajes de programación considerados para el desarrollo de los microservicios en AWS. Esta comparación es crucial para determinar la distribución de responsabilidades, decidiendo qué lenguaje es más eficiente para el cómputo intensivo del modelo BiLSTM y cuál es mejor para la orquestación del servidor.
+
+\begin{table}[H]
+    \centering
+    \caption{Comparación de Lenguajes de Programación para Microservicios y Lógica de Negocio (Backend).}
+    \label{tabla_comparativa_backend}
+    \begin{tabular}{|p{1.8cm}|p{3.5cm}|p{5cm}|p{6cm}|}
+        \hline
+        \textbf{Lenguaje} & \textbf{Rol en el Proyecto} & \textbf{Ventajas Clave} & \textbf{Relevancia para el Proyecto} \\
+        \hline
+        \textbf{Python} &
+        Lógica del \textbf{Modelo BiLSTM}, Preprocesamiento y Tareas Pesadas (EC2/Lambda) &
+        \begin{itemize}[nosep, itemsep=0pt]
+            \item Ecosistema robusto de ML (TensorFlow/Keras).
+            \item Rapidez de prototipado y depuración.
+            \item Legibilidad óptima para manipulación de datos.
+        \end{itemize} &
+        \textbf{Elegido para el cómputo de inferencia}, ya que simplifica la integración directa con las librerías de Deep Learning, siendo el estándar de la industria. \\
+        \hline
+        \textbf{JavaScript} \newline (Node.js) &
+        Servicios de API Gateway, Enrutamiento y Lógica de Negocio (Lambda/Serverless) &
+        \begin{itemize}[nosep, itemsep=0pt]
+            \item Alto rendimiento en operaciones I/O (asíncrono).
+            \item Ecosistema nativo para AWS Serverless (rápida inicialización).
+            \item Curva de aprendizaje baja.
+        \end{itemize} &
+        \textbf{Elegido para la capa de microservicios}, ofreciendo velocidad y eficiencia en el manejo de peticiones web y la comunicación asíncrona. \\
+        \hline
+        \textbf{Go (Golang)} &
+        Servicios de Alto Rendimiento / Alternativa Serverless &
+        \begin{itemize}[nosep, itemsep=0pt]
+            \item Lenguaje compilado, alta velocidad y eficiencia en uso de memoria.
+            \item Excelente manejo de la concurrencia.
+            \item Despliegue de binarios pequeños.
+        \end{itemize} &
+        \textbf{Descartado:} Aunque es rápido, su ecosistema de Deep Learning es inmaduro comparado con Python, lo que complicaría la integración y el mantenimiento del modelo BiLSTM. \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\paragraph{Justificación del Enfoque Híbrido en el Backend}
+La arquitectura de backend utiliza una doble capa para optimizar los recursos. \textbf{JavaScript} se encarga del manejo rápido y asíncrono de las peticiones del \textbf{API Gateway} y la lógica serverless de bajo cómputo, actuando como un orquestador eficiente. Por otro lado, \textbf{Python} es el lenguaje exclusivo para las funciones críticas de \textbf{inferencia del modelo BiLSTM}, garantizando la máxima compatibilidad y rendimiento con las librerías de TensorFlow/Keras. Esta división asegura que cada lenguaje se use para la tarea en la que sobresale, maximizando la eficiencia operativa.
+
+\subsection{Lenguajes de Programación para la Aplicación Cliente}
+
+El desarrollo de la aplicación móvil requiere un lenguaje que asegure el máximo rendimiento y una baja latencia en tareas intensivas como la captura y el procesamiento de video con MediaPipe. En la \textbf{Tabla \ref{tabla_comparativa_client_app}} se analizan las opciones para el desarrollo de la aplicación móvil cliente. La elección se centra en garantizar el máximo rendimiento para las tareas intensivas de video y cámara que requiere la integración con MediaPipe.
+
+\begin{table}[H]
+    \centering
+    \caption{Comparación de Lenguajes y Frameworks para el Desarrollo de Aplicaciones Cliente.}
+    \label{tabla_comparativa_client_app}
+    \begin{tabular}{|p{2.5cm}|p{3.5cm}|p{5cm}|p{5.5cm}|}
+        \hline
+        \textbf{Lenguaje} & \textbf{Plataforma de Despliegue} & \textbf{Ventajas Clave} & \textbf{Desventajas y Decisión} \\
+        \hline
+        \textbf{Kotlin} &
+        Android Nativo / KMM (Multiplataforma) &
+        \begin{itemize}[nosep, itemsep=0pt]
+            \item Lenguaje moderno, conciso y seguro (minimiza errores de null).
+            \item \textbf{Soporte oficial de Google} para el desarrollo de Android.
+            \item Excelente interoperabilidad con Java.
+        \end{itemize} &
+        \textbf{Elección del Cliente:} Proporciona el \textbf{mejor rendimiento nativo} en aplicaciones Android, crucial para el procesamiento en tiempo real de la cámara y la integración eficiente de la capa de MediaPipe. \\
+        \hline
+        \textbf{Java} &
+        Android Nativo (Tradicional) &
+        \begin{itemize}[nosep, itemsep=0pt]
+            \item Amplia base de código legado y documentación.
+            \item Alto rendimiento nativo.
+        \end{itemize} &
+        Es una alternativa viable, pero el lenguaje es más verboso, requiere más código para las mismas funcionalidades y es menos seguro que Kotlin, lo que aumenta el tiempo de desarrollo. \\
+        \hline
+        \textbf{React Native} &
+        iOS / Android (Híbrido) &
+        \begin{itemize}[nosep, itemsep=0pt]
+            \item Una sola base de código para ambas plataformas.
+            \item Amplia comunidad web.
+        \end{itemize} &
+        \textbf{Descartado:} No es adecuado debido a la necesidad de rendimiento \textbf{nativo puro} para tareas intensivas como la integración profunda de la cámara y la latencia en el procesamiento de Keypoints, donde las capas puente pueden ser limitantes. \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\paragraph{Justificación de la Elección de Kotlin}
+Se seleccionó \textbf{Kotlin} como lenguaje principal para la aplicación cliente debido a que es el estándar moderno y oficialmente preferido por Google para el desarrollo de Android. Esta elección asegura una integración de máximo rendimiento con las APIs del sistema operativo y las librerías nativas de la cámara, un requisito indispensable para la baja latencia exigida por el procesamiento de \textbf{MediaPipe} y la comunicación eficiente con el \textbf{API Gateway} del backend. Esto garantiza una experiencia de usuario fluida y receptiva.
 
 \subsection{Tecnologías Utilizadas}
 
-A continuación, se detallan las principales tecnologías que serán utilizadas para el desarrollo del sistema:
+A continuación, se detallan las principales tecnologías que serán utilizadas para el desarrollo, entrenamiento y despliegue del sistema de reconocimiento de LSM, alineadas con la arquitectura BiLSTM y la infraestructura AWS.
 
-\begin{itemize}
-    \item \textbf{MediaPipe Holistic (o API similar)}: Captura y procesamiento de datos de la cámara, utilizada para detectar y rastrear las señas realizadas por el usuario.
-    \item \textbf{TensorFlow}: Framework de aprendizaje profundo utilizado para entrenar y desplegar modelos de redes neuronales, como las Redes Neuronales Convolucionales (CNN) y las LSTM (Long Short-Term Memory).
-    \item \textbf{Amazon S3}: Almacenamiento de fotogramas y datos en la nube, utilizado para almacenar imágenes, videos y otros archivos relacionados con las señas.
-    \item \textbf{Python}: Lenguaje de programación principal para el desarrollo de la lógica del sistema, procesamiento de datos y entrenamiento de modelos.
-    \item \textbf{API de Text-To-Speech}: Generación de mensajes de voz que ayudarán en la interacción del usuario con el sistema.
-    \item \textbf{Microservicios, SQS, Lambda, EventBridge}: Componentes para la arquitectura en la nube (si se opta por esa opción), utilizados para la gestión de servicios distribuidos y la automatización de procesos en la nube.
-    \item \textbf{Tecnologías web}: Sistema web (en conjunto con su framework), utilizado para la interfaz de usuario y la interacción con la plataforma.
-    \item \textbf{Firebase}: Plataforma para el desarrollo de aplicaciones móviles y web, utilizada para la autenticación de usuarios y el almacenamiento en tiempo real de datos.
-    \item \textbf{Amazon EC2}: Servicio de computación en la nube de Amazon Web Services (AWS), utilizado para desplegar y ejecutar instancias de servidor que soporten el procesamiento y la ejecución de tareas del sistema.
-    \item \textbf{Amazon SQS}: Servicio de colas de mensajes de AWS, que se utilizará para gestionar y procesar los mensajes de manera asíncrona dentro de la arquitectura distribuida.
-    \item \textbf{AWS Lambda}: Servicio de computación sin servidor de AWS, empleado para ejecutar código en respuesta a eventos, como la captura y procesamiento de datos.
-    \item \textbf{AWS CloudFormation}: Servicio de AWS para automatizar el despliegue de recursos y la gestión de infraestructura como código, permitiendo la creación y gestión de recursos en la nube de manera automatizada.
-    \item \textbf{AWS SAM (Serverless Application Model)}: Modelo de aplicación sin servidor de AWS, utilizado para desarrollar, probar y desplegar aplicaciones sin servidor en la infraestructura de AWS.
+\begin{itemize}[nosep, itemsep=0.7pt]
+    \item \textbf{Herramientas Core y Modelado}
+    \begin{itemize}[nosep, itemsep=0pt]
+        \item \textbf{Python}: Lenguaje de programación principal para la lógica del sistema, pre-procesamiento de datos y el flujo de trabajo de aprendizaje profundo.
+        \item \textbf{MediaPipe Holistic}: Módulo clave para la extracción de características espaciales (Keypoints de manos, cuerpo y rostro) en tiempo real, proporcionando las secuencias de entrada para la red BiLSTM.
+        \item \textbf{TensorFlow / Keras}: Framework principal de Deep Learning utilizado para construir, entrenar y optimizar la arquitectura de red Bidirectional LSTM (BiLSTM), responsable del análisis de la dimensión temporal.
+    \end{itemize}
+
+    \item \textbf{Arquitectura Cloud y Microservicios (AWS)}
+    \begin{itemize}[nosep, itemsep=0pt]
+        \item \textbf{Amazon API Gateway}: Actúa como el \textbf{punto de entrada unificado} para la interfaz web. Recibe las peticiones de reconocimiento y las enruta a las funciones Lambda correspondientes.
+        \item \textbf{AWS Lambda}: Ejecuta el código de inferencia del modelo BiLSTM en un entorno serverless, escalable y bajo demanda, lo cual optimiza los costos operativos.
+        \item \textbf{Amazon S3 (Simple Storage Service)}: Almacenamiento escalable de objetos para videos fuente, secuencias de Keypoints pre-procesados y los modelos BiLSTM entrenados.
+        \item \textbf{Amazon EC2 (Elastic Compute Cloud)}: Servicio de computación utilizado para desplegar instancias con capacidades de GPU, reservado específicamente para el \textbf{entrenamiento y re-entrenamiento periódico} de los modelos BiLSTM.
+        \item \textbf{API de Text-To-Speech (TTS)}: Servicio integrado (posiblemente Amazon Polly) para la generación de feedback de voz al usuario.
+    \end{itemize}
+
+    \item \textbf{Gestión Operacional y Seguridad}
+    \begin{itemize}[nosep, itemsep=0pt]
+        \item \textbf{AWS Secrets Manager}: Utilizado para almacenar y rotar de forma segura credenciales, claves de API y otros secretos sensibles, separándolos del código de la aplicación.
+        \item \textbf{AWS Systems Manager (SSM) Client}: Herramienta de gestión de operaciones que facilita el acceso remoto seguro y la automatización de tareas en las instancias EC2, sin exponer puertos de red.
+    \end{itemize}
+
+    \item \textbf{Infraestructura como Código (IaC)}
+    \begin{itemize}[nosep, itemsep=0pt]
+        \item \textbf{AWS CloudFormation}: Servicio fundamental para automatizar el despliegue y la gestión de la infraestructura como código (IaC), manteniendo la consistencia y el control atómico de todos los recursos en la nube.
+    \end{itemize}
+    \item \textbf{Lenguajes de Programación}
+    \begin{itemize}[nosep, itemsep=0pt]
+        \item \textbf{Python}: Lenguaje principal para el flujo de trabajo de \textbf{Deep Learning}, el pre-procesamiento de datos y la inferencia del modelo BiLSTM.
+        \item \textbf{JavaScript (Node.js)}: Utilizado para la \textbf{capa de microservicios} y el enrutamiento serverless (AWS Lambda), optimizando el rendimiento de las operaciones I/O.
+        \item \textbf{Kotlin}: Lenguaje de programación nativo moderno, elegido para el desarrollo de la \textbf{aplicación móvil cliente} para garantizar el máximo rendimiento en el procesamiento de video con MediaPipe.
+        \item \textbf{Java}: Utilizado en la aplicación móvil para la interoperabilidad con librerías nativas de Android y para el manejo del SDK, trabajando en conjunto con Kotlin.
+    \end{itemize}
+\end{itemize}
+\clearpage
+\subsection{Análisis de Viabilidad Económica y Costos Operacionales}
+La implementación de la arquitectura de Deep Learning y microservicios en la nube conlleva un costo operativo que debe ser estimado para evaluar la viabilidad del proyecto. A continuación, se presenta un análisis de los costos operativos mensuales proyectados, basados en un escenario de uso moderado (piloto) en la plataforma AWS, con un \textbf{costo total estimado de \$41.04 USD por mes}. La Figura \ref{fig:costo_mensual_aws} ilustra la distribución porcentual de esta inversión, destacando el cómputo como principal factor de gasto.
+
+\begin{figure}[H]
+    \centering
+    \caption{Proyección de Costos Mensuales Estimados (Entorno Piloto) en AWS}
+    \label{fig:costo_mensual_aws}
+    \begin{tikzpicture}
+        \pie[
+            sum=41.04, % Total actualizado
+            text=legend,
+            color={red!60, blue!60, green!60, orange!60, gray!60}
+        ]{
+            21.04/Entrenamiento (EC2/GPU - 51\%), % 51%
+            11.50/Almacenamiento (S3 - 28\%), % 28%
+            5.00/Inferencia (Lambda - 12\%), % 12%
+            2.50/Base de Datos (DynamoDB - 6\%), % 6%
+            1.00/Orquestación/Gestión (API GW/CF - 2\%) % 2% (valor y descripción actualizados)
+        }
+    \end{tikzpicture}
+\end{figure}
+
+La contención de costos se logra, en gran medida, gracias al aprovechamiento estratégico de la \textbf{Capa Gratuita (Free Tier)} de AWS para servicios como AWS Lambda, API Gateway y DynamoDB, que cubren la mayor parte del uso en el entorno piloto. Asimismo, el uso de herramientas \textbf{Open Source} como Python, TensorFlow y MediaPipe elimina las licencias de software, permitiendo que la inversión se centre casi exclusivamente en los recursos de cómputo y almacenamiento esenciales para el entrenamiento del modelo.
+
+\subsubsection*{Recursos Gratuitos (Zero-Cost) Clave}
+
+El proyecto depende de manera crítica de tecnologías de código abierto o capas gratuitas de servicios en la nube para reducir el gasto operacional inicial. Estos recursos no generan costos de licencia o suscripción:
+
+\begin{itemize}[nosep, itemsep=0pt]
+    \item \textbf{Frameworks de Machine Learning y Visión por Computadora (Open Source):}
+    \begin{itemize}[nosep, itemsep=0pt]
+        \item \textbf{Python}, \textbf{TensorFlow / Keras}: Lenguajes y librerías fundamentales de ML.
+        \item \textbf{MediaPipe Holistic}: Módulo clave para la detección de Keypoints de manos y cuerpo.
+    \end{itemize}
+    \item \textbf{Lenguajes de Aplicación (Open Source):}
+    \begin{itemize}[nosep, itemsep=0pt]
+        \item \textbf{Kotlin} y \textbf{Java}: Utilizados para el desarrollo de aplicaciones Android.
+        \item \textbf{JavaScript (Node.js)}: Utilizado para la lógica serverless y el enrutamiento.
+    \end{itemize}
+    \item \textbf{Servicios Cloud (Free Tier - Uso Básico):}
+    \begin{itemize}[nosep, itemsep=0pt]
+        \item \textbf{AWS Lambda} y \textbf{API Gateway}: Cobertura de las primeras ejecuciones y peticiones.
+        \item \textbf{Amazon DynamoDB}: Cobertura de almacenamiento de datos y unidades de capacidad.
+        \item \textbf{AWS CloudFormation}: Servicio de IaC sin costo directo.
+    \end{itemize}
 \end{itemize}

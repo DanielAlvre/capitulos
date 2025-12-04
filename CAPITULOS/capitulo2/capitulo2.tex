@@ -358,6 +358,22 @@ donde:
 En el proyecto de identificación de señas LSM, las LSTM complementan a las CNN al procesar la información temporal de las secuencias de imágenes. Mientras que las CNN extraen características espaciales de cada imagen, las LSTM modelan la evolución de estas características a lo largo del tiempo, capturando la dinámica de las señas. Esta combinación de CNN y LSTM permite un análisis más completo de las señas, mejorando la precisión del sistema de reconocimiento.
 
 En resumen, la incorporación de LSTM en el proyecto de identificación de señas LSM permite un análisis más preciso y robusto de las señas dinámicas, al considerar la información temporal en conjunto con las características espaciales extraídas por las CNN.
+
+\subsubsection{BiLSTM (Bidirectional Long Short-Term Memory)}
+
+La red \textbf{Bidirectional Long Short-Term Memory (BiLSTM)} es una extensión de la arquitectura LSTM que incrementa la capacidad de la red para modelar dependencias a largo plazo en secuencias de datos \cite{ref43}.
+
+[Image of Bidirectional LSTM architecture]
+Las BiLSTM están compuestas por dos capas LSTM separadas que operan en direcciones opuestas sobre la misma secuencia de entrada: una procesa la secuencia de inicio a fin (capa forward) y la otra la procesa de fin a inicio (capa backward).
+
+La principal ventaja de esta arquitectura, introducida por Graves y Schmidhuber, es que permite que la red neuronal acceda al contexto completo de la secuencia en cada punto de tiempo. Mientras que una LSTM estándar solo considera el contexto pasado ($t-1$), la BiLSTM integra tanto la información del pasado como la del \textbf{futuro} ($t+1$) para hacer una predicción en el instante $t$. Esta integración bidireccional es la clave de su rendimiento superior.
+
+Esta característica es fundamental para el reconocimiento de la Lengua de Señas Mexicana (LSM) debido a la complejidad de su gramática y estructura temporal \cite{ref42}. En el contexto de los gestos, esta arquitectura es esencial porque:
+\begin{itemize}
+    \item  Permite modelar la \textbf{coarticulación}, donde el significado de un movimiento inicial de una seña se complementa o adquiere su sentido completo por el gesto que lo sigue.
+    \item  Mejora la precisión al distinguir entre señas que comparten movimientos iniciales o finales, pero que difieren en el contexto global de la secuencia.
+\end{itemize}
+
 \section{Funciones de Activación}
 Las funciones de activación introducen no linealidad en las redes neuronales, permitiendo que  aprendan patrones complejos en los datos. Específicamente, estas funciones determinan si la neurona debe ser activada o no, en función del resultado de la suma ponderada de sus entradas.
 
