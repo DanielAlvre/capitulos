@@ -1,10 +1,10 @@
+% Nota: Este capítulo se incluye y compila a través de main.tex (no es standalone)
 \chapter{Introducción}
-
-La Lengua de Señas Mexicana (LSM) es la lengua natural utilizada por la comunidad sorda en México. La comunicación entre personas sordas y oyentes se ve dificultada por la falta de intérpretes y el desconocimiento generalizado de la LSM, a pesar de la importancia de esta lengua. Este proyecto busca abordar la problemática de la falta de comunicación efectiva entre personas sordas y oyentes en México, específicamente en el contexto médico mediante el desarrollo de un sistema de reconocimiento de señas que utiliza tecnología de aprendizaje profundo (\textit{deep learning}) para traducir la LSM al español.
+La Lengua de Señas Mexicana (LSM) es la lengua natural utilizada por la comunidad sorda en México. La comunicación entre personas sordas y oyentes se ve dificultada por la falta de intérpretes y el desconocimiento generalizado de la LSM, a pesar de la importancia de esta lengua. Este proyecto aborda una parte pequeña de la problemática en la falta de comunicación efectiva entre personas sordas y oyentes en México, específicamente en el contexto médico mediante el desarrollo de un sistema de reconocimiento de señas que utiliza tecnología de aprendizaje profundo (\textit{deep learning}) para traducir la LSM al español.
 
 El sistema se enfoca en el reconocimiento de señas con movimiento, particularmente en el ámbito médico, donde la comunicación clara y precisa es crucial. Para lograr este objetivo, se empleará \textbf{MediaPipe} \cite{ref3} para el seguimiento y procesamiento de los movimientos de las manos, capturando la configuración manual esencial para la interpretación de la LSM. Los modelos de aprendizaje profundo, implementados con \textbf{TensorFlow/Keras} \cite{ref4} , permitirán una mayor precisión en la interpretación de las señas.
 
-Además, la integración de servicios en la nube, como \textbf{AWS S3} y \textbf{SQS} \cite{ref5}, garantizará la escalabilidad y el procesamiento eficiente de los datos. Complementando estas tecnologías, se incorporará una API de \textbf{Text-To-Speech} u otras alternativas similares, permitiendo que el sistema traduzca las señas a palabras tanto visuales como auditivas. Ofreciendo una interacción más integral y accesible, especialmente en contextos donde la comunicación efectiva es fundamental.
+Además, la integración de servicios en la nube, como \textbf{AWS S3} \cite{ref5}, garantizará la escalabilidad y el procesamiento eficiente de los datos. Complementando estas tecnologías, se incorporará una API (de Text-\allowbreak To-\allowbreak Speech) u otras alternativas similares, permitiendo que el sistema traduzca las señas a palabras tanto visuales como auditivas. Ofreciendo una interacción más integral y accesible, especialmente en contextos donde la comunicación efectiva es fundamental.
 
 El objetivo final de este proyecto es cerrar la brecha de comunicación entre personas con discapacidad auditiva y oyentes, promoviendo una mayor inclusión y accesibilidad en México. Al facilitar la interacción en entornos como el médico, este sistema busca empoderar a las personas sordas y mejorar su acceso a servicios esenciales.
 \clearpage
@@ -23,7 +23,7 @@ A partir de los desafíos planteados, surge la siguiente pregunta de investigaci
 \textbf{¿Cómo  diseñar  un  sistema  de  traducción  de  LSM  a  español  que  sea  accesible,  usable  y  relevante  para  pacientes  sordos  y  profesionales  de  la  salud  en  el  contexto  médico  mexicano?}
 \clearpage
 \section{Propuesta de solución}
-Para abordar esta problemática, proponemos un sistema innovador que utiliza tecnologías avanzadas como MediaPipe y TensorFlow/Keras. El objetivo primordial de este sistema es enfocarse en las señas de detención estática. Sin embargo, este es solo el primer paso; se prevé que en caso de contar con tiempo, se podrían incluir otros tipos de señas a través de video (secuencia de fotogramas). Ejemplos de estas otras señas podrían incluir saludos, preguntas básicas o expresiones emocionales. El proceso inicia con el usuario capturando su comunicación en LSM mediante un programa que captura video o imágenes.
+Para abordar esta problemática, se planteó un sistema innovador que utiliza tecnologías avanzadas como MediaPipe y TensorFlow/Keras. El objetivo primordial de este sistema es enfocarse en las señas de detención estática. Sin embargo, es solo el primer paso; se prevé que en caso de contar con tiempo, se podrían incluir otros tipos de señas a través de video (secuencia de fotogramas). Ejemplos de estas otras señas podrían incluir saludos, preguntas básicas o expresiones emocionales. El proceso inicia con el usuario capturando su comunicación en LSM mediante un programa que captura video o imágenes.
 Estos archivos de fotogramas son enviados a un almacenamiento en la nube para su procesamiento.
 
 A través de un microservicio, los fotogramas se procesan para extraer puntos clave que representan las señas, utilizando principalmente la captura de las manos mediante MediaPipe. Estos puntos clave se visualizan en la secuencia de fotogramas representativa de la seña o en la imagen, facilitando la identificación de las posiciones y movimientos correspondientes. Estos datos son empleados para entrenar un modelo de aprendizaje profundo que mejora la precisión de la traducción de LSM a español \cite{ref9}. Una vez entrenado, el modelo permite al usuario traducir las señas que se capturan a través de una cámara.
@@ -35,53 +35,55 @@ El sistema no solo genera una representación visual de la palabra traducida en 
 
 
 
-En la Figura \ref{fig:diagrama_sistema}, se observa el funcionamiento del sistema para la parte del entrenamiento:
+En la Figura \ref{fig:diagrama_sistema}, se observa el funcionamiento del sistema para la parte del entrenamiento y reconocimiento:
 
 % ---  Ajusta el caption para que sea vertical ---
 
 \begin{figure}[H]
-    \includegraphics[scale=0.20]{CAPITULOS/capitulo1/DIAGRAMAINTRO}
+    \includegraphics[scale=0.22]{CAPITULOS/capitulo1/DIAGRAMAINTRO}
     \centering
-    \caption[Diagrama del funcionamiento del entrenamiento del sistema]{Diagrama del funcionamiento del entrenamiento del sistema}
+    \caption[Diagrama del funcionamiento del entrenamiento del sistema]{Diagrama del funcionamiento del entrenamiento y reconocimiento del sistema}
     \label{fig:diagrama_sistema}
-\end{figure}
-
-En la Figura \ref{fig:diagrama_sistema2}, se observa el funcionamiento del sistema para la parte del reconocimiento:
-
-% ---  Ajusta el caption para que sea vertical ---
-
-\begin{figure}[H]
-    \includegraphics[scale=0.5]{CAPITULOS/capitulo1/Diagrama2}
-    \centering
-    \caption[Diagrama del funcionamiento del reconocimiento del sistema]{Diagrama del funcionamiento del reconocimiento del sistema}
-    \label{fig:diagrama_sistema2}
 \end{figure}
 
 Proceso de Conversión del sistema
 
 \begin{enumerate}
-\item Iniciar Grabación o toma de la muestra: El usuario inicia el programa de grabación o toma de fotos.
-\item Captura de Video (secuencia de fotos representativa de la seña) o Fotos: El programa de grabación utiliza la cámara para capturar video o fotos.
-\item Dividir en Fotogramas: El video capturado se divide en fotogramas para un análisis más fácil.
-\item Almacenamiento Local: Los fotogramas se almacenan temporalmente en el almacenamiento local.
-\item Subir Fotogramas a S3: Los fotogramas se suben al servicio de almacenamiento en la nube (AWS S3).
-\item Notificación de Nuevo Archivo: EventBridge notifica que se ha subido un nuevo archivo a S3.
-\item Invocar Función Lambda: EventBridge invoca una función en AWS Lambda para procesar los fotogramas.
-\item Obtener Fotogramas: La función Lambda obtiene los fotogramas desde S3.
-\item Enviar Paquete de Fotogramas a SQS: Lambda envía un paquete de 30 fotogramas (URLs de los archivos en S3) a una cola de mensajes (SQS).
-\item Recibir Datos en Microservicio: El microservicio recibe los datos desde SQS (Comienza con la descarga de los mismos desde S3).
-\item Procesar Frames con MediaPipe: MediaPipe procesa los fotogramas para detectar puntos clave (señas).
-\item Enviar DataFrame: El microservicio envía el DataFrame resultante.
-\item Entrenar Modelo: Un entrenador recibe el DataFrame y utiliza TensorFlow/Keras para entrenar el modelo de traducción.
-\item Guardar Pesos del Modelo: Los pesos entrenados se guardan en el almacenamiento.
-\item Iniciar Traducción por el Usuario: El usuario inicia el programa de traducción.
-\item Capturar Frames en Tiempo Real o Foto: Se captura frames en foto o tiempo real mediante una cámara local o WebSocket.
-\item Predecir Palabra: El modelo predice la palabra correspondiente a las señas capturadas.
-\item Mostrar Palabra en Pantalla: La palabra traducida se muestra en la pantalla.
-\item Genera Audio con Text-To-Speech: Se envía la palabra a una API de Text-To-Speech para generar audio.
-\item Reproducir Audio en Altavoz: El audio generado se reproduce a través de un altavoz.
-\end{enumerate}
+        % --- FASE 1: CLIENTE (Adquisición) ---
+    \item \textbf{Inicio de Adquisición de Datos (Edge):} El usuario inicia el módulo de grabación (\texttt{ActivityCameraNew}) en la aplicación Android.
 
+    \item \textbf{Extracción de Características en Tiempo Real:} La aplicación utiliza MediaPipe en el dispositivo para extraer un vector de 195 características (Pose + Manos + Progreso) frame a frame, aplicando normalización y suavizado.
+
+    \item \textbf{Almacenamiento Local Temporal:} Las secuencias de vectores se guardan temporalmente en archivos .csv dentro del almacenamiento interno del dispositivo móvil.
+
+    \item \textbf{Sincronización a la Nube:} La aplicación sube los archivos CSV generados al bucket de AWS S3 (\texttt{proyecto-lsm-lengua-senas}).
+
+    % --- FASE 2: NUBE (Orquestación y Entrenamiento) ---
+    \item \textbf{Invocación del Entrenamiento:} El administrador invoca la función AWS Lambda (\texttt{trainingHandler}) definiendo los hiperparámetros de la red.
+
+    \item \textbf{Orquestación vía SSM:} La Lambda configura el entorno y envía los comandos de ejecución a la instancia EC2 reservada mediante AWS Systems Manager (SSM).
+
+    \item \textbf{Ingesta de Datos en EC2:} El script de entrenamiento en la EC2 ejecuta \texttt{download.py}, el cual sincroniza los CSVs nuevos directamente desde S3 al disco local del servidor (eliminando la necesidad de colas SQS).
+
+    \item \textbf{Preprocesamiento Vectorial (Data Processor):} El script \texttt{data\_processor.py} transforma los CSVs crudos en tensores H5, calculando la progresión temporal normalizada ($0 \to 1$) para cada secuencia.
+
+    \item \textbf{Entrenamiento del Modelo (BiLSTM):} El \texttt{model\_trainer.py} construye la red neuronal (BiLSTM + Pooling Híbrido) y entrena con los datos procesados para minimizar la pérdida categórica.
+
+    \item \textbf{Conversión y Despliegue:} Al finalizar, el sistema convierte el modelo a formato TFLite optimizado para móviles y sube los artefactos (.tflite y mapa de clases .json) de regreso a S3.
+
+    % --- FASE 3: CLIENTE (Inferencia) ---
+    \item \textbf{Actualización del Modelo en Cliente:} La aplicación Android detecta una nueva versión en S3 y descarga el archivo .tflite actualizado localmente.
+
+    \item \textbf{Inicio de Traducción (Inferencia):} El usuario accede al módulo de reconocimiento en vivo (\texttt{LiveRecognitionActivity}).
+
+    \item \textbf{Procesamiento e Inferencia Local:} La cámara captura frames, MediaPipe extrae los vectores y el intérprete TFLite local predice la seña en tiempo real (sin necesidad de internet ni WebSockets).
+
+    \item \textbf{Validación de Predicción:} Un algoritmo de votación acumula probabilidades consecutivas para confirmar la seña y evitar parpadeos en la detección.
+
+    \item \textbf{Retroalimentación al Usuario:} La palabra traducida se muestra en pantalla sobre la vista de cámara (\texttt{OverlayView}).
+
+    \item \textbf{Síntesis de Voz (TTS):} El motor nativo de Text-To-Speech de Android sintetiza la etiqueta predicha y reproduce el audio mediante el altavoz del dispositivo.
+\end{enumerate}
 \section{Alcances y limitaciones}
 
 
@@ -103,17 +105,17 @@ Por el contrario, es pertinente mencionar lo que no se pretende con este sistema
     \item \textbf{No Reconocimiento de Frases o Textos:} El sistema no busca hacer reconocimiento de frases, o textos de mayor envergadura únicamente de palabras, dado a que la estructura gramatical de la LSM es muy diferente al español, cabe hacer mención que existe el español signado, pero no este no está dentro del enfoque en la problemática a solucionar \cite{ref21}.
     \item \textbf{No Deletreo:} Tampoco se busca hacer el reconocimiento de palabras por medio de deletreo, dado que ya existen sistemas que realizan esta tarea, de igual manera no representa una manera eficiente de expresarse.
 \end{itemize}
+\clearpage
 \section{Justificación}
-Según el Censo de Población y Vivienda 2020 \cite{ref41}, el 5.7\% de la población total de México (7,168,178 personas) tiene algún tipo de discapacidad. De este grupo, el 18\% (1,350,802 personas) presenta dificultades para oír, incluso usando un aparato auditivo. Estas cifras evidencian la necesidad de desarrollar herramientas que permitan la inclusión social y mejoren la calidad de vida de las personas con discapacidad auditiva, al facilitar su acceso a servicios básicos como la salud.
+Según la Encuesta Nacional de la Dinámica Demográfica (ENADID) 2023 \cite{ref41}, el $7.2\%$ de la población de 5 años y más en México ($8.8$ millones de personas) tiene algún tipo de discapacidad. De este grupo, el $19.5\%$ presenta dificultades para oír, incluso usando un aparato auditivo. Estas cifras evidencian la necesidad de desarrollar herramientas que permitan la inclusión social y mejoren la calidad de vida de las personas con discapacidad auditiva, al facilitar su acceso a servicios básicos como la salud.
 
 Para los miles de personas que dominan la Lengua de Señas Mexicana (LSM), este proyecto proporciona una plataforma que les permite transmitir mensajes a quienes no están familiarizados con esta lengua, enfatizando su importancia para la inclusión social \cite{ref16}.
 
-Los estudios muestran que las personas con hipoacusia que tienen un nivel educativo más alto suelen tener un mayor dominio del español, debido a su acceso a recursos como libros e internet. Sin embargo, la falta de señas para ciertos conceptos limita su capacidad comunicativa, lo que a menudo lleva al uso del deletreo de señas en lugar del español signado.  Esta  limitación  puede  generar  dificultades  en  la  comprensión  de  información  compleja  o  técnica,  como  la  que  se  maneja  en  el  ámbito  médico.
+Los estudios muestran que las personas con hipoacusia que tienen un nivel educativo más alto suelen tener un mayor dominio del español, debido a su acceso a recursos como libros e internet. Sin embargo, la falta de señas para ciertos conceptos limita su capacidad comunicativa, lo que a menudo lleva al uso del deletreo de señas en lugar del español signado. Esta limitación puede generar dificultades en la comprensión de información compleja o técnica, como la que se maneja en el ámbito médico.
 
-Este trabajo busca desarrollar un sistema de diccionario de palabras en LSM que permita la traducción de señas a palabras en español, apoyado por la tecnología actual \cite{ref17}. Los diccionarios no solo proveen información lingüística, sino que también desempeñan funciones sociales significativas, como fomentar la identidad cultural y cohesionar a la comunidad \cite{ref18}.  Al  facilitar  la  comunicación  y  el  acceso  a  la  información  en  LSM,  este  proyecto  busca  empoderar  a  las  personas  sordas  y  promover  su  participación  plena  en  la  sociedad.
+Este trabajo busca desarrollar un sistema de diccionario de palabras en LSM que permita la traducción de señas a palabras en español, apoyado por la tecnología actual \cite{ref17}. Los diccionarios no solo proveen información lingüística, sino que también desempeñan funciones sociales significativas, como fomentar la identidad cultural y cohesionar a la comunidad \cite{ref18}. Al facilitar la comunicación y el acceso a vocabulario específico en LSM, este proyecto busca reducir la dependencia del deletreo para conceptos técnicos o complejos. Esta facilitación es fundamental para promover una interacción más clara de las personas sordas en contextos especializados, como el ámbito de la salud.
 
-La función primordial y más conocida de un diccionario es proveer información sobre una lengua, un diccionario además conlleva otras funciones sociales como dar identidad, función histórica y cohesión de la sociedad \cite{ref19}.  En  el  caso  de  la  LSM,  un  diccionario  o  sistema  de  traducción  puede  ser  una  herramienta  clave  para  preservar  y  difundir  esta  lengua,  fortaleciendo  los  lazos  entre  los  miembros  de  la  comunidad  sorda.
-
+La función primordial y más conocida de un diccionario es proveer información sobre una lengua, un diccionario además conlleva otras funciones sociales como dar identidad, función histórica y cohesión de la sociedad \cite{ref19}. En el caso de la LSM, un diccionario o sistema de traducción puede ser una herramienta clave para preservar y difundir esta lengua, fortaleciendo los lazos entre los miembros de la comunidad sorda.
 \section{Metodologia}
 Para el desarrollo de este sistema de reconocimiento de LSM, se adoptó una metodología ágil inspirada en Scrum, la cual se basa en ciclos iterativos de desarrollo conocidos como sprints. Este enfoque, que prioriza la flexibilidad y la colaboración, se adapta de manera ideal a la naturaleza dinámica del proyecto, permitiendo la incorporación de mejoras y ajustes a lo largo del proceso. La adaptación de Scrum a este proyecto implica un enfoque iterativo en el desarrollo del sistema de reconocimiento de LSM. Se priorizarán las funcionalidades esenciales en los primeros sprints, como la captura y el procesamiento de las señas, y se irán incorporando nuevas funcionalidades, como la integración con la nube y la generación de audio, en sprints posteriores.
 
@@ -142,7 +144,7 @@ En la Figura \ref{fig:imagen_scrum} se presenta un esquema de las etapas que con
 
 \subsection{Objetivo general}
 
-Desarrollar un sistema de reconocimiento de señas estáticas de la LSM, con una arquitectura híbrida que combine componentes \textit{on-premise} y en la nube. Se utilizará MediaPipe u otra API de \textit{hand tracking} para la captura y procesamiento de datos, enfocándose en señas de configuración manual o de reposo y parametrizando las principales articulaciones manuales en un sistema de coordenadas rectangulares. A partir de estos datos, se entrenará un modelo de clasificación utilizando TensorFlow para reconocer y asociar las señas a su equivalente en español. La palabra reconocida será reproducida utilizando una API de voz (\textit{speech-to-text}).
+Desarrollar un sistema de reconocimiento de señas estáticas de la LSM, con una arquitectura híbrida que combine componentes \textit{on-premise} y en la nube. Se utilizará MediaPipe u otra API de \textit{hand tracking} para la captura y procesamiento de datos, enfocándose en señas de configuración manual o de reposo y parametrizando las principales articulaciones manuales en un sistema de coordenadas rectangulares. A partir de estos datos, se entrenará un modelo de clasificación utilizando TensorFlow para reconocer y asociar las señas a su equivalente en español. La palabra reconocida será reproducida utilizando una API de voz (\textit{speech-\allowbreak to-\allowbreak text}).
 
 \subsection{Objetivos específicos}
 
@@ -167,7 +169,7 @@ Desarrollar un sistema de reconocimiento de señas estáticas de la LSM, con una
 
     \item \textbf{Desarrollo de la Salida y Configuración:}
         \begin{itemize}
-            \item Implementar un mecanismo de salida claro y accesible para presentar la traducción de la seña reconocida, ya sea en texto, audio (utilizando una API de \textit{Text-To-Speech}) o ambos, según los requisitos del usuario final.
+            \item Implementar un mecanismo de salida claro y accesible para presentar la traducción de la seña reconocida, ya sea en texto, audio (utilizando una API de \textit{Text-\allowbreak To-\allowbreak Speech}) o ambos, según los requisitos del usuario final.
             \item Considerar la posibilidad de desarrollar una interfaz web intuitiva para interactuar con el sistema, si los recursos y el alcance del proyecto lo permiten.
         \end{itemize}
 \end{enumerate}
