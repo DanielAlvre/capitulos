@@ -5,86 +5,123 @@
 Se diseñó el servidor del sistema con los componentes que se observan en la figura \ref{fig:diagrama_componentes}. Esta arquitectura ofrece ventajas significativas en términos de escalabilidad, flexibilidad y mantenibilidad, al permitir la integración de diferentes módulos y la adaptación a las necesidades del sistema.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{CAPITULOS/capitulo5/Untitled} % No se incluye la extensión .pdf
-\caption{Diagrama de componentes del sistema.}
-\label{fig:diagrama_componentes}
+    \centering
+    % Aumentamos el ancho a 1.05 veces el ancho del texto para que ocupe más espacio en la página.
+    \includegraphics[width=1.10\textwidth]{CAPITULOS/capitulo5/arquitectura}
+    \caption{Diagrama de componentes del sistema, detallando el flujo de datos desde la aplicación cliente hasta el modelo de inferencia BiLSTM alojado en AWS.}
+    \label{fig:diagrama_componentes}
 \end{figure}
-\section{Arquitectura del Sistema}
-
 \begin{itemize}
     \item El programa de obtención de muestreo residirá en un entorno on-premise (en el dispositivo del usuario). Se encargará de capturar los datos, realizar un preprocesamiento básico y enviarlos a la nube.
     \item El sistema de almacenamiento de fotogramas, el entrenamiento del modelo y el despliegue del algoritmo de clasificación se llevarán a cabo en la nube, lo que permitirá escalabilidad y automatización de procesos.
     \item La decisión de desplegar el sistema de traducción en la nube o en un entorno on-premise se basará en un análisis de varios factores, como costo y latencia.
 \end{itemize}
 
+\section{Desarrollo y Arquitectura del Sistema de Reconocimiento de Señas}
 
-\section{Desarrollo de un Sistema de Reconocimiento de Señas}
+El sistema de reconocimiento de la Lengua de Señas Mexicana (LSM) se implementa bajo una arquitectura \textbf{Edge-Cloud híbrida}, optimizada para la adquisición de datos en tiempo real y el entrenamiento escalable. Su objetivo es clasificar secuencias de movimiento complejas, traduciendo gestos a texto y, finalmente, a audio.
 
-El sistema de reconocimiento de señas que se desarrollará tiene como objetivo principal la captura y procesamiento de la información de la posición de las falanges de la mano y el antebrazo, utilizando una cámara web. Para el seguimiento de las manos, se empleará \textbf{MediaPipe Holistic} o una API similar de \textbf{hand tracking}, que cumpla con los criterios de precisión, velocidad, facilidad de integración y soporte para el reconocimiento de la \textbf{Lengua de Señas Mexicana (LSM)}.
+\subsection{Captura y Preprocesamiento de Keypoints (Edge/Kotlin)}
 
-Este trabajo se enfoca en la configuración manual de la forma y posición de las manos y antebrazos durante la ejecución de las señas. Es relevante considerar que, al usar una cámara, se presentan ciertas limitaciones en cuanto al campo de visión. Aunque este enfoque ofrece mayor flexibilidad en comparación con algunos sensores, factores como el entorno y la distancia a la cámara pueden afectar la calidad de la captura. Por lo tanto, el sistema estará centrado en la parte superior del cuerpo del usuario, desde los antebrazos hacia arriba, incluyendo las manos, que son las áreas clave para la expresión en LSM.
+El componente de adquisición se ejecuta completamente en el dispositivo móvil (Edge) mediante la aplicación Android, lo que garantiza la mínima latencia y el desacoplamiento del proceso de entrenamiento.
 
-A continuación, se describe el flujo de trabajo del sistema, ilustrado en los diagramas de secuencia. Estos diagramas proporcionan una visión detallada de cómo se lleva a cabo el proceso de captura, procesamiento y predicción de las señas.
+Para el seguimiento, se emplea \textbf{MediaPipe Holistic} (o una API similar de seguimiento de pose y manos). Este servicio cumple un criterio fundamental: la \textbf{conversión de datos visuales (píxeles) a datos numéricos (vectores de características)}.
 
-El flujo de trabajo del sistema se desglosa de la siguiente manera:
+\subsubsection{Vector de Características y Dimensionalidad ($x_t \in \mathbb{R}^{195}$)}
+
+Para cada fotograma $t$, el sistema de Kotlin (\texttt{ActivityCameraNew.kt}) genera un tensor de entrada $\mathbf{x}_t \in \mathbb{R}^{195}$. Este vector está compuesto por la concatenación de la pose, ambas manos, y una característica de contexto temporal. La composición detallada es la siguiente:
 
 \begin{itemize}
-    \item \textbf{Iniciar Grabación/Toma de Fotos}: El usuario inicia el proceso, activando la captura de video o fotos.
-    \item \textbf{Captura y Procesamiento de Datos}: El sistema divide el video en frames y almacena los datos localmente antes de subirlos a la nube.
-    \item \textbf{Almacenamiento y Notificación}: Los frames se almacenan en un bucket de S3, y se envían notificaciones a través de \textbf{EventBridge}.
-    \item \textbf{Invocación de Microservicios}: Un microservicio se activa para procesar los frames, utilizando \textbf{MediaPipe} para extraer las características relevantes de las manos y antebrazos.
-    \item \textbf{Entrenamiento y Predicción}: Los modelos de aprendizaje automático se entrenan con los datos procesados. Cuando el usuario inicia la traducción, el sistema captura nuevos frames, predice las palabras en base a un modelo local y genera el audio correspondiente a la seña.
+    \item \textbf{Pose Corporal (68-D):} 17 puntos clave (keypoints) de la parte superior del cuerpo, donde cada punto se representa con 4 dimensiones. Se incluyen las coordenadas \textbf{x}, \textbf{y}, \textbf{z} y la \textbf{visibilidad} ($v$).
+    $$ 17 \text{ pts} \times 4 \text{ dims} = 68 \text{ dimensiones} $$
+    \item \textbf{Manos (126-D):} 21 puntos clave por mano. Cada punto se representa con 3 dimensiones ($\text{x, y, z}$), totalizando 63 dimensiones por mano.
+    $$ (21 \text{ pts} \times 3 \text{ dims}) \times 2 \text{ manos} = 126 \text{ dimensiones} $$
+    \item \textbf{Canal de Progreso Temporal (1-D):} Una característica cuyo valor es calculado durante el preprocesamiento en el Cloud por \texttt{data\_processor.py}. Este canal normaliza el tiempo transcurrido de la seña en el rango $[0, 1]$, y es crucial para que el modelo identifique el ritmo de ejecución.
+    $$ 1 \text{ dimensión (Progreso)} $$
 \end{itemize}
 
-El sistema no solo tiene como objetivo el reconocimiento preciso de las señas, sino también la facilitación de la comunicación mediante la generación de audio en tiempo real, que se reproducirá para el usuario. Además, el enfoque en la parte superior del cuerpo garantiza una captura adecuada de la expresión manual, fundamental para el reconocimiento de la LSM.
+El vector de entrada final, $\mathbf{x}_t$, tiene una longitud constante de 195 dimensiones para el entrenamiento BiLSTM:
+$$ 1 (\text{Progreso}) + 68 (\text{Pose}) + 126 (\text{Manos}) = \mathbf{195 \text{ dimensiones}} $$
+$$ \mathbf{x}_t \in \mathbb{R}^{195} \quad \text{donde } t \in [1, T] $$
+\textbf{Normalización y Suavizado (Smoothing)}
 
-En el diagrama de secuencia a continuación ilustran el flujo completo del sistema. En el primer diagrama (Figura \ref{fig:diagrama_composicion}), se describe el proceso general desde la captura de los datos hasta su procesamiento.
+Antes de guardar los datos en \textbf{.csv}, los keypoints se someten a dos procesos matemáticos que mejoran la robustez del modelo:
+\begin{itemize}[
+    nosep,
+    itemsep=0pt,
+    topsep=0pt,
+    partopsep=0pt,
+    parsep=0pt
+]
+    \item \textbf{Normalización Espacial:} Se escalan las coordenadas para garantizar la invariancia a la distancia y resolución de la cámara.
+    \item \textbf{Suavizado Temporal:} El código Kotlin aplica un \textbf{filtrado exponencial} (Exponential Moving Average) a las coordenadas para mitigar el jitter o ruido de alta frecuencia, asegurando que el modelo BiLSTM reciba trayectorias de movimiento estables.
+\end{itemize}
+
+\textbf{Manejo de Secuencias Variables (Padding y Masking)}
+
+Dado que la duración de las señas varía, los keypoints se almacenan en secuencias de longitud variable $T$. Para el entrenamiento de la red \textbf{BiLSTM}, el preprocesamiento en el Cloud utiliza \textbf{padding} (relleno) para que todas las secuencias tengan una longitud máxima $T_{max}$. Posteriormente, el modelo (implementado en \texttt{model\_constructor.py}) emplea capas de \textbf{Masking} para ignorar las entradas de relleno (ceros), lo que permite al BiLSTM analizar solo los datos reales de la seña.
+
+\subsection{Flujo de Trabajo del Sistema (Orquestación, Entrenamiento y Despliegue)}
+
+Una vez que las secuencias de keypoints son procesadas en el cliente y sincronizadas como \textbf{.csv} a S3, comienza la fase Cloud. El flujo de trabajo completo y la interacción de los componentes se ilustra en la \textbf{Figura \ref{fig:diagrama_composicion}} para el proceso de adquisición y entrenamiento:
+
 \begin{figure}[H]
-    \includegraphics[scale=0.13]{CAPITULOS/capitulo5/parte1.png}
+    \includegraphics[scale=0.15]{CAPITULOS/capitulo5/parte1.png}
     \centering
-    \caption[Diagrama de secuencia composición del sistema ]{Diagrama de secuencia composición del sistema}
+    \caption[Diagrama de secuencia composición del sistema ]{Diagrama de secuencia: Adquisición de Datos y Flujo de Entrenamiento (Fases 1 y 2).}
     \label{fig:diagrama_composicion}
 \end{figure}
 
+El flujo se desglosa en tres fases principales:
+
 \begin{itemize}
-    \item \textbf{Proceso de Muestreo}
+    \item \textbf{Fase 1: Adquisición de Keypoints (Cliente)}
+    Esta fase se desarrolla íntegramente en el \textbf{Dispositivo Móvil (Edge)} y abarca los \textbf{Pasos 1 a 5} de la \textbf{Figura \ref{fig:diagrama_composicion}}.
     \begin{itemize}
-        \item El proceso de reconocimiento comienza cuando el usuario realiza un gesto específico de inicio, como alzar la mano.
-        \item A partir de ese momento, se capturan fotogramas (frames) de la seña.
-        \item Los fotogramas capturados se almacenan en la nube (por ejemplo, Amazon S3).
-        \item Los datos almacenados serán procesados posteriormente.
+        \item \textbf{Captura y Preprocesamiento (Pasos 1-3):} El \textbf{Usuario} inicia la grabación (Paso 1). El sistema \textbf{Edge} (Kotlin) utiliza \textbf{MediaPipe} para capturar los frames, extraer los 195 keypoints por fotograma y aplicar los procesos de normalización y suavizado (Pasos 2 y 3).
+        \item \textbf{Sincronización a S3 (Pasos 4-5):} La secuencia preprocesada se genera como un archivo \textbf{.csv} (Paso 4) y se sube de forma asíncrona al bucket de \textbf{AWS S3} para el entrenamiento (Paso 5).
     \end{itemize}
 
-    \item \textbf{Proceso de Extracción de Datos y Entrenamiento}
-    \begin{itemize}
-        \item La API de MediaPipe Holistic (u otra similar) se encargará de procesar los fotogramas y extraer la posición de los puntos de referencia relevantes en las manos y antebrazos.
-        \item Se recopilan suficientes muestras de entrenamiento.
-        \item Un microservicio en Python con TensorFlow o Keras entrenará un modelo de aprendizaje profundo.
-        \item El modelo entrenado se desplegará en la nube para garantizar escalabilidad y manejo eficiente de las solicitudes de entrenamiento.
-    \end{itemize}
+    \item \textbf{Fase 2: Orquestación y Entrenamiento (Cloud)}
+    Esta fase es asíncrona y corre en los componentes de \textbf{AWS Cloud}, abarcando los \textbf{Pasos 6 a 11} de la \textbf{Figura \ref{fig:diagrama_composicion}}.
 
-    \item \textbf{Reconocimiento y Traducción de Señas}
-    \begin{itemize}
-        \item El sistema realiza el reconocimiento de las señas utilizando el modelo entrenado.
-        \item Las señas reconocidas se traducen a texto o audio.
-        \item El sistema proporciona una respuesta en tiempo real, facilitando la comunicación.
-    \end{itemize}
+    \begin{enumerate}
+        \item[\textbf{Paso 6:}] El administrador inicia el proceso de entrenamiento.
+        \item[\textbf{Paso 7:}] Una función \textbf{AWS Lambda} actúa como \textbf{Orquestador}, asegurando que la instancia EC2/GPU esté activa. Utiliza \textbf{AWS Systems Manager (SSM)} para enviar una orden remota de ejecución (\texttt{run\_training.py}) a la instancia \textbf{EC2/GPU}.
+        \item[\textbf{Paso 8:}] El script \texttt{run\_training.py} en la EC2 invoca el módulo \texttt{download.py}, que \textbf{sincroniza} y \textbf{descarga} los archivos \textbf{.csv} nuevos y existentes desde \textbf{S3} al almacenamiento local de la instancia.
+        \item[\textbf{Paso 9:}] El script \texttt{run\_training.py} llama al módulo \texttt{data\_processor.py}, que \textbf{transforma} los archivos \textbf{.csv} en tensores optimizados (.h5) listos para la librería Keras.
+        \item[\textbf{Paso 10:}] El script \texttt{model\_trainer.py} construye y entrena la red \textbf{Bidirectional LSTM (BiLSTM)}, utilizando los tensores (.h5) generados en el paso anterior.
+        \item[\textbf{Paso 11:}] Finalizado el entrenamiento, el modelo entrenado se convierte a \textbf{.tflite} (el formato de inferencia) y se \textbf{sube} a \textbf{S3} para su posterior distribución y uso por la aplicación móvil.
+    \end{enumerate}
+
 \end{itemize}
 
+El algoritmo \textbf{BiLSTM} clasifica la secuencia de vectores, realizando un mapeo de la trayectoria de los puntos de referencia a la seña correspondiente. La arquitectura BiLSTM es fundamental porque permite capturar la dependencia temporal en ambas direcciones (pasado y futuro).
 
-El algoritmo entrenado clasificará la seña emitida, comparándola con las señas previamente clasificadas y entradas. Para ello, utilizará la información de la posición de los puntos de referencia proporcionada por la API de hand tracking y realizará un mapeo a la configuración manual de la seña, como entrada al modelo. Una vez que se logre el reconocimiento de una seña dentro de la LSM, el sistema proporcionará la traducción al español, seguida de un mensaje de voz generado mediante una API de Text-To-Speech.
-
-En este segundo diagrama (Figura \ref{fig:diagrama_procesamiento}), se profundiza en las etapas posteriores, que incluyen el entrenamiento del modelo y la predicción de las palabras.
-
+El desglose detallado de la arquitectura de predicción en el cliente se profundiza a continuación en la \textbf{Figura \ref{fig:diagrama_procesamiento}}:
 
 \begin{figure}[H]
-    \includegraphics[scale=0.13]{CAPITULOS/capitulo5/parte2.png}
+    \includegraphics[scale=0.18]{CAPITULOS/capitulo5/parte2.png}
     \centering
-    \caption[Diagrama de secuencia procesamiento y predicción del sistema ]{Diagrama de secuencia procesamiento y predicción del sistema}
+    \caption[Diagrama de secuencia procesamiento y predicción del sistema ]{Diagrama de secuencia: Flujo de Inferencia y Predicción en Tiempo Real (Fase 3).}
     \label{fig:diagrama_procesamiento}
 \end{figure}
 
+\begin{itemize}
+    \item \textbf{Fase 3: Inferencia en Tiempo Real (Edge)}
+    Esta fase se activa al momento de la traducción en vivo y se detalla en los \textbf{Pasos 12 a 19} de la \textbf{Figura \ref{fig:diagrama_procesamiento}}.
+
+    \begin{enumerate}
+        \item[\textbf{Paso 12:}] El \textbf{Usuario} inicia el modo de traducción en tiempo real en la aplicación móvil.
+        \item[\textbf{Paso 13:}] El sistema \textbf{Edge} (Kotlin) captura los frames de la cámara y utiliza \textbf{MediaPipe} para extraer, normalizar y suavizar la secuencia de keypoints.
+        \item[\textbf{Paso 14:}] La secuencia de 195 keypoints se alimenta al \textbf{Intérprete TFLite} (que contiene el modelo BiLSTM optimizado).
+        \item[\textbf{Paso 15:}] El \textbf{Intérprete TFLite} ejecuta la inferencia localmente y \textbf{predice} la clase (seña) con la mayor probabilidad.
+        \item[\textbf{Paso 16:}] La clase clasificada (ej. 'HOLA') se \textbf{traduce} y mapea al texto español correspondiente.
+        \item[\textbf{Paso 17:}] El sistema solicita al motor \textbf{Text-To-Speech (TTS)} nativo de Android que genere el audio de la palabra traducida.
+        \item[\textbf{Paso 18:}] El motor \textbf{TTS} reproduce el audio al \textbf{Usuario}.
+        \item[\textbf{Paso 19:}] Simultáneamente, el texto traducido se \textbf{muestra} en pantalla al \textbf{Usuario}.
+    \end{enumerate}
+\end{itemize}
 
 \clearpage
 
@@ -1096,6 +1133,7 @@ Esta pantalla está diseñada para los usuarios con rol de administrador y les p
     \item \textbf{Editar descripciones:} Facilita la modificación de descripciones asociadas a las señas existentes.
     \item \textbf{Gestión multimedia:} Da la opción de agregar imágenes o videos relacionados con las señas.
 \end{itemize}
+
 %\subsection{Vista general del aplicativo}
 
 %\begin{figure}[H] % [H] asegura que la imagen quede exactamente aquí
@@ -1114,6 +1152,7 @@ Esta pantalla está diseñada para los usuarios con rol de administrador y les p
 %    \item \textbf{Mapa de navegación:} Muestra las conexiones entre las distintas secciones de la aplicación.
 %    \item \textbf{Estructura jerárquica:} Presenta una jerarquía clara de las pantallas, diferenciando los roles de los usuarios (general y administrador).
 %\end{itemize}
+
 \section{Interfaz de Usuario - Aplicación Local}
 
 La aplicación local está diseñada para ejecutarse en un equipo de cómputo equipado con una cámara web, brindando una experiencia interactiva en tiempo real. La interfaz es intuitiva y fácil de usar, permitiendo a los usuarios escuchar las señas reconocidas a través del análisis de los puntos clave detectados por Mediapipe. En la Figura~\ref{fig:pantalla-local} se presenta una demostración del funcionamiento del aplicativo.
