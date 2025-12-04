@@ -2,28 +2,27 @@
 
 \section{Medidas de tendencia central}
 
-Las medidas de tendencia central son herramientas estadísticas que nos permiten resumir la localización de los datos, es decir, nos ayudan a identificar el valor alrededor del cual se centran los datos. Estas medidas son esenciales para el análisis de datos en cualquier investigación, incluyendo el análisis de las muestras de Lengua de Señas Mexicana (LSM).
+Las medidas de tendencia central son herramientas estadísticas que permiten resumir la localización de los datos, es decir, ayudan a identificar el valor alrededor del cual se centran los datos. Estas medidas son esenciales para el análisis de datos en cualquier investigación, incluyendo el análisis de las muestras de Lengua de Señas Mexicana (LSM).
 
 \textbf{Medidas de tendencia central:}
 
 \textbf{Media:}
 
-La media aritmética es el valor obtenido al sumar todos los valores de un conjunto de datos y dividir entre el número de datos. En el análisis de LSM, la media puede utilizarse para calcular la posición promedio de las manos en una seña.
+La media aritmética es el valor obtenido al sumar todos los valores de un conjunto de datos y dividir entre el número de datos. En el análisis de LSM, la media puede utilizarse para calcular la posición promedio de las manos en una seña. La ecuación para su cálculo se puede observar en la Ecuación \ref{eq:media}.
 
-\indexedequation{Media aritmética}{
-\begin{equation}
-    \bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}
-    \label{eq:media}
-\end{equation}
+\indexedequation{Ecuación 1. Media aritmética}{
+    \begin{equation}
+        \bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}
+        \label{eq:media}
+    \end{equation}
 }
 
 
 \textbf{Varianza:}
 
-La varianza es una medida de dispersión que indica cuánto varían los datos alrededor de la media. Una varianza alta indica que los datos están más dispersos, mientras que una varianza baja indica que los datos están más agrupados alrededor de la media.
+La varianza ($\sigma^2$) es una medida de dispersión que indica la variabilidad de los datos al medir el promedio de las diferencias al cuadrado de cada dato respecto a la media. Una varianza alta indica que los datos están más dispersos. Debido a que sus unidades están elevadas al cuadrado, no se interpreta directamente en las unidades originales de la seña. La ecuación para calcular la varianza se muestra en la Ecuación \ref{eq:varianza}.
 
-La fórmula para calcular la varianza es:
-\indexedequation{Varianza}{
+\indexedequation{Ecuación 2. Varianza}{
     \begin{equation}
         \sigma^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}
         \label{eq:varianza}
@@ -33,14 +32,13 @@ La fórmula para calcular la varianza es:
 
 \textbf{Desviación Estándar:}
 
-La desviación estándar es una medida de dispersión que indica cuánto varían los datos alrededor de la media. Una desviación estándar alta indica que los datos están más dispersos, mientras que una desviación estándar baja indica que los datos están más agrupados alrededor de la media.
+La desviación estándar ($\sigma$) es una medida de dispersión que se obtiene como la raíz cuadrada de la varianza. Indica cuánto varían los datos alrededor de la media y se expresa en las mismas unidades que los datos originales, lo cual facilita su interpretación como la dispersión promedio de los puntos articulares de la mano en la seña. La ecuación para calcular la desviación estándar se puede observar en la Ecuación \ref{eq:desviacion_estandar}.
 
-La fórmula para calcular la desviación estándar es:
-\indexedequation{Desviación estándar}{
-\begin{equation}
-    \sigma = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}}
-    \label{eq:desviacion_estandar}
-\end{equation}
+\indexedequation{Ecuación 3. Desviación estándar}{
+    \begin{equation}
+        \sigma = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}}
+        \label{eq:desviacion_estandar}
+    \end{equation}
 }
 
 \section{MediaPipe Holistic}
@@ -458,7 +456,7 @@ La función Softmax es frecuentemente utilizada en modelos de clasificación mul
 
 \indexedequation{ Función de activación Softmax}
 \sigma(z)_j = \frac{e^{z_j}}{\sum_{k=1}^K e^{z_k}} \label{eq:softmax}
-}
+
 
 
 Las funciones de activación juegan un papel crucial en la reducción de la complejidad computacional. Esto es particularmente relevante, dado que se ejecutan para cada neurona en la red, para cada muestra y en cada ciclo de entrenamiento. Por ejemplo, con un conjunto de 1500 muestras y 10 características en una red con 4 capas de 64 neuronas cada una, esto puede traducirse en millones de ejecuciones en cada iteración de entrenamiento.
