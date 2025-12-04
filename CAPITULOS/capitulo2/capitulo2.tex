@@ -10,7 +10,7 @@ Las medidas de tendencia central son herramientas estadísticas que permiten res
 
 La media aritmética es el valor obtenido al sumar todos los valores de un conjunto de datos y dividir entre el número de datos. En el análisis de LSM, la media puede utilizarse para calcular la posición promedio de las manos en una seña. La ecuación para su cálculo se puede observar en la Ecuación \ref{eq:media}.
 
-\indexedequation{Ecuación 1. Media aritmética}{
+\indexedequation{Ecuación  Media aritmética}{
     \begin{equation}
         \bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}
         \label{eq:media}
@@ -22,7 +22,7 @@ La media aritmética es el valor obtenido al sumar todos los valores de un conju
 
 La varianza ($\sigma^2$) es una medida de dispersión que indica la variabilidad de los datos al medir el promedio de las diferencias al cuadrado de cada dato respecto a la media. Una varianza alta indica que los datos están más dispersos. Debido a que sus unidades están elevadas al cuadrado, no se interpreta directamente en las unidades originales de la seña. La ecuación para calcular la varianza se muestra en la Ecuación \ref{eq:varianza}.
 
-\indexedequation{Ecuación 2. Varianza}{
+\indexedequation{Ecuación  Varianza}{
     \begin{equation}
         \sigma^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}
         \label{eq:varianza}
@@ -34,7 +34,7 @@ La varianza ($\sigma^2$) es una medida de dispersión que indica la variabilidad
 
 La desviación estándar ($\sigma$) es una medida de dispersión que se obtiene como la raíz cuadrada de la varianza. Indica cuánto varían los datos alrededor de la media y se expresa en las mismas unidades que los datos originales, lo cual facilita su interpretación como la dispersión promedio de los puntos articulares de la mano en la seña. La ecuación para calcular la desviación estándar se puede observar en la Ecuación \ref{eq:desviacion_estandar}.
 
-\indexedequation{Ecuación 3. Desviación estándar}{
+\indexedequation{Ecuación Desviación estándar}{
     \begin{equation}
         \sigma = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}}
         \label{eq:desviacion_estandar}
@@ -116,12 +116,12 @@ El enfoque híbrido combina el procesamiento local en el dispositivo del usuario
 AWS proporciona una amplia gama de servicios en la nube que son fundamentales para el proyecto:
 \begin{itemize}
     \item \textbf{Buckets S3:} Almacenamiento escalable y seguro para grandes volúmenes de datos de LSM, como videos y modelos de aprendizaje profundo.
-    \item \textbf{Colas SQS:} Facilitan la comunicación asincrónica entre los diferentes microservicios del sistema, permitiendo el procesamiento eficiente y desacoplado de solicitudes de traducción.
+    \item \textbf{EC2:} Facilitan la arquitectura para el correcto uso del entrenador en python.
     \item \textbf{Funciones Lambda:} Ejecutan código sin necesidad de aprovisionar o administrar servidores, lo que permite escalar automáticamente el procesamiento de solicitudes de traducción según la demanda \cite{ref5}.
 \end{itemize}
 
 \section{Lingüística de la Lengua de Señas Mexicana (LSM)}
-La LSM, como cualquier lengua natural, posee una gramática compleja que incluye aspectos como la configuración manual, la ubicación, la orientación y el movimiento de las manos, así como las expresiones faciales. El proyecto incorpora conocimientos lingüísticos de la LSM para asegurar una traducción precisa y culturalmente apropiada. La Matriz Segmental, que describe la estructura de las señas en términos de segmentos secuenciales, es una herramienta clave para el análisis y la representación de las señas en el sistema \cite{ref36}.
+La LSM, como cualquier lengua natural, posee una gramática compleja que incluye aspectos como la configuración manual, la ubicación, la orientación y el movimiento de las manos, así como las expresiones faciales. El proyecto incorpora conocimientos lingüísticos de la LSM para asegurar una traducción adecuada y culturalmente apropiada. La Matriz Segmental, que describe la estructura de las señas en términos de segmentos secuenciales, es una herramienta clave para el análisis y la representación de las señas en el sistema \cite{ref36}.
 
 \subsection{Composición de una seña en la Lengua de Señas Mexicana (LSM)}
 
@@ -192,24 +192,21 @@ El proyecto adopta una arquitectura de microservicios en la parte del entrenamie
 Las redes neuronales son un conjunto de algoritmos inspirados en la estructura del cerebro humano, diseñados para reconocer patrones. Se componen de nodos interconectados, organizados en capas, que procesan y transmiten información.
 \subsection{Redes Neuronales Convolucionales (CNN)}
 
-Las Redes Neuronales Convolucionales (CNN) son una red neuronal profunda con gran eficacia en el procesamiento de imágenes y videos. Esta capacidad se debe a su estructura, enfoca analizar datos organizados en forma de grilla, como es el caso de las imágenes. En el contexto de la traducción de la Lengua de Señas Mexicana (LSM), las CNN tienen un rol fundamental, ya que facilitan el análisis de las imágenes que capturan las señas realizadas por el usuario.
+Las Redes Neuronales Convolucionales (CNN) son una red neuronal profunda con gran eficacia en el procesamiento de imágenes y videos. Esta capacidad se debe a su estructura, enfocada en analizar datos organizados en forma de grilla, como es el caso de las imágenes. En el contexto de la traducción de la Lengua de Señas Mexicana, las CNN tienen un rol fundamental, ya que facilitan el análisis de las imágenes que capturan las señas realizadas por el usuario.
 
 Las CNN se caracterizan por la inclusión de capas convolucionales. Estas capas emplean filtros (kernels), que se deslizan sobre la imagen de entrada para identificar y extraer características relevantes.
 
 
-\section{Convolución: Definición General}
+\section{Convolución: Definición General (Tiempo Continuo)}
 
-La convolución  se puede definir como la integral del producto de dos funciones después de desplazar una de ellas una distancia $t$, como se observa en la ecuación \ref{eq:convolucion_continua}:
+La convolución se puede definir como la integral del producto de dos funciones después de desplazar una de ellas una distancia $t$. Esta definición para la señal continua $x(t)$ y el kernel $w(t)$ se observa en la Ecuación \ref{eq:convolucion_continua}:
 
-
-\indexedequation{Convolucion Definición general}{
-    f(x) = \begin{equation}
-               S(t) = \int_{-\infty}^{\infty} x(a)w(t-a) da
-               \label{eq:convolucion_continua}
+\indexedequation{Ecuación  Convolucion Continua}{
+    \begin{equation}
+        S(t) = (x * w)(t) = \int_{-\infty}^{\infty} x(a)w(t-a) da
+        \label{eq:convolucion_continua}
     \end{equation}
 }
-
-
 
 donde:
 
@@ -222,26 +219,30 @@ donde:
 La salida ($S$) se conoce como mapa de características.
 
 
-\subsection{Convolución Discreta}
+\subsection{Convolución en Tiempo Discreto}
 
-Al tener que procesar datos en una computadora, el tiempo y la señal de entrada se discretizan.  En consecuencia, la operación de convolución se adapta al dominio discreto, como se expresa en la ecuación \ref{eq:convolucion_discreta}:
+Al tener que procesar datos en una computadora, el tiempo y la señal de entrada se discretizan. En consecuencia, la operación de convolución se adapta al dominio discreto, donde $n$ y $k$ son índices enteros. El cálculo se expresa en la Ecuación \ref{eq:convolucion_discreta}:
 
-\indexedequation{Convolucion Discreta}{
+\indexedequation{Ecuación  Convolucion Discreta}{
     \begin{equation}
-        S(t) = (x * w)(t) = \sum_{a = -\infty}^{\infty} x(a)w(t-a)
+        S(n) = (x * w)(n) = \sum_{k = -\infty}^{\infty} x(k)w(n-k)
         \label{eq:convolucion_discreta}
     \end{equation}
 }
 
+donde:
 
-
-
+\begin{itemize}
+    \item  $x(k)$ Es la señal de entrada discretizada.
+    \item  $w(n-k)$ Es la segunda función (kernel) desplazada una distancia $n$.
+    \item  $S(n)$ Es la función resultante de operar la convolución discretizada.
+\end{itemize}
 
 \subsection{Convolución en 2 Dimensiones}
 
-Las imágenes son datos bidimensionales, por lo que la convolución se extiende a dos dimensiones. Si $I$ representa la imagen de entrada y $K$ representa el kernel, la convolución 2D se define como:
+Las imágenes son datos bidimensionales, por lo que la convolución se extiende a dos dimensiones. Si $I$ representa la imagen de entrada y $K$ representa el kernel, la convolución 2D se muestraen la Ecuación \ref{eq:convolucion_2d}:
 
-\indexedequation{Convolución en 2 Dimensiones}{
+\indexedequation{Ecuación Convolución en 2 Dimensiones}{
     \begin{equation}
         S(i,j) = (I * K)(i,j) =  \sum_{m} \sum_{n} I(m,n) K(i-m, j-n)
         \label{eq:convolucion_2d}
@@ -257,6 +258,7 @@ donde:
     \item $I(m,n)$ representa el valor del píxel en la posición $(m,n)$ de la imagen de entrada.
     \item $K(i-m,j-n)$ representa el valor del elemento en la posición $(i-m,j-n)$ del kernel.
 \end{itemize}
+El proceso de aplicación de esta operación se ilustra visualmente en la Figura \ref{fig:accion_convolucion}, donde se muestra cómo el kernel se desliza sobre la imagen de entrada para generar el mapa de características.
 
 \begin{figure}[h]
     \includegraphics[width=0.9\textwidth]{CAPITULOS/capitulo2/imagenpresentacion}
@@ -274,7 +276,7 @@ Las Redes Neuronales Recurrentes (RNN) constituyen una clase de red neuronal art
 
 \subsubsection{LSTM (Long Short-Term Memory)}
 
-Las LSTM (Long Short-Term Memory) son una variante de las RNN que aborda el problema del desvanecimiento del gradiente, un obstáculo frecuente en el entrenamiento de RNN tradicionales. Este problema dificulta la captura de dependencias a largo plazo en las secuencias de datos. Las LSTM, con su arquitectura de memoria a corto y largo plazo, superan esta limitación y permiten modelar secuencias más extensas y complejas.
+Las LSTM (Long Short Short-Term Memory) son una variante de las RNN que aborda el problema del desvanecimiento del gradiente, un obstáculo frecuente en el entrenamiento de RNN tradicionales. Este problema dificulta la captura de dependencias a largo plazo en las secuencias de datos. Las LSTM, con su arquitectura de memoria a corto y largo plazo, superan esta limitación y permiten modelar secuencias más extensas y complejas.
 
 \paragraph{Arquitectura de una celda LSTM}
 
@@ -288,17 +290,55 @@ Una celda LSTM está compuesta por tres puertas principales:
 
 \paragraph{Ecuaciones de una celda LSTM}
 
-Las siguientes ecuaciones describen el funcionamiento de una celda LSTM:
+El funcionamiento de una celda LSTM se describe mediante las seis ecuaciones de la \textbf{Puerta de entrada} (\ref{eq:lstm_input}), \textbf{Puerta de olvido} (\ref{eq:lstm_forget}), \textbf{Puerta de salida} (\ref{eq:lstm_output}), el \textbf{Candidato} al nuevo estado (\ref{eq:lstm_candidate}), el \textbf{Estado de la celda} (\ref{eq:lstm_cell_state}), y el \textbf{Estado oculto} (\ref{eq:lstm_hidden_state}):
 
-\begin{align*}
-    i_t &= \sigma(W_{xi} x_t + W_{hi} h_{t-1} + b_i) \\
-    f_t &= \sigma(W_{xf} x_t + W_{hf} h_{t-1} + b_f) \\
-    o_t &= \sigma(W_{xo} x_t + W_{ho} h_{t-1} + b_o) \\
-    \tilde{c}_t &= tanh(W_{xc} x_t + W_{hc} h_{t-1} + b_c) \\
-    c_t &= f_t * c_{t-1} + i_t * \tilde{c}_t \\
-    h_t &= o_t * tanh(c_t)
-\end{align*}
+% 1. Puerta de entrada (Input Gate)
+\indexedequation{Ecuación de la Puerta de Entrada}{
+    \begin{equation}
+        i_t = \sigma(W_{xi} x_t + W_{hi} h_{t-1} + b_i)
+        \label{eq:lstm_input} % VUELVE A ESTAR DENTRO DEL ENTORNOS equation
+    \end{equation}
+}
 
+% 2. Puerta de olvido (Forget Gate)
+\indexedequation{Ecuación de la Puerta de Olvido}{
+    \begin{equation}
+        f_t = \sigma(W_{xf} x_t + W_{hf} h_{t-1} + b_f)
+        \label{eq:lstm_forget} % VUELVE A ESTAR DENTRO DEL ENTORNOS equation
+    \end{equation}
+}
+
+% 3. Puerta de salida (Output Gate)
+\indexedequation{Ecuación de la Puerta de Salida}{
+    \begin{equation}
+        o_t = \sigma(W_{xo} x_t + W_{ho} h_{t-1} + b_o)
+        \label{eq:lstm_output} % VUELVE A ESTAR DENTRO DEL ENTORNOS equation
+    \end{equation}
+}
+
+% 4. Candidato al nuevo estado (Candidate Cell State)
+\indexedequation{Ecuación del Candidato al Estado de la Celda}{
+    \begin{equation}
+        \tilde{c}_t = tanh(W_{xc} x_t + W_{hc} h_{t-1} + b_c)
+        \label{eq:lstm_candidate} % VUELVE A ESTAR DENTRO DEL ENTORNOS equation
+    \end{equation}
+}
+
+% 5. Estado de la celda (Cell State)
+\indexedequation{Ecuación del Estado de la Celda}{
+    \begin{equation}
+        c_t = f_t * c_{t-1} + i_t * \tilde{c}_t
+        \label{eq:lstm_cell_state} % VUELVE A ESTAR DENTRO DEL ENTORNOS equation
+    \end{equation}
+}
+
+% 6. Estado oculto (Hidden State)
+\indexedequation{Ecuación del Estado Oculto}{
+    \begin{equation}
+        h_t = o_t * tanh(c_t)
+        \label{eq:lstm_hidden_state} % VUELVE A ESTAR DENTRO DEL ENTORNOS equation
+    \end{equation}
+}
 donde:
 
 \begin{itemize}
