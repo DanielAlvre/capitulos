@@ -56,38 +56,59 @@ Esta tesis se enfoca en el desarrollo y evaluación de un sistema para reconocer
 
 Esta tesis propone un modelo para crear y utilizar un repositorio digital de segmentos visuales en Lengua de Señas Mexicana (LSM) usando inteligencia artificial. El objetivo es mejorar la plataforma de traducción español-LSM desarrollada previamente en el Instituto Tecnológico de Hermosillo, facilitando la comunicación entre personas sordas y oyentes en contextos educativos.  El repositorio almacena segmentos visuales de señas en LSM extraídos de videos disponibles en la web.  Utiliza técnicas de visión e inteligencia artificial para extraer automáticamente las señas y su  texto correspondiente de los videos.  Además, convierte los segmentos de video en representaciones 3D animadas utilizando el modelo SMPL, permitiendo una visualización más realista y versátil.  Desarrollado por Maria Luisa Galaz Palma en el Instituto Tecnológico de Hermosillo.
 
+\section{Análisis Comparativo de Proyectos}
+
+Para contextualizar el alcance del presente trabajo y contrastarlo con los estudios previos, se ha elaborado la \textbf{Tabla \ref{tab:comparativa_proyectos}} que resume las metodologías y características tecnológicas empleadas en los proyectos revisados. Este análisis comparativo permite identificar tendencias, debilidades comunes y el nivel de complejidad de las soluciones implementadas en el reconocimiento de lenguaje de señas, sirviendo como una base sólida para la justificación metodológica.
+
 \begin{table}[htbp]
     \centering
     \caption{Comparativa de proyectos relacionados con el reconocimiento de lenguaje de señas}
-    \resizebox{1.15\textwidth}{!}{ % Ajusta el ancho de la tabla
-        \begin{tabular}{|p{7cm}|c|c|c|c|c|c|c|c|c|}
-            \hline
-            \textbf{Nombre del Proyecto} &
-            \rotatebox{90}{\textbf{Captura de video o imágenes}} &
-            \rotatebox{90}{\textbf{Tiempo real}} &
-            \rotatebox{90}{\textbf{MediaPipe}} &
-            \rotatebox{90}{\textbf{AWS o nube}} &
-            \rotatebox{90}{\textbf{Texto o voz}} &
-            \rotatebox{90}{\textbf{Redes neuronales}} &
-            \rotatebox{90}{\textbf{Segmentación}} &
-            \rotatebox{90}{\textbf{LSM}} &
-            \rotatebox{90}{\textbf{Text-To-Speech}} \\ \hline
-            \textbf{Sistema de reconocimiento de señas de detección de palabras para el lenguaje de señas LSM} & Sí & Sí & Sí & Sí & Sí & Sí & Sí & Sí & Sí \\ \hline
-            Dispositivo traductor de LSM a español         & Sí & No & No & No & Sí & Sí & No & Sí & No \\ \hline
-            Reconocimiento de señas estáticas del LSM      & Sí & No & Sí & No & No & Sí & No & Sí & No \\ \hline
-            Sistema de interpretación de imágenes          & Sí & Sí & No & No & No & No & Sí & No & No \\ \hline
-            Intérprete en tiempo real de LSEC              & No & Sí & No & No & Sí & Sí & No & No & No \\ \hline
-            Reconocimiento de señas en gestión académica   & No & No & No & No & No & Sí & No & No & No \\ \hline
-            Traducción de señas dactilológicas             & Sí & No & Sí & No & Sí & Sí & No & No & No \\ \hline
-            Reconocimiento de alfabeto dactilológico       & Sí & No & No & No & No & Sí & No & Sí & No \\ \hline
-            Sistema web intérprete de LSA                  & Sí & Sí & Sí & No & Sí & Sí & No & No & No \\ \hline
-            Traductor automático de LSM                    & Sí & No & No & No & No & Sí & Sí & Sí & No \\ \hline
-            Sistema multi-agente para frases en LSM        & No & Sí & No & No & Sí & No & No & Sí & No \\ \hline
-            Modelos computacionales aplicados a LSM        & Sí & No & Sí & No & No & Sí & No & Sí & No \\ \hline
-            Repositorio digital para segmentos visuales    & Sí & No & No & No & No & Sí & No & Sí & No \\ \hline
-        \end{tabular}
-    }
+    % Se usa \small para un mejor ajuste y legibilidad. Se corrige la doble línea.
+    \small
+    % Definición de la estructura de la tabla (solo una línea entre LSM y COB)
+    \begin{tabular}{|p{4.5cm}|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{Proyecto Revisado} &
+        \textbf{CV} & % Captura Video/Img
+        \textbf{TR} & % Tiempo Real
+        \textbf{MP} & % MediaPipe
+        \textbf{NUBE} & % Nube (AWS, etc.)
+        \textbf{S(T/V)} & % Salida (Texto/Voz)
+        \textbf{RN} & % Redes Neuronales
+        \textbf{SEG} & % Segmentación/ROI
+        \textbf{LSM} & % Enfoque en LSM
+        \textbf{COB (\%)} \\ \hline
+        % APLICO LA CORRECCIÓN DE LA SINTAXIS: \cellcolor[rgb]{R, G, B}
+        \textbf{Sistema de reconocimiento de señas de detección de palabras para el lenguaje de señas LSM} & Sí & Sí & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{\cellcolor[rgb]{0.8, 1.0, 0.8} 100\%} \\ \hline
+        Dispositivo traductor de LSM a español         & Sí & No & No & No & Sí & Sí & No & Sí & \cellcolor[rgb]{1.0, 0.8, 0.6} 50\% \\ \hline
+        Reconocimiento de señas estáticas del LSM      & Sí & No & Sí & No & No & Sí & No & Sí & \cellcolor[rgb]{1.0, 0.8, 0.6} 50\% \\ \hline
+        Sistema de interpretación de imágenes          & Sí & Sí & No & No & No & No & Sí & No & \cellcolor[rgb]{1.0, 0.7, 0.7} 37.5\% \\ \hline
+        Intérprete en tiempo real de LSEC              & No & Sí & No & No & Sí & Sí & No & No & \cellcolor[rgb]{1.0, 0.8, 0.6} 50\% \\ \hline
+        Reconocimiento de señas en gestión académica   & No & No & No & No & No & Sí & No & No & \cellcolor[rgb]{1.0, 0.7, 0.7} 12.5\% \\ \hline
+        Traducción de señas dactilológicas             & Sí & No & Sí & No & Sí & Sí & No & No & \cellcolor[rgb]{1.0, 0.8, 0.6} 50\% \\ \hline
+        Reconocimiento de alfabeto dactilológico       & Sí & No & No & No & No & Sí & No & Sí & \cellcolor[rgb]{1.0, 0.7, 0.7} 25\% \\ \hline
+        Sistema web intérprete de LSA                  & Sí & Sí & Sí & No & Sí & Sí & No & No & \cellcolor[rgb]{1.0, 1.0, 0.8} 62.5\% \\ \hline
+        Traductor automático de LSM                    & Sí & No & No & No & No & Sí & Sí & Sí & \cellcolor[rgb]{1.0, 0.8, 0.6} 50\% \\ \hline
+        Sistema multi-agente para frases en LSM        & No & Sí & No & No & Sí & No & No & Sí & \cellcolor[rgb]{1.0, 0.7, 0.7} 37.5\% \\ \hline
+        Modelos computacionales aplicados a LSM        & Sí & No & Sí & No & No & Sí & No & Sí & \cellcolor[rgb]{1.0, 0.8, 0.6} 50\% \\ \hline
+        Repositorio digital para segmentos visuales    & Sí & No & No & No & No & Sí & No & Sí & \cellcolor[rgb]{1.0, 0.7, 0.7} 37.5\% \\ \hline
+    \end{tabular}
+
+    % --- Explicación de Acrónimos ---
+    \begin{flushleft}
+        \footnotesize
+        \vspace{1ex}
+        \textbf{Acrónimos:} \\
+        \textbf{CV:} Captura de Video/Imágenes. \textbf{TR:} Tiempo Real. \textbf{MP:} Uso de MediaPipe. \textbf{NUBE:} Uso de servicios en la Nube (AWS, Azure, etc.). \textbf{S(T/V):} Salida en Texto o Voz. \textbf{RN:} Uso de Redes Neuronales. \textbf{SEG:} Segmentación o uso de Región de Interés (ROI). \textbf{LSM:} Enfoque específico en la Lengua de Señas Mexicana. \textbf{COB (\%):} Porcentaje de Cobertura de las características listadas.
+
+        \vspace{1ex}
+        \textbf{Leyenda de Cobertura:} \
+        \textcolor[rgb]{0.0, 0.5, 0.0}{\textbf{Verde (100\%):}} Cobertura Completa. \
+        \textcolor[rgb]{0.8, 0.8, 0.0}{\textbf{Amarillo (62.5\%):}} Cobertura Alta. \
+        \textcolor[rgb]{1.0, 0.5, 0.0}{\textbf{Naranja (50\%):}} Cobertura Media. \
+        \textcolor[rgb]{0.8, 0.0, 0.0}{\textbf{Rojo (<50\%):}} Cobertura Baja.
+    \end{flushleft}
+
     \label{tab:comparativa_proyectos}
 \end{table}
-
 
