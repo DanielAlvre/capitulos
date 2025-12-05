@@ -107,7 +107,7 @@
     \begin{equation}#2\end{equation}%
 }
 
-\newcommand{\listofmyequations}{%  <--- Aquí se movió el \setcounter
+\renewcommand{\listofmyequations}{%  <--- Se redefine el comando creado por \newlistof
     \setcounter{equation}{0}  % Resetear el contador ANTES de la lista
     \listof{myequations}{\listequationsname} % Índice de ecuaciones
     \addcontentsline{toc}{chapter}{Índice de ecuaciones}
