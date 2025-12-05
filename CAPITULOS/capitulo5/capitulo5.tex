@@ -198,11 +198,13 @@ A continuación se muestra la estructura de las colecciones de Firebase:
 
 A continuación, se presentan las imágenes de las señas que serán utilizadas para el reconocimiento en el sistema. Estas imágenes ilustran los gestos que el modelo de reconocimiento utilizará como entradas para su procesamiento una vez que el entrenamiento haya sido completado.
 
-En esta sección, se incluirán las imágenes correspondientes a las señas que formarán parte del conjunto de datos utilizado para el entrenamiento del modelo y su posterior uso en la predicción y traducción de las señas en tiempo real. Cada una de las señas será entrenada para su correcta interpretación, lo que facilitará la interacción entre personas sordas y oyentes, así como el aprendizaje de la Lengua de Señas Mexicana (LSM).
+En esta sección, se incluirán las imágenes correspondientes a las señas que formarán parte del conjunto de datos utilizado para el entrenamiento del modelo y su posterior uso en la predicción y traducción de las señas en tiempo real. Cada una de las señas será entrenada para posteriormente ser traducida, lo que facilitará la interacción entre personas sordas y oyentes, así como el aprendizaje de la Lengua de Señas Mexicana (LSM).
 
 Estas imágenes servirán como base para el proceso de entrenamiento que permitirá que el sistema reconozca y traduzca las señas de manera eficiente.
 
-En las siguientes figuras se muestra diferentes pasos para realizar las señas que pertenecen al conjunto:
+\textbf{Nota sobre las Características de Entrada:} El modelo de predicción (BiLSTM) utiliza secuencias de keypoints que incluyen la posición de \textbf{ambas manos} (42 puntos) y la \textbf{pose de la parte superior del cuerpo} (17 puntos), lo que permite capturar el movimiento de los brazos, hombros y la ubicación de la cabeza. Es importante destacar que el modelo \textbf{no utiliza} la detección de *landmarks* detallados de la \textbf{cara} (expresiones faciales), sino únicamente los puntos de pose del cuerpo y las manos, lo cual se traduce en un vector de características de 195 dimensiones por fotograma.
+
+A continuación, en las \textbf{Figuras \ref{fig:seña_bien} a \ref{fig:seña_virus}}, se muestra la secuencia de movimientos (fotogramas) que componen cada una de las señas que forman parte del conjunto de datos:
 \clearpage
 \begin{enumerate}
     \item \textbf{ Seña: Bien} \\
@@ -1030,7 +1032,6 @@ Esta es la pantalla por la cual los usuarios nuevos, pueden generar un registro.
 \begin{itemize}
     \item \textbf{Registro de nuevo usuario:} Permite a los usuarios que no están registrados crear una cuenta utilizando su correo electrónico y contraseña, o a través de su cuenta de Google.
 \end{itemize}
-
 \subsection{Pantalla principal (Usuario general)}
 
 \begin{figure}[H] % [H] asegura que la imagen quede exactamente aquí
@@ -1049,7 +1050,6 @@ Esta es la pantalla principal a la que acceden los usuarios generales después d
     \item \textbf{Acceder al diccionario de DLM:} Permite a los usuarios acceder al menú general, o elegir directamente la seña que quieran, para poder acceder a su descripción.
     \item \textbf{Acceder a las opciones generales:} Todas las pantallas a partir de acá, cuentan con esa funcionalidad de permitir al usuario acceder al menú de acciones de acuerdo a su rol.
 \end{itemize}
-
 \subsection{Pantalla descriptiva de la seña  (Usuario general)}
 
 \pantalla{5}{Pantalla del diccionario LSM.}
@@ -1060,7 +1060,6 @@ Esta es la pantalla donde los usuarios generales pueden ver los recursos multime
 \begin{itemize}
     \item \textbf{Acceder a la descripción de la seña:} Muestra breve reseña de lo que significa la seña, así como imágenes y videos relacionados con la seña, que nos muestran...
 \end{itemize}
-
 \subsection{Pantalla de cámara}
 
 \pantalla{9}{Pantalla de cámara.}
@@ -1072,7 +1071,6 @@ Esta es la pantalla principal donde los usuarios pueden grabar sus señas para e
     \item \textbf{Grabar señas:} Permite al usuario capturar las muestras de las señas emitidas para ser procesadas por el sistema.
     \item \textbf{Previsualización en tiempo real:} Muestra un recuadro de la cámara en tiempo real para que el usuario pueda ajustar su posición antes de grabar.
 \end{itemize}
-
 \subsection{Pantalla menu}
 \pantalla{6}{Menú principal para los usuarios}
 
@@ -1085,7 +1083,6 @@ Esta es la pantalla que permite a los usuarios generales navegar entre las difer
     \item \textbf{Destacados:} Visualización de las señas más populares o relevantes.
     \item \textbf{Salir:} Permite cerrar sesión o salir de la aplicación.
 \end{itemize}
-
 \subsection{Pantalla del perfil del usuario}
 
 \pantalla{7}{Pantalla de perfil del usuario.}
@@ -1097,7 +1094,6 @@ Esta pantalla permite a los usuarios ver y modificar su información general reg
     \item \textbf{Visualizar información personal:} Permite al usuario verificar sus datos, como nombre, correo electrónico y otra información relevante.
     \item \textbf{Modificar datos:} Ofrece opciones para actualizar o corregir los datos personales registrados.
 \end{itemize}
-
 \subsection{Pantalla de perfil: Sección de señas}
 
 \pantalla{8}{Pantalla de la sección de señas del perfil.}
@@ -1109,7 +1105,6 @@ Esta pantalla, dentro del perfil del usuario, proporciona información específi
     \item \textbf{Nivel actual:} Muestra el nivel del usuario en la aplicación, de acuerdo con las señas aprendidas.
     \item \textbf{Cantidad de señas emitidas:} Indica la cantidad total de señas realizadas o aprendidas por el usuario.
 \end{itemize}
-
 \subsection{Pantalla de destacados}
 
 \pantalla{10}{Pantalla de destacados.}
@@ -1134,39 +1129,228 @@ Esta pantalla está diseñada para los usuarios con rol de administrador y les p
     \item \textbf{Gestión multimedia:} Da la opción de agregar imágenes o videos relacionados con las señas.
 \end{itemize}
 
-%\subsection{Vista general del aplicativo}
+\subsection{Pantalla de Gestión de Muestras (Usuario General)}
 
-%\begin{figure}[H] % [H] asegura que la imagen quede exactamente aquí
-%    \centering
-%    \begin{tikzpicture}
-%        \node[inner sep=0, outer sep=0, draw=black, line width=0.1cm]
-%        {\includegraphics[page=12, scale=0.2]{CAPITULOS/capitulo5/proyecto}};
-%    \end{tikzpicture}
-%    \caption{Vista general del aplicativo.}
-%\end{figure}
-
-%Esta es la vista general de la estructura del aplicativo, mostrando de forma esquemática todas las pantallas y cómo se relacionan entre sí.
-
-%\subsubsection{Funcionalidad}
-%\begin{itemize}
-%    \item \textbf{Mapa de navegación:} Muestra las conexiones entre las distintas secciones de la aplicación.
-%    \item \textbf{Estructura jerárquica:} Presenta una jerarquía clara de las pantallas, diferenciando los roles de los usuarios (general y administrador).
-%\end{itemize}
-
-\section{Interfaz de Usuario - Aplicación Local}
-
-La aplicación local está diseñada para ejecutarse en un equipo de cómputo equipado con una cámara web, brindando una experiencia interactiva en tiempo real. La interfaz es intuitiva y fácil de usar, permitiendo a los usuarios escuchar las señas reconocidas a través del análisis de los puntos clave detectados por Mediapipe. En la Figura~\ref{fig:pantalla-local} se presenta una demostración del funcionamiento del aplicativo.
-
-\subsection{Pantalla del aplicativo local}
-
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \includegraphics[scale=0.2]{CAPITULOS/capitulo5/local.jpg}
-    \caption{Pantalla principal de la aplicación local.}
+    \begin{tikzpicture}
+        \node[inner sep=0, outer sep=0, draw=black, line width=0.1cm]
+        {\includegraphics[scale=0.2]{CAPITULOS/capitulo5/imagen2.png}};
+    \end{tikzpicture}
+    \caption{Pantalla de la aplicación local mostrando el listado y gestión de archivos CSV (muestras).}
+    \label{fig:pantalla-local-gestion-muestras}
+\end{figure}
+
+Esta interfaz, denominada Pantalla de Gestión de CSV (Usuario General), funciona como el punto central para la curación y preparación de datos. Permite al usuario general visualizar, evaluar la calidad y preparar las muestras de señas grabadas (archivos CSV).
+
+La funcionalidad de esta pantalla se centra en la gestión de las muestras y la preparación para el entrenamiento:
+
+\begin{itemize}
+    \item \textbf{Listado de Muestras:} Muestra en la primera columna un listado de todos los archivos CSV grabados.
+    \item \textbf{Botones de Selección:} Dispone de opciones para la selección individual o masiva de muestras (\textbf{Seleccionar Todas}).
+    \item \textbf{Control de Calidad (FPS):} Incluye indicadores visuales (verde/naranja) que representan si la muestra cumple con la tasa de fotogramas por segundo (FPS) requerida.
+    \item \textbf{Data Augmentation:} Permite iniciar el proceso de aumento de datos (*Data Augmentation*) con técnicas de ruido blanco o modificación espacial de *keypoints*.
+    \item \textbf{Sincronización:} Incluye botones para \textbf{Subir a la Nube} y \textbf{Compartir Localmente} las muestras seleccionadas.
+\end{itemize}
+\subsection{Pantalla de Animación y Edición de Frames (Usuario General)}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \node[inner sep=0, outer sep=0, draw=black, line width=0.1cm]
+        {\includegraphics[scale=0.2]{CAPITULOS/capitulo5/imagen3.png}};
+    \end{tikzpicture}
+    \caption{Pantalla de previsualización y herramientas de edición de *frames*.}
+    \label{fig:pantalla-edicion-frames}
+\end{figure}
+
+Esta herramienta de edición es vital para la curación manual, permitiendo al usuario validar la calidad del movimiento grabado en tiempo real. La pantalla tiene varios botones de control que facilitan la manipulación de la secuencia:
+
+\begin{itemize}
+    \item \textbf{Navegación:} Botones para avanzar o retroceder (*Anterior/Siguiente*) entre los *frames*.
+    \item \textbf{Pausa:} Permite pausar la animación de los *keypoints*.
+    \item \textbf{Eliminar Frame:} Funcionalidad clave que permite al usuario \textbf{borrar *frames*} inadecuados (ruido, posturas iniciales/finales no deseadas), asegurando que solo el movimiento puro sea utilizado para el entrenamiento.
+    \item \textbf{Guardar Cambios:} Aplica permanentemente las ediciones realizadas.
+\end{itemize}
+\subsection{Pantalla de Inspección de Datos Crudos (Usuario General)}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \node[inner sep=0, outer sep=0, draw=black, line width=0.1cm]
+        {\includegraphics[scale=0.2]{CAPITULOS/capitulo5/imagen1.png}};
+    \end{tikzpicture}
+    \caption{Pantalla que muestra los datos crudos del CSV de la seña.}
+    \label{fig:pantalla-inspeccion-csv}
+\end{figure}
+
+Esta pantalla, accesible al seleccionar un archivo de muestra, se encarga de mostrar los datos crudos del CSV que componen la seña. El objetivo es que el usuario pueda verificar la integridad de la captura. La vista permite ver los 195 *keypoints* registrados para cada *frame* de la secuencia, junto con su respectivo *timestamp*.
+\subsection{Pantalla de Configuración y Despliegue (Opciones Avanzadas)}
+\label{sec:configuracion_avanzada}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \node[inner sep=0, outer sep=0, draw=black, line width=0.1cm]
+        {\includegraphics[scale=0.2]{CAPITULOS/capitulo5/imagen4.jpeg}};
+    \end{tikzpicture}
+    \caption{Pantalla de configuración avanzada y despliegue del modelo local}
+    \label{fig:pantalla-configuracion}
+\end{figure}
+
+Esta pantalla está diseñada para usuarios con privilegios que requieren controlar el despliegue local del modelo, gestionar backups y configurar las versiones de inferencia. La interfaz presenta una serie de botones de acción rápida, cada uno asociado a una tarea crítica del sistema.
+
+La siguiente tabla detalla la funcionalidad de los botones de la interfaz de configuración:
+
+\begin{table}[H]
+    \centering
+    \caption{Funcionalidades de los botones en la Pantalla de Configuración de Modelos.}
+    \label{tab:botones_configuracion}
+    % Se elimina \resizebox.
+    % Se usan columnas 'p' para permitir el salto de línea y controlar el ancho.
+    \begin{tabular}{|p{2.5cm}|p{3.5cm}|p{6.5cm}|}
+        \hline
+        \textbf{Botón} & \textbf{Referencia URL/Local} & \textbf{Funcionalidad} \\ \hline
+        Descargar Modelo & URL S3 (expira en 1 día) & Invoca una función Lambda para descargar el último archivo .tflite entrenado y almacenado en la nube. \\ \hline
+        Descargar Labels & URL S3 (expira en 1 día) & Invoca una función Lambda para descargar el último archivo de labels (etiquetas) asociado al modelo. \\ \hline
+        Buscar Modelo Local & Local (Sistema de Archivos) & Busca el archivo del modelo (.tflite) directamente en el almacenamiento local del dispositivo. \\ \hline
+        Buscar Labels Local & Local (Sistema de Archivos) & Busca el archivo de labels directamente en el almacenamiento local del dispositivo. \\ \hline
+        Encender SSM & Invocación de API/SSM & Envía una solicitud para encender la instancia del servicio SSM (Server Side Management) para mantenimiento o acceso remoto. \\ \hline
+        Descargar Backups CSV & Carpeta de Backup/CSV & Regresa los archivos de backup más recientes de la carpeta a un formato CSV para su curación. \\ \hline
+        Abrir Reconocimiento & Interfaz de Aplicación & Abre la pantalla principal del Módulo de Reconocimiento Local para iniciar la traducción en tiempo real. \\ \hline
+    \end{tabular}
+\end{table}
+\section{Interfaz de Usuario - Módulo de Reconocimiento Local}
+\label{sec:interfaz_usuario_reconocimiento}
+
+La aplicación está diseñada para ejecutarse en el mismo dispositivo del usuario (módulo on-premise) equipado con una cámara web, brindando una experiencia interactiva en tiempo real. La interfaz es intuitiva y fácil de usar, permitiendo al usuario ver y escuchar la traducción de las señas reconocidas a través del análisis de los puntos clave detectados por Mediapipe.
+
+\subsection{Pantalla Principal de Reconocimiento en Tiempo Real}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \node[inner sep=0, outer sep=0, draw=black, line width=0.1cm]
+        {\includegraphics[scale=0.2]{CAPITULOS/capitulo5/local.jpeg}};
+    \end{tikzpicture}
+    \caption{Pantalla principal del módulo de reconocimiento local.}
     \label{fig:pantalla-local}
 \end{figure}
 
-Esta pantalla es visible para cualquier usuario que desee realizar el reconocimiento de señas. Una vez completada la carga de los pesos (previamente entrenados en la red neuronal y descargados automáticamente desde la nube mediante un script Bash), la aplicación comienza a capturar las señas desde la cámara web. Posteriormente, en tiempo real, se procesan los puntos clave de las manos y el torso mediante Mediapipe, permitiendo identificar las señas emitidas por el usuario.
+Esta pantalla es visible para cualquier usuario que desee realizar el reconocimiento de señas. El proceso de reconocimiento se inicia una vez completada la carga de los pesos del modelo (previamente entrenados en la red neuronal y descargados automáticamente desde la nube mediante un script Bash). La aplicación comienza a capturar las señas desde la cámara web y, posteriormente, en tiempo real:
+\begin{itemize}
+\item Se procesan los puntos clave de las manos y el torso mediante Mediapipe.
+\item El modelo BiLSTM realiza la inferencia.
+\item La seña identificada se muestra en pantalla y el sistema activa la API de Text-To-Speech (TTS) para su reproducción de audio, completando el ciclo de traducción.
+\end{itemize}
+
+\section{Arquitectura y Procesamiento del Modelo Neuronal}
+\label{sec:arquitectura_red_neuronal}
+
+El núcleo del sistema de reconocimiento reside en una red neuronal recurrente profunda (Deep RNN) basada en unidades de Memoria a Corto y Largo Plazo Bidireccionales (BiLSTM). Esta arquitectura fue seleccionada por su capacidad superior para modelar dependencias temporales complejas en secuencias de datos, lo cual es esencial para capturar la dinámica del movimiento en la Lengua de Señas Mexicana (LSM).
+
+A continuación, se detalla el flujo de transformación de datos y la estructura matemática capa por capa.
+
+\subsection{Preprocesamiento y Estructura de Datos (.h5)}
+
+Antes de ingresar a la red, los datos crudos (archivos CSV) pasan por un proceso de transformación para optimizar el entrenamiento.
+
+\begin{itemize}
+    \item \textbf{Origen:} Archivos CSV individuales por muestra, conteniendo secuencias de longitud variable de vectores de 195 dimensiones.
+    \item \textbf{Transformación:} El script \texttt{data\_processor.py} consolida estas muestras. Se aplica \textit{Padding} (relleno con ceros) para uniformizar la longitud de todas las secuencias a un valor máximo $T_{max}$.
+    \item \textbf{Formato H5:} Los datos resultantes se almacenan en formato jerárquico HDF5 (\texttt{.h5}). Este formato permite el almacenamiento eficiente de grandes tensores multidimensionales y su carga rápida en memoria durante el entrenamiento con TensorFlow/Keras.
+\end{itemize}
+
+La entrada final a la red es un tensor de forma $(N, T_{max}, 195)$, donde $N$ es el número de muestras (lotes o \textit{batches}).
+
+\subsection{Arquitectura Interna Capa por Capa}
+
+El diseño de la red, implementado en \texttt{model\_trainer.py}, sigue una estructura secuencial diseñada para extraer características temporales y espaciales progresivamente.
+
+\subsubsection{1. Capa de Enmascaramiento (Masking)}
+Dado que las secuencias fueron rellenadas artificialmente, es crucial que la red no aprenda de estos datos vacíos.
+\[
+    \text{Mask}(x_t) =
+    \begin{cases}
+        x_t & \text{si } x_t \neq \vec{0} \\
+        \text{omitir} & \text{si } x_t = \vec{0} \text{ (padding)}
+    \end{cases}
+\]
+Esto asegura que el cálculo del gradiente solo se vea afectado por los fotogramas reales de la seña.
+
+\subsubsection{2. Capas Recurrentes (Bidirectional LSTM)}
+El modelo emplea capas apiladas de LSTMs Bidireccionales. A diferencia de una LSTM estándar que solo mira el pasado, la BiLSTM procesa la secuencia en ambas direcciones:
+\begin{itemize}
+    \item \textbf{Forward ($\vec{h}_t$):} Analiza la secuencia de $t=1$ a $T$, capturando el inicio y desarrollo del movimiento.
+    \item \textbf{Backward ($\overleftarrow{h}_t$):} Analiza de $t=T$ a $1$, capturando la finalización del gesto para contextualizar el inicio.
+\end{itemize}
+El estado oculto resultante en cada paso de tiempo es la concatenación de ambas direcciones:
+\[ h_t = [\vec{h}_t \oplus \overleftarrow{h}_t] \]
+
+\subsubsection{3. Regularización (Dropout)}
+Para mitigar el sobreajuste (\textit{overfitting}), se aplica una capa de \textit{Dropout} después de las unidades recurrentes y densas. Esto apaga aleatoriamente un porcentaje $p$ de las neuronas durante el entrenamiento, forzando a la red a aprender características más robustas y distribuidas.
+
+\subsubsection{4. Agregación Temporal (Pooling)}
+Para clasificar la seña, la red necesita condensar toda la secuencia temporal ($T$ pasos) en un único vector de características. Se utiliza una estrategia híbrida:
+\begin{itemize}
+    \item \textbf{Global Average Pooling (GAP):} Promedia las activaciones.
+    \[ v_{avg} = \frac{1}{T} \sum_{t=1}^{T} h_t \]
+    \item \textbf{Global Max Pooling (GMP):} Extrae los picos de activación (gestos más marcados).
+    \[ v_{max} = \max\limits_{t=1}^{T} h_t \]
+\end{itemize}
+El vector final es la concatenación: $V = [v_{avg} \oplus v_{max}]$.
+
+\subsubsection{5. Clasificador (Dense Head)}
+El vector $V$ pasa por capas densas (fully connected) que realizan la clasificación final. La capa de salida utiliza la función de activación \textbf{Softmax} para generar una distribución de probabilidad sobre las $C$ clases disponibles (señas en el diccionario).
+
+\subsection{Diagrama de Flujo de la Arquitectura}
+
+La Figura \ref{fig:arquitectura_red} ilustra el flujo de los tensores a través de las distintas capas del modelo configurado.
+
+\begin{figure}[H]
+    \centering
+    % Se incluye la imagen del diagrama de Mermaid para evitar el conflicto con TikZ y Babel
+    \includegraphics[width=0.4\textwidth]{CAPITULOS/capitulo5/arquitectura_mermaid} % ASEGÚRESE DE QUE ESTE ARCHIVO EXISTA.
+    \caption{Diagrama de bloques de la arquitectura de la red neuronal BiLSTM implementada.}
+    \label{fig:arquitectura_red}
+\end{figure}
+
+\subsection{Hiperparámetros del Modelo}
+
+La configuración específica utilizada para el entrenamiento del modelo final se presenta en la Tabla \ref{tab:hiperparametros}. Estos valores fueron seleccionados mediante experimentación empírica para balancear la precisión y la capacidad de generalización.
+
+\begin{table}[H]
+    \centering
+    \caption{Hiperparámetros de la Red Neuronal}
+    \label{tab:hiperparametros}
+    \begin{tabular}{|l|c|l|}
+        \hline
+        \textbf{Parámetro} & \textbf{Valor} & \textbf{Descripción} \\ \hline
+        Input Shape & $(T_{max}, 195)$ & Longitud de secuencia y características. \\ \hline
+        LSTM Units & 64 - 128 & Neuronas en las capas recurrentes. \\ \hline
+        Dropout Rate & 0.3 - 0.5 & Probabilidad de apagado para regularización. \\ \hline
+        Optimizer & Adam & Algoritmo de optimización adaptativo. \\ \hline
+        Learning Rate & $1e^{-3}$ & Tasa de aprendizaje inicial. \\ \hline
+        Loss Function & Categorical Crossentropy & Función de pérdida para clasificación multiclase. \\ \hline
+        Batch Size & 32 & Muestras procesadas por iteración. \\ \hline
+        Epochs & 100 - 200 & Ciclos completos de entrenamiento. \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Ejemplo Práctico de Inferencia: Seña ``Hola''}
+
+Para ilustrar el funcionamiento interno, analicemos el procesamiento de la seña "Hola" (saludo militar desde la frente hacia afuera):
+
+\begin{enumerate}
+    \item \textbf{Entrada ($t=0 \to t=30$):} Los keypoints de la mano derecha inician con coordenadas $y$ altas (cerca de la frente) y profundidad $z$ cercana. Conforme avanza $t$, la coordenada $x$ aumenta (movimiento lateral hacia afuera).
+    \item \textbf{Procesamiento BiLSTM:}
+    \begin{itemize}
+        \item La componente \textit{Forward} detecta el cambio de posición y la velocidad positiva en el eje $x$.
+        \item La componente \textit{Backward} analiza la postura final (mano extendida) y retropropaga esta información, confirmando que el movimiento inició en la cabeza, diferenciándolo de un simple levantamiento de mano.
+    \end{itemize}
+    \item \textbf{Pooling:} El \textit{Max Pooling} captura la característica más saliente: el contacto inicial con la frente. El \textit{Average Pooling} suaviza la trayectoria del movimiento del brazo.
+    \item \textbf{Clasificación:} La capa densa integra estas características abstractas y, mediante la función Softmax, asigna la probabilidad más alta (p.ej., $0.92$) a la neurona correspondiente a la clase "Hola".
+\end{enumerate}
 
 \section{Cronograma de actividades}
 
