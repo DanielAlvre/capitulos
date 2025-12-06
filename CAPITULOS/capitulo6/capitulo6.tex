@@ -3,7 +3,7 @@
 
 \section{Introducción}
 El presente capítulo describe las etapas de implementación de la solución propuesta, la cual integra una arquitectura de microservicios sin servidor (\textbf{Serverless}) en el \textit{backend}, un módulo de procesamiento en el borde (\textit{Edge Computing}) basado en la librería \textbf{MediaPipe} para la extracción de \textit{keypoints} en el dispositivo móvil, y un subsistema de entrenamiento de Inteligencia Artificial orquestado en la nube. Se detalla la configuración de los componentes en Amazon Web Services (AWS) y el despliegue mediante \textbf{AWS Serverless Application Model (SAM)}, justificando las decisiones de diseño para maximizar la escalabilidad, la robustez y la eficiencia de costos.
-
+\clearpage
 \section{Arquitectura Serverless (Backend)}
 El núcleo de la gestión administrativa y de datos se implementó bajo un modelo Serverless. Esta elección permite la \textbf{escalabilidad granular}, donde cada función Lambda escala independientemente según la demanda, y optimiza los costos al aplicar un modelo de \textbf{pago por consumo} para las operaciones de baja frecuencia. Los componentes principales se ilustran en la Figura \ref{fig:arquitectura}.
 
@@ -435,7 +435,7 @@ La fase de MLOps (Machine Learning Operations) se diseñó como un pipeline de e
     \centering
     % Asume que generarás un diagrama específico para este proceso, por ejemplo:
     %
-    \includegraphics[width=0.9\textwidth]{CAPITULOS/capitulo6/ .png}
+    \includegraphics[width=1.15\textwidth]{CAPITULOS/capitulo6/mlops_pipeline}
     \caption{Diagrama de Arquitectura del Pipeline de Entrenamiento MLOps}
     \label{fig:mlops_pipeline}
 \end{figure}
