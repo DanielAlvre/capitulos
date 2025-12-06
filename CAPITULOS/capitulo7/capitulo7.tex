@@ -1,0 +1,125 @@
+\chapter{Pruebas y Validación del Módulo de Clasificación}
+\label{chap:pruebas}
+
+Este capítulo describe la \textbf{metodología y el diseño experimental} empleados para la evaluación del rendimiento del Módulo de Clasificación de Secuencias de LSM. La validación se centra en establecer el protocolo para probar la precisión del modelo de \textit{Deep Learning} (LSTM) en las 29 palabras objetivo, utilizando el aplicativo web \textbf{Flask} y el servicio \texttt{trainer}.
+
+\section{Metodología de Pruebas: Adquisición y Diseño del \textit{Test Set}}
+
+La prueba del sistema se fundamenta en la adquisición de un \textbf{Conjunto de Pruebas (\textit{Test Set})} independiente, capturado mediante el aplicativo web Flask para garantizar la fidelidad de los datos.
+
+\subsection{Protocolo de Captura de Secuencias de Prueba}
+
+La adquisición de las muestras de prueba se ejecuta a través de la interfaz web, donde el \textit{frontend} utiliza \textbf{MediaPipe Tasks Vision} para la extracción de características en tiempo real.
+
+\begin{enumerate}
+    \item \textbf{Adquisición de \textit{Landmarks}:} El usuario ejecuta una de las 29 señas frente a la cámara. La aplicación registra una secuencia de \textit{frames}, donde cada \textit{frame} contiene:
+    \begin{itemize}
+        \item \textbf{Pose (17 puntos filtrados):} Coordenadas suavizadas ($X, Y$), y coordenadas originales de profundidad y visibilidad ($Z, V$). Las coordenadas $X, Y$ son sometidas a un filtro \textbf{Exponencial Móvil Promedio (EMA)} para mitigar el \textit{jitter} temporal.
+        \item \textbf{Manos (42 puntos):} Coordenadas ($X, Y, Z$) para los 21 \textit{landmarks} de cada mano.
+    \end{itemize}
+    \item \textbf{Criterio de Cierre de Muestra:} La captura finaliza automáticamente al detectar un periodo prolongado de estabilidad, asegurando que solo se registren secuencias completas y bien ejecutadas de la seña, lo que garantiza la calidad del conjunto de validación.
+    \item \textbf{Almacenamiento Persistente:} La secuencia de \textit{landmarks} se transfiere al \textit{backend} (Flask). Este la almacena como un \textit{dataset} en un archivo \textbf{HDF5} (\texttt{.h5}) y registra la \textit{metadata} (\textit{Ground Truth}, duración, y número de \textit{frames}) en \textbf{PostgreSQL}.
+\end{enumerate}
+
+\subsection{Diseño del Conjunto de Validación por Clase}
+
+Para una validación rigurosa, se diseñó el \textit{Test Set} bajo los siguientes parámetros de control experimental. La Tabla \ref{tab:diseño_test_set} lista las 29 palabras que componen el vocabulario de prueba y los requisitos de captura.
+
+\begin{itemize}
+    \item \textbf{Independencia:} Las secuencias de prueba deben ser grabadas por un grupo de colaboradores \textbf{distinto} al utilizado para generar el conjunto de datos de entrenamiento.
+    \item \textbf{Cobertura Mínima:} Se establece una cantidad mínima de \textbf{$M$ secuencias} por cada una de las 29 palabras objetivo.
+\end{itemize}
+
+\begin{table}[h!]
+    \centering
+    \caption{Diseño del Conjunto de Validación: Vocabulario y Criterios de Muestra.}
+    \label{tab:diseño_test_set}
+    \begin{tabular}{|c|l|c|c|}
+        \hline
+        \textbf{ID} & \textbf{Palabra (LSM)} & \textbf{Muestras Mínimas por Seña ($M$)} & \textbf{Tipo de Muestra} \\
+        \hline
+        01 & inyección & $M$ & Secuencia Temporal (HDF5) \\
+        02 & agua & $M$ & Secuencia Temporal (HDF5) \\
+        03 & farmacia & $M$ & Secuencia Temporal (HDF5) \\
+        04 & sida & $M$ & Secuencia Temporal (HDF5) \\
+        05 & salud & $M$ & Secuencia Temporal (HDF5) \\
+        06 & curación & $M$ & Secuencia Temporal (HDF5) \\
+        07 & virus & $M$ & Secuencia Temporal (HDF5) \\
+        08 & operación & $M$ & Secuencia Temporal (HDF5) \\
+        09 & enfermo & $M$ & Secuencia Temporal (HDF5) \\
+        10 & temperatura & $M$ & Secuencia Temporal (HDF5) \\
+        11 & cómo & $M$ & Secuencia Temporal (HDF5) \\
+        12 & orinar & $M$ & Secuencia Temporal (HDF5) \\
+        13 & por favor & $M$ & Secuencia Temporal (HDF5) \\
+        14 & limpiar & $M$ & Secuencia Temporal (HDF5) \\
+        15 & hola & $M$ & Secuencia Temporal (HDF5) \\
+        16 & síntoma & $M$ & Secuencia Temporal (HDF5) \\
+        17 & infección & $M$ & Secuencia Temporal (HDF5) \\
+        18 & cita & $M$ & Secuencia Temporal (HDF5) \\
+        19 & doctor & $M$ & Secuencia Temporal (HDF5) \\
+        20 & bien & $M$ & Secuencia Temporal (HDF5) \\
+        21 & cáncer & $M$ & Secuencia Temporal (HDF5) \\
+        22 & menstruación & $M$ & Secuencia Temporal (HDF5) \\
+        23 & influenza & $M$ & Secuencia Temporal (HDF5) \\
+        24 & mal & $M$ & Secuencia Temporal (HDF5) \\
+        25 & levantar & $M$ & Secuencia Temporal (HDF5) \\
+        26 & emergencia & $M$ & Secuencia Temporal (HDF5) \\
+        27 & recostar & $M$ & Secuencia Temporal (HDF5) \\
+        28 & radio & $M$ & Secuencia Temporal (HDF5) \\
+        29 & diarrea & $M$ & Secuencia Temporal (HDF5) \\
+        \hline
+    \end{tabular}
+\end{table}
+
+
+\section{Traducción y Métrica de Clasificación de Secuencias}
+
+Este proceso describe la transformación de los datos crudos (\textit{landmarks}) en la entrada del modelo y la definición de las métricas que serán utilizadas en el Capítulo de Resultados.
+
+\subsection{Preprocesamiento y Entrada al Modelo LSTM}
+
+El servicio \texttt{trainer} procesa las secuencias para adaptarlas al formato de entrada del modelo LSTM, que es crucial para la clasificación de series de tiempo:
+
+\begin{enumerate}
+    \item \textbf{Normalización Temporal:} Se añade una característica clave a cada \textit{frame}: el \textbf{progreso relativo de tiempo} de la seña. Esta característica, normalizada entre $[0, 1]$, permite que el modelo ignore las variaciones en la velocidad de ejecución, esencial para la invariancia del sistema.
+    \begin{equation}
+        \text{Progreso}_t = \frac{\text{Timestamp}_t - \text{Timestamp}_{\text{inicio}}}{\text{Timestamp}_{\text{fin}} - \text{Timestamp}_{\text{inicio}}}
+    \end{equation}
+    \item \textbf{Alineación (\textit{Padding}):} Se aplica \textit{Zero-Padding} a todas las secuencias para alcanzar la longitud máxima $T_{\text{max}}$, estandarizando la forma de entrada a la red a $$(N_{\text{muestras}}, T_{\text{max}}, F_{\text{total}})$$.
+\end{enumerate}
+
+\subsection{Inferencia, Traducción (*Argmax*) y Métricas}
+
+\begin{enumerate}
+    \item \textbf{Inferencia y Traducción:} El modelo LSTM produce un vector de probabilidad $\mathbf{P} \in \mathbb{R}^{29}$. La decisión de clasificación se obtiene aplicando la función \textit{Argmax}, seleccionando la clase con la probabilidad más alta:
+    \begin{equation}
+        \text{Clase Predicha} = \underset{i}{\operatorname{argmax}} (P_i)
+    \end{equation}
+    Este resultado se interpreta a través de un \textbf{mapeo uno a uno} (1:1) de la clase numérica a la etiqueta de texto correspondiente. Por lo tanto, el sistema \textbf{reconoce} la seña del lenguaje de señas mexicano (LSM) como una de las 29 palabras objetivo.
+
+    \textbf{Mapeo a Audio (JavaScript):} Una vez que el sistema \textbf{reconoce} la palabra, el \textit{frontend} utiliza la etiqueta de texto resultante para generar la salida de audio mediante una función de Texto a Voz (TTS), completando así la traducción.
+    \begin{verbatim}
+// Mapa de la clase numérica a la etiqueta de palabra (simulación)
+const LABEL_MAP = { 0: 'inyección', 1: 'agua', /* ... */ 28: 'diarrea' };
+
+function playAudio(predictedClassIndex) {
+    // 1. Mapeo 1:1 de la clase numérica a la palabra de texto
+    const recognizedWord = LABEL_MAP[predictedClassIndex];
+
+    // 2. Uso de la API de Speech Synthesis (TTS) del navegador
+    const utterance = new SpeechSynthesisUtterance(recognizedWord);
+
+    // 3. Reproducción del sonido de la palabra reconocida
+    window.speechSynthesis.speak(utterance);
+
+    return recognizedWord;
+}
+    \end{verbatim}
+
+    \item \textbf{Métrica de Evaluación:} Se utilizará el \textbf{F1-Score} como métrica principal, ya que proporciona un indicador equilibrado del rendimiento del clasificador en todas las clases, siendo robusto frente a desequilibrios entre la Precisión ($P$) y el Recall ($R$):
+    \begin{equation}
+        F1 = 2 \cdot \frac{P \cdot R}{P + R}
+    \end{equation}
+\end{enumerate}
+
+El cálculo de estas métricas sobre el \textit{Test Set} será presentado y analizado en el Capítulo de Resultados.
