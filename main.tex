@@ -8,7 +8,7 @@
 \pgfplotsset{compat=1.18}
 \usepackage{pdfpages}
 \usepackage{listings}
-\usepackage{color}
+\usepackage{color} % Eliminado: Redundante, ya se usa xcolor
 \usepackage{array}
 \usepackage{graphicx}
 \usepackage{setspace}
@@ -20,11 +20,33 @@
 \usepackage{float}  % Asegúrate de tener este paquete cargado
 \usepackage{tabularx}  % Asegúrate de tener este paquete cargado
 \usepackage{lmodern} % Configura 'tabla' en lugar de 'cuadro'
-\usepackage{cleveref}          % Para las referencias cruzadas
 \usepackage{xcolor}
 \usepackage{colortbl}
 \usepackage{enumitem}
 \usepackage{pgf-pie}
+
+% --- INICIO: Configuración para el entorno codebox (con tcolorbox) ---
+\usepackage{tcolorbox}
+\tcbuselibrary{listings}
+
+% Estilo general para todos los recuadros de código
+\tcbset{
+    boxrule=0.5mm, % Grosor de la línea del marco
+    arc=2mm, % Bordes ligeramente redondeados
+    colback=gray!5, % Color de fondo (gris muy claro)
+    colframe=gray!50!black, % Color del marco (gris oscuro/negro)
+    fonttitle=\bfseries\sffamily\footnotesize, % Estilo del título
+    nobeforeafter % Evita espacio vertical adicional indeseado
+}
+
+% Definición del entorno codebox que acepta el título
+\newenvironment{codebox}[1]{
+    \begin{tcolorbox}[title=#1]
+}{
+    \end{tcolorbox}
+}
+% --- FIN: Configuración para el entorno codebox ---
+
 % Definimos un nuevo comando para las imágenes de las pantallas
 \newcommand{\pantalla}[2]{
     \begin{figure}[H]
@@ -44,10 +66,10 @@
 \setlength{\fboxsep}{1pt} % Espacio entre la imagen y el borde
 \setlength{\fboxrule}{1pt} % Grosor del borde
 
-% Definir un color amarillo claro
+% Definir un color amarillo claro (usado para el estilo json, que ahora es opcional)
 \definecolor{codebg}{rgb}{1.0, 1.0, 0.8}
 
-% Definir el estilo json para lstlisting
+% Definir el estilo json para lstlisting (Mantenido, aunque no se usa dentro de codebox)
 \lstdefinestyle{json} {
     backgroundcolor=\color{codebg},
     basicstyle=\ttfamily,
@@ -114,6 +136,7 @@
 }
 
 % --- Cargar el paquete BibLaTeX para las citas ---
+\usepackage{cleveref}          % Para las referencias cruzadas (Movido al final)
 \usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
 \usepackage{amsfonts}
 \addbibresource{CAPITULOS/referencias/referencias.bib}  % Ruta correcta del archivo .bib
