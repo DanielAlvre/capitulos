@@ -1,0 +1,64 @@
+@startuml
+title Diagrama de Flujo - Pipeline de Entrenamiento MLOps
+
+skinparam activity {
+  ' Estilo para las actividades (rectángulos)
+  BorderColor #5D8AA8
+  BackgroundColor #D9F7FF
+  FontColor #333333
+}
+skinparam control {
+  ' Estilo para nodos de inicio/fin y decisiones
+  StartColor #339933
+  EndColor #CC3333
+  FontColor #333333
+}
+skinparam arrow {
+  ' Estilo de las flechas
+  Color #5D8AA8
+}
+
+start
+
+:Llamada a API Gateway\n(POST /start-training);
+
+' == ORQUESTACIÓN SERVERLESS (trainingHandler.js) ==
+partition "Orquestación Serverless (AWS Lambda)" {
+    :Verificar estado de EC2 Instance;
+
+    if (¿EC2 detenida?) then (Sí)
+      :Arrancar EC2 Instance (GPU);
+      :Esperar estado 'running';
+    else (No)
+    endif
+}
+' El flujo continúa con la instancia EC2 encendida.
+
+:Enviar Comando SSM\n('run_training.py' como usuario 'ubuntu');
+
+' == CÓMPUTO PESADO (EC2/GPU) - run_training.py ==
+partition "Ejecución en EC2 Instance (run_training.py)" {
+
+    ' --- 1. Descarga y Backup ---
+    :1. Sincronizar data de S3/csv/ a csv-local/;
+    :Mover archivos de S3/csv/ a S3/backup/ (Vaciado de Origen);
+
+    ' --- 2. Preprocesamiento ---
+    :2. Procesar CSVs locales\n(Añadir dimensión temporal);
+    :Guardar secuencias procesadas como archivos .h5;
+
+    ' --- 3. Entrenamiento ---
+    :3. Construir Arquitectura de Modelo\n(Masking + Bi-LSTM + Pooling Híbrido);
+    :Entrenar Modelo con datos .h5;
+    :Guardar modelo final y metadatos\n(.h5 y labels.json);
+}
+
+' == MONITOREO Y FINALIZACIÓN ==
+:Redirigir toda la salida a CloudWatch Logs;
+
+if (¿Apagado automático habilitado?) then (Sí)
+  :Apagar EC2 Instance;
+endif
+
+stop
+@enduml

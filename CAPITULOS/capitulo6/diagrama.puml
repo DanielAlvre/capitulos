@@ -1,0 +1,80 @@
+@startuml
+
+' Definir ruta local para incluir íconos disponibles
+!define AWS_ICON_PATH /Users/danielalvarez/.plantuml/aws/source/
+
+' Incluir solo los archivos que tienes disponibles
+!include AWS_ICON_PATH/AWSCommon.puml
+!include AWS_ICON_PATH/AWSRaw.puml
+
+title Diagrama Adaptado - Arquitectura MLOps Simplificada
+
+cloud "S3 Data Lake" as S3 {
+  rectangle "s3://.../csv/ (Origen)" as S3_SRC
+  rectangle "s3://.../backup/ (Backup Histórico)" as S3_BKP
+  rectangle "S3 Repositorio de Modelos" as S3_ART
+}
+
+package "MLOps Orquestación Serverless" as ORCH {
+  rectangle "API Gateway\n(/start-training)" as APIG
+  rectangle "Lambda\n(trainingHandler.js)" as LAMBDA
+
+  APIG -up-> LAMBDA : Activación
+}
+
+package "Cómputo Pesado (EC2/GPU)" as COMPUTE {
+  rectangle "AWS Systems Manager (SSM)" as SSM
+
+  ' 🚨 FIX CLAVE: Forzar altura con saltos de línea para crear espacio para las flechas
+  rectangle "EC2 Instance (GPU)\ni-0ddf9422fa1820c42\n. \n." as EC2_I
+
+  rectangle "CloudWatch Logs\n/ssm/training-jobs" as LOGS
+
+  LAMBDA -> SSM : 1. Enviar Comando 'run_training.py'
+
+  ' ➡️ FLUJO 2: Ejecución (SSM a EC2) - Flecha separada con saltos de línea
+  SSM -right-> EC2_I : \n \n \n \n \n2. Ejecutar de Forma Segura (run_training.py)
+
+  EC2_I --> LOGS : 5. Monitoreo (Salida del Comando)
+
+  rectangle "Proceso: run_training.py" as RUN {
+
+    rectangle "1. Descarga y Backup\n(download.py)" as Step1
+    ' 🆕 NUEVO: Validación de datos
+    rectangle "1.1. Validación de Datos\n(data_validator.py)" as Step1_1
+    rectangle "2. Preprocesamiento\n(data_processor.py)" as Step2
+    rectangle "3. Construcción y Entrenamiento\n(model_constructor.py)" as Step3
+    ' 🆕 NUEVO: Evaluación de modelo
+    rectangle "3.1. Evaluación del Modelo\n(model_evaluator.py)" as Step3_1
+
+
+    EC2_I -> Step1 : Inicio
+
+    S3_SRC --> Step1 : Sincronizar a csv-local/
+    Step1 --> S3_BKP : Mover a Backup (Vaciado del Origen)
+
+    ' Nuevo flujo: Descarga -> Validación -> Preprocesamiento
+    Step1 --> Step1_1 : csv-local/
+    Step1_1 -> Step2 : csv-local/ (Validado)
+
+    Step2 --> Step3 : samples-local/ (.h5)
+
+    ' Nuevo flujo: Entrenamiento -> Evaluación -> Guardar
+    Step3 -> Step3_1 : Modelo y Métricas
+    Step3_1 -> S3_ART : 4. Guardar Modelo/Metadatos (Si Pasa el Umbral)
+  }
+
+  ' ⬅️ FLUJO 6: Finalización/Reporte (EC2 a SSM)
+  EC2_I -left-> SSM : 6. Finalización/Reporte de Comando y Apagado (Costo)
+}
+
+package "Proceso de Rollback" as RB {
+  rectangle "API Gateway\n(/rollback-s3)" as APIG_RB
+  rectangle "Lambda\n(rollbackHandler.js)" as LAMBDA_RB
+
+  APIG_RB -> LAMBDA_RB
+  LAMBDA_RB -> EC2_I : (SSM) Restaurar de BKP a Origen
+  S3_BKP <--> S3_SRC : Restauración de Datos
+}
+
+@enduml

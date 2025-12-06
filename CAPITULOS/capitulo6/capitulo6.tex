@@ -101,10 +101,10 @@ El despliegue se orquestó utilizando el \textit{framework} \textbf{AWS SAM} a p
 \subsection{Configuración de Funciones Lambda con SAM}
 Cada función se implementó en un \texttt{Resource} separado para mantener la modularidad.
 
-\begin{codebox}{Fragmento del template para \texttt{logginFunction}}
+\begin{codebox}{Fragmento del template para \texttt{loginFunction} (Corregido: consistencia de nombre)}
     \begin{lstlisting}[style=codeStyle, language=yaml, basicstyle=\ttfamily\footnotesize\bfseries]
 Resources:
-  LogginApiGateway:
+  LoginApiGateway:
     Type: AWS::Serverless::Api
     Properties:
       StageName: Prod
@@ -112,7 +112,7 @@ Resources:
         AllowMethods: "'GET,POST,PUT,DELETE,OPTIONS'"
         AllowOrigin: "'*'"
 
-  logginFunction:
+  loginFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: logging/
@@ -123,7 +123,7 @@ Resources:
         LoginApi:
           Type: Api
           Properties:
-            RestApiId: !Ref LogginApiGateway
+            RestApiId: !Ref LoginApiGateway
             Path: /usuarios/login
             Method: post
     \end{lstlisting}
@@ -425,6 +425,47 @@ Las decisiones arquitectónicas clave se justifican de la siguiente manera:
     \item \textbf{Capa \texttt{Masking(mask\_value=0.0)}}: Es crucial para la \textbf{robustez a secuencias variables}. Permite a la red recurrente ignorar los \textit{frames} de \textit{padding} introducidos para uniformar la longitud de las secuencias, asegurando que solo los datos de la seña real contribuyan al cálculo de la pérdida.
     \item \textbf{Capa \texttt{Bidirectional(LSTM)}}: Maximiza la \textbf{comprensión contextual} de la secuencia. Al procesar la entrada en dos direcciones (de principio a fin y viceversa), la red aprende características que dependen tanto del movimiento precedente como del subsiguiente, esencial para la correcta identificación de señas dinámicas.
     \item \textbf{Agregación Híbrida de Pooling}: La concatenación de \texttt{GlobalAveragePooling1D} (media) y \texttt{GlobalMaxPooling1D} (máximo) crea un vector de características final que combina la \textbf{representación global} (promedio) con las características más \textbf{prominentes y distintivas} (picos) de la secuencia, mejorando el rendimiento del clasificador final.
+\end{itemize}
+
+\section{Ciclo de Vida de la Inteligencia Artificial (MLOps) y Entrenamiento Asistido}
+
+La fase de MLOps (Machine Learning Operations) se diseñó como un pipeline de entrenamiento \textbf{orquestado por eventos serverless} que interactúa con la infraestructura de cómputo pesada (EC2 con GPU) de forma controlada y eficiente. Este diseño garantiza la reproducibilidad, el control de versiones y la optimización de costes, apagando los recursos dedicados cuando no se utilizan.
+
+\begin{figure}[H]
+    \centering
+    % Asume que generarás un diagrama específico para este proceso, por ejemplo:
+    %
+    \includegraphics[width=0.9\textwidth]{CAPITULOS/capitulo6/ .png}
+    \caption{Diagrama de Arquitectura del Pipeline de Entrenamiento MLOps}
+    \label{fig:mlops_pipeline}
+\end{figure}
+
+\subsection{Pipeline de Entrenamiento (Run Training)}
+El proceso se inicia mediante una función \texttt{Lambda} (implementada en \texttt{trainingHandler.js}) activada por una ruta de \texttt{API Gateway} (\texttt{/start-training}).
+
+\begin{enumerate}
+    \item \textbf{Orquestación y Arranque (Lambda):} La función Lambda verifica el estado de la instancia EC2 de entrenamiento (\texttt{i-0ddf9422fa1820c42}) y, si está detenida, la arranca, esperando activamente a que alcance el estado \texttt{running}.
+    \item \textbf{Ejecución Remota (SSM):} Una vez activa, se envía un comando \texttt{AWS Systems Manager (SSM)} que ejecuta de forma segura el script principal de Python \texttt{run\_training.py} como usuario \texttt{ubuntu}.
+    \item \textbf{Ejecución del Script (\texttt{run\_training.py}):}
+    \begin{itemize}
+        \item \textbf{Descarga y Backup (\texttt{download.py}):} Se sincronizan los archivos \texttt{.csv} de nuevas señas desde la ruta \texttt{s3://.../csv/} al disco local de EC2 (\texttt{csv-local/}). \textbf{Criticamente}, tras la descarga, los archivos de origen son movidos inmediatamente a \texttt{s3://.../backup/} (backup y vaciado del origen).
+        \item \textbf{Preprocesamiento (\texttt{data\_processor.py}):} Los CSV locales son procesados, se les añade la dimensión temporal (progreso de la seña, como se ve en \texttt{\_time\_progress\_from\_ts}) y son convertidos a archivos \texttt{.h5} en \texttt{samples-local/}.
+        \item \textbf{Construcción del Modelo (\texttt{model\_constructor.py}):} Se define la arquitectura de la red con capas \texttt{Masking}, \texttt{Bidirectional(LSTM)} y agregación híbrida (\texttt{GlobalAveragePooling1D} y \texttt{GlobalMaxPooling1D}), con una configuración que permite la futura conversión a \textbf{TFLite} (kernel no-CuDNN si es necesario).
+        \item \textbf{Entrenamiento:} El modelo se entrena con los datos H5. Al finalizar, el modelo \texttt{.h5} y los metadatos (\texttt{labels.json}) se guardan en la carpeta \texttt{models-local/}.
+    \end{itemize}
+    \item \textbf{Apagado y Monitoreo:} El comando SSM tiene un paso final condicional para apagar la instancia EC2 al concluir el entrenamiento, optimizando los costos. La salida completa del proceso se redirige a \texttt{CloudWatch Logs} para monitoreo asíncrono.
+\end{enumerate}
+
+\subsection{Proceso de Rollback (Restauración de Datos)}
+El diseño incluye una ruta de reversión controlada (\texttt{/rollback-s3} en \texttt{rollbackHandler.js}) que permite restaurar los datos de las señas desde el bucket de \textbf{backup} al bucket de \textbf{origen} en S3, manteniendo el principio de inmutabilidad del histórico de entrenamiento.
+
+\subsection{Arquitectura del Modelo de Clasificación}
+La estructura del modelo implementado en \texttt{model\_constructor.py} es:
+
+\begin{itemize}
+    \item \textbf{Entrada con \texttt{Masking}:} La capa \texttt{Masking} maneja secuencias de longitud variable, permitiendo que la red ignore los \textit{frames} de relleno (padding), esencial para la robustez del modelo.
+    \item \textbf{Capas \texttt{Bidirectional(LSTM)}}: Maximiza la \textbf{comprensión contextual} de la secuencia, aprendiendo características que dependen tanto del movimiento precedente como del subsiguiente.
+    \item \textbf{Agregación Híbrida de Pooling}: La concatenación de \texttt{GlobalAveragePooling1D} y \texttt{GlobalMaxPooling1D} combina la \textbf{representación global} con las características más \textbf{prominentes y distintivas} de la secuencia.
 \end{itemize}
 
 \section{Conclusión del Capítulo}
