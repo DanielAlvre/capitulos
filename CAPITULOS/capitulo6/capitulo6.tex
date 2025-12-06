@@ -429,7 +429,7 @@ Las decisiones arquitectónicas clave se justifican de la siguiente manera:
 
 \section{Ciclo de Vida de la Inteligencia Artificial (MLOps) y Entrenamiento Asistido}
 
-La fase de MLOps (Machine Learning Operations) se diseñó como un pipeline de entrenamiento \textbf{orquestado por eventos serverless} que interactúa con la infraestructura de cómputo pesada (EC2 con GPU) de forma controlada y eficiente. Este diseño garantiza la reproducibilidad, el control de versiones y la optimización de costes, apagando los recursos dedicados cuando no se utilizan.
+La fase de MLOps (Machine Learning Operations) se diseñó como un pipeline de entrenamiento \textbf{orquestado por eventos serverless} que interactúa con la infraestructura de cómputo pesada (EC2 con GPU) de forma controlada y eficiente. Este diseño garantiza la reproducibilidad, el control de versiones y la optimización de costes, apagando los recursos dedicados cuando no se utilizan, como se ilustra en la \textbf{Figura \ref{fig:mlops_pipeline}}.
 
 \begin{figure}[H]
     \centering
@@ -468,5 +468,3 @@ La estructura del modelo implementado en \texttt{model\_constructor.py} es:
     \item \textbf{Agregación Híbrida de Pooling}: La concatenación de \texttt{GlobalAveragePooling1D} y \texttt{GlobalMaxPooling1D} combina la \textbf{representación global} con las características más \textbf{prominentes y distintivas} de la secuencia.
 \end{itemize}
 
-\section{Conclusión del Capítulo}
-La implementación de la solución se fundamenta en un principio de \textbf{separación de responsabilidades} (\textit{decoupling}) para garantizar la robustez y mantenibilidad. Se logró integrar exitosamente tres componentes de naturaleza diversa: una arquitectura \textit{Serverless} con DynamoDB para la gestión administrativa escalable y eficiente en costos; procesamiento en el borde (\textit{Edge Computing}) con MediaPipe para la captura y preprocesamiento de datos en tiempo real; y una infraestructura de cómputo dedicada (EC2/GPU) con orquestación Serverless para las tareas pesadas del ciclo de vida de la Inteligencia Artificial (MLOps). Este diseño híbrido demuestra una \textbf{solución tecnológica robusta}, mantenible y eficiente en costos operativos.
