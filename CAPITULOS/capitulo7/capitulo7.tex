@@ -14,11 +14,18 @@ La adquisición de las muestras de prueba se ejecuta a través de la interfaz we
 \begin{enumerate}
     \item \textbf{Adquisición de \textit{Landmarks}:} El usuario ejecuta una de las 29 señas frente a la cámara. La aplicación registra una secuencia de \textit{frames}, donde cada \textit{frame} contiene:
     \begin{itemize}
-        \item \textbf{Pose (17 puntos filtrados):} Coordenadas suavizadas ($X, Y$), y coordenadas originales de profundidad y visibilidad ($Z, V$). Las coordenadas $X, Y$ son sometidas a un filtro \textbf{Exponencial Móvil Promedio (EMA)} para mitigar el \textit{jitter} temporal.
+        \item \textbf{Pose (17 puntos filtrados):} Coordenadas suavizadas ($X, Y$), y coordenadas originales de profundidad y visibilidad ($Z, V$). Las coordenadas $X, Y$ son sometidas a un filtro \textbf{Exponencial Móvil Promedio (EMA)} para mitigar el \textit{jitter} temporal, lo cual es crucial para la estabilidad de la secuencia.
         \item \textbf{Manos (42 puntos):} Coordenadas ($X, Y, Z$) para los 21 \textit{landmarks} de cada mano.
     \end{itemize}
     \item \textbf{Criterio de Cierre de Muestra:} La captura finaliza automáticamente al detectar un periodo prolongado de estabilidad, asegurando que solo se registren secuencias completas y bien ejecutadas de la seña, lo que garantiza la calidad del conjunto de validación.
     \item \textbf{Almacenamiento Persistente:} La secuencia de \textit{landmarks} se transfiere al \textit{backend} (Flask). Este la almacena como un \textit{dataset} en un archivo \textbf{HDF5} (\texttt{.h5}) y registra la \textit{metadata} (\textit{Ground Truth}, duración, y número de \textit{frames}) en \textbf{PostgreSQL}.
+    \item \textbf{Condiciones Físicas Controladas:} Para garantizar la replicabilidad del \textit{Test Set}, todas las pruebas de validación se realizaron bajo un entorno físico controlado y uniforme:
+    \begin{itemize}
+        \item \textbf{Iluminación:} El entorno se mantuvo \textbf{bien iluminado} (luz natural y artificial constante).
+        \item \textbf{Posición de la Cámara:} El dispositivo móvil se colocó a una \textbf{altura de 70 cm} del suelo.
+        \item \textbf{Distancia del Usuario:} El usuario se posicionó a una \textbf{distancia de 40 cm} de la cámara.
+        \item \textbf{Captura de Cuerpo:} La captura de video se limitó a la \textbf{parte superior del cuerpo} del signante.
+    \end{itemize}
 \end{enumerate}
 
 \subsection{Diseño del Conjunto de Validación por Clase}
@@ -88,7 +95,7 @@ El servicio \texttt{trainer} procesa las secuencias para adaptarlas al formato d
     \item \textbf{Alineación (\textit{Padding}):} Se aplica \textit{Zero-Padding} a todas las secuencias para alcanzar la longitud máxima $T_{\text{max}}$, estandarizando la forma de entrada a la red a $$(N_{\text{muestras}}, T_{\text{max}}, F_{\text{total}})$$.
 \end{enumerate}
 
-\subsection{Inferencia, Traducción (*Argmax*) y Métricas}
+\subsection{Inferencia, Traducción (\textit{Argmax}) y Métricas}
 
 \begin{enumerate}
     \item \textbf{Inferencia y Traducción:} El modelo LSTM produce un vector de probabilidad $\mathbf{P} \in \mathbb{R}^{29}$. La decisión de clasificación se obtiene aplicando la función \textit{Argmax}, seleccionando la clase con la probabilidad más alta:
@@ -122,4 +129,29 @@ function playAudio(predictedClassIndex) {
     \end{equation}
 \end{enumerate}
 
-El cálculo de estas métricas sobre el \textit{Test Set} será presentado y analizado en el Capítulo de Resultados.
+\section{Protocolo de Pruebas de Rendimiento Operacional del Sistema Híbrido}
+\label{sec:protocolo_rendimiento}
+
+Dado que la arquitectura del sistema es híbrida (MLOps en la nube y Clasificación en el borde), es crucial validar el cumplimiento de los Requerimientos No Funcionales (RNF) en términos de eficiencia y latencia.
+
+\subsection{Prueba de Latencia de Inferencia en el Borde (\textit{Edge Computing})}
+
+El objetivo es confirmar que el modelo BiLSTM, optimizado como \textbf{TFLite} y ejecutado en el dispositivo móvil, cumple con la restricción de \textbf{Tiempo Real}.
+
+\begin{itemize}
+    \item \textbf{Métrica:} Latencia de Inferencia (Tiempo promedio entre la entrada de la secuencia de \textit{keypoints} preprocesada y la salida de la clase predicha).
+    \item \textbf{Unidad de Medida:} Milisegundos (ms).
+    \item \textbf{Protocolo:} Se ejecutará el script de inferencia en \texttt{LiveRecognitionActivity.kt} con secuencias de prueba pre-grabadas y se medirá el tiempo de ejecución del intérprete de TFLite en un ciclo de 100 inferencias.
+    \item \textbf{RNF Objetivo:} Latencia promedio debe ser $\mathbf{< 300\ ms}$ por seña.
+\end{itemize}
+
+\subsection{Prueba de Eficiencia y Consistencia del Pipeline MLOps}
+
+El objetivo es validar que el subsistema de entrenamiento orquestado (Lambda + SSM + EC2) sea eficiente en términos de tiempo y costos operativos.
+
+\begin{itemize}
+    \item \textbf{Métrica:} Tiempo de Ciclo de Entrenamiento (TCT) y Consistencia del Apagado (CA).
+    \item \textbf{Protocolo:} Se invoca el *endpoint* \texttt{/start-training} (activando \texttt{trainingHandler.js}). Se registra: (1) El tiempo total desde la invocación hasta la finalización del comando SSM y (2) La verificación en AWS Console de que la instancia EC2 se apague automáticamente.
+    \item \textbf{RNF Objetivo:} El tiempo de instancia *encendida* debe ser igual o ligeramente superior al tiempo de ejecución de \texttt{run\_training.py}, minimizando el costo de cómputo inactivo.
+\end{itemize}
+\clearpage

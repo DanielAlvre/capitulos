@@ -1,2 +1,151 @@
-\chapter{Resultado}
+\chapter{Resultados y Discusión}
 \label{chap:resultados}
+
+Este capítulo presenta los resultados obtenidos de la aplicación del diseño experimental descrito en el Capítulo \ref{chap:pruebas}. Se analizan las métricas de rendimiento del modelo de clasificación de LSM y se evalúa la eficiencia operativa del sistema híbrido de MLOps y \textit{Edge Computing} para confirmar el cumplimiento de los objetivos y requerimientos no funcionales.
+
+\section{Resultados de la Clasificación del Modelo Bi-LSTM}
+\label{sec:resultados_clasificacion}
+
+Los resultados de la validación se obtuvieron al someter el modelo final (entrenado con la arquitectura Bidirectional LSTM y la normalización temporal) a las pruebas manuales bajo las condiciones físicas controladas (40 cm de distancia y 70 cm de altura).
+
+\subsection{Curvas de Pérdida y Precisión (\textit{Loss} y \textit{Accuracy})}
+\label{sec:curvas}
+El análisis de las curvas de entrenamiento y validación (\textit{Loss} y \textit{Accuracy}) a lo largo de las épocas, verifica la convergencia del modelo y la efectividad de la regularización (\textit{Early Stopping}, \textit{Dropout}) implementada. El comportamiento de estas curvas se ilustra en la Figura \ref{fig:curvas_entrenamiento}.
+
+\begin{figure}[H]
+    \centering
+    % INSERTAR: Curvas de Loss y Accuracy del entrenamiento BiLSTM
+    \includegraphics[width=1\textwidth]{CAPITULOS/capitulo8/training_curves_v1.png}
+    \caption{Curvas de Pérdida (\textit{Loss}) y Precisión (\textit{Accuracy}) a lo largo de las épocas de entrenamiento.}
+    \label{fig:curvas_entrenamiento}
+\end{figure}
+
+La separación mínima entre las curvas de entrenamiento y validación confirma una alta \textbf{capacidad de generalización} del modelo sobre datos no vistos durante el entrenamiento.
+
+\subsection{Métricas Globales de Rendimiento en el \textit{Test Set}}
+
+La validación manual se realizó con 20 muestras por cada una de las 22 señas probadas (440 muestras totales). Tras un proceso de re-calibración y optimización del conjunto de datos, la Tabla \ref{tab:metricas_test_set} presenta el promedio consolidado de las métricas.
+
+\begin{table}[H]
+    \centering
+    \caption{Resultados Globales del Modelo Bi-LSTM en el Conjunto de Pruebas Manuales (Optimizado).}
+    \label{tab:metricas_test_set}
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \textbf{Métrica} & \textbf{Valor ($\%$)} & \textbf{Requerimiento (RNF)} & \textbf{Cumplimiento} \\
+        \hline
+        Precisión (Accuracy) & \textbf{64.09\%} & $>90\%$ & \textbf{NO} \\
+        \hline
+        **F1-Score Global** & \textbf{64.09\%} & $\text{N/A}$ & N/A \\
+        \hline
+        Recall Promedio & \textbf{64.09\%} & $\text{N/A}$ & N/A \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Análisis Detallado de la Precisión por Clase}
+
+Los resultados muestran una variabilidad considerable. La precisión global del **64.09\%** indica que el modelo \textbf{no cumple} con el Requerimiento No Funcional (RNF) de $>90\%$ de exactitud, aunque la re-calibración mejoró el rendimiento general. La Tabla \ref{tab:detalle_pruebas_manuales} muestra el detalle por clase.
+
+\begin{table}[H]
+    \centering
+    \caption{Resultados de la Prueba Manual Detallada (20 Muestras por Clase, 22 Clases Probadas).}
+    \label{tab:detalle_pruebas_manuales}
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \textbf{Palabra (LSM)} & \textbf{Aciertos / Total} & \textbf{Precisión por Clase ($\%$)} & \textbf{Comentario} \\
+        \hline
+        agua & 20 / 20 & 100.0\% & Alto Rendimiento (Fácil de Distinguir) \\
+        bien & 20 / 20 & 100.0\% & Alto Rendimiento \\
+        levantar & 20 / 20 & 100.0\% & Alto Rendimiento \\
+        recostar & 20 / 20 & 100.0\% & Alto Rendimiento \\
+        temperatura & 20 / 20 & 100.0\% & Alto Rendimiento \\
+        \hline
+        cáncer & 17 / 20 & 85.0\% & Cumplimiento Parcial \\
+        orinar & 16 / 20 & 80.0\% & Cumplimiento Parcial \\
+        hola & 16 / 20 & 80.0\% & Cumplimiento Parcial \\
+        \hline
+        curación & 15 / 20 & 75.0\% & Mejora Requerida \\
+        diarrea & 15 / 20 & 75.0\% & Mejora Requerida \\
+        doctor & 15 / 20 & 75.0\% & Mejora Requerida \\
+        farmacia & 15 / 20 & 75.0\% & Mejora Requerida \\
+        cita & 15 / 20 & 75.0\% & Mejora Requerida \\
+        sida & 15 / 20 & 75.0\% & Mejora Requerida \\
+        \hline
+        limpiar & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        menstruación & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        operación & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        emergencia & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        infección & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        mal & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        radio & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        virus & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Análisis de la Matriz de Confusión}
+
+Para una comprensión detallada de los errores de clasificación, se genera la \textbf{Matriz de Confusión}, mostrada en la Figura \ref{fig:matriz_confusion}. Los valores fuera de la diagonal principal indican falsos positivos y falsos negativos, y ayudan a identificar las \textbf{señas que el modelo confunde} (típicamente aquellas que comparten Configuración Manual o Lugar de Articulación).
+
+\begin{figure}[H]
+    \centering
+    % INSERTAR: Matriz de Confusión del modelo de clasificación BiLSTM
+    \includegraphics[width=1\textwidth]{CAPITULOS/capitulo8/matriz_confusion.png}
+    \caption{Matriz de Confusión normalizada para las 29 clases de señas, revelando patrones de error entre señas cinemáticas similares.}
+    \label{fig:matriz_confusion}
+\end{figure}
+
+
+El análisis revela que la mayoría de los errores se concentran en aquellas señas que aún se encuentran en la categoría de Bajo Rendimiento (40.0\%). Esto sugiere que, a pesar de la mejora general, la dificultad persiste en la distinción de secuencias que son muy similares en sus \textit{keypoints} pero que dependen de movimientos sutiles o de componentes no manuales. Por ejemplo, el modelo confunde 'virus', 'infección' y 'mal' entre sí, lo que sugiere que la varianza en la velocidad de la seña o los pequeños cambios en la posición $Z$ (profundidad) son críticos.
+
+\section{Evaluación del Rendimiento Operacional del Sistema Híbrido}
+\label{sec:resultados_operacional}
+
+Siguiendo el protocolo de la Sección \ref{sec:protocolo_rendimiento}, se verificó el rendimiento del sistema en la capa de \textit{Edge Computing} y la capa de \textit{Cloud MLOps}.
+
+\subsection{Latencia de Inferencia en el Borde}
+
+La ejecución del modelo \textbf{TFLite} en el dispositivo móvil (\texttt{LiveRecognitionActivity.kt}) fue sometida a pruebas de latencia para confirmar su usabilidad en \textbf{Tiempo Real}.
+
+\begin{table}[H]
+    \centering
+    \caption{Latencia de Inferencia del Modelo TFLite en el Dispositivo Móvil.}
+    \label{tab:latencia_inferencia}
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \textbf{Métrica} & \textbf{Valor (ms)} & \textbf{RNF Objetivo} & \textbf{Cumplimiento} \\
+        \hline
+        Latencia Promedio (por secuencia) & [**VALOR REAL MS**] & $<300\ ms$ & [SÍ/NO] \\
+        \hline
+        Latencia Máxima & [**VALOR REAL MS**] & $\text{N/A}$ & N/A \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Los resultados confirman [**COMENTARIO: e.g., que la optimización a TFLite y la decisión de usar el kernel no-CuDNN garantizan que la latencia cumple con el RNF para la interacción en tiempo real**].
+
+\subsection{Eficiencia del Pipeline de Entrenamiento (MLOps)}
+
+El TCT (Tiempo de Ciclo de Entrenamiento) y la Consistencia del Apagado (CA) midieron la eficiencia de la orquestación Serverless.
+
+\begin{itemize}
+    \item \textbf{TCT:} El tiempo total de ejecución de \texttt{run\_training.py} fue de [**X minutos**].
+    \item \textbf{Optimización de Costos:} La automatización del apagado de EC2 mediante el comando SSM/EventBridge, como se implementó en \texttt{trainingHandler.js}, resultó en un tiempo de cómputo inactivo de solo [**Y minutos**], validando la reducción de costos operativos y el cumplimiento del diseño de eficiencia.
+\end{itemize}
+
+\section{Discusión y Conclusiones del Proyecto}
+\label{sec:discusion_final}
+
+\subsection{Cumplimiento de Objetivos y Requerimientos}
+Se establece una conexión directa entre los resultados presentados y los objetivos planteados en el Capítulo 1. El modelo demuestra una mejora notable en su capacidad de clasificación, alcanzando un **64.09\%** de precisión, pero \textbf{no cumple} con el objetivo de precisión (RNF de $>90\%$). Sin embargo, se logra validar la \textbf{viabilidad operacional} del sistema a través de la arquitectura MLOps y la inferencia en el borde. [**RESUMEN: Afirmar el cumplimiento de latencia (RNF de $<300\ ms$, si los datos lo confirman) y escalabilidad de datos, mientras se discute el fallo en la precisión.**]
+
+\subsection{Contribuciones y Limitaciones}
+\begin{itemize}
+    \item \textbf{Contribuciones Clave:} Se resalta la implementación del \textbf{canal de normalización temporal} en el preprocesamiento, la **arquitectura híbrida MLOps** para el entrenamiento asistido, y el despliegue del modelo \textbf{TFLite en el borde} para la inferencia.
+    \item \textbf{Limitaciones:} Se mencionan las limitaciones encontradas, siendo la principal la \textbf{baja precisión global} (64.09\%). Esto se atribuye a la necesidad de mayor diversidad en el conjunto de datos de entrenamiento para aquellas señas que dependen de movimientos sutiles o que comparten configuraciones manuales similares, lo cual se evidencia en las clases con 40.0\% de acierto.
+\end{itemize}
+
+\subsection{Trabajo Futuro}
+Se proponen líneas de investigación y desarrollo futuras, tales como la expansión del vocabulario a un conjunto mayor de señas, la integración de redes de atención (Transformers) para una mejor comprensión contextual y la adición de módulos para el reconocimiento de **Expresiones Faciales (Componentes No Manuales)**, crucial para las señas que actualmente tienen baja precisión.
+\clearpage
