@@ -28,6 +28,52 @@ La adquisición de las muestras de prueba se ejecuta a través de la interfaz we
     \end{itemize}
 \end{enumerate}
 
+\subsection{Protocolo de Evaluación y Cálculo de Métricas}
+\label{sec:protocolo_metrico}
+
+Una vez establecido el Conjunto de Pruebas (\textit{Test Set}) independiente, se define el protocolo estricto para la evaluación del rendimiento del algoritmo de clasificación de secuencias, asegurando que las métricas reflejen la calidad real del modelo Bi-LSTM (\texttt{model.keras}).
+
+\subsubsection*{Fase 1: Procesamiento de Secuencias para la Inferencia}
+
+El proceso de prueba utiliza el pipeline de preprocesamiento de Python (`data_processor.py`) de la siguiente manera:
+\begin{enumerate}
+    \item \textbf{Recolección de Secuencias (Inferencia Simulación):} Las 440 secuencias de \textit{landmarks} (20 por cada una de las 22 señas probadas) se cargan en el entorno de evaluación.
+    \item \textbf{Normalización Temporal y Relleno (\textit{Padding}):} Cada secuencia se normaliza a una longitud fija (definida en \texttt{constants.py}) y se aplica el relleno a los cuadros faltantes (o sobrantes) con ceros. Esta etapa es crítica, ya que alimenta la capa \texttt{Masking} del modelo Bi-LSTM.
+    \item \textbf{Ejecución de Inferencia:} Las secuencias preprocesadas se alimentan al modelo \texttt{model.keras} (el modelo entrenado final), resultando en un vector de probabilidades de 29 elementos (el número de clases).
+\end{enumerate}
+
+\subsubsection*{Fase 2: Mapeo y Determinación de la Clase Predicha}
+
+Para obtener el resultado final de la clasificación se realizan los siguientes pasos:
+\begin{enumerate}
+    \item \textbf{Predicción de Clase:} Se selecciona el índice con la probabilidad más alta (función \texttt{argmax} en TensorFlow), lo que representa la clase predicha por el modelo.
+    \item \textbf{Mapeo de Etiquetas:} El índice numérico se mapea a la palabra de la Lengua de Señas Mexicana (LSM) correspondiente utilizando el diccionario de etiquetas \texttt{labels.json} y \texttt{labels.txt}.
+\end{enumerate}
+
+\subsubsection*{Fase 3: Cálculo de Métricas de Eficacia (Calidad del Algoritmo)}
+
+Para determinar la calidad y robustez del algoritmo, se utilizan las siguientes métricas, las cuales son calculadas comparando la palabra predicha contra la etiqueta verdadera de la muestra:
+
+\begin{table}[H]
+    \centering
+    \caption{Métricas de Eficacia utilizadas para la Validación del Algoritmo.}
+    \label{tab:metricas_eficacia}
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Métrica} & \textbf{Propósito en el Proyecto} & \textbf{Fórmula} \\
+        \hline
+        \textbf{Precisión (\textit{Accuracy}) Global} & Mide el rendimiento general del clasificador. & $\frac{\text{Aciertos Totales}}{\text{Muestras Totales}}$ \\
+        \hline
+        \textbf{F1-Score por Clase} & \textbf{Métrica Principal de Validación.} Mide el equilibrio entre Precisión y Recall, robusta para posibles desequilibrios en el \textit{Test Set}. & $2 \cdot \frac{\text{Precisión} \cdot \text{Recall}}{\text{Precisión} + \text{Recall}}$ \\
+        \hline
+        \textbf{Pérdida (\textit{Loss}) de Validación} & Verifica la \textbf{convergencia} y la ausencia de sobreajuste (\textit{overfitting}) en el modelo durante el entrenamiento. & Error Categórico (Cross-Entropy) \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\paragraph{Diagnóstico de Errores (Matriz de Confusión)}
+El análisis detallado de la \textbf{Matriz de Confusión} (generada a partir del reporte \texttt{report\_v1.json}) se convierte en la herramienta de diagnóstico fundamental. Permite visualizar las predicciones erróneas e identificar las clases que el modelo confunde (por ejemplo, 'virus' vs. 'infección'), lo cual es la clave para entender la baja precisión global (\mathbf{64.09\%}) mencionada en el Capítulo \ref{chap:resultados}.
+
 \subsection{Diseño del Conjunto de Validación por Clase}
 
 Para una validación rigurosa, se diseñó el \textit{Test Set} bajo los siguientes parámetros de control experimental. La Tabla \ref{tab:diseño_test_set} lista las 29 palabras que componen el vocabulario de prueba y los requisitos de captura.

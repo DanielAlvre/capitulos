@@ -66,21 +66,40 @@
 \setlength{\fboxsep}{1pt} % Espacio entre la imagen y el borde
 \setlength{\fboxrule}{1pt} % Grosor del borde
 
-% Definir un color amarillo claro (usado para el estilo json, que ahora es opcional)
+% Definir un color amarillo claro (ya no usado)
 \definecolor{codebg}{rgb}{1.0, 1.0, 0.8}
 
-% Definir el estilo json para lstlisting (Mantenido, aunque no se usa dentro de codebox)
-\lstdefinestyle{json} {
-    backgroundcolor=\color{codebg},
-    basicstyle=\ttfamily,
-    language=json,
-    stepnumber=1,
-    numberstyle=\tiny,
-    breaklines=true,
+% --- Estilo global para lstlisting ---
+\lstset{
+    basicstyle=\ttfamily\small\bfseries,
     captionpos=b,
     frame=single,
     frameround=tttt,
-    rulecolor=\color{black}
+    rulecolor=\color{black},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    breaklines=true,
+    tabsize=4,
+    showstringspaces=false,
+    backgroundcolor=\color{white}
+}
+
+% Redefinir el estilo json para que use el basicstyle consistente
+\lstdefinestyle{json} {
+    basicstyle=\ttfamily\small\bfseries,
+    language=json,
+    captionpos=b,
+    frame=single,
+    frameround=tttt,
+    rulecolor=\color{black},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    breaklines=true,
+    tabsize=4,
+    showstringspaces=false,
+    backgroundcolor=\color{white}
 }
 
 % --- Configuración de márgenes ---
@@ -144,47 +163,48 @@
 \begin{document}
 
 % Portada
-    \include{CAPITULOS/PORTADA/portada}  % Incluye la portada desde el archivo externo
+\include{CAPITULOS/PORTADA/portada}
 
 % Índice general
-    \tableofcontents
-    \newpage
+\tableofcontents
+\newpage
 
 % Índice de figuras
-    \addcontentsline{toc}{chapter}{Índice de figuras}
-    \listoffigures
-    \newpage
+\addcontentsline{toc}{chapter}{Índice de figuras}
+\listoffigures
+\newpage
 
 % Índice de tablas
-    \addcontentsline{toc}{chapter}{Índice de tablas}
-    \listoftables
-    \newpage
+\addcontentsline{toc}{chapter}{Índice de tablas}
+\listoftables
+\newpage
 
 % Índice de ecuaciones
-    \listofmyequations  % Llamada a la función que ahora resetea el contador
-    \newpage
+\listofmyequations
+\newpage
 
 % Resumen
-    \chapter*{Resumen}
-    \addcontentsline{toc}{chapter}{Resumen}
+\chapter*{Resumen}
+\addcontentsline{toc}{chapter}{Resumen}
     Este proyecto desarrolla un sistema que reconoce señas de la Lengua de Señas Mexicana (LSM) para facilitar la comunicación entre personas con discapacidad auditiva y la comunidad oyente en México. El sistema se basa en la captura de la configuración manual de las señas mediante cámara y utiliza MediaPipe para el seguimiento de las manos. Se enfoca principalmente en el reconocimiento de señas con movimiento, particularmente en el ámbito médico. La traducción de un conjunto predefinido de señas al español se logra mediante modelos de aprendizaje profundo, utilizando TensorFlow/Keras. La integración de tecnología en la nube permite un procesamiento de datos escalable y una posible traducción en tiempo real. El objetivo final es cerrar la brecha de comunicación entre personas con discapacidad auditiva y oyentes, promoviendo una mayor inclusión y accesibilidad en México.
     \textbf{keywords:}
     Lengua de Señas Mexicana (LSM), Reconocimiento de Señas, Seguimiento de Manos (Hand Tracking), Algoritmos de Aprendizaje Automático, Redes Neuronales Convolucionales (CNN), Redes Neuronales LSTM, Automatización de Procesos, AWS (Amazon Web Services), Interfaz de Usuario, Análisis de Datos.
 
 % Abstract
-    \chapter*{Abstract}
-    \addcontentsline{toc}{chapter}{Abstract}
-    This project develops a system that recognizes signs from Mexican Sign Language (LSM) to facilitate communication between people with hearing disabilities and the hearing community in Mexico. The system is based on capturing the manual configuration of signs through a camera and uses MediaPipe for hand tracking. It focuses primarily on recognizing signs with movement, particularly those related to the medical field. The translation of a predefined set of signs into Spanish is achieved through deep learning models, using TensorFlow/Keras. The integration of cloud technology allows for scalable data processing and potential real-time translation. The ultimate goal is to bridge the communication gap between people with hearing disabilities and hearing people, promoting greater inclusion and accessibility in Mexico.
-    \textbf{Keywords:}
-    Mexican Sign Language (LSM), Sign Language Recognition, Hand Tracking, Machine Learning Algorithms, Convolutional Neural Networks (CNN), LSTM Neural Networks, Process Automation, AWS (Amazon Web Services), User Interface, Data Analysis.
-    \include{CAPITULOS/capitulo1/capitulo1}
-    \include{CAPITULOS/capitulo2/capitulo2}
-    \include{CAPITULOS/capitulo3/capitulo3}
-    \include{CAPITULOS/capitulo4/capitulo4}
-    \include{CAPITULOS/capitulo5/capitulo5}
-    \include{CAPITULOS/capitulo6/capitulo6}
-    \include{CAPITULOS/capitulo7/capitulo7}
-    \include{CAPITULOS/capitulo8/capitulo8}
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+This project develops a system that recognizes signs from Mexican Sign Language (LSM) to facilitate communication between people with hearing disabilities and the hearing community in Mexico. The system is based on capturing the manual configuration of signs through a camera and uses MediaPipe for hand tracking. It focuses primarily on recognizing signs with movement, particularly those related to the medical field. The translation of a predefined set of signs into Spanish is achieved through deep learning models, using TensorFlow/Keras. The integration of cloud technology allows for scalable data processing and potential real-time translation. The ultimate goal is to bridge the communication gap between people with hearing disabilities and hearing people, promoting greater inclusion and accessibility in Mexico.
+\textbf{Keywords:}
+Mexican Sign Language (LSM), Sign Language Recognition, Hand Tracking, Machine Learning Algorithms, Convolutional Neural Networks (CNN), LSTM Neural Networks, Process Automation, AWS (Amazon Web Services), User Interface, Data Analysis.
+
+\include{CAPITULOS/capitulo1/capitulo1}
+\include{CAPITULOS/capitulo2/capitulo2}
+\include{CAPITULOS/capitulo3/capitulo3}
+\include{CAPITULOS/capitulo4/capitulo4}
+\include{CAPITULOS/capitulo5/capitulo5}
+\include{CAPITULOS/capitulo6/capitulo6}
+\include{CAPITULOS/capitulo7/capitulo7}
+\include{CAPITULOS/capitulo8/capitulo8}
 
 % Añadir bibliografía
     \printbibliography
