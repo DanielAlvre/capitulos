@@ -1,111 +1,5 @@
 \chapter{Marco Teórico}
 
-\section{Medidas de tendencia central}
-
-Las medidas de tendencia central son herramientas estadísticas que permiten resumir la localización de los datos, es decir, ayudan a identificar el valor alrededor del cual se centran los datos. Estas medidas son esenciales para el análisis de datos en cualquier investigación, incluyendo el análisis de las muestras de Lengua de Señas Mexicana (LSM).
-
-\textbf{Medidas de tendencia central:}
-
-\textbf{Media:}
-
-La media aritmética es el valor obtenido al sumar todos los valores de un conjunto de datos y dividir entre el número de datos. En el análisis de LSM, la media puede utilizarse para calcular la posición promedio de las manos en una seña. La ecuación para su cálculo se puede observar en la Ecuación \ref{eq:media}.
-
-\indexedequation{Ecuación  Media aritmética}{
-    \begin{equation}
-        \bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}
-        \label{eq:media}
-    \end{equation}
-}
-
-
-\textbf{Varianza:}
-
-La varianza ($\sigma^2$) es una medida de dispersión que indica la variabilidad de los datos al medir el promedio de las diferencias al cuadrado de cada dato respecto a la media. Una varianza alta indica que los datos están más dispersos. Debido a que sus unidades están elevadas al cuadrado, no se interpreta directamente en las unidades originales de la seña. La ecuación para calcular la varianza se muestra en la Ecuación \ref{eq:varianza}.
-
-\indexedequation{Ecuación  Varianza}{
-    \begin{equation}
-        \sigma^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}
-        \label{eq:varianza}
-    \end{equation}
-}
-
-
-\textbf{Desviación Estándar:}
-
-La desviación estándar ($\sigma$) es una medida de dispersión que se obtiene como la raíz cuadrada de la varianza. Indica cuánto varían los datos alrededor de la media y se expresa en las mismas unidades que los datos originales, lo cual facilita su interpretación como la dispersión promedio de los puntos articulares de la mano en la seña. La ecuación para calcular la desviación estándar se puede observar en la Ecuación \ref{eq:desviacion_estandar}.
-
-\indexedequation{Ecuación Desviación estándar}{
-    \begin{equation}
-        \sigma = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}}
-        \label{eq:desviacion_estandar}
-    \end{equation}
-}
-
-\section{MediaPipe Holistic}
-
-MediaPipe Holistic es una solución integral de Google para el seguimiento del cuerpo humano en tiempo real. El modelo de Holistic combina  modelos de aprendizaje profundo para detectar y rastrear puntos (posiciones flotantes en un  plano x, y) clave en el rostro, las manos y el cuerpo completo. Esta capacidad de análisis detallado de los movimientos corporales es esencial para la captura expresiva de la Lengua de Señas Mexicana (LSM), donde la posición del cuerpo y los movimientos de las manos son fundamentales para recibir y generar la comunicación.
-
-\subsection{Componentes del Modelo Holistic}
-
-MediaPipe Holistic se compone de tres modelos principales:
-
-\begin{enumerate}
-    \item \textbf{Pose Landmarker:}
-    \begin{itemize}
-        \item \textbf{Descripción:}  Este modelo detecta 33 puntos de referencia del cuerpo humano en una imagen o video, incluyendo la nariz, los ojos, las orejas, los hombros, los codos, las muñecas, las caderas, las rodillas y los tobillos. 
-        \item \textbf{Aplicaciones en lengua de señas mexicana:}  Estos puntos son cruciales para interpretar las señas, ya que permiten analizar la postura general del cuerpo y la posición de los brazos y las manos en relación al torso. Por ejemplo, la posición de los codos y las muñecas es fundamental para distinguir señas como \textquotedblleft CASA\textquotedblright  u  \textquotedblleft HOLA\textquotedblright.
-        \item \textbf{Funcionamiento:} El modelo utiliza una red neuronal convolucional similar a MobileNetV2 y está optimizado para aplicaciones de entrenamiento en tiempo real y en el dispositivo.  Primero, detecta la presencia de cuerpos humanos en la imagen, y luego localiza los 33 puntos de referencia en el cuerpo detectado.
-        \item \textbf{Opciones de configuración:}  
-            \begin{itemize}
-                \item \textbf{running\_mode:} Establece el modo de ejecución (IMAGE, VIDEO, LIVE\_STREAM).
-                \item \textbf{num\_poses:} La cantidad máxima de poses a detectar.
-                \item \textbf{min\_pose\_detection\_confidence:} Puntuación mínima para la detección de poses.
-                \item \textbf{min\_pose\_presence\_confidence:} Puntuación mínima de presencia de poses.
-                \item \textbf{min\_tracking\_confidence:} Puntuación mínima para el seguimiento de poses.
-                \item \textbf{output\_segmentation\_masks:}  Si se generan máscaras de segmentación.
-            \end{itemize}
-    \end{itemize}
-    \begin{figure}[h]
-        \includegraphics[scale=0.4]{CAPITULOS/capitulo2/img.png}
-        \centering
-        \caption[Puntos de medipipe]{Puntos de medipipe Pose Landmarker \cite{ref20}}
-        \label{fig:imagen_medipipe_pose}
-    \end{figure}
-    \item \textbf{Face Landmarks:}
-    \begin{itemize}
-        \item \textbf{Cantidad:} 468 puntos.
-        \item \textbf{Descripción:}  Detecta puntos clave en el rostro, como los ojos, las cejas, la nariz, la boca y el contorno de la cara.
-        \item \textbf{Aplicaciones de MediaPipe Holistic en el sistema:} Se utilizan para analizar las expresiones faciales, que son un componente gramatical crucial en la LSM. Por ejemplo, las expresiones faciales pueden indicar preguntas, negación, o emociones.
-    \end{itemize}
-
-    \item \textbf{Hand Landmarks:}
-    \begin{itemize}
-        \item \textbf{Cantidad:} 21 puntos por cada mano \cite{ref20}.
-        \item \textbf{Descripción:} Detecta  puntos clave en las manos, como las puntas de los dedos, los nudillos y la palma.
-        \item \textbf{Aplicaciones de MediaPipe Holistic en el sistema:} Permite analizar la forma, orientación y movimiento de las manos, lo cual es fundamental para identificar los diferentes queremas (formas de la mano) en la LSM.
-    \end{itemize}
-    \begin{figure}[h]
-              \includegraphics[scale=0.4]{CAPITULOS/capitulo2/hand-landmarks.png}
-              \centering
-              \caption[Puntos de medipipe ]{Puntos de medipipe Hand Landmarks\cite{ref20}}
-              \label{fig:imagen_medipipe_hand}
-    \end{figure}
-
-\end{enumerate}
-
-
-
-
-\subsection{Ventajas de MediaPipe Holistic}
-
-\begin{itemize}
-\item \textbf{Integración completa:} Combina el seguimiento de rostro, manos y cuerpo en un solo framework, lo que facilita el desarrollo de aplicaciones de LSM.
-\item \textbf{Rendimiento en tiempo real:} Permite procesar imágenes en tiempo real, lo que es crucial para la fluidez en la traducción de LSM.
-\item \textbf{Eficiencia computacional:} Está optimizado para ejecutarse en dispositivos móviles y de escritorio, con bajo consumo de recursos.
-\item \textbf{Robustez:} Funciona en diferentes condiciones de iluminación y con diferentes tipos de cámaras.
-\item \textbf{Facilidad de uso:} MediaPipe ofrece APIs fáciles de usar para integrar Holistic en aplicaciones de Python, Android y web.
-\end{itemize}
-
 \section{TensorFlow/Keras}
 TensorFlow, una plataforma de aprendizaje automático de código abierto, y Keras, una interfaz de alto nivel para construir y entrenar modelos de redes neuronales, son herramientas esenciales en el desarrollo de modelos de aprendizaje profundo. Estos modelos, entrenados con datos de LSM, son capaces de reconocer y clasificar señas, formando la base del sistema de traducción \cite{ref34}.
 
@@ -183,8 +77,6 @@ Esta matriz se refiere a los elementos no manuales que acompañan la producción
     \item \textbf{Posturas del cuerpo:} Se refiere a la posición general del cuerpo durante la señalización, como la inclinación del torso, los hombros encogidos, etc.
 \end{itemize}
 
-
-
 \section{ Arquitectura de Microservicios}
 El proyecto adopta una arquitectura de microservicios en la parte del entrenamiento del modelo, donde cada componente del sistema se implementa como un servicio independiente y autónomo. Esta modularidad facilita el desarrollo, la implementación y el mantenimiento del sistema, permitiendo escalar y actualizar componentes individuales sin afectar el funcionamiento global \cite{ref37}.
 
@@ -196,6 +88,70 @@ Las Redes Neuronales Convolucionales (CNN) son una red neuronal profunda con gra
 
 Las CNN se caracterizan por la inclusión de capas convolucionales. Estas capas emplean filtros (kernels), que se deslizan sobre la imagen de entrada para identificar y extraer características relevantes.
 
+\section{MediaPipe Holistic}
+
+MediaPipe Holistic es una solución integral de Google para el seguimiento del cuerpo humano en tiempo real. El modelo de Holistic combina  modelos de aprendizaje profundo para detectar y rastrear puntos (posiciones flotantes en un  plano x, y) clave en el rostro, las manos y el cuerpo completo. Esta capacidad de análisis detallado de los movimientos corporales es esencial para la captura expresiva de la Lengua de Señas Mexicana (LSM), donde la posición del cuerpo y los movimientos de las manos son fundamentales para recibir y generar la comunicación.
+
+\subsection{Componentes del Modelo Holistic}
+
+MediaPipe Holistic se compone de tres modelos principales:
+
+\begin{enumerate}
+    \item \textbf{Pose Landmarker:}
+    \begin{itemize}
+        \item \textbf{Descripción:}  Este modelo detecta 33 puntos de referencia del cuerpo humano en una imagen o video, incluyendo la nariz, los ojos, las orejas, los hombros, los codos, las muñecas, las caderas, las rodillas y los tobillos.
+        \item \textbf{Aplicaciones en lengua de señas mexicana:}  Estos puntos son cruciales para interpretar las señas, ya que permiten analizar la postura general del cuerpo y la posición de los brazos y las manos en relación al torso. Por ejemplo, la posición de los codos y las muñecas es fundamental para distinguir señas como \textquotedblleft CASA\textquotedblright  u  \textquotedblleft HOLA\textquotedblright.
+        \item \textbf{Funcionamiento:} El modelo utiliza una red neuronal convolucional similar a MobileNetV2 y está optimizado para aplicaciones de entrenamiento en tiempo real y en el dispositivo.  Primero, detecta la presencia de cuerpos humanos en la imagen, y luego localiza los 33 puntos de referencia en el cuerpo detectado.
+        \item \textbf{Opciones de configuración:}
+        \begin{itemize}
+            \item \textbf{running\_mode:} Establece el modo de ejecución (IMAGE, VIDEO, LIVE\_STREAM).
+            \item \textbf{num\_poses:} La cantidad máxima de poses a detectar.
+            \item \textbf{min\_pose\_detection\_confidence:} Puntuación mínima para la detección de poses.
+            \item \textbf{min\_pose\_presence\_confidence:} Puntuación mínima de presencia de poses.
+            \item \textbf{min\_tracking\_confidence:} Puntuación mínima para el seguimiento de poses.
+            \item \textbf{output\_segmentation\_masks:}  Si se generan máscaras de segmentación.
+        \end{itemize}
+    \end{itemize}
+    \begin{figure}[h]
+        \includegraphics[scale=0.4]{CAPITULOS/capitulo2/img.png}
+        \centering
+        \caption[Puntos de medipipe]{Puntos de medipipe Pose Landmarker \cite{ref20}}
+        \label{fig:imagen_medipipe_pose}
+    \end{figure}
+    \item \textbf{Face Landmarks:}
+    \begin{itemize}
+        \item \textbf{Cantidad:} 468 puntos.
+        \item \textbf{Descripción:}  Detecta puntos clave en el rostro, como los ojos, las cejas, la nariz, la boca y el contorno de la cara.
+        \item \textbf{Aplicaciones de MediaPipe Holistic en el sistema:} Se utilizan para analizar las expresiones faciales, que son un componente gramatical crucial en la LSM. Por ejemplo, las expresiones faciales pueden indicar preguntas, negación, o emociones.
+    \end{itemize}
+
+    \item \textbf{Hand Landmarks:}
+    \begin{itemize}
+        \item \textbf{Cantidad:} 21 puntos por cada mano \cite{ref20}.
+        \item \textbf{Descripción:} Detecta  puntos clave en las manos, como las puntas de los dedos, los nudillos y la palma.
+        \item \textbf{Aplicaciones de MediaPipe Holistic en el sistema:} Permite analizar la forma, orientación y movimiento de las manos, lo cual es fundamental para identificar los diferentes queremas (formas de la mano) en la LSM.
+    \end{itemize}
+    \begin{figure}[h]
+        \includegraphics[scale=0.4]{CAPITULOS/capitulo2/hand-landmarks.png}
+        \centering
+        \caption[Puntos de medipipe ]{Puntos de medipipe Hand Landmarks\cite{ref20}}
+        \label{fig:imagen_medipipe_hand}
+    \end{figure}
+
+\end{enumerate}
+
+
+
+
+\subsection{Ventajas de MediaPipe Holistic}
+
+\begin{itemize}
+    \item \textbf{Integración completa:} Combina el seguimiento de rostro, manos y cuerpo en un solo framework, lo que facilita el desarrollo de aplicaciones de LSM.
+    \item \textbf{Rendimiento en tiempo real:} Permite procesar imágenes en tiempo real, lo que es crucial para la fluidez en la traducción de LSM.
+    \item \textbf{Eficiencia computacional:} Está optimizado para ejecutarse en dispositivos móviles y de escritorio, con bajo consumo de recursos.
+    \item \textbf{Robustez:} Funciona en diferentes condiciones de iluminación y con diferentes tipos de cámaras.
+    \item \textbf{Facilidad de uso:} MediaPipe ofrece APIs fáciles de usar para integrar Holistic en aplicaciones de Python, Android y web.
+\end{itemize}
 
 \section{Convolución: Definición General (Tiempo Continuo)}
 
@@ -576,3 +532,166 @@ Los datasets ideales para el reconocimiento de LSM deben cumplir con las siguien
     \item \textbf{Tamaño del Dataset:} Un mayor número de muestras generalmente mejora el rendimiento del modelo, permitiendo un aprendizaje más robusto y una mejor generalización.
     \item \textbf{Formato de Datos:} Los datos deben estar en un formato adecuado para el entrenamiento de modelos de aprendizaje profundo, como imágenes, videos o secuencias de datos.
 \end{itemize}
+
+\section{Matriz de Confusión}
+\label{sec:confusion_matrix}
+
+La matriz de confusión es una \textbf{tabla de visualización fundamental} que resume el rendimiento de un algoritmo de clasificación, proporcionando los componentes base necesarios para calcular las métricas de evaluación. Para un problema de clasificación binaria, se compone de cuatro elementos principales:
+
+\begin{itemize}
+    \item \textbf{TP (True Positives):} Muestras que eran positivas y fueron predichas correctamente como positivas.
+    \item \textbf{TN (True Negatives):} Muestras que eran negativas y fueron predichas correctamente como negativas.
+    \item \textbf{FP (False Positives):} Muestras que eran negativas, pero fueron predichas incorrectamente como positivas (Error Tipo I).
+    \item \textbf{FN (False Negatives):} Muestras que eran positivas, pero fueron predichas incorrectamente como negativas (Error Tipo II).
+\end{itemize}
+
+El uso de la matriz de confusión es crucial para el análisis de modelos de \textit{Machine Learning} y es una herramienta estándar para la evaluación \cite{ref44}. Para problemas con múltiples clases (clasificación multiclase), esta matriz se expande a un formato $N \times N$, donde $N$ es el número de clases. Una matriz de confusión general multiclase con $N=6$ elementos se presenta en la Tabla \ref{tab:confusion_example}, donde cada clase es denotada genéricamente como Elemento X.
+
+% *****************************************************************
+% TABLA: Ejemplo de Matriz de Confusión (Multi-clase 6x6, Generalizada)
+% Requiere el paquete \usepackage{booktabs} en el preámbulo.
+% *****************************************************************
+\begin{table}[h!]
+    \centering
+    \caption{Matriz de Confusión Multiclase ($6 \times 6$)}
+    \label{tab:confusion_example}
+
+    % Usamos resizebox para que la tabla ocupe todo el ancho de la columna (\columnwidth)
+    \resizebox{\columnwidth}{!}{%
+        \begin{tabular}{c|c|c|c|c|c|c|c}
+            \toprule
+            \multicolumn{1}{c|}{\textbf{Clase Real}} & \multicolumn{6}{c}{\textbf{Clase Predicha}} & \multicolumn{1}{|c}{\textbf{Soporte}} \\
+            \textbf{(Elemento)} & \textbf{Elem. 1} & \textbf{Elem. 2} & \textbf{Elem. 3} & \textbf{Elem. 4} & \textbf{Elem. 5} & \textbf{Elem. 6} & \multicolumn{1}{|c}{}\\
+            \midrule
+            \textbf{Elem. 1} & \textbf{TP} & \textbf{FN} & 0 & \textbf{FN} & 0 & 5 & 100 \\
+            \textbf{Elem. 2} & 0 & 70 & 10 & 0 & 5 & 15 & 100 \\
+            \textbf{Elem. 3} & 0 & 5 & 90 & 0 & 5 & 0 & 100 \\
+            \textbf{Elem. 4} & \textbf{FP} & 0 & 0 & 90 & 0 & 0 & 100 \\
+            \textbf{Elem. 5} & 0 & 5 & 0 & 0 & 90 & 5 & 100 \\
+            \textbf{Elem. 6} & 0 & 0 & 0 & 0 & 0 & 100 & 100 \\
+            \midrule
+            \textbf{Total Predicho} & 95 & 85 & 100 & 95 & 100 & 125 & \textbf{600} \\
+            \bottomrule
+        \end{tabular}%
+    } % Cierre de resizebox
+
+    \vspace{0.5em}
+    \footnotesize
+    \textbf{Nota:} Las cifras en la diagonal indican el número de predicciones correctas (TP) para cada elemento. Los números fuera de la diagonal representan los errores de clasificación (Falsos Positivos/Negativos).
+\end{table}
+\section{Métricas}
+\subsection{Medidas de tendencia central}
+
+Las medidas de tendencia central son herramientas estadísticas que permiten resumir la localización de los datos, es decir, ayudan a identificar el valor alrededor del cual se centran los datos. Estas medidas son esenciales para el análisis de datos en cualquier investigación, incluyendo el análisis de las muestras de Lengua de Señas Mexicana (LSM).
+
+\textbf{Medidas de tendencia central:}
+
+\textbf{Media:}
+
+La media aritmética es el valor obtenido al sumar todos los valores de un conjunto de datos y dividir entre el número de datos. En el análisis de LSM, la media puede utilizarse para calcular la posición promedio de las manos en una seña. La ecuación para su cálculo se puede observar en la Ecuación \ref{eq:media}.
+
+\indexedequation{Ecuación  Media aritmética}{
+    \begin{equation}
+        \bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}
+        \label{eq:media}
+    \end{equation}
+}
+
+
+\textbf{Varianza:}
+
+La varianza ($\sigma^2$) es una medida de dispersión que indica la variabilidad de los datos al medir el promedio de las diferencias al cuadrado de cada dato respecto a la media. Una varianza alta indica que los datos están más dispersos. Debido a que sus unidades están elevadas al cuadrado, no se interpreta directamente en las unidades originales de la seña. La ecuación para calcular la varianza se muestra en la Ecuación \ref{eq:varianza}.
+
+\indexedequation{Ecuación  Varianza}{
+    \begin{equation}
+        \sigma^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}
+        \label{eq:varianza}
+    \end{equation}
+}
+
+
+\textbf{Desviación Estándar:}
+
+La desviación estándar ($\sigma$) es una medida de dispersión que se obtiene como la raíz cuadrada de la varianza. Indica cuánto varían los datos alrededor de la media y se expresa en las mismas unidades que los datos originales, lo cual facilita su interpretación como la dispersión promedio de los puntos articulares de la mano en la seña. La ecuación para calcular la desviación estándar se puede observar en la Ecuación \ref{eq:desviacion_estandar}.
+
+\indexedequation{Ecuación Desviación estándar}{
+    \begin{equation}
+        \sigma = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}}
+        \label{eq:desviacion_estandar}
+    \end{equation}
+}
+
+\subsection{Métricas de Evaluación del Modelo}
+\label{sec:metricas_evaluacion}
+
+Las métricas de evaluación son cruciales para medir el rendimiento del modelo durante y después del entrenamiento. Permiten cuantificar la calidad de las predicciones y guiar el proceso de refinamiento \cite{ref44}.
+
+\textbf{Definiciones Clave:}
+
+\textbf{Accuracy (Exactitud):}
+
+El Accuracy o Exactitud mide la proporción de predicciones correctas sobre el total de predicciones realizadas por el modelo. Es la métrica más intuitiva, pero puede ser engañosa en conjuntos de datos desbalanceados. Su cálculo se presenta en la Ecuación \ref{eq:accuracy}.
+
+\indexedequation{Ecuación Accuracy}{
+    \begin{equation}
+        \text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}}
+        \label{eq:accuracy}
+    \end{equation}
+}
+Donde:
+\begin{itemize}
+    \item TP (True Positives): Predicciones correctas de la clase positiva.
+    \item TN (True Negatives): Predicciones correctas de la clase negativa.
+    \item FP (False Positives): Predicciones incorrectas de la clase positiva (Error Tipo I).
+    \item FN (False Negatives): Predicciones incorrectas de la clase negativa (Error Tipo II).
+\end{itemize}
+
+\textbf{Loss (Función de Pérdida):}
+
+La función de pérdida, específicamente \textbf{Categorical Cross-Entropy} para problemas de clasificación multiclase, cuantifica la diferencia entre las probabilidades predichas por el modelo y las etiquetas verdaderas. El objetivo del entrenamiento es minimizar esta función. Su fórmula se presenta en la Ecuación \ref{eq:loss}.
+
+\indexedequation{Ecuación Categorical Cross-Entropy (Loss)}{
+    \begin{equation}
+        L = - \sum_{i=1}^{C} y_{i} \cdot \log(\hat{y}_{i})
+        \label{eq:loss}
+    \end{equation}
+}
+Donde $C$ es el número de clases, $y_i$ es la etiqueta binaria (0 o 1) para la clase $i$, y $\hat{y}_i$ es la probabilidad predicha por el modelo para la clase $i$.
+
+\textbf{Val\_Accuracy (Exactitud de Validación):}
+
+Es el Accuracy calculado sobre el \textbf{conjunto de datos de validación}, que son muestras que el modelo no utiliza directamente en el entrenamiento. Es un indicador clave para detectar el \textbf{overfitting} (sobreajuste): si la Accuracy de entrenamiento sube, pero la Val\_Accuracy se estanca o cae, el modelo está sobreajustándose a los datos de entrenamiento. (El cálculo es idéntico a la Ecuación \ref{eq:accuracy}, aplicado al conjunto de validación).
+
+\textbf{Precision (Precisión):}
+
+La Precisión mide, de todas las predicciones positivas que hizo el modelo para una clase, **cuántas fueron realmente correctas**. Es una métrica crítica cuando el costo de un Falso Positivo es alto (ej. clasificar un ruido como una seña). Se calcula utilizando la Ecuación \ref{eq:precision}.
+
+\indexedequation{Ecuación Precision}{
+    \begin{equation}
+        \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}
+        \label{eq:precision}
+    \end{equation}
+}
+
+\textbf{Recall (Sensibilidad o Cobertura):}
+
+El Recall mide, de todas las muestras que **realmente pertenecen a una clase**, **cuántas fueron identificadas correctamente** por el modelo. Es una métrica crítica cuando el costo de un Falso Negativo es alto (ej. no reconocer una seña real). Su fórmula se muestra en la Ecuación \ref{eq:recall}.
+
+\indexedequation{Ecuación Recall}{
+    \begin{equation}
+        \text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}
+        \label{eq:recall}
+    \end{equation}
+}
+
+\textbf{F1-score:}
+
+El F1-score es la \textbf{media armónica} de la Precision y el Recall. Es una métrica única que proporciona un balance entre ambas, siendo especialmente útil cuando hay un desbalance de clases o cuando se necesita un rendimiento equilibrado de Precision y Recall. Su cálculo se define en la Ecuación \ref{eq:f1_score}.
+
+\indexedequation{Ecuación F1-score}{
+    \begin{equation}
+        \text{F1-score} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
+        \label{eq:f1_score}
+    \end{equation}
+}
+
