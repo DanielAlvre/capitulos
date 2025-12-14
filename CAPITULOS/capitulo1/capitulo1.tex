@@ -1,18 +1,18 @@
 % Nota: Este capítulo se incluye y compila a través de main.tex (no es standalone)
 \chapter{Introducción}
-La Lengua de Señas Mexicana (LSM) es la lengua natural utilizada por la comunidad sorda en México. La comunicación entre personas sordas y oyentes se ve dificultada por la falta de intérpretes y el desconocimiento generalizado de la LSM, a pesar de la importancia de esta lengua. Este proyecto aborda una parte pequeña de la problemática en la falta de comunicación efectiva entre personas sordas y oyentes en México, específicamente en el contexto médico mediante el desarrollo de un sistema de reconocimiento de señas que utiliza tecnología de aprendizaje profundo (\textit{deep learning}) para traducir la LSM al español.
+La Lengua de Señas Mexicana (LSM) es la lengua natural utilizada por parte de la comunidad sorda en México. La comunicación entre personas sordas y oyentes se ve dificultada por la falta de intérpretes y el desconocimiento generalizado de la LSM, a pesar de la importancia de esta lengua. Este proyecto aborda una parte pequeña de la problemática en la falta de comunicación efectiva entre personas sordas y oyentes en México, específicamente en el contexto médico mediante el desarrollo de un sistema de reconocimiento de señas que utiliza tecnología de aprendizaje profundo (\textit{deep learning}) para traducir glosa de la LSM al español.
 
-El sistema se enfoca en el reconocimiento de señas con movimiento, particularmente en el ámbito médico, donde la comunicación clara y precisa es crucial. Para lograr este objetivo, se empleará \textbf{MediaPipe} \cite{ref3} para el seguimiento y procesamiento de los movimientos de las manos, capturando la configuración manual esencial para la interpretación de la LSM. Los modelos de aprendizaje profundo, implementados con \textbf{TensorFlow/Keras} \cite{ref4} , permitirán una mayor precisión en la interpretación de las señas.
+El sistema se enfoca en el reconocimiento de señas con movimiento, particularmente en el ámbito médico, donde la comunicación clara y precisa es crucial. Para lograr este objetivo, se empleará \textbf{MediaPipe} \cite{ref3} para el seguimiento y procesamiento de los movimientos de las manos, capturando la configuración manual (CM) y lugar de articulación (LA) esencial para la interpretación de la LSM. Los modelos de aprendizaje profundo, implementados con \textbf{TensorFlow/Keras} \cite{ref4} , permitirán una mayor precisión en la interpretación de las señas.
 
 Además, la integración de servicios en la nube, como \textbf{AWS S3} \cite{ref5}, garantizará la escalabilidad y el procesamiento eficiente de los datos. Complementando estas tecnologías, se incorporará una API (de Text-\allowbreak To-\allowbreak Speech) u otras alternativas similares, permitiendo que el sistema traduzca las señas a palabras tanto visuales como auditivas. Ofreciendo una interacción más integral y accesible, especialmente en contextos donde la comunicación efectiva es fundamental.
 
-El objetivo final de este proyecto es cerrar la brecha de comunicación entre personas con discapacidad auditiva y oyentes, promoviendo una mayor inclusión y accesibilidad en México. Al facilitar la interacción en entornos como el médico, este sistema busca empoderar a las personas sordas y mejorar su acceso a servicios esenciales.
+El objetivo final de este proyecto es crear una antesala para la brecha de comunicación entre personas con discapacidad auditiva y oyentes, promoviendo una mayor inclusión y accesibilidad en México. Al facilitar la interacción en entornos como el médico, este sistema busca empoderar a las personas sordas y mejorar su acceso a servicios esenciales.
 \clearpage
 \section{Planteamiento del problema}
 
 Las personas con hipoacusia enfrentan desafíos significativos al comunicarse con quienes no conocen la lengua de señas, lo que limita sus interacciones sociales, laborales y educativas, creando barreras que dificultan su inclusión en la sociedad \cite{ref10}.  Para superar estas barreras,  es crucial  desarrollar  herramientas  que  faciliten  la  comunicación  entre  las  personas  de la comunidad sorda  y  la  comunidad  oyente. La  traducción  inversa,  de  LSM  a  español,  sigue  siendo  un  área  poco  explorada  \cite{ref12},  a  pesar  de  la  creciente  necesidad  de  que  las  personas  sordas  puedan  expresarse  en  español  y  ser  comprendidas  por  quienes  no  conocen  la  LSM  \cite{ref6}.
 
-Un  estudio  reciente  \cite{ref1}  revela  una  preocupante  realidad  en  el  ámbito  de  la  salud  en  México:  solo  el  12.9\%  de  los  profesionales  cuentan  con  recursos  adecuados  para  atender  a  pacientes  sordos.  Esta  falta  de  preparación  y  recursos  se  traduce  en  una  dificultad  considerable  para  la  comunicación,  lo  que  puede  resultar  en  una  atención  médica  deficiente,  diagnósticos  erróneos,  tratamientos  inadecuados  y,  en  última  instancia,  en  la  exclusión  de  las  personas  sordas  del  sistema  de  salud  \cite{ref2}.  La  mayoría  de  los  profesionales  de  la  salud  encuestados  en  el  estudio  reportaron  no  contar  con  ningún  tipo  de  recurso  de  apoyo  para  la  comunicación  con  pacientes  sordos,  como  intérpretes  de  Lengua  de  Señas  Mexicana,  televisores  con  subtítulos,  o  material  gráfico.  Esta  carencia  de  herramientas  dificulta  la  interacción  entre  el  personal  médico  y  los  pacientes  sordos,  lo  que  puede  generar  frustración,  ansiedad  e  incluso  poner  en  riesgo  la  salud  de  estos  últimos.
+Un  estudio  del año 2022 \cite{ref1}  revela  una  preocupante  realidad  en  el  ámbito  de  la  salud  en  México:  solo  el  12.9\%  de  los  profesionales  cuentan  con  recursos  adecuados  para  atender  a  pacientes  sordos.  Esta  falta  de  preparación  y  recursos  se  traduce  en  una  dificultad  considerable  para  la  comunicación,  lo  que  puede  resultar  en  una  atención  médica  deficiente,  diagnósticos  erróneos,  tratamientos  inadecuados  y,  en  última  instancia,  en  la  exclusión  de  las  personas  sordas  del  sistema  de  salud  \cite{ref2}.  La  mayoría  de  los  profesionales  de  la  salud  encuestados  en  el  estudio  reportaron  no  contar  con  ningún  tipo  de  recurso  de  apoyo  para  la  comunicación  con  pacientes  sordos,  como  intérpretes  de  Lengua  de  Señas  Mexicana,  televisores  con  subtítulos,  o  material  gráfico.  Esta  carencia  de  herramientas  dificulta  la  interacción  entre  el  personal  médico  y  los  pacientes  sordos,  lo  que  puede  generar  frustración,  ansiedad  e  incluso  poner  en  riesgo  la  salud  de  estos  últimos.
 
 El  análisis  de  los  datos  del  estudio  mediante  una  Red  Neuronal  Artificial  (RNA)  \cite{ref1}  reveló  que  el  factor  que  más  impacta  en  la  actitud  inclusiva  del  personal  de  salud  hacia  los  pacientes  sordos  es  la  capacitación  (12.2\%),  seguido  por  el  género,  el  contacto  con  pacientes  sordos  y  la  experiencia  profesional  (10\%  cada  uno).  Estos  resultados  resaltan  la  importancia  de  la  capacitación  en  LSM  y  en  estrategias  de  comunicación  inclusivas  para  el  personal  de  salud,  así  como  la  necesidad  de  brindarles  herramientas  que  les  permitan  interactuar  de  manera  efectiva  con  los  pacientes  sordos.
 
@@ -23,10 +23,10 @@ A partir de los desafíos planteados, surge la siguiente pregunta de investigaci
 \textbf{¿Cómo  diseñar  un  sistema  de  traducción  de  LSM  a  español  que  sea  accesible,  usable  y  relevante  para  pacientes  sordos  y  profesionales  de  la  salud  en  el  contexto  médico  mexicano?}
 \clearpage
 \section{Propuesta de solución}
-Para abordar esta problemática, se planteó un sistema innovador que utiliza tecnologías avanzadas como MediaPipe y TensorFlow/Keras. El objetivo primordial de este sistema es enfocarse en las señas de detención estática. Sin embargo, es solo el primer paso; se prevé que en caso de contar con tiempo, se podrían incluir otros tipos de señas a través de video (secuencia de fotogramas). Ejemplos de estas otras señas podrían incluir saludos, preguntas básicas o expresiones emocionales. El proceso inicia con el usuario capturando su comunicación en LSM mediante un programa que captura video o imágenes.
+Para abordar esta problemática, se planteó un sistema innovador que utiliza tecnologías avanzadas como MediaPipe y TensorFlow/Keras. El objetivo primordial de este sistema inicialmente era enfocarse en las señas de detención estática. Sin embargo, se decidió incluir señas estáticas para atender de mejor manera el entorno medico. Ejemplos de estas otras señas podrían incluir saludos, preguntas básicas o expresiones emocionales. El proceso inicia con el usuario capturando su comunicación en LSM mediante un programa que captura video o imágenes.
 Estos archivos de fotogramas son enviados a un almacenamiento en la nube para su procesamiento.
 
-A través de un microservicio, los fotogramas se procesan para extraer puntos clave que representan las señas, utilizando principalmente la captura de las manos mediante MediaPipe. Estos puntos clave se visualizan en la secuencia de fotogramas representativa de la seña o en la imagen, facilitando la identificación de las posiciones y movimientos correspondientes. Estos datos son empleados para entrenar un modelo de aprendizaje profundo que mejora la precisión de la traducción de LSM a español \cite{ref9}. Una vez entrenado, el modelo permite al usuario traducir las señas que se capturan a través de una cámara.
+A través de un microservicio, los fotogramas se procesan para extraer puntos clave que representan las señas, utilizando principalmente la captura de las manos mediante MediaPipe. Estos puntos clave se visualizan en la secuencia de fotogramas representativa de la seña o en la imagen, facilitando la identificación de las posiciones y movimientos correspondientes. Estos datos son empleados para entrenar un modelo de aprendizaje profundo que mejora la precisión de la traducción de LSM a español \cite{ref9}. Una vez entrenado, el modelo permite al usuario traducir glosa de las señas que se capturan a través de una cámara.
 
 El sistema no solo genera una representación visual de la palabra traducida en pantalla, sino que también utiliza una API (de Text-To-Speech o similar) para reproducir el audio correspondiente, facilitando así una comunicación inclusiva y efectiva \cite{ref11}. Este enfoque integral no solo cierra la brecha comunicativa, sino que también empodera a las personas con hipoacusia, brindándoles herramientas que fomentan su participación en la sociedad.
 
@@ -40,7 +40,7 @@ En la Figura \ref{fig:diagrama_sistema}, se observa el funcionamiento del sistem
 % ---  Ajusta el caption para que sea vertical ---
 
 \begin{figure}[H]
-    \includegraphics[scale=0.22]{CAPITULOS/capitulo1/DIAGRAMAINTRO}
+    \includegraphics[scale=0.6]{CAPITULOS/capitulo1/DIAGRAMAINTRO}
     \centering
     \caption[Diagrama del funcionamiento del entrenamiento del sistema]{Diagrama del funcionamiento del entrenamiento y reconocimiento del sistema}
     \label{fig:diagrama_sistema}
@@ -52,8 +52,30 @@ Proceso de Conversión del sistema
         % --- FASE 1: CLIENTE (Adquisición) ---
     \item \textbf{Inicio de Adquisición de Datos (Edge):} El usuario inicia el módulo de grabación (\texttt{ActivityCameraNew}) en la aplicación Android.
 
-    \item \textbf{Extracción de Características en Tiempo Real:} La aplicación utiliza MediaPipe en el dispositivo para extraer un vector de 195 características (Pose + Manos + Progreso) frame a frame, aplicando normalización y suavizado.
+    \item \textbf{Extracción de Características en Tiempo Real:} La aplicación utiliza MediaPipe en el dispositivo para extraer un vector de \textbf{195 características} (\textit{Pose} + Manos + Marca de Tiempo) frame a frame, aplicando normalización y suavizado. El desglose detallado de estas características, incluyendo los puntos clave y sus coordenadas, se presenta en la Tabla \ref{tab:mediapipe_features}, las coordenadas X, Y, Z representan la posición en 3D, mientras que V (Visibilidad) índica la confianza en la detección del punto.
 
+    \begin{table}[H]
+        \centering
+        \caption{Desglose del Vector de Características de Inferencia de MediaPipe}
+        \label{tab:mediapipe_features_styled}
+        \begin{tabular}{|l|c|c|c|}
+            \hline
+            \textbf{Componente} & \textbf{Puntos Clave} & \textbf{Coordenadas por Punto} & \textbf{Total de Características} \\
+            \hline
+            Marca de Tiempo (\texttt{time}) & 1 & --- & 1 \\
+            \hline
+            Pose (Cuerpo Superior) & 17 & X, Y, Z, V (Visibilidad) & $17 \times 4 = 68$ \\
+            \hline
+            Mano Izquierda & 21 & X, Y, Z & $21 \times 3 = 63$ \\
+            \hline
+            Mano Derecha & 21 & X, Y, Z & $21 \times 3 = 63$ \\
+            \hline
+            \textbf{TOTAL} & \textbf{60 Puntos} & \textbf{---} & \textbf{195} \\
+            \hline
+        \end{tabular}
+        \vspace{0.5em}
+        \footnotesize
+    \end{table}
     \item \textbf{Almacenamiento Local Temporal:} Las secuencias de vectores se guardan temporalmente en archivos .csv dentro del almacenamiento interno del dispositivo móvil.
 
     \item \textbf{Sincronización a la Nube:} La aplicación sube los archivos CSV generados al bucket de AWS S3 (\texttt{proyecto-lsm-lengua-senas}).

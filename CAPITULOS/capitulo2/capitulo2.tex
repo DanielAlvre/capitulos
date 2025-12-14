@@ -15,7 +15,7 @@ AWS proporciona una amplia gama de servicios en la nube que son fundamentales pa
 \end{itemize}
 
 \section{Lingüística de la Lengua de Señas Mexicana (LSM)}
-La LSM, como cualquier lengua natural, posee una gramática compleja que incluye aspectos como la configuración manual, la ubicación, la orientación y el movimiento de las manos, así como las expresiones faciales. El proyecto incorpora conocimientos lingüísticos de la LSM para asegurar una traducción adecuada y culturalmente apropiada. La Matriz Segmental, que describe la estructura de las señas en términos de segmentos secuenciales, es una herramienta clave para el análisis y la representación de las señas en el sistema \cite{ref36}.
+La LSM, como cualquier lengua natural, posee una gramática compleja que incluye aspectos como la configuración manual(CM) y lugar de articulación (LA), la ubicación, la orientación y el movimiento de las manos, así como las expresiones faciales. El proyecto incorpora conocimientos lingüísticos de la LSM para asegurar una traducción adecuada y culturalmente apropiada. La Matriz Segmental, que describe la estructura de las señas en términos de segmentos secuenciales, es una herramienta clave para el análisis y la representación de las señas en el sistema \cite{ref36}.
 
 \subsection{Composición de una seña en la Lengua de Señas Mexicana (LSM)}
 
@@ -545,7 +545,8 @@ La matriz de confusión es una \textbf{tabla de visualización fundamental} que 
     \item \textbf{FN (False Negatives):} Muestras que eran positivas, pero fueron predichas incorrectamente como negativas (Error Tipo II).
 \end{itemize}
 
-El uso de la matriz de confusión es crucial para el análisis de modelos de \textit{Machine Learning} y es una herramienta estándar para la evaluación \cite{ref44}. Para problemas con múltiples clases (clasificación multiclase), esta matriz se expande a un formato $N \times N$, donde $N$ es el número de clases. Una matriz de confusión general multiclase con $N=6$ elementos se presenta en la Tabla \ref{tab:confusion_example}, donde cada clase es denotada genéricamente como Elemento X.
+El uso de la matriz de confusión es crucial para el análisis de modelos de \textit{Machine Learning} y es una herramienta estándar para la evaluación \cite{ref44}. Para problemas con múltiples clases (clasificación multiclase), esta matriz se expande a un formato $N \times N$, donde $N$ es el número de clases. Una matriz de confusión general multiclase con $N=6$ elementos se presenta en la Tabla \ref{tab:confusion_example}, donde cada clase es denotada genéricamente como Elemento X, las etiquetas \textbf{TP}, \textbf{FN} y \textbf{FP} se muestran con el \textbf{Elemento 1} como la clase positiva de referencia.
+
 
 % *****************************************************************
 % TABLA: Ejemplo de Matriz de Confusión (Multi-clase 6x6, Generalizada)
@@ -557,23 +558,38 @@ El uso de la matriz de confusión es crucial para el análisis de modelos de \te
     \label{tab:confusion_example}
 
     % Usamos resizebox para que la tabla ocupe todo el ancho de la columna (\columnwidth)
-    \resizebox{\columnwidth}{!}{%
-        \begin{tabular}{c|c|c|c|c|c|c|c}
-            \toprule
-            \multicolumn{1}{c|}{\textbf{Clase Real}} & \multicolumn{6}{c}{\textbf{Clase Predicha}} & \multicolumn{1}{|c}{\textbf{Soporte}} \\
-            \textbf{(Elemento)} & \textbf{Elem. 1} & \textbf{Elem. 2} & \textbf{Elem. 3} & \textbf{Elem. 4} & \textbf{Elem. 5} & \textbf{Elem. 6} & \multicolumn{1}{|c}{}\\
-            \midrule
-            \textbf{Elem. 1} & \textbf{TP} & \textbf{FN} & 0 & \textbf{FN} & 0 & 5 & 100 \\
-            \textbf{Elem. 2} & 0 & 70 & 10 & 0 & 5 & 15 & 100 \\
-            \textbf{Elem. 3} & 0 & 5 & 90 & 0 & 5 & 0 & 100 \\
-            \textbf{Elem. 4} & \textbf{FP} & 0 & 0 & 90 & 0 & 0 & 100 \\
-            \textbf{Elem. 5} & 0 & 5 & 0 & 0 & 90 & 5 & 100 \\
-            \textbf{Elem. 6} & 0 & 0 & 0 & 0 & 0 & 100 & 100 \\
-            \midrule
-            \textbf{Total Predicho} & 95 & 85 & 100 & 95 & 100 & 125 & \textbf{600} \\
-            \bottomrule
-        \end{tabular}%
-    } % Cierre de resizebox
+    \begin{table}[H]
+        \centering
+        \caption{Matriz de Confusión Multiclase ($6 \times 6$) con Notación de Evaluación}
+        \label{tab:confusion_annotated_styled}
+        % Usamos resizebox para que la tabla ocupe todo el ancho de la columna (\columnwidth)
+        \resizebox{\columnwidth}{!}{%
+            \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+                \hline
+                \multicolumn{1}{|c|}{\textbf{Clase Real}} & \multicolumn{6}{c|}{\textbf{Clase Predicha}} & \multicolumn{1}{c|}{\textbf{Soporte}} \\
+                \textbf{(Elemento)} & \textbf{Elem. 1} & \textbf{Elem. 2} & \textbf{Elem. 3} & \textbf{Elem. 4} & \textbf{Elem. 5} & \textbf{Elem. 6} & \multicolumn{1}{|c|}{}\\
+                \hline
+                \textbf{Elem. 1} & \textbf{TP} & \textbf{FN} & 0 & \textbf{FN} & 0 & 5 & 100 \\
+                \hline
+                \textbf{Elem. 2} & 0 & 70 & 10 & 0 & 5 & 15 & 100 \\
+                \hline
+                \textbf{Elem. 3} & 0 & 5 & 90 & 0 & 5 & 0 & 100 \\
+                \hline
+                \textbf{Elem. 4} & \textbf{FP} & 0 & 0 & 90 & 0 & 0 & 100 \\
+                \hline
+                \textbf{Elem. 5} & 0 & 5 & 0 & 0 & 90 & 5 & 100 \\
+                \hline
+                \textbf{Elem. 6} & 0 & 0 & 0 & 0 & 0 & 100 & 100 \\
+                \hline
+                \textbf{Total Predicho} & 95 & 85 & 100 & 95 & 100 & 125 & \textbf{600} \\
+                \hline
+            \end{tabular}%
+        } % Cierre de resizebox
+
+        \vspace{0.5em}
+        \footnotesize
+    \end{table}
+
 
     \vspace{0.5em}
     \footnotesize
