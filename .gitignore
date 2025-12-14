@@ -25,3 +25,6 @@
    *.tpt
    *.vrb
    *.xdv
+   *main.bcf
+   *main.equ
+.idea
