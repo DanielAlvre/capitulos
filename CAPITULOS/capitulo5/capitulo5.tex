@@ -1334,6 +1334,70 @@ La Figura \ref{fig:arquitectura_red} ilustra el flujo de los tensores a través 
     \label{fig:arquitectura_red}
 \end{figure}
 
+\subsection{Configuración 1: Modelo Base Compacto (2x LSTM 8, Dense 32)}
+
+Esta configuración representa una arquitectura \textbf{compacta y ligera}, ideal para pruebas rápidas o entornos con recursos limitados. Emplea solo \textbf{8 unidades} en cada una de sus dos capas Bidireccionales-LSTM, resultando en un modelo con baja capacidad de retención de características secuenciales complejas. La capa densa de \textbf{32 unidades} finaliza el procesamiento antes de la clasificación. Este diseño está optimizado para la velocidad de entrenamiento y la inferencia.
+
+\subsubsection{Diagrama de Flujo de la Arquitectura}
+
+La Figura \ref{fig:arquitectura_red8} ilustra el flujo de los tensores a través de las distintas capas del modelo configurado.
+
+\begin{figure}[H]
+    \centering
+    % Se incluye la imagen del diagrama de Mermaid para evitar el conflicto con TikZ y Babel
+    \includegraphics[width=0.9\textwidth]{CAPITULOS/capitulo5/arquitectura_red8} % ASEGÚRESE DE QUE ESTE ARCHIVO EXISTA.
+    \caption{Diagrama de bloques de la arquitectura de la red neuronal BiLSTM implementada.}
+    \label{fig:arquitectura_red8}
+\end{figure}
+
+\subsection{Configuración 2: Modelo de Capacidad Media (2x LSTM 16, Dense 64)}
+
+La configuración 2 incrementa la capacidad del modelo respecto al caso base. Mantiene la profundidad de \textbf{dos capas LSTM}, pero duplica la cantidad de unidades a \textbf{16} por capa, aumentando la complejidad y el número de parámetros. La cabeza de clasificación densa también se duplica a \textbf{64 unidades}. Este modelo busca un equilibrio entre el rendimiento y el costo computacional, ofreciendo una mejor representación de secuencias sin ser excesivamente pesado.
+
+\subsubsection{Diagrama de Flujo de la Arquitectura}
+
+La Figura \ref{fig:arquitectura_red16} ilustra el flujo de los tensores a través de las distintas capas del modelo configurado.
+
+\begin{figure}[H]
+    \centering
+    % Se incluye la imagen del diagrama de Mermaid para evitar el conflicto con TikZ y Babel
+    \includegraphics[width=0.7\textwidth]{CAPITULOS/capitulo5/arquitectura_red16} % ASEGÚRESE DE QUE ESTE ARCHIVO EXISTA.
+    \caption{Diagrama de bloques de la arquitectura de la red neuronal BiLSTM implementada.}
+    \label{fig:arquitectura_red16}
+\end{figure}
+
+\subsection{Configuración 3: Modelo Profundo y Detallado (3x LSTM 32, Dense 64)}
+
+La configuración 3 prioriza la \textbf{profundidad} sobre la amplitud de la capa, utilizando un total de \textbf{tres capas Bidireccionales-LSTM apiladas}, cada una con \textbf{32 unidades}. Esta estructura permite al modelo aprender jerarquías de características temporales más complejas. El *Batch Size* reducido a 32 implica una actualización de pesos más frecuente, lo que puede beneficiar la generalización, aunque incrementa el tiempo de entrenamiento.
+
+\subsubsection{Diagrama de Flujo de la Arquitectura}
+
+La Figura \ref{fig:arquitectura_red} ilustra el flujo de los tensores a través de las distintas capas del modelo configurado.
+
+\begin{figure}[H]
+    \centering
+    % Se incluye la imagen del diagrama de Mermaid para evitar el conflicto con TikZ y Babel
+    \includegraphics[width=0.4\textwidth]{CAPITULOS/capitulo5/arquitectura_mermaid} % ASEGÚRESE DE QUE ESTE ARCHIVO EXISTA.
+    \caption{Diagrama de bloques de la arquitectura de la red neuronal BiLSTM implementada.}
+    \label{fig:arquitectura_red32}
+\end{figure}
+
+\subsection{Configuración 4: Modelo de Alto Ancho (2x LSTM 64, Dense 128)}
+
+La configuración 4 representa un modelo con un ancho de capa recurrente considerable. Con \textbf{64 unidades} en cada una de sus \textbf{dos capas LSTM}, y una capa final densa de \textbf{128 unidades}, esta arquitectura se enfoca en la capacidad de la capa individual para capturar relaciones complejas en un solo paso temporal. Es una opción para datos con características espaciales ricas dentro de cada *time step*.
+
+\subsubsection{Diagrama de Flujo de la Arquitectura}
+
+La Figura \ref{fig:arquitectura_red} ilustra el flujo de los tensores a través de las distintas capas del modelo configurado.
+
+\begin{figure}[H]
+    \centering
+    % Se incluye la imagen del diagrama de Mermaid para evitar el conflicto con TikZ y Babel
+    \includegraphics[width=0.4\textwidth]{CAPITULOS/capitulo5/arquitectura_mermaid} % ASEGÚRESE DE QUE ESTE ARCHIVO EXISTA.
+    \caption{Diagrama de bloques de la arquitectura de la red neuronal BiLSTM implementada.}
+    \label{fig:arquitectura_red64}
+\end{figure}
+
 \subsection{Hiperparámetros del Modelo}
 
 La configuración específica utilizada para el entrenamiento del modelo final se presenta en la Tabla \ref{tab:hiperparametros}. Estos valores fueron seleccionados mediante experimentación empírica para balancear la precisión y la capacidad de generalización.
