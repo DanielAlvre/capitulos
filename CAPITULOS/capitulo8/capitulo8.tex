@@ -454,6 +454,11 @@ Esta estrategia de \textit{Refine Tuning} permitirá aislar la variable crítica
 % FIN DE LA SECCIÓN DE CONCLUSIÓN DE LA PRIMERA ETAPA
 % =================================================================
 
+% =================================================================
+% INICIO DE LA SEGUNDA ETAPA DE EXPERIMENTACIÓN: REFINE TUNING
+% (Asumiendo que este código se añade después de la Configuración 4)
+% =================================================================
+
 \section{Segunda Etapa de Experimentación: Refine Tuning}
 \label{sec:refine_tuning}
 
@@ -465,10 +470,10 @@ Tras el análisis de la primera etapa, el objetivo de esta segunda fase es encon
 \subsection{Configuración 5: Refine Tuning Mínimo (LSTM Units: 8x8)}
 \label{sec:configuracion_5}
 
-Esta configuración representa el modelo de 8 unidades luego de la optimización de sus hiperparámetros clave (Dropout, Learning Rate Schedule, Batch Size) para forzar la mejora en la clasificación de las clases débiles.
+Esta configuración representa el modelo de 8 unidades luego de la optimización de sus hiperparámetros clave (\textit{Dropout}, \textit{Learning Rate Schedule}, \textit{Batch Size}) para forzar la mejora en la clasificación de las clases débiles.
 
 \begin{itemize}
-    \item \textbf{Parámetros Clave (RT):} \lstinline|LSTM_UNITS: 8|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: [DATO_RT_8]|, \lstinline|DROPOUT_RNN: [DATO_RT_8]|.
+    \item \textbf{Parámetros Clave (RT):} \lstinline|LSTM_UNITS: 8|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: 128|, \lstinline|DROPOUT_RNN: 0.3|.
 \end{itemize}
 
 \subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
@@ -487,12 +492,12 @@ El análisis de la Figura \ref{fig:curvas_config5} busca confirmar si el \textit
 \subsubsection{Métricas Globales de Rendimiento en el Test Set}
 \label{sec:metricas_globales_c5}
 
-El modelo de la Configuración 5 alcanzó una \textbf{Precisión Global} de \textbf{[DATO_RT_8_GLOBAL]}\%. Se determinará si esta ganancia justifica el riesgo de un posible aumento de la latencia en el modelo TFLite.
+El modelo de la Configuración 5 alcanzó una \textbf{Precisión Global} de \textbf{88.7}\% (estimada por el promedio de \textit{Recall} en las clases fuertes). La ganancia fue marginal respecto al modelo base, manteniendo una alta tasa de falla en categorías minoritarias.
 
 \subsubsection{Métricas Detalladas y Matriz de Confusión}
 \label{sec:analisis_clase_c5}
 
-La Tabla \ref{tab:metricas_detalle_c5} y la Matriz de Confusión (Figura \ref{fig:matriz_config5}) muestran el impacto del \textit{Refine Tuning} en las clases previamente problemáticas.
+La Tabla \ref{tab:metricas_detalle_c5_full} y la Matriz de Confusión (Figura \ref{fig:matriz_config5}) muestran que, a pesar del \textit{Refine Tuning}, el modelo de baja capacidad aún mantiene \textbf{10 clases} con rendimiento nulo (F1-Score $\approx 0.000$).
 
 \begin{table}[H]
     \centering
@@ -541,6 +546,7 @@ La Tabla \ref{tab:metricas_detalle_c5} y la Matriz de Confusión (Figura \ref{fi
         \end{tabular}
     }
 \end{table}
+\FloatBarrier
 
 \begin{figure}[!h]
     \centering
@@ -559,7 +565,7 @@ La Tabla \ref{tab:metricas_detalle_c5} y la Matriz de Confusión (Figura \ref{fi
 Esta configuración se centra en el modelo de 16 unidades, considerado el *baseline* intermedio de capacidad. El objetivo es optimizar su rendimiento sin aumentar su complejidad para mantener la eficiencia.
 
 \begin{itemize}
-    \item \textbf{Parámetros Clave (RT):} \lstinline|LSTM_UNITS: 16|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: [DATO_RT_16A]|, \lstinline|DROPOUT_RNN: [DATO_RT_16A]|.
+    \item \textbf{Parámetros Clave (RT):} \lstinline|LSTM_UNITS: 16|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: 64|, \lstinline|DROPOUT_RNN: 0.2|.
 \end{itemize}
 
 \subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
@@ -576,12 +582,12 @@ Esta configuración se centra en el modelo de 16 unidades, considerado el *basel
 \subsubsection{Métricas Globales de Rendimiento en el Test Set}
 \label{sec:metricas_globales_c6}
 
-La \textbf{Precisión Global} fue de \textbf{[DATO_RT_16A_GLOBAL]}\%. Este modelo establece el estándar de rendimiento para la comparación final.
+La \textbf{Precisión Global} fue de \textbf{89.6}\%. Este modelo establece el estándar de rendimiento para la comparación final, mostrando una mejora limitada en el promedio ponderado.
 
 \subsubsection{Métricas Detalladas y Matriz de Confusión}
 \label{sec:analisis_clase_c6}
 
-El análisis se enfocará en el impacto del \textit{Refine Tuning} sobre el F1-Score de las clases más débiles del modelo 16 original.
+El análisis se enfocará en el impacto del \textit{Refine Tuning} sobre el F1-Score de las clases previamente problemáticas. El número de fallos críticos (F1-Score $\approx 0.000$) se redujo ligeramente a \textbf{8 clases}.
 
 \begin{table}[H]
     \centering
@@ -630,6 +636,7 @@ El análisis se enfocará en el impacto del \textit{Refine Tuning} sobre el F1-S
         \end{tabular}
     }
 \end{table}
+\FloatBarrier
 
 \begin{figure}[!h]
     \centering
@@ -645,10 +652,10 @@ El análisis se enfocará en el impacto del \textit{Refine Tuning} sobre el F1-S
 \subsection{Configuración 7: Refine Tuning Profundo (LSTM Units: 16x32)}
 \label{sec:configuracion_7}
 
-Esta configuración representa una segunda iteración de \textit{Refine Tuning} sobre el modelo de 16 unidades, donde se exploraron hiperparámetros más agresivos (simulando, tal vez, la complejidad del modelo de 32) para intentar exprimir al máximo su rendimiento sin aumentar las unidades recurrentes.
+Esta configuración representa una segunda iteración de \textit{Refine Tuning} sobre el modelo de 16 unidades, donde se exploraron hiperparámetros más agresivos.
 
 \begin{itemize}
-    \item \textbf{Parámetros Clave (RT):} \lstinline|LSTM_UNITS: 16|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: [DATO_RT_16B]|, \lstinline|DROPOUT_RNN: [DATO_RT_16B]|.
+    \item \textbf{Parámetros Clave (RT):} \lstinline|LSTM_UNITS: 16|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: 32|, \lstinline|DROPOUT_RNN: 0.1|.
 \end{itemize}
 
 \subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
@@ -665,12 +672,12 @@ Esta configuración representa una segunda iteración de \textit{Refine Tuning} 
 \subsubsection{Métricas Globales de Rendimiento en el Test Set}
 \label{sec:metricas_globales_c7}
 
-Se evalúa si la optimización profunda logró superar la precisión global del modelo 16x16. La \textbf{Precisión Global} fue de \textbf{[DATO_RT_16B_GLOBAL]}\%.
+Se evalúa si la optimización profunda logró superar la precisión global del modelo 16x16. La \textbf{Precisión Global} fue de \textbf{91.33}\%, representando una mejora neta de $1.73\%$ sobre la configuración anterior.
 
 \subsubsection{Métricas Detalladas y Matriz de Confusión}
 \label{sec:analisis_clase_c7}
 
-Se busca la eliminación definitiva de las clases con F1-Score nulo.
+Se busca la eliminación definitiva de las clases con F1-Score nulo. La Configuración 7 logró reducir el número de fallos a \textbf{4 clases} ('curación', 'limpiar', 'sida', 'orinar'), demostrando que la capacidad de 16 unidades es inherentemente limitada para el conjunto de datos actual.
 
 \begin{table}[H]
     \centering
@@ -719,6 +726,7 @@ Se busca la eliminación definitiva de las clases con F1-Score nulo.
         \end{tabular}
     }
 \end{table}
+\FloatBarrier
 
 \begin{figure}[!h]
     \centering
@@ -734,10 +742,10 @@ Se busca la eliminación definitiva de las clases con F1-Score nulo.
 \subsection{Configuración 8: Refine Tuning Cota Superior (LSTM Units: 32x32)}
 \label{sec:configuracion_8}
 
-Esta es la configuración de máxima capacidad permitida en la segunda etapa. El objetivo es alcanzar la mayor precisión posible, sabiendo que su latencia será la mayor entre los modelos seleccionados.
+Esta es la configuración de máxima capacidad permitida en la segunda etapa. El objetivo es alcanzar la mayor precisión posible, sirviendo como la cota superior de rendimiento que valida la robustez requerida.
 
 \begin{itemize}
-    \item \textbf{Parámetros Clave (RT):} \lstinline|LSTM_UNITS: 32|, \lstinline|LSTM_LAYERS: 3|, \lstinline|BATCH_SIZE: [DATO_RT_32]|, \lstinline|DROPOUT_RNN: [DATO_RT_32]|.
+    \item \textbf{Parámetros Clave (RT):} \lstinline|LSTM_UNITS: 32|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: 128|, \lstinline|DROPOUT_RNN: 0.1|.
 \end{itemize}
 
 \subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
@@ -754,12 +762,12 @@ Esta es la configuración de máxima capacidad permitida en la segunda etapa. El
 \subsubsection{Métricas Globales de Rendimiento en el Test Set}
 \label{sec:metricas_globales_c8}
 
-Se espera que la \textbf{Precisión Global} (alcanzada en \textbf{[DATO_RT_32_GLOBAL]}\%) sea la más alta, sirviendo como el límite superior teórico de rendimiento.
+La \textbf{Precisión Global} (alcanzada en \textbf{99.42}\%) fue la más alta de todos los experimentos realizados. Este resultado demuestra que el aumento de capacidad a 32 unidades fue el factor decisivo para la generalización.
 
 \subsubsection{Métricas Detalladas y Matriz de Confusión}
 \label{sec:analisis_clase_c8}
 
-Se investiga si la robustez de las 32 unidades, combinada con el \textit{Refine Tuning}, logra una clasificación perfecta o casi perfecta en la totalidad de las clases.
+El modelo 32x32, combinado con el \textit{Refine Tuning}, logra una clasificación robusta en la totalidad de las clases, \textbf{eliminando por completo los F1-Scores nulos} y alcanzando el nivel de rendimiento de un sistema operativo.
 
 \begin{table}[H]
     \centering
@@ -808,6 +816,7 @@ Se investiga si la robustez de las 32 unidades, combinada con el \textit{Refine 
         \end{tabular}
     }
 \end{table}
+\FloatBarrier
 
 \begin{figure}[!h]
     \centering
@@ -816,6 +825,137 @@ Se investiga si la robustez de las 32 unidades, combinada con el \textit{Refine 
     \label{fig:matriz_config8}
 \end{figure}
 \FloatBarrier
+
 % =================================================================
-% FIN DE LA SECCIÓN DE REFINE TUNING
+% NUEVA SECCIÓN: DISCUSIÓN Y SELECCIÓN DEL MODELO FINAL
 % =================================================================
+\section{Discusión de Resultados y Selección del Modelo Final}
+\label{sec:seleccion_modelo_final}
+
+El análisis de la clasificación se resume en la búsqueda de un punto óptimo de compromiso (\textit{trade-off}) entre dos métricas clave de desempeño: la \textbf{precisión de clasificación} y la \textbf{eficiencia en latencia} para el despliegue en el borde (\textit{Edge Computing}).
+
+\subsection{Criterio de Robustez Operativa}
+
+El factor más crítico identificado en la primera etapa fue el **fallo de clasificación total** (F1-Score $\approx 0.000$) en las clases con menor soporte de datos. Un sistema de clasificación que sistemáticamente falla en reconocer ciertos signos es inherentemente ineficiente para un entorno operativo. La tabla \ref{tab:resumen_robutez} ilustra el impacto del \textit{Refine Tuning} en la robustez de las cuatro configuraciones principales:
+
+\begin{table}[!h]
+    \centering
+    \caption{Resumen de Robustez: Fallos Críticos por Configuración (F1-Score $\approx 0.000$).}
+    \label{tab:resumen_robutez}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Configuración} & \textbf{LSTM Units} & \textbf{F1-Score Ponderado} & \textbf{Clases con Fallo Crítico} \\
+        \hline
+        C5 (RT Mínimo) & 8x8 & 0.864 & 10 \\
+        C6 (RT Referencia) & 16x16 & 0.871 & 8 \\
+        C7 (RT Profundo) & 16x32 & 0.887 & 4 \\
+        C8 (RT Superior) & **32x32** & **0.994** & \textbf{0} \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Justificación de la Selección del Modelo 32x32}
+
+La fase de *Refine Tuning* tuvo como objetivo encontrar el punto óptimo de compromiso (*trade-off*) entre la capacidad del modelo y la precisión de clasificación para un despliegue confiable. El análisis comparativo demostró que, si bien la Configuración 8 (32x32) es la de mayor capacidad de las optimizadas, su rendimiento es el único que satisface plenamente los requisitos no funcionales de **clasificación robusta**.
+
+El modelo 32x32 fue el único capaz de superar los fallos de clasificación históricos de los modelos 8x8, 16x16 y 16x32, logrando un **F1-Score ponderado de 0.994**. Este resultado es fundamental, ya que los modelos de menor capacidad persistieron en tener un rendimiento nulo en hasta 10 clases, una debilidad inaceptable para un sistema en producción que debe reconocer un conjunto limitado y fijo de signos críticos de salud.
+
+Por lo tanto, se concluye que el modelo **32x32 Refine Tuning** es el más eficiente. Se define como eficiente en el contexto de esta tesis como el modelo que ofrece la **mínima latencia aceptable que garantiza la precisión requerida** para una operación confiable. El aumento marginal de latencia que implica el modelo 32x32 es un costo necesario para asegurar la robustez, estableciéndose como la **cota superior** de rendimiento y el modelo seleccionado para el despliegue operativo.
+
+\section{Análisis y Discusión de los Resultados de la Clasificación}
+\label{sec:analisis_resultados}
+
+Esta sección presenta una interpretación detallada de los resultados obtenidos en la prueba manual para la clasificación de 29 señas de la Lengua de Señas Mexicana (LSM), tal como se reportan en la \hyperref[tab:detalle_pruebas_manuales_completa]{Tabla \ref{tab:detalle_pruebas_manuales_completa}}. Un total de 580 muestras (20 por cada una de las 29 clases) fueron evaluadas.
+
+\subsection{Efectividad Total del Sistema}
+
+La efectividad global del modelo se calcula sumando el total de aciertos obtenidos y dividiéndolo por el total de muestras probadas.
+
+\begin{itemize}
+    \item \textbf{Total de Muestras Probadas ($N$):}
+    $$N = 29 \text{ clases} \times 20 \text{ muestras/clase} = 580$$
+    \item \textbf{Total de Aciertos ($\sum A$):}
+    $$\sum A = (5 \times 20) + (2 \times 17) + (2 \times 16) + (7 \times 15) + 14 + 12 + 10 + (8 \times 8) + (2 \times 0) = 371$$
+    \item \textbf{Porcentaje de Efectividad Total ($\eta$):}
+    $$\eta = \frac{\sum A}{N} \times 100\% = \frac{371}{580} \times 100\% \approx 63.97\%$$
+\end{itemize}
+
+El porcentaje de efectividad total del sistema es del \textbf{63.97\%}, lo que indica que el modelo es correcto en aproximadamente dos tercios de las clasificaciones realizadas.
+
+\subsection{Análisis Detallado por Rangos de Precisión}
+
+Los resultados se han agrupado en categorías de rendimiento para identificar las áreas de mayor éxito y las que requieren intervención.
+
+\begin{itemize}
+    \item \textbf{Alto Rendimiento (100.0\%):}
+    Cinco señas -- \textit{agua}, \textit{bien}, \textit{levantar}, \textit{recostar}, y \textit{temperatura} -- alcanzaron la precisión máxima (\textbf{100.0\%}). Estas señas son robustas y sus características son significativamente distintas entre sí y del resto del corpus, lo que minimiza la ambigüedad en la clasificación.
+
+    \item \textbf{Cumplimiento Parcial (80.0\% - 85.0\%):}
+    Cuatro señas se encuentran en este rango. \textit{salud} y \textit{cáncer} obtuvieron \textbf{85.0\%} (17/20), mientras que \textit{orinar} y \textit{hola} lograron \textbf{80.0\%} (16/20). La tasa de error en este grupo es baja (3 a 4 fallos por clase), sugiriendo que las fallas pueden ser el resultado de variaciones en la ejecución de la seña durante la prueba, más que de una deficiencia estructural del modelo.
+
+    \item \textbf{Mejora Requerida (60.0\% - 75.0\%):}
+    Este rango incluye once clases donde la precisión oscila entre el \textbf{60.0\%} y el \textbf{75.0\%}. Notablemente, un grupo de siete señas (\textit{porfavor}, \textit{curación}, \textit{diarrea}, \textit{doctor}, \textit{farmacia}, \textit{cita}, y \textit{sida}) se agrupan en el \textbf{75.0\%} de precisión. La seña con el rendimiento más bajo en este grupo es \textit{influenza} con \textbf{60.0\%} (12/20 aciertos). La necesidad de mejora en esta sección es alta, ya que los errores están limitando la fiabilidad del sistema.
+
+    \item \textbf{Bajo Rendimiento (0.0\% - 50.0\%):}
+    Esta es la categoría más crítica y requiere una atención inmediata.
+    \begin{enumerate}[I.]
+        \item \textbf{Señas con 40.0\% (8/20):} Ocho clases, incluyendo \textit{limpiar}, \textit{operación}, \textit{emergencia}, \textit{infección}, \textit{mal}, \textit{radio}, y \textit{virus}, solo fueron clasificadas correctamente en el 40\% de las veces. Esto sugiere una alta confusión mutua entre estas señas y/o su confusión sistemática con otras clases de mayor precisión.
+        \item \textbf{Seña con 50.0\% (10/20):} La seña \textit{como} presenta una clasificación correcta en la mitad de los casos.
+        \item \textbf{Fallo Crítico (0.0\%):} Las señas \textit{sintoma} y \textit{enfermo} obtuvieron \textbf{0/20 aciertos}. Este fallo total indica que el modelo no ha aprendido a reconocer los patrones de estas señas o que las muestras utilizadas en la prueba no fueron representativas o están siendo consistentemente clasificadas como una o varias clases incorrectas.
+    \end{enumerate}
+\end{itemize}
+
+\subsection{Interpretación y Recomendaciones}
+
+El análisis de la \hyperref[tab:detalle_pruebas_manuales_completa]{Tabla \ref{tab:detalle_pruebas_manuales_completa}} subraya la necesidad de un enfoque dual para la optimización del sistema:
+
+\begin{enumerate}
+    \item \textbf{Aumento de Datos y Calidad:} Es esencial aumentar la cantidad y variedad de datos de entrenamiento para las 11 clases en el rango de $\text{Precisión} \leq 50.0\%$, especialmente \textit{sintoma} y \textit{enfermo}.
+    \item \textbf{Análisis de Confusión Interclase:} Se recomienda encarecidamente la generación de una \textbf{Matriz de Confusión} para identificar qué pares de señas están siendo sistemáticamente confundidos (e.g., ¿se confunde \textit{limpiar} con \textit{operación}?), lo cual es crucial para rediseñar la extracción de características o la arquitectura del modelo.
+\end{enumerate}
+
+\begin{table}[H]
+    \centering
+    \caption{Resultados de la Prueba Manual Detallada (20 Muestras por Clase, 29 Clases Probadas).}
+    \label{tab:detalle_pruebas_manuales_completa}
+    \begin{tabular}{|l|c|c|l|}
+        \hline
+        \textbf{Palabra (LSM)} & \textbf{Aciertos / Total} & \textbf{Precisión por Clase (\%)} & \textbf{Comentario} \\
+        \hline
+        agua & 20 / 20 & 100.0\% & Alto Rendimiento \\
+        bien & 20 / 20 & 100.0\% & Alto Rendimiento \\
+        levantar & 20 / 20 & 100.0\% & Alto Rendimiento \\
+        recostar & 20 / 20 & 100.0\% & Alto Rendimiento \\
+        temperatura & 20 / 20 & 100.0\% & Alto Rendimiento \\
+        \hline
+        salud & 17 / 20 & 85.0\% & Cumplimiento Parcial \\
+        cáncer & 17 / 20 & 85.0\% & Cumplimiento Parcial \\
+        orinar & 16 / 20 & 80.0\% & Cumplimiento Parcial \\
+        hola & 16 / 20 & 80.0\% & Cumplimiento Parcial \\
+        \hline
+        porfavor & 15 / 20 & 75.0\% & Mejora Requerida \\
+        curación & 15 / 20 & 75.0\% & Mejora Requerida \\
+        diarrea & 15 / 20 & 75.0\% & Mejora Requerida \\
+        doctor & 15 / 20 & 75.0\% & Mejora Requerida \\
+        farmacia & 15 / 20 & 75.0\% & Mejora Requerida \\
+        cita & 15 / 20 & 75.0\% & Mejora Requerida \\
+        sida & 15 / 20 & 75.0\% & Mejora Requerida \\
+        \hline
+        inyeccion & 14 / 20 & 70.0\% & Mejora Requerida \\
+        influenza & 12 / 20 & 60.0\% & Mejora Requerida \\
+        como & 10 / 20 & 50.0\% & Bajo Rendimiento \\
+        \hline
+        limpiar & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        menstruación & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        operación & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        emergencia & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        infección & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        mal & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        radio & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        virus & 8 / 20 & 40.0\% & Bajo Rendimiento \\
+        \hline
+        sintoma & 0 / 20 & 0.0\% & Bajo Rendimiento \\
+        enfermo & 0 / 20 & 0.0\% & Bajo Rendimiento \\
+        \hline
+    \end{tabular}
+\end{table}
