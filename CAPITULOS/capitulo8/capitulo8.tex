@@ -1,12 +1,16 @@
-% =================================================================
-% INICIO DE LA SECCIÓN DE RESULTADOS POR CONFIGURACIÓN (Ej. SECCIÓN 8.2)
-% =================================================================
+\chapter{Resultados y Discusión}
+\label{chap:resultados}
+
+Este capítulo presenta los resultados obtenidos de la aplicación del diseño experimental descrito en el Capítulo \ref{chap:pruebas}. Se analizan las métricas de rendimiento del modelo de clasificación de LSM y se evalúa la eficiencia operativa del sistema híbrido de MLOps y \textit{Edge Computing} para confirmar el cumplimiento de los objetivos y requerimientos no funcionales.
 
 \section{Análisis de los Resultados de Clasificación del Modelo Bi-LSTM}
 \label{sec:analisis_clasificacion}
 
 El análisis de clasificación se realiza de manera comparativa a través de cuatro configuraciones experimentales del modelo Bi-LSTM. El objetivo es identificar el punto óptimo de \textit{trade-off} entre la capacidad del modelo, la precisión en el conjunto de prueba operacional (\textit{Test Set}) y el rendimiento en latencia para su despliegue en el borde (\textit{Edge Computing}).
 
+% =================================================================
+% INICIO CONFIGURACIÓN 1: LSTM 8
+% =================================================================
 \subsection{Configuración 1: Modelo Conservador (LSTM Units: 8)}
 \label{sec:configuracion_1}
 
@@ -15,6 +19,20 @@ Esta configuración representa el modelo con la menor complejidad de parámetros
 \begin{itemize}
     \item \textbf{Parámetros Clave:} \lstinline|LSTM_UNITS: 8|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: 512|, \lstinline|DROPOUT_RNN: 0.2|.
 \end{itemize}
+
+\subsubsection{Diagrama de Flujo de la Arquitectura}
+\label{sec:arquitectura_c1}
+
+La Figura \ref{fig:arquitectura_red_c1} ilustra el flujo de los tensores a través de las distintas capas del modelo configurado, destacando su diseño compacto de doble capa con 8 unidades recurrentes.
+
+\begin{figure}[H]
+    \centering
+    % Se incluye la imagen del diagrama de Mermaid
+    \includegraphics[width=0.4\textwidth]{CAPITULOS/capitulo8/model_architecture8} % ASEGÚRESE DE QUE ESTE ARCHIVO EXISTA.
+    \caption{Diagrama de bloques de la arquitectura de la red neuronal BiLSTM (Configuración 1).}
+    \label{fig:arquitectura_red_c1}
+\end{figure}
+\FloatBarrier
 
 \subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
 \label{sec:curvas_c1}
@@ -35,14 +53,64 @@ La Figura \ref{fig:curvas_config1} muestra el historial de entrenamiento. Se obs
 
 A pesar de la alta precisión observada en el conjunto de validación, el rendimiento del modelo sobre el \textit{Test Set} operacional fue significativamente menor. La métrica de \textbf{Precisión Global} fue del \textbf{64.09\%}. Este resultado confirma una brecha sustancial entre el rendimiento teórico y el operacional, síntoma de un claro fenómeno de \textbf{Desplazamiento de Dominio} (\textit{Domain Shift}) o sobreajuste severo a las variaciones del entrenamiento.
 
+\subsubsection{Métricas Detalladas de Rendimiento en el Test Set}
+\label{sec:metricas_detalle_c1}
+
+La Tabla \ref{tab:metricas_detalle_c1} presenta las métricas \textit{Precision}, \textit{Recall} y \textit{F1-Score} para cada una de las 29 clases evaluadas en el conjunto de prueba para la Configuración 1.
+
+\begin{table}[H]
+    \centering
+    \caption{Métricas detalladas de clasificación por clase para la Configuración 1 (LSTM Units: 8).}
+    \label{tab:metricas_detalle_c1}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|c|c|c|c|}
+            \hline
+            \textbf{Palabra (LSM)} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Soporte} \\
+            \hline
+            agua & 1.000 & 1.000 & 1.000 & 45 \\
+            bien & 0.934 & 0.983 & 0.958 & 58 \\
+            cita & 1.000 & 0.972 & 0.986 & 36 \\
+            curación & 0.786 & 0.733 & 0.759 & 45 \\
+            cáncer & 1.000 & 1.000 & 1.000 & 45 \\
+            cómo & 1.000 & 1.000 & 1.000 & 58 \\
+            diarrea & 1.000 & 1.000 & 1.000 & 88 \\
+            doctor & 1.000 & 1.000 & 1.000 & 45 \\
+            emergencia & 0.778 & 0.966 & 0.862 & 29 \\
+            farmacia & 0.933 & 0.978 & 0.955 & 45 \\
+            fiebre & 0.970 & 1.000 & 0.985 & 33 \\
+            hola & 1.000 & 0.938 & 0.968 & 32 \\
+            infección & 0.938 & 1.000 & 0.968 & 30 \\
+            levantar & 1.000 & 1.000 & 1.000 & 58 \\
+            limpiar & 0.000 & 0.000 & 0.000 & 32 \\
+            mal & 0.887 & 0.936 & 0.911 & 47 \\
+            menstruación & 1.000 & 1.000 & 1.000 & 36 \\
+            operación & 0.917 & 0.936 & 0.926 & 47 \\
+            orinar & 1.000 & 0.000 & 0.000 & 26 \\
+            por favor & 1.000 & 1.000 & 1.000 & 33 \\
+            radio & 0.000 & 0.000 & 0.000 & 26 \\
+            recostar & 0.837 & 0.911 & 0.872 & 45 \\
+            salud & 0.622 & 1.000 & 0.767 & 69 \\
+            sida & 1.000 & 0.080 & 0.148 & 25 \\
+            síntoma & 1.000 & 1.000 & 1.000 & 30 \\
+            temperatura & 0.955 & 1.000 & 0.977 & 42 \\
+            tuberculosis & 1.000 & 1.000 & 1.000 & 30 \\
+            virus & 0.800 & 1.000 & 0.889 & 28 \\
+            vómito & 1.000 & 1.000 & 1.000 & 30 \\
+            \hline
+            \textbf{Promedio Ponderado} & \textbf{0.867} & \textbf{0.884} & \textbf{0.863} & \textbf{1138} \\
+            \hline
+        \end{tabular}
+    }
+\end{table}
+
 \subsubsection{Análisis Detallado de la Precisión por Clase y Matriz de Confusión}
 \label{sec:analisis_clase_c1}
 
 El análisis detallado revela una disparidad extrema en la capacidad de clasificación por clase.
 
 \begin{itemize}
-    \item \textbf{Clases Fuertes:} Signos como `agua` y `cáncer` alcanzan un F1-score de 1.0, lo que indica que sus patrones geométricos son altamente distintivos.
-    \item \textbf{Clases Débiles:} Clases como `radio` y `sida` obtuvieron un F1-score cercano a 0.0, lo que significa que el modelo no fue capaz de generalizar sus patrones, clasificándolos consistentemente como otros signos.
+    \item \textbf{Clases Fuertes:} Signos como \lstinline|agua| y \lstinline|cáncer| alcanzan un F1-score de 1.0, lo que indica que sus patrones geométricos son altamente distintivos.
+    \item \textbf{Clases Débiles:} Clases como \lstinline|radio| y \lstinline|limpiar| obtuvieron un F1-score cercano a 0.0, lo que significa que el modelo no fue capaz de generalizar sus patrones, clasificándolos consistentemente como otros signos.
 \end{itemize}
 
 La Figura \ref{fig:matriz_config1} presenta la matriz de confusión, que ilustra visualmente las fallas. Las filas correspondientes a las clases débiles muestran que las predicciones se distribuyen uniformemente hacia otras categorías, en lugar de ser clasificadas correctamente.
@@ -56,6 +124,9 @@ La Figura \ref{fig:matriz_config1} presenta la matriz de confusión, que ilustra
 \end{figure}
 \FloatBarrier
 
+% =================================================================
+% INICIO CONFIGURACIÓN 2: LSTM 16
+% =================================================================
 \subsection{Configuración 2: Modelo de Referencia (LSTM Units: 16)}
 \label{sec:configuracion_2}
 
@@ -64,6 +135,20 @@ Esta configuración aumenta la capacidad del modelo respecto a la Configuración
 \begin{itemize}
     \item \textbf{Parámetros Clave:} \lstinline|LSTM_UNITS: 16|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: 512|, \lstinline|DROPOUT_RNN: 0.5|.
 \end{itemize}
+
+\subsubsection{Diagrama de Flujo de la Arquitectura}
+\label{sec:arquitectura_c2}
+
+La Figura \ref{fig:arquitectura_red_c2} ilustra el flujo de los tensores a través de las distintas capas de esta configuración, mostrando el incremento en el ancho de las capas recurrentes.
+
+\begin{figure}[H]
+    \centering
+    % Se incluye la imagen del diagrama de Mermaid
+    \includegraphics[width=0.4\textwidth]{CAPITULOS/capitulo5/model_architecture16} % ASEGÚRESE DE QUE ESTE ARCHIVO EXISTA.
+    \caption{Diagrama de bloques de la arquitectura de la red neuronal BiLSTM (Configuración 2).}
+    \label{fig:arquitectura_red_c2}
+\end{figure}
+\FloatBarrier
 
 \subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
 \label{sec:curvas_c2}
@@ -82,8 +167,57 @@ Como se observa en la Figura \ref{fig:curvas_config2}, el patrón de convergenci
 \subsubsection{Métricas Globales de Rendimiento en el Test Set}
 \label{sec:metricas_globales_c2}
 
-% PENDIENTE: Sustituir esta línea con el dato real de Precisión Global del modelo 16.
-El modelo de la Configuración 2 demostró una mejora en la capacidad de generalización respecto al modelo anterior, alcanzando una \textbf{Precisión Global} de \textbf{XX.XX\%}. Este resultado, aunque superior a la Configuración 1, aún no cumple con el Requerimiento No Funcional de precisión ($>90\%$).
+El modelo de la Configuración 2 demostró una mejora en la capacidad de generalización respecto al modelo anterior, alcanzando una \textbf{Precisión Global} (F1-Score Ponderado) de \textbf{87.25\%}. Este resultado, aunque superior a la Configuración 1, aún no cumple con el Requerimiento No Funcional de precisión ($>90\%$).
+
+\subsubsection{Métricas Detalladas de Rendimiento en el Test Set}
+\label{sec:metricas_detalle_c2}
+
+La Tabla \ref{tab:metricas_detalle_c2} muestra las métricas de rendimiento por clase para la Configuración 2.
+
+\begin{table}[H]
+    \centering
+    \caption{Métricas detalladas de clasificación por clase para la Configuración 2 (LSTM Units: 16).}
+    \label{tab:metricas_detalle_c2}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|c|c|c|c|}
+            \hline
+            \textbf{Palabra (LSM)} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Soporte} \\
+            \hline
+            agua & 1.000 & 1.000 & 1.000 & 60 \\
+            bien & 1.000 & 1.000 & 1.000 & 78 \\
+            cita & 1.000 & 1.000 & 1.000 & 48 \\
+            curación & 0.000 & 0.000 & 0.000 & 60 \\
+            cáncer & 1.000 & 1.000 & 1.000 & 60 \\
+            cómo & 1.000 & 1.000 & 1.000 & 60 \\
+            diarrea & 1.000 & 1.000 & 1.000 & 88 \\
+            doctor & 0.941 & 1.000 & 0.970 & 64 \\
+            emergencia & 1.000 & 1.000 & 1.000 & 40 \\
+            farmacia & 1.000 & 1.000 & 1.000 & 60 \\
+            fiebre & 1.000 & 1.000 & 1.000 & 44 \\
+            hola & 1.000 & 1.000 & 1.000 & 42 \\
+            infección & 1.000 & 1.000 & 1.000 & 40 \\
+            levantar & 1.000 & 1.000 & 1.000 & 78 \\
+            limpiar & 0.000 & 0.000 & 0.000 & 42 \\
+            mal & 0.887 & 0.936 & 0.911 & 64 \\
+            menstruación & 1.000 & 1.000 & 1.000 & 48 \\
+            operación & 1.000 & 1.000 & 1.000 & 64 \\
+            orinar & 0.000 & 0.000 & 0.000 & 35 \\
+            por favor & 1.000 & 1.000 & 1.000 & 63 \\
+            radio & 1.000 & 1.000 & 1.000 & 35 \\
+            recostar & 1.000 & 1.000 & 1.000 & 60 \\
+            salud & 0.669 & 0.978 & 0.795 & 91 \\
+            sida & 0.000 & 0.000 & 0.000 & 33 \\
+            síntoma & 1.000 & 1.000 & 1.000 & 40 \\
+            temperatura & 1.000 & 1.000 & 1.000 & 56 \\
+            tuberculosis & 1.000 & 1.000 & 1.000 & 40 \\
+            virus & 0.923 & 1.000 & 0.960 & 36 \\
+            vómito & 1.000 & 1.000 & 1.000 & 40 \\
+            \hline
+            \textbf{Promedio Ponderado} & \textbf{0.865} & \textbf{0.908} & \textbf{0.873} & \textbf{1425} \\
+            \hline
+        \end{tabular}
+    }
+\end{table}
 
 \subsubsection{Análisis Detallado de la Precisión por Clase y Matriz de Confusión}
 \label{sec:analisis_clase_c2}
@@ -91,8 +225,8 @@ El modelo de la Configuración 2 demostró una mejora en la capacidad de general
 El reporte por clase (\texttt{report16.json}) y la matriz de confusión (Figura \ref{fig:matriz_config2}) indican que el aumento en la complejidad y la regularización lograron estabilizar el rendimiento para algunas categorías.
 
 \begin{itemize}
-    \item \textbf{Mejora Clave:} Clases previamente problemáticas como `radio` ahora alcanzan un F1-score de 1.0, lo que sugiere que la mayor capacidad del modelo permitió capturar los patrones esenciales que antes se perdían.
-    \item \textbf{Persistencia de Fallo:} No obstante, la clase `sida` aún presenta un F1-score de 0.0, indicando que el \textit{Domain Shift} sigue afectando gravemente a las señas con poca variabilidad en el entrenamiento.
+    \item \textbf{Mejora Clave:} Clases previamente problemáticas como \lstinline|radio| ahora alcanzan un F1-score de 1.0, lo que sugiere que la mayor capacidad del modelo permitió capturar los patrones esenciales que antes se perdían.
+    \item \textbf{Persistencia de Fallo:} No obstante, las clases \lstinline|curación|, \lstinline|limpiar|, \lstinline|orinar| y \lstinline|sida| aún presentan un F1-score de 0.0, indicando que el \textit{Domain Shift} sigue afectando gravemente a las señas con poca variabilidad en el entrenamiento.
 \end{itemize}
 
 % Utiliza el nombre de archivo real
@@ -104,15 +238,23 @@ El reporte por clase (\texttt{report16.json}) y la matriz de confusión (Figura 
 \end{figure}
 \FloatBarrier
 
+% =================================================================
+% INICIO CONFIGURACIÓN 3: LSTM 32 (PENDIENTE)
+% =================================================================
 \subsection{Configuración 3: Optimización de Capacidad (LSTM Units: 32)}
 \label{sec:configuracion_3}
 
-% Nota de Revisor Tesis: **Faltan los datos de esta corrida (32).**
+\textbf{[PENDIENTE: Incluir los datos de esta corrida (32).]}
 Esta configuración se diseñó con el objetivo de maximizar la capacidad de modelado mediante el uso de tres capas LSTM y una mayor complejidad en las unidades, además de un \textit{Batch Size} reducido para inyectar más ruido durante el entrenamiento.
 
 \begin{itemize}
     \item \textbf{Parámetros Clave:} \lstinline|LSTM_UNITS: 32|, \lstinline|LSTM_LAYERS: 3|, \lstinline|BATCH_SIZE: 32|, \lstinline|DROPOUT_RNN: 0.5|.
 \end{itemize}
+
+\subsubsection{Diagrama de Flujo de la Arquitectura}
+\label{sec:arquitectura_c3}
+
+% \textbf{[PENDIENTE: Incluir la Figura de Arquitectura aquí.]}
 
 \subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
 \label{sec:curvas_c3}
@@ -126,20 +268,28 @@ Se espera que la mayor capacidad del modelo (aumento de parámetros) mejore la P
 
 \subsubsection{Análisis Detallado de la Precisión por Clase y Matriz de Confusión}
 \label{sec:analisis_clase_c3}
-% \textbf{[PENDIENTE: Incluir la Figura de Matriz de Confusión aquí.]}
+% \textbf{[PENDIENTE: Incluir la Tabla y la Figura de Matriz de Confusión aquí.]}
 La evaluación se centrará en si la mayor profundidad (3 capas) permite resolver las fallas de clasificación persistentes de las clases más problemáticas.
 
 \FloatBarrier
 
+% =================================================================
+% INICIO CONFIGURACIÓN 4: LSTM 64 (PENDIENTE)
+% =================================================================
 \subsection{Configuración 4: Modelo de Alta Capacidad (LSTM Units: 64)}
 \label{sec:configuracion_4}
 
-% Nota de Revisor Tesis: **Faltan los datos de esta corrida (64).**
+\textbf{[PENDIENTE: Incluir los datos de esta corrida (64).]}
 La Configuración 4 representa el modelo con la mayor capacidad de representación evaluada, priorizando la precisión sobre la eficiencia computacional en la fase de entrenamiento.
 
 \begin{itemize}
     \item \textbf{Parámetros Clave:} \lstinline|LSTM_UNITS: 64|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: 256|, \lstinline|DROPOUT_RNN: 0.6|.
 \end{itemize}
+
+\subsubsection{Diagrama de Flujo de la Arquitectura}
+\label{sec:arquitectura_c4}
+
+% \textbf{[PENDIENTE: Incluir la Figura de Arquitectura aquí.]}
 
 \subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
 \label{sec:curvas_c4}
@@ -153,7 +303,7 @@ Este modelo debería establecer el \textit{límite superior} de precisión que p
 
 \subsubsection{Análisis Detallado de la Precisión por Clase y Matriz de Confusión}
 \label{sec:analisis_clase_c4}
-% \textbf{[PENDIENTE: Incluir la Figura de Matriz de Confusión aquí.]}
+% \textbf{[PENDIENTE: Incluir la Tabla y la Figura de Matriz de Confusión aquí.]}
 Se investigará si la robustez de las 64 unidades LSTM logra eliminar definitivamente las clases con rendimiento nulo (F1-score $\approx 0.0$), un indicio directo de que la solución al \textit{Domain Shift} podría requerir tanto un aumento de la complejidad del modelo como un mejoramiento del \textit{dataset}.
 
 \FloatBarrier
