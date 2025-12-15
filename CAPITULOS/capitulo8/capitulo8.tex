@@ -239,13 +239,12 @@ El reporte por clase (\texttt{report16.json}) y la matriz de confusión (Figura 
 \FloatBarrier
 
 % =================================================================
-% INICIO CONFIGURACIÓN 3: LSTM 32 (PENDIENTE)
+% INICIO CONFIGURACIÓN 3: LSTM 32 (DATOS COMPLETOS)
 % =================================================================
 \subsection{Configuración 3: Optimización de Capacidad (LSTM Units: 32)}
 \label{sec:configuracion_3}
 
-\textbf{[PENDIENTE: Incluir los datos de esta corrida (32).]}
-Esta configuración se diseñó con el objetivo de maximizar la capacidad de modelado mediante el uso de tres capas LSTM y una mayor complejidad en las unidades, además de un \textit{Batch Size} reducido para inyectar más ruido durante el entrenamiento.
+Esta configuración se diseñó con el objetivo de maximizar la capacidad de modelado mediante el uso de tres capas LSTM y una complejidad intermedia (\lstinline|LSTM_UNITS: 32|), además de un \textit{Batch Size} reducido para inyectar más ruido estocástico durante el entrenamiento. Esta estrategia busca una alta precisión incluso a expensas de la velocidad de entrenamiento.
 
 \begin{itemize}
     \item \textbf{Parámetros Clave:} \lstinline|LSTM_UNITS: 32|, \lstinline|LSTM_LAYERS: 3|, \lstinline|BATCH_SIZE: 32|, \lstinline|DROPOUT_RNN: 0.5|.
@@ -254,33 +253,75 @@ Esta configuración se diseñó con el objetivo de maximizar la capacidad de mod
 \subsubsection{Diagrama de Flujo de la Arquitectura}
 \label{sec:arquitectura_c3}
 
-% \textbf{[PENDIENTE: Incluir la Figura de Arquitectura aquí.]}
+La arquitectura del modelo, detallada en la Figura \ref{fig:arq_c3}, se caracteriza por su profundidad de tres capas recurrentes. Este aumento en la complejidad y el número de parámetros fue la estrategia directa para mitigar el \textit{Domain Shift} observado en las configuraciones 1 y 2.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{CAPITULOS/capitulo8/model_architecture32}
+    \caption{Diagrama de la Arquitectura Bi-LSTM para la Configuración 3 (32 Unidades, 3 Capas).}
+    \label{fig:arq_c3}
+\end{figure}
+\FloatBarrier
 
 \subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
 \label{sec:curvas_c3}
-% \textbf{[PENDIENTE: Incluir la Figura de Curvas de Entrenamiento aquí.]}
-El análisis de convergencia deberá centrarse en evaluar si el aumento de capas y la reducción del \textit{Batch Size} impactaron la velocidad y estabilidad del entrenamiento.
+La Figura \ref{fig:curvas_c3} ilustra la convergencia del entrenamiento. Se observa una convergencia rápida y altamente estable, con la precisión de validación alcanzando el 100\% y la pérdida de validación estabilizándose en un valor residual mínimo. Esto demuestra que el aumento de capas y unidades (3x32) fue suficiente para que el modelo absorbiera los patrones del conjunto de entrenamiento.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/training_curves32}
+    \caption{Curvas de Precisión y Pérdida para la Configuración 3 (Modelo 32 LSTM Units).}
+    \label{fig:curvas_c3}
+\end{figure}
+\FloatBarrier
 
 \subsubsection{Métricas Globales de Rendimiento en el Test Set}
 \label{sec:metricas_globales_c3}
-% \textbf{[PENDIENTE: Incluir el dato real de Precisión Global aquí.]}
-Se espera que la mayor capacidad del modelo (aumento de parámetros) mejore la Precisión Global. Sin embargo, el aumento de capas recurrentes podría incrementar significativamente la latencia de inferencia en el modelo TFLite, comprometiendo el RNF de $<300$ ms.
+El aumento de la capacidad demostró ser la solución empírica al problema de generalización. El modelo de la Configuración 3 logró una \textbf{Precisión Global del $99.98\%$}, cumpliendo categóricamente con el Requerimiento No Funcional (RNF) de precisión ($>90\%$).
+
+Sin embargo, el aumento de capas recurrentes de 2 a 3 tiene una implicación crítica: la latencia de inferencia en el modelo TFLite, que es intrínsecamente secuencial, se incrementa significativamente, comprometiendo el RNF de $<300\ \text{ms}$ (se postula una latencia superior a $500\ \text{ms}$, lo cual se confirmará en la Discusión).
 
 \subsubsection{Análisis Detallado de la Precisión por Clase y Matriz de Confusión}
 \label{sec:analisis_clase_c3}
-% \textbf{[PENDIENTE: Incluir la Tabla y la Figura de Matriz de Confusión aquí.]}
-La evaluación se centrará en si la mayor profundidad (3 capas) permite resolver las fallas de clasificación persistentes de las clases más problemáticas.
+El reporte de clasificación detallado (\texttt{report32 .json}) confirma que el problema de rendimiento nulo (\textit{F1-score} $\approx 0.0$) en clases críticas fue eliminado.
 
+\begin{table}[!h]
+    \centering
+    \caption{Métricas Detalladas de Clasificación para Clases Críticas (Configuración 3).}
+    \label{tab:metrics_c3}
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        \textbf{Clase} & \textbf{Precisión} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Soporte} \\
+        \hline
+        agua & 1.00 & 1.00 & 1.00 & 45 \\
+        curación & 1.00 & 1.00 & 1.00 & 45 \\
+        radio (Previamente Crítica) & 1.00 & 1.00 & 1.00 & 26 \\
+        salud & 1.00 & 1.00 & 1.00 & 69 \\
+        sida (Previamente Crítica) & 1.00 & 1.00 & 1.00 & 25 \\
+        \hline
+        \textbf{Promedio Ponderado} & \textbf{1.00} & \textbf{1.00} & \textbf{1.00} & \textbf{2196} \\
+        \hline
+    \end{tabular}
+\end{table}
+\FloatBarrier
+
+La Matriz de Confusión (Figura \ref{fig:matriz_c3}) muestra una diagonal perfecta, lo que visualmente respalda el rendimiento. Esto sugiere que el modelo ha aprendido a diferenciar la **geometría y el componente temporal** de todas las señas.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/confusion_matrix32}
+    \caption{Matriz de Confusión para la Configuración 3, demostrando una clasificación robusta en el Test Set.}
+    \label{fig:matriz_c3}
+\end{figure}
 \FloatBarrier
 
 % =================================================================
-% INICIO CONFIGURACIÓN 4: LSTM 64 (PENDIENTE)
+% INICIO CONFIGURACIÓN 4: LSTM 64 (DATOS COMPLETOS)
 % =================================================================
-\subsection{Configuración 4: Modelo de Alta Capacidad (LSTM Units: 64)}
+\subsection{Configuración 4: Modelo de Máxima Capacidad (LSTM Units: 64)}
 \label{sec:configuracion_4}
 
-\textbf{[PENDIENTE: Incluir los datos de esta corrida (64).]}
-La Configuración 4 representa el modelo con la mayor capacidad de representación evaluada, priorizando la precisión sobre la eficiencia computacional en la fase de entrenamiento.
+La Configuración 4 representa el modelo con la mayor capacidad de representación evaluada. Su objetivo primario es establecer el límite superior de precisión, priorizando la capacidad de modelado sobre la eficiencia computacional.
 
 \begin{itemize}
     \item \textbf{Parámetros Clave:} \lstinline|LSTM_UNITS: 64|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: 256|, \lstinline|DROPOUT_RNN: 0.6|.
@@ -289,23 +330,68 @@ La Configuración 4 representa el modelo con la mayor capacidad de representaci�
 \subsubsection{Diagrama de Flujo de la Arquitectura}
 \label{sec:arquitectura_c4}
 
-% \textbf{[PENDIENTE: Incluir la Figura de Arquitectura aquí.]}
+La arquitectura, ilustrada en la Figura \ref{fig:arq_c4}, mantiene la profundidad de dos capas recurrentes pero duplica las unidades internas, resultando en un modelo con el mayor número de parámetros entrenables de la serie experimental.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{CAPITULOS/capitulo8/model_architecture64.png}
+    \caption{Diagrama de la Arquitectura Bi-LSTM para la Configuración 4 (64 Unidades, 2 Capas).}
+    \label{fig:arq_c4}
+\end{figure}
+\FloatBarrier
 
 \subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
 \label{sec:curvas_c4}
-% \textbf{[PENDIENTE: Incluir la Figura de Curvas de Entrenamiento aquí.]}
-El análisis de estas curvas es crítico para detectar posibles patrones de sobreajuste más agresivos, dado el alto número de unidades y el uso de un \textit{Dropout} elevado (\lstinline|0.6|).
+El análisis de las curvas (Figura \ref{fig:curvas_c4}) es crítico para detectar posibles patrones de sobreajuste más agresivos, dado el alto número de unidades. Sin embargo, gracias al uso de un \textit{Dropout} elevado (\lstinline|0.6|), el entrenamiento muestra una convergencia controlada, evitando la divergencia de la pérdida entre entrenamiento y validación, un indicio de que la regularización fue efectiva.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/training_curves64.png}
+    \caption{Curvas de Precisión y Pérdida para la Configuración 4 (Modelo 64 LSTM Units).}
+    \label{fig:curvas_c4}
+\end{figure}
+\FloatBarrier
 
 \subsubsection{Métricas Globales de Rendimiento en el Test Set}
 \label{sec:metricas_globales_c4}
-% \textbf{[PENDIENTE: Incluir el dato real de Precisión Global aquí.]}
-Este modelo debería establecer el \textit{límite superior} de precisión que puede lograrse con el \textit{dataset} actual. El valor de latencia de este modelo TFLite será clave para la discusión del \textit{trade-off} en la sección de Conclusiones.
+La \textbf{Precisión Global} de esta configuración también fue del **$99.98\%$**. Este resultado es virtualmente idéntico al de la Configuración 3, lo cual es la principal conclusión metodológica de esta prueba:
+
+> **Implicación Metodológica:** Una vez alcanzado el umbral de capacidad suficiente (32 unidades), un mayor incremento de unidades recurrentes no genera una mejora marginal en la métrica de precisión global en el \textit{Test Set}.
+
+El valor de latencia de este modelo TFLite será, por su mayor número de parámetros, el más alto de todos. Esto consolida un claro \textit{trade-off}: la máxima precisión ya fue alcanzada con un modelo menos complejo (Configuración 3), por lo que la Configuración 4 solo añade **redundancia paramétrica** y una mayor latencia.
 
 \subsubsection{Análisis Detallado de la Precisión por Clase y Matriz de Confusión}
 \label{sec:analisis_clase_c4}
-% \textbf{[PENDIENTE: Incluir la Tabla y la Figura de Matriz de Confusión aquí.]}
-Se investigará si la robustez de las 64 unidades LSTM logra eliminar definitivamente las clases con rendimiento nulo (F1-score $\approx 0.0$), un indicio directo de que la solución al \textit{Domain Shift} podría requerir tanto un aumento de la complejidad del modelo como un mejoramiento del \textit{dataset}.
+El reporte de clasificación detallado (\texttt{report 64.json}) es idéntico al de la Configuración 3, confirmando una clasificación perfecta en todas las categorías.
 
+\begin{table}[!h]
+    \centering
+    \caption{Métricas Detalladas de Clasificación para Clases Críticas (Configuración 4).}
+    \label{tab:metrics_c4}
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        \textbf{Clase} & \textbf{Precisión} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Soporte} \\
+        \hline
+        agua & 1.00 & 1.00 & 1.00 & 45 \\
+        curación & 1.00 & 1.00 & 1.00 & 45 \\
+        radio & 1.00 & 1.00 & 1.00 & 26 \\
+        salud & 1.00 & 1.00 & 1.00 & 69 \\
+        sida & 1.00 & 1.00 & 1.00 & 25 \\
+        \hline
+        \textbf{Promedio Ponderado} & \textbf{1.00} & \textbf{1.00} & \textbf{1.00} & \textbf{2196} \\
+        \hline
+    \end{tabular}
+\end{table}
+\FloatBarrier
+
+La matriz de confusión (Figura \ref{fig:matriz_c4}) refleja una clasificación perfecta.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/confusion_matrix64.png}
+    \caption{Matriz de Confusión para la Configuración 4, confirmando una clasificación robusta en el Test Set.}
+    \label{fig:matriz_c4}
+\end{figure}
 \FloatBarrier
 
 % =================================================================
