@@ -397,3 +397,59 @@ La matriz de confusión (Figura \ref{fig:matriz_c4}) refleja una clasificación 
 % =================================================================
 % FIN DE LA SECCIÓN DE RESULTADOS POR CONFIGURACIÓN
 % =================================================================
+
+% =================================================================
+% INICIO DE LA SECCIÓN DE CONCLUSIÓN DE LA PRIMERA ETAPA
+% =================================================================
+\FloatBarrier % Asegura que todas las figuras y tablas anteriores se han renderizado.
+
+\subsection{Conclusiones de la Primera Etapa y Diseño del Refine Tuning}
+\label{sec:conclusiones_etapa1}
+
+El análisis de las primeras configuraciones experimentales (8 y 16 unidades) y la proyección de resultados para modelos de mayor capacidad (32 y 64 unidades) han permitido establecer un camino de optimización claro.
+
+\subsubsection{Justificación de la Exclusión de Alta Capacidad (64 Unidades)}
+
+El comportamiento observado en la Configuración 3 (32 unidades), con un alto porcentaje de F1-Score perfecto y fallos puntuales en clases específicas, sugiere que el problema de rendimiento no se resolverá simplemente aumentando el ancho del modelo. Por el contrario, al extrapolar este comportamiento a la configuración de \textbf{64 unidades LSTM}, se anticipa:
+
+\begin{itemize}
+    \item \textbf{Sobreajuste Severo:} Una mayor capacidad del modelo incrementa la probabilidad de memorizar el ruido y las variaciones no significativas del conjunto de entrenamiento, exacerbando el fenómeno de \textit{Domain Shift} observado en el \textit{Test Set}.
+    \item \textbf{Incumplimiento de RNF de Latencia:} La complejidad exponencial del modelo de 64 unidades, con millones de parámetros, comprometería directamente el Requerimiento No Funcional de inferencia en tiempo real ($<300$ ms) en un entorno de \textit{Edge Computing}. Por lo tanto, el modelo de 64 unidades se descarta en esta fase.
+\end{itemize}
+
+\subsubsection{Diseño de la Segunda Ronda: Refine Tuning}
+
+Las mejores métricas de precisión global, con un balance razonable de latencia, se encuentran en el rango de baja a media capacidad (8 y 16 unidades). Con el objetivo de encontrar el punto óptimo de \textit{trade-off} que resuelva las fallas por clase sin comprometer la eficiencia, se define una segunda ronda de experimentación o **Refine Tuning**, centrada en optimizar los hiperparámetros de las configuraciones más prometedoras: \textbf{8, 16 y 32 unidades LSTM}.
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \setlength{\tabcolsep}{4pt}
+    \caption{Configuraciones Focales para la Segunda Ronda de Refine Tuning.}
+    \label{tab:refine_tuning}
+    \begin{tabular}{|l|c|c|}
+        \hline
+        \textbf{Fase} & \textbf{Modelo (LSTM Units)} & \textbf{Objetivo Principal} \\
+        \hline
+        Punto Mínimo (\textit{Refine Tuning}) & \textbf{8} & Optimizar la eficiencia máxima. \\
+        Modelo Intermedio (\textit{Refine Tuning}) & \textbf{16} & Optimizar el equilibrio de rendimiento (Nuevo \textit{baseline}). \\
+        Cota Superior (\textit{Refine Tuning}) & \textbf{32} & Determinar la máxima capacidad útil antes de la sobrecarga. \\
+        \hline
+    \end{tabular}
+\end{table}
+
+
+Las nuevas series de experimentación se centrarán en la optimización de los hiperparámetros para estos tres modelos fijos:
+
+\begin{enumerate}
+    \item \textbf{Modelo Base (8 Unidades):} Se inicia el \textit{Refine Tuning} explorando hiperparámetros que permitan mejorar la precisión del modelo más ligero, siendo la \textbf{cota inferior} de capacidad.
+    \item \textbf{Modelo Intermedio (16 Unidades):} Se establece como \textbf{cota media} de capacidad, re-evaluando sus hiperparámetros para reducir la brecha de precisión y asegurar que el modelo de 16 unidades sea el nuevo *baseline* de generalización.
+    \item \textbf{Modelo de Cota (32 Unidades):} Se establece como \textbf{cota superior} del \textit{Refine Tuning}. Se busca evaluar si el aumento de capacidad a 32 unidades, con el \textit{Refine Tuning} adecuado, finaliza la clasificación nula en las clases problemáticas, siendo este el nuevo límite superior de capacidad aceptable y eficiente.
+\end{enumerate}
+
+Esta estrategia de \textit{Refine Tuning} permitirá aislar la variable crítica (capacidad de unidad LSTM) para optimizar la precisión, manteniendo la eficiencia computacional como prioridad operativa.
+
+\FloatBarrier
+% =================================================================
+% FIN DE LA SECCIÓN DE CONCLUSIÓN DE LA PRIMERA ETAPA
+% =================================================================
