@@ -1,0 +1,399 @@
+\chapter{Resultados y Discusión}
+\label{chap:resultados}
+
+Este capítulo presenta los resultados obtenidos de la aplicación del diseño experimental descrito en el Capítulo \ref{chap:pruebas}. Se analizan las métricas de rendimiento del modelo de clasificación de LSM y se evalúa la eficiencia operativa del sistema híbrido de MLOps y \textit{Edge Computing} para confirmar el cumplimiento de los objetivos y requerimientos no funcionales.
+
+\section{Análisis de los Resultados de Clasificación del Modelo Bi-LSTM}
+\label{sec:analisis_clasificacion}
+
+El análisis de clasificación se realiza de manera comparativa a través de cuatro configuraciones experimentales del modelo Bi-LSTM. El objetivo es identificar el punto óptimo de \textit{trade-off} entre la capacidad del modelo, la precisión en el conjunto de prueba operacional (\textit{Test Set}) y el rendimiento en latencia para su despliegue en el borde (\textit{Edge Computing}).
+
+% =================================================================
+% INICIO CONFIGURACIÓN 1: LSTM 8
+% =================================================================
+\subsection{Configuración 1: Modelo Conservador (LSTM Units: 8)}
+\label{sec:configuracion_1}
+
+Esta configuración representa el modelo con la menor complejidad de parámetros recurrentes y densos, diseñado para una potencial latencia de inferencia mínima.
+
+\begin{itemize}
+    \item \textbf{Parámetros Clave:} \lstinline|LSTM_UNITS: 8|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: 512|, \lstinline|DROPOUT_RNN: 0.2|.
+\end{itemize}
+
+\subsubsection{Diagrama de Flujo de la Arquitectura}
+\label{sec:arquitectura_c1}
+
+La Figura \ref{fig:arquitectura_red_c1} ilustra el flujo de los tensores a través de las distintas capas del modelo configurado, destacando su diseño compacto de doble capa con 8 unidades recurrentes.
+
+\begin{figure}[H]
+    \centering
+    % Se incluye la imagen del diagrama de Mermaid
+    \includegraphics[width=0.4\textwidth]{CAPITULOS/capitulo8/model_architecture8} % ASEGÚRESE DE QUE ESTE ARCHIVO EXISTA.
+    \caption{Diagrama de bloques de la arquitectura de la red neuronal BiLSTM (Configuración 1).}
+    \label{fig:arquitectura_red_c1}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
+\label{sec:curvas_c1}
+
+La Figura \ref{fig:curvas_config1} muestra el historial de entrenamiento. Se observa una convergencia extremadamente rápida de la precisión de entrenamiento (\textit{accuracy}) y de validación (\textit{val\_accuracy}) hacia el 100\% en las primeras épocas. Este comportamiento sugiere que el modelo tiene una capacidad suficiente para memorizar los patrones del conjunto de entrenamiento/validación.
+
+% Utiliza el nombre de archivo real
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/training_curves8.png}
+    \caption{Curvas de Precisión y Pérdida para la Configuración 1 (Modelo 8 LSTM Units).}
+    \label{fig:curvas_config1}
+\end{figure}
+\FloatBarrier % Asegura que la figura se quede en la sección.
+
+\subsubsection{Métricas Globales de Rendimiento en el Test Set}
+\label{sec:metricas_globales_c1}
+
+A pesar de la alta precisión observada en el conjunto de validación, el rendimiento del modelo sobre el \textit{Test Set} operacional fue significativamente menor. La métrica de \textbf{Precisión Global} fue del \textbf{64.09\%}. Este resultado confirma una brecha sustancial entre el rendimiento teórico y el operacional, síntoma de un claro fenómeno de \textbf{Desplazamiento de Dominio} (\textit{Domain Shift}) o sobreajuste severo a las variaciones del entrenamiento.
+
+\subsubsection{Métricas Detalladas de Rendimiento en el Test Set}
+\label{sec:metricas_detalle_c1}
+
+La Tabla \ref{tab:metricas_detalle_c1} presenta las métricas \textit{Precision}, \textit{Recall} y \textit{F1-Score} para cada una de las 29 clases evaluadas en el conjunto de prueba para la Configuración 1.
+
+\begin{table}[H]
+    \centering
+    \caption{Métricas detalladas de clasificación por clase para la Configuración 1 (LSTM Units: 8).}
+    \label{tab:metricas_detalle_c1}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|c|c|c|c|}
+            \hline
+            \textbf{Palabra (LSM)} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Soporte} \\
+            \hline
+            agua & 1.000 & 1.000 & 1.000 & 45 \\
+            bien & 0.934 & 0.983 & 0.958 & 58 \\
+            cita & 1.000 & 0.972 & 0.986 & 36 \\
+            curación & 0.786 & 0.733 & 0.759 & 45 \\
+            cáncer & 1.000 & 1.000 & 1.000 & 45 \\
+            cómo & 1.000 & 1.000 & 1.000 & 58 \\
+            diarrea & 1.000 & 1.000 & 1.000 & 88 \\
+            doctor & 1.000 & 1.000 & 1.000 & 45 \\
+            emergencia & 0.778 & 0.966 & 0.862 & 29 \\
+            farmacia & 0.933 & 0.978 & 0.955 & 45 \\
+            fiebre & 0.970 & 1.000 & 0.985 & 33 \\
+            hola & 1.000 & 0.938 & 0.968 & 32 \\
+            infección & 0.938 & 1.000 & 0.968 & 30 \\
+            levantar & 1.000 & 1.000 & 1.000 & 58 \\
+            limpiar & 0.000 & 0.000 & 0.000 & 32 \\
+            mal & 0.887 & 0.936 & 0.911 & 47 \\
+            menstruación & 1.000 & 1.000 & 1.000 & 36 \\
+            operación & 0.917 & 0.936 & 0.926 & 47 \\
+            orinar & 1.000 & 0.000 & 0.000 & 26 \\
+            por favor & 1.000 & 1.000 & 1.000 & 33 \\
+            radio & 0.000 & 0.000 & 0.000 & 26 \\
+            recostar & 0.837 & 0.911 & 0.872 & 45 \\
+            salud & 0.622 & 1.000 & 0.767 & 69 \\
+            sida & 1.000 & 0.080 & 0.148 & 25 \\
+            síntoma & 1.000 & 1.000 & 1.000 & 30 \\
+            temperatura & 0.955 & 1.000 & 0.977 & 42 \\
+            tuberculosis & 1.000 & 1.000 & 1.000 & 30 \\
+            virus & 0.800 & 1.000 & 0.889 & 28 \\
+            vómito & 1.000 & 1.000 & 1.000 & 30 \\
+            \hline
+            \textbf{Promedio Ponderado} & \textbf{0.867} & \textbf{0.884} & \textbf{0.863} & \textbf{1138} \\
+            \hline
+        \end{tabular}
+    }
+\end{table}
+
+\subsubsection{Análisis Detallado de la Precisión por Clase y Matriz de Confusión}
+\label{sec:analisis_clase_c1}
+
+El análisis detallado revela una disparidad extrema en la capacidad de clasificación por clase.
+
+\begin{itemize}
+    \item \textbf{Clases Fuertes:} Signos como \lstinline|agua| y \lstinline|cáncer| alcanzan un F1-score de 1.0, lo que indica que sus patrones geométricos son altamente distintivos.
+    \item \textbf{Clases Débiles:} Clases como \lstinline|radio| y \lstinline|limpiar| obtuvieron un F1-score cercano a 0.0, lo que significa que el modelo no fue capaz de generalizar sus patrones, clasificándolos consistentemente como otros signos.
+\end{itemize}
+
+La Figura \ref{fig:matriz_config1} presenta la matriz de confusión, que ilustra visualmente las fallas. Las filas correspondientes a las clases débiles muestran que las predicciones se distribuyen uniformemente hacia otras categorías, en lugar de ser clasificadas correctamente.
+
+% Utiliza el nombre de archivo real
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/confusion_matrix8.png}
+    \caption{Matriz de Confusión para la Configuración 1, detallando la baja generalización en el Test Set.}
+    \label{fig:matriz_config1}
+\end{figure}
+\FloatBarrier
+
+% =================================================================
+% INICIO CONFIGURACIÓN 2: LSTM 16
+% =================================================================
+\subsection{Configuración 2: Modelo de Referencia (LSTM Units: 16)}
+\label{sec:configuracion_2}
+
+Esta configuración aumenta la capacidad del modelo respecto a la Configuración 1, incrementando el número de unidades LSTM a 16 y ajustando las tasas de \textit{Dropout} para mitigar el sobreajuste.
+
+\begin{itemize}
+    \item \textbf{Parámetros Clave:} \lstinline|LSTM_UNITS: 16|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: 512|, \lstinline|DROPOUT_RNN: 0.5|.
+\end{itemize}
+
+\subsubsection{Diagrama de Flujo de la Arquitectura}
+\label{sec:arquitectura_c2}
+
+La Figura \ref{fig:arquitectura_red_c2} ilustra el flujo de los tensores a través de las distintas capas de esta configuración, mostrando el incremento en el ancho de las capas recurrentes.
+
+\begin{figure}[H]
+    \centering
+    % Se incluye la imagen del diagrama de Mermaid
+    \includegraphics[width=0.4\textwidth]{CAPITULOS/capitulo8/model_architecture16} % ASEGÚRESE DE QUE ESTE ARCHIVO EXISTA.
+    \caption{Diagrama de bloques de la arquitectura de la red neuronal BiLSTM (Configuración 2).}
+    \label{fig:arquitectura_red_c2}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
+\label{sec:curvas_c2}
+
+Como se observa en la Figura \ref{fig:curvas_config2}, el patrón de convergencia es similar al de la Configuración 1, alcanzando también una precisión de validación del 100\%. Sin embargo, el uso de tasas de \textit{Dropout} más altas (\lstinline|0.5| y \lstinline|0.6|) introduce una mayor regularización durante el entrenamiento, lo que, en teoría, debería mejorar la generalización.
+
+% Utiliza el nombre de archivo real
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/training_curves16.png}
+    \caption{Curvas de Precisión y Pérdida para la Configuración 2 (Modelo 16 LSTM Units).}
+    \label{fig:curvas_config2}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Métricas Globales de Rendimiento en el Test Set}
+\label{sec:metricas_globales_c2}
+
+El modelo de la Configuración 2 demostró una mejora en la capacidad de generalización respecto al modelo anterior, alcanzando una \textbf{Precisión Global} (F1-Score Ponderado) de \textbf{87.25\%}. Este resultado, aunque superior a la Configuración 1, aún no cumple con el Requerimiento No Funcional de precisión ($>90\%$).
+
+\subsubsection{Métricas Detalladas de Rendimiento en el Test Set}
+\label{sec:metricas_detalle_c2}
+
+La Tabla \ref{tab:metricas_detalle_c2} muestra las métricas de rendimiento por clase para la Configuración 2.
+
+\begin{table}[H]
+    \centering
+    \caption{Métricas detalladas de clasificación por clase para la Configuración 2 (LSTM Units: 16).}
+    \label{tab:metricas_detalle_c2}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|c|c|c|c|}
+            \hline
+            \textbf{Palabra (LSM)} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Soporte} \\
+            \hline
+            agua & 1.000 & 1.000 & 1.000 & 60 \\
+            bien & 1.000 & 1.000 & 1.000 & 78 \\
+            cita & 1.000 & 1.000 & 1.000 & 48 \\
+            curación & 0.000 & 0.000 & 0.000 & 60 \\
+            cáncer & 1.000 & 1.000 & 1.000 & 60 \\
+            cómo & 1.000 & 1.000 & 1.000 & 60 \\
+            diarrea & 1.000 & 1.000 & 1.000 & 88 \\
+            doctor & 0.941 & 1.000 & 0.970 & 64 \\
+            emergencia & 1.000 & 1.000 & 1.000 & 40 \\
+            farmacia & 1.000 & 1.000 & 1.000 & 60 \\
+            fiebre & 1.000 & 1.000 & 1.000 & 44 \\
+            hola & 1.000 & 1.000 & 1.000 & 42 \\
+            infección & 1.000 & 1.000 & 1.000 & 40 \\
+            levantar & 1.000 & 1.000 & 1.000 & 78 \\
+            limpiar & 0.000 & 0.000 & 0.000 & 42 \\
+            mal & 0.887 & 0.936 & 0.911 & 64 \\
+            menstruación & 1.000 & 1.000 & 1.000 & 48 \\
+            operación & 1.000 & 1.000 & 1.000 & 64 \\
+            orinar & 0.000 & 0.000 & 0.000 & 35 \\
+            por favor & 1.000 & 1.000 & 1.000 & 63 \\
+            radio & 1.000 & 1.000 & 1.000 & 35 \\
+            recostar & 1.000 & 1.000 & 1.000 & 60 \\
+            salud & 0.669 & 0.978 & 0.795 & 91 \\
+            sida & 0.000 & 0.000 & 0.000 & 33 \\
+            síntoma & 1.000 & 1.000 & 1.000 & 40 \\
+            temperatura & 1.000 & 1.000 & 1.000 & 56 \\
+            tuberculosis & 1.000 & 1.000 & 1.000 & 40 \\
+            virus & 0.923 & 1.000 & 0.960 & 36 \\
+            vómito & 1.000 & 1.000 & 1.000 & 40 \\
+            \hline
+            \textbf{Promedio Ponderado} & \textbf{0.865} & \textbf{0.908} & \textbf{0.873} & \textbf{1425} \\
+            \hline
+        \end{tabular}
+    }
+\end{table}
+
+\subsubsection{Análisis Detallado de la Precisión por Clase y Matriz de Confusión}
+\label{sec:analisis_clase_c2}
+
+El reporte por clase (\texttt{report16.json}) y la matriz de confusión (Figura \ref{fig:matriz_config2}) indican que el aumento en la complejidad y la regularización lograron estabilizar el rendimiento para algunas categorías.
+
+\begin{itemize}
+    \item \textbf{Mejora Clave:} Clases previamente problemáticas como \lstinline|radio| ahora alcanzan un F1-score de 1.0, lo que sugiere que la mayor capacidad del modelo permitió capturar los patrones esenciales que antes se perdían.
+    \item \textbf{Persistencia de Fallo:} No obstante, las clases \lstinline|curación|, \lstinline|limpiar|, \lstinline|orinar| y \lstinline|sida| aún presentan un F1-score de 0.0, indicando que el \textit{Domain Shift} sigue afectando gravemente a las señas con poca variabilidad en el entrenamiento.
+\end{itemize}
+
+% Utiliza el nombre de archivo real
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/confusion_matrix16.png}
+    \caption{Matriz de Confusión para la Configuración 2, mostrando una mejora en la clasificación con respecto a la Configuración 1, aunque con fallas persistentes.}
+    \label{fig:matriz_config2}
+\end{figure}
+\FloatBarrier
+
+% =================================================================
+% INICIO CONFIGURACIÓN 3: LSTM 32 (DATOS COMPLETOS)
+% =================================================================
+\subsection{Configuración 3: Optimización de Capacidad (LSTM Units: 32)}
+\label{sec:configuracion_3}
+
+Esta configuración se diseñó con el objetivo de maximizar la capacidad de modelado mediante el uso de tres capas LSTM y una complejidad intermedia (\lstinline|LSTM_UNITS: 32|), además de un \textit{Batch Size} reducido para inyectar más ruido estocástico durante el entrenamiento. Esta estrategia busca una alta precisión incluso a expensas de la velocidad de entrenamiento.
+
+\begin{itemize}
+    \item \textbf{Parámetros Clave:} \lstinline|LSTM_UNITS: 32|, \lstinline|LSTM_LAYERS: 3|, \lstinline|BATCH_SIZE: 32|, \lstinline|DROPOUT_RNN: 0.5|.
+\end{itemize}
+
+\subsubsection{Diagrama de Flujo de la Arquitectura}
+\label{sec:arquitectura_c3}
+
+La arquitectura del modelo, detallada en la Figura \ref{fig:arq_c3}, se caracteriza por su profundidad de tres capas recurrentes. Este aumento en la complejidad y el número de parámetros fue la estrategia directa para mitigar el \textit{Domain Shift} observado en las configuraciones 1 y 2.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{CAPITULOS/capitulo8/model_architecture32}
+    \caption{Diagrama de la Arquitectura Bi-LSTM para la Configuración 3 (32 Unidades, 3 Capas).}
+    \label{fig:arq_c3}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
+\label{sec:curvas_c3}
+La Figura \ref{fig:curvas_c3} ilustra la convergencia del entrenamiento. Se observa una convergencia rápida y altamente estable, con la precisión de validación alcanzando el 100\% y la pérdida de validación estabilizándose en un valor residual mínimo. Esto demuestra que el aumento de capas y unidades (3x32) fue suficiente para que el modelo absorbiera los patrones del conjunto de entrenamiento.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/training_curves32}
+    \caption{Curvas de Precisión y Pérdida para la Configuración 3 (Modelo 32 LSTM Units).}
+    \label{fig:curvas_c3}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Métricas Globales de Rendimiento en el Test Set}
+\label{sec:metricas_globales_c3}
+El aumento de la capacidad demostró ser la solución empírica al problema de generalización. El modelo de la Configuración 3 logró una \textbf{Precisión Global del $99.98\%$}, cumpliendo categóricamente con el Requerimiento No Funcional (RNF) de precisión ($>90\%$).
+
+Sin embargo, el aumento de capas recurrentes de 2 a 3 tiene una implicación crítica: la latencia de inferencia en el modelo TFLite, que es intrínsecamente secuencial, se incrementa significativamente, comprometiendo el RNF de $<300\ \text{ms}$ (se postula una latencia superior a $500\ \text{ms}$, lo cual se confirmará en la Discusión).
+
+\subsubsection{Análisis Detallado de la Precisión por Clase y Matriz de Confusión}
+\label{sec:analisis_clase_c3}
+El reporte de clasificación detallado (\texttt{report32 .json}) confirma que el problema de rendimiento nulo (\textit{F1-score} $\approx 0.0$) en clases críticas fue eliminado.
+
+\begin{table}[!h]
+    \centering
+    \caption{Métricas Detalladas de Clasificación para Clases Críticas (Configuración 3).}
+    \label{tab:metrics_c3}
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        \textbf{Clase} & \textbf{Precisión} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Soporte} \\
+        \hline
+        agua & 1.00 & 1.00 & 1.00 & 45 \\
+        curación & 1.00 & 1.00 & 1.00 & 45 \\
+        radio (Previamente Crítica) & 1.00 & 1.00 & 1.00 & 26 \\
+        salud & 1.00 & 1.00 & 1.00 & 69 \\
+        sida (Previamente Crítica) & 1.00 & 1.00 & 1.00 & 25 \\
+        \hline
+        \textbf{Promedio Ponderado} & \textbf{1.00} & \textbf{1.00} & \textbf{1.00} & \textbf{2196} \\
+        \hline
+    \end{tabular}
+\end{table}
+\FloatBarrier
+
+La Matriz de Confusión (Figura \ref{fig:matriz_c3}) muestra una diagonal perfecta, lo que visualmente respalda el rendimiento. Esto sugiere que el modelo ha aprendido a diferenciar la **geometría y el componente temporal** de todas las señas.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/confusion_matrix32}
+    \caption{Matriz de Confusión para la Configuración 3, demostrando una clasificación robusta en el Test Set.}
+    \label{fig:matriz_c3}
+\end{figure}
+\FloatBarrier
+
+% =================================================================
+% INICIO CONFIGURACIÓN 4: LSTM 64 (DATOS COMPLETOS)
+% =================================================================
+\subsection{Configuración 4: Modelo de Máxima Capacidad (LSTM Units: 64)}
+\label{sec:configuracion_4}
+
+La Configuración 4 representa el modelo con la mayor capacidad de representación evaluada. Su objetivo primario es establecer el límite superior de precisión, priorizando la capacidad de modelado sobre la eficiencia computacional.
+
+\begin{itemize}
+    \item \textbf{Parámetros Clave:} \lstinline|LSTM_UNITS: 64|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: 256|, \lstinline|DROPOUT_RNN: 0.6|.
+\end{itemize}
+
+\subsubsection{Diagrama de Flujo de la Arquitectura}
+\label{sec:arquitectura_c4}
+
+La arquitectura, ilustrada en la Figura \ref{fig:arq_c4}, mantiene la profundidad de dos capas recurrentes pero duplica las unidades internas, resultando en un modelo con el mayor número de parámetros entrenables de la serie experimental.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{CAPITULOS/capitulo8/model_architecture64.png}
+    \caption{Diagrama de la Arquitectura Bi-LSTM para la Configuración 4 (64 Unidades, 2 Capas).}
+    \label{fig:arq_c4}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
+\label{sec:curvas_c4}
+El análisis de las curvas (Figura \ref{fig:curvas_c4}) es crítico para detectar posibles patrones de sobreajuste más agresivos, dado el alto número de unidades. Sin embargo, gracias al uso de un \textit{Dropout} elevado (\lstinline|0.6|), el entrenamiento muestra una convergencia controlada, evitando la divergencia de la pérdida entre entrenamiento y validación, un indicio de que la regularización fue efectiva.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/training_curves64.png}
+    \caption{Curvas de Precisión y Pérdida para la Configuración 4 (Modelo 64 LSTM Units).}
+    \label{fig:curvas_c4}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Métricas Globales de Rendimiento en el Test Set}
+\label{sec:metricas_globales_c4}
+La \textbf{Precisión Global} de esta configuración también fue del **$99.98\%$**. Este resultado es virtualmente idéntico al de la Configuración 3, lo cual es la principal conclusión metodológica de esta prueba:
+
+> **Implicación Metodológica:** Una vez alcanzado el umbral de capacidad suficiente (32 unidades), un mayor incremento de unidades recurrentes no genera una mejora marginal en la métrica de precisión global en el \textit{Test Set}.
+
+El valor de latencia de este modelo TFLite será, por su mayor número de parámetros, el más alto de todos. Esto consolida un claro \textit{trade-off}: la máxima precisión ya fue alcanzada con un modelo menos complejo (Configuración 3), por lo que la Configuración 4 solo añade **redundancia paramétrica** y una mayor latencia.
+
+\subsubsection{Análisis Detallado de la Precisión por Clase y Matriz de Confusión}
+\label{sec:analisis_clase_c4}
+El reporte de clasificación detallado (\texttt{report 64.json}) es idéntico al de la Configuración 3, confirmando una clasificación perfecta en todas las categorías.
+
+\begin{table}[!h]
+    \centering
+    \caption{Métricas Detalladas de Clasificación para Clases Críticas (Configuración 4).}
+    \label{tab:metrics_c4}
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        \textbf{Clase} & \textbf{Precisión} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Soporte} \\
+        \hline
+        agua & 1.00 & 1.00 & 1.00 & 45 \\
+        curación & 1.00 & 1.00 & 1.00 & 45 \\
+        radio & 1.00 & 1.00 & 1.00 & 26 \\
+        salud & 1.00 & 1.00 & 1.00 & 69 \\
+        sida & 1.00 & 1.00 & 1.00 & 25 \\
+        \hline
+        \textbf{Promedio Ponderado} & \textbf{1.00} & \textbf{1.00} & \textbf{1.00} & \textbf{2196} \\
+        \hline
+    \end{tabular}
+\end{table}
+\FloatBarrier
+
+La matriz de confusión (Figura \ref{fig:matriz_c4}) refleja una clasificación perfecta.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/confusion_matrix64.png}
+    \caption{Matriz de Confusión para la Configuración 4, confirmando una clasificación robusta en el Test Set.}
+    \label{fig:matriz_c4}
+\end{figure}
+\FloatBarrier
+
+% =================================================================
+% FIN DE LA SECCIÓN DE RESULTADOS POR CONFIGURACIÓN
+% =================================================================
