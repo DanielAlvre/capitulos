@@ -453,3 +453,185 @@ Esta estrategia de \textit{Refine Tuning} permitirá aislar la variable crítica
 % =================================================================
 % FIN DE LA SECCIÓN DE CONCLUSIÓN DE LA PRIMERA ETAPA
 % =================================================================
+
+\section{Segunda Etapa de Experimentación: Refine Tuning}
+\label{sec:refine_tuning}
+
+Tras el análisis de la primera etapa, el objetivo de esta segunda fase es encontrar la configuración óptima mediante la afinación de hiperparámetros (\textit{Refine Tuning}) en los modelos de capacidad viable (8, 16 y 32 unidades), descartando el modelo de 64 unidades por los riesgos de sobreajuste y latencia.
+
+% =================================================================
+% INICIO CONFIGURACIÓN 5: Refine Tuning (8 UNIDADES)
+% =================================================================
+\subsection{Configuración 5: Refine Tuning Mínimo (LSTM Units: 8x8)}
+\label{sec:configuracion_5}
+
+Esta configuración representa el modelo de 8 unidades luego de la optimización de sus hiperparámetros clave (Dropout, Learning Rate Schedule, Batch Size) para forzar la mejora en la clasificación de las clases débiles.
+
+\begin{itemize}
+    \item \textbf{Parámetros Clave (RT):} \lstinline|LSTM_UNITS: 8|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: [DATO_RT_8]|, \lstinline|DROPOUT_RNN: [DATO_RT_8]|.
+\end{itemize}
+
+\subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
+\label{sec:curvas_c5}
+
+El análisis de la Figura \ref{fig:curvas_config5} busca confirmar si el \textit{Refine Tuning} logró estabilizar la pérdida en el conjunto de validación sin caer en sobreajuste severo.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/training_curves88.png}
+    \caption{Curvas de Precisión y Pérdida para la Configuración 5 (Modelo 8x8 LSTM Units, Refine Tuning).}
+    \label{fig:curvas_config5}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Métricas Globales de Rendimiento en el Test Set}
+\label{sec:metricas_globales_c5}
+
+El modelo de la Configuración 5 alcanzó una \textbf{Precisión Global} de \textbf{[DATO_RT_8_GLOBAL]}\%. Se determinará si esta ganancia justifica el riesgo de un posible aumento de la latencia en el modelo TFLite.
+
+\subsubsection{Métricas Detalladas y Matriz de Confusión}
+\label{sec:analisis_clase_c5}
+
+La Tabla \ref{tab:metricas_detalle_c5} y la Matriz de Confusión (Figura \ref{fig:matriz_config5}) muestran el impacto del \textit{Refine Tuning} en las clases previamente problemáticas.
+
+% PENDIENTE: Incluir la tabla con los datos del JSON (ej. report88.json)
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/confusion_matrix88.png}
+    \caption{Matriz de Confusión para la Configuración 5 (Modelo 8x8, Refine Tuning).}
+    \label{fig:matriz_config5}
+\end{figure}
+\FloatBarrier
+
+% =================================================================
+% INICIO CONFIGURACIÓN 6: Refine Tuning (16 UNIDADES, Set A)
+% =================================================================
+\subsection{Configuración 6: Refine Tuning de Referencia (LSTM Units: 16x16)}
+\label{sec:configuracion_6}
+
+Esta configuración se centra en el modelo de 16 unidades, considerado el *baseline* intermedio de capacidad. El objetivo es optimizar su rendimiento sin aumentar su complejidad para mantener la eficiencia.
+
+\begin{itemize}
+    \item \textbf{Parámetros Clave (RT):} \lstinline|LSTM_UNITS: 16|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: [DATO_RT_16A]|, \lstinline|DROPOUT_RNN: [DATO_RT_16A]|.
+\end{itemize}
+
+\subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
+\label{sec:curvas_c6}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/training_curves1616.png}
+    \caption{Curvas de Precisión y Pérdida para la Configuración 6 (Modelo 16x16 LSTM Units, Refine Tuning).}
+    \label{fig:curvas_config6}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Métricas Globales de Rendimiento en el Test Set}
+\label{sec:metricas_globales_c6}
+
+La \textbf{Precisión Global} fue de \textbf{[DATO_RT_16A_GLOBAL]}\%. Este modelo establece el estándar de rendimiento para la comparación final.
+
+\subsubsection{Métricas Detalladas y Matriz de Confusión}
+\label{sec:analisis_clase_c6}
+
+El análisis se enfocará en el impacto del \textit{Refine Tuning} sobre el F1-Score de las clases más débiles del modelo 16 original.
+
+% PENDIENTE: Incluir la tabla con los datos del JSON (ej. report1616.json)
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/confusion_matrix1616.png}
+    \caption{Matriz de Confusión para la Configuración 6 (Modelo 16x16, Refine Tuning).}
+    \label{fig:matriz_config6}
+\end{figure}
+\FloatBarrier
+
+% =================================================================
+% INICIO CONFIGURACIÓN 7: Refine Tuning (16 UNIDADES, Set B)
+% =================================================================
+\subsection{Configuración 7: Refine Tuning Profundo (LSTM Units: 16x32)}
+\label{sec:configuracion_7}
+
+Esta configuración representa una segunda iteración de \textit{Refine Tuning} sobre el modelo de 16 unidades, donde se exploraron hiperparámetros más agresivos (simulando, tal vez, la complejidad del modelo de 32) para intentar exprimir al máximo su rendimiento sin aumentar las unidades recurrentes.
+
+\begin{itemize}
+    \item \textbf{Parámetros Clave (RT):} \lstinline|LSTM_UNITS: 16|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: [DATO_RT_16B]|, \lstinline|DROPOUT_RNN: [DATO_RT_16B]|.
+\end{itemize}
+
+\subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
+\label{sec:curvas_c7}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/training_curves1632.png}
+    \caption{Curvas de Precisión y Pérdida para la Configuración 7 (Modelo 16x32 LSTM Units, Refine Tuning Profundo).}
+    \label{fig:curvas_config7}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Métricas Globales de Rendimiento en el Test Set}
+\label{sec:metricas_globales_c7}
+
+Se evalúa si la optimización profunda logró superar la precisión global del modelo 16x16. La \textbf{Precisión Global} fue de \textbf{[DATO_RT_16B_GLOBAL]}\%.
+
+\subsubsection{Métricas Detalladas y Matriz de Confusión}
+\label{sec:analisis_clase_c7}
+
+Se busca la eliminación definitiva de las clases con F1-Score nulo.
+
+% PENDIENTE: Incluir la tabla con los datos del JSON (ej. report1632.json)
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/confusion_matrix1632.png}
+    \caption{Matriz de Confusión para la Configuración 7 (Modelo 16x32, Refine Tuning Profundo).}
+    \label{fig:matriz_config7}
+\end{figure}
+\FloatBarrier
+
+% =================================================================
+% INICIO CONFIGURACIÓN 8: Refine Tuning (32 UNIDADES)
+% =================================================================
+\subsection{Configuración 8: Refine Tuning Cota Superior (LSTM Units: 32x32)}
+\label{sec:configuracion_8}
+
+Esta es la configuración de máxima capacidad permitida en la segunda etapa. El objetivo es alcanzar la mayor precisión posible, sabiendo que su latencia será la mayor entre los modelos seleccionados.
+
+\begin{itemize}
+    \item \textbf{Parámetros Clave (RT):} \lstinline|LSTM_UNITS: 32|, \lstinline|LSTM_LAYERS: 3|, \lstinline|BATCH_SIZE: [DATO_RT_32]|, \lstinline|DROPOUT_RNN: [DATO_RT_32]|.
+\end{itemize}
+
+\subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
+\label{sec:curvas_c8}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/training_curves3232.png}
+    \caption{Curvas de Precisión y Pérdida para la Configuración 8 (Modelo 32x32 LSTM Units, Refine Tuning).}
+    \label{fig:curvas_config8}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Métricas Globales de Rendimiento en el Test Set}
+\label{sec:metricas_globales_c8}
+
+Se espera que la \textbf{Precisión Global} (alcanzada en \textbf{[DATO_RT_32_GLOBAL]}\%) sea la más alta, sirviendo como el límite superior teórico de rendimiento.
+
+\subsubsection{Métricas Detalladas y Matriz de Confusión}
+\label{sec:analisis_clase_c8}
+
+Se investiga si la robustez de las 32 unidades, combinada con el \textit{Refine Tuning}, logra una clasificación perfecta o casi perfecta en la totalidad de las clases.
+
+% PENDIENTE: Incluir la tabla con los datos del JSON (ej. report3232.json)
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/confusion_matrix3232.png}
+    \caption{Matriz de Confusión para la Configuración 8 (Modelo 32x32, Refine Tuning).}
+    \label{fig:matriz_config8}
+\end{figure}
+\FloatBarrier
+% =================================================================
+% FIN DE LA SECCIÓN DE REFINE TUNING
+% =================================================================
