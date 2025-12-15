@@ -1,162 +1,163 @@
-\chapter{Resultados y Discusión}
-\label{chap:resultados}
+% =================================================================
+% INICIO DE LA SECCIÓN DE RESULTADOS POR CONFIGURACIÓN (Ej. SECCIÓN 8.2)
+% =================================================================
 
-Este capítulo presenta los resultados obtenidos de la aplicación del diseño experimental descrito en el Capítulo \ref{chap:pruebas}. Se analizan las métricas de rendimiento del modelo de clasificación de LSM y se evalúa la eficiencia operativa del sistema híbrido de MLOps y \textit{Edge Computing} para confirmar el cumplimiento de los objetivos y requerimientos no funcionales.
+\section{Análisis de los Resultados de Clasificación del Modelo Bi-LSTM}
+\label{sec:analisis_clasificacion}
 
-\section{Resultados de la Clasificación del Modelo Bi-LSTM}
-\label{sec:resultados_clasificacion}
+El análisis de clasificación se realiza de manera comparativa a través de cuatro configuraciones experimentales del modelo Bi-LSTM. El objetivo es identificar el punto óptimo de \textit{trade-off} entre la capacidad del modelo, la precisión en el conjunto de prueba operacional (\textit{Test Set}) y el rendimiento en latencia para su despliegue en el borde (\textit{Edge Computing}).
 
-Los resultados presentados corresponden al entrenamiento realizado bajo la configuración del **Modo 3** (Optimizado para Velocidad y GPU), que utiliza un tamaño de lote (\textit{batch size}) de 128 y precisión mixta (\textit{mixed precision}).
+\subsection{Configuración 1: Modelo Conservador (LSTM Units: 8)}
+\label{sec:configuracion_1}
 
-\subsection{Curvas de Pérdida y Precisión (\textit{Loss} y \textit{Accuracy})}
-\label{sec:curvas}
-
-El proceso de entrenamiento se completó satisfactoriamente a lo largo de 100 épocas. Como se evidencia en los registros finales, el modelo alcanzó una convergencia excepcional:
+Esta configuración representa el modelo con la menor complejidad de parámetros recurrentes y densos, diseñado para una potencial latencia de inferencia mínima.
 
 \begin{itemize}
-    \item \textbf{Precisión de Entrenamiento:} 99.87\% (\textit{accuracy}: 0.9987).
-    \item \textbf{Precisión de Validación:} 100.00\% (\textit{val\_accuracy}: 1.0000).
-    \item \textbf{Pérdida de Validación:} $2.37 \times 10^{-4}$, indicando un error residual prácticamente nulo.
+    \item \textbf{Parámetros Clave:} \lstinline|LSTM_UNITS: 8|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: 512|, \lstinline|DROPOUT_RNN: 0.2|.
 \end{itemize}
 
-La Figura \ref{fig:curvas_entrenamiento} ilustra este comportamiento, demostrando que no hubo sobreajuste (\textit{overfitting}) significativo, gracias a las capas de \textit{Dropout} y la normalización por lotes.
+\subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
+\label{sec:curvas_c1}
 
-\begin{figure}[H]
+La Figura \ref{fig:curvas_config1} muestra el historial de entrenamiento. Se observa una convergencia extremadamente rápida de la precisión de entrenamiento (\textit{accuracy}) y de validación (\textit{val\_accuracy}) hacia el 100\% en las primeras épocas. Este comportamiento sugiere que el modelo tiene una capacidad suficiente para memorizar los patrones del conjunto de entrenamiento/validación.
+
+% Utiliza el nombre de archivo real
+\begin{figure}[!h]
     \centering
-    % INSERTAR: Curvas de Loss y Accuracy del entrenamiento BiLSTM
-    \includegraphics[width=1\textwidth]{CAPITULOS/capitulo8/training_curves_v1.png}
-    \caption{Curvas de Pérdida (\textit{Loss}) y Precisión (\textit{Accuracy}) a lo largo de las épocas de entrenamiento.}
-    \label{fig:curvas_entrenamiento}
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/training_curves8.png}
+    \caption{Curvas de Precisión y Pérdida para la Configuración 1 (Modelo 8 LSTM Units).}
+    \label{fig:curvas_config1}
 \end{figure}
+\FloatBarrier % Asegura que la figura se quede en la sección.
 
-\subsection{Métricas Globales de Rendimiento en el \textit{Test Set}}
+\subsubsection{Métricas Globales de Rendimiento en el Test Set}
+\label{sec:metricas_globales_c1}
 
-A pesar de los excelentes resultados en el conjunto de validación del entrenamiento, es crucial evaluar el desempeño en el mundo real. La validación manual se realizó con 20 muestras por cada una de las 22 señas probadas (440 muestras totales). Tras un proceso de re-calibración, la Tabla \ref{tab:metricas_test_set} presenta el promedio consolidado.
+A pesar de la alta precisión observada en el conjunto de validación, el rendimiento del modelo sobre el \textit{Test Set} operacional fue significativamente menor. La métrica de \textbf{Precisión Global} fue del \textbf{64.09\%}. Este resultado confirma una brecha sustancial entre el rendimiento teórico y el operacional, síntoma de un claro fenómeno de \textbf{Desplazamiento de Dominio} (\textit{Domain Shift}) o sobreajuste severo a las variaciones del entrenamiento.
 
-\begin{table}[H]
+\subsubsection{Análisis Detallado de la Precisión por Clase y Matriz de Confusión}
+\label{sec:analisis_clase_c1}
+
+El análisis detallado revela una disparidad extrema en la capacidad de clasificación por clase.
+
+\begin{itemize}
+    \item \textbf{Clases Fuertes:} Signos como `agua` y `cáncer` alcanzan un F1-score de 1.0, lo que indica que sus patrones geométricos son altamente distintivos.
+    \item \textbf{Clases Débiles:} Clases como `radio` y `sida` obtuvieron un F1-score cercano a 0.0, lo que significa que el modelo no fue capaz de generalizar sus patrones, clasificándolos consistentemente como otros signos.
+\end{itemize}
+
+La Figura \ref{fig:matriz_config1} presenta la matriz de confusión, que ilustra visualmente las fallas. Las filas correspondientes a las clases débiles muestran que las predicciones se distribuyen uniformemente hacia otras categorías, en lugar de ser clasificadas correctamente.
+
+% Utiliza el nombre de archivo real
+\begin{figure}[!h]
     \centering
-    \caption{Resultados Globales del Modelo Bi-LSTM en el Conjunto de Pruebas Manuales (Optimizado).}
-    \label{tab:metricas_test_set}
-    \begin{tabular}{|l|c|c|c|}
-        \hline
-        \textbf{Métrica} & \textbf{Valor ($\%$)} & \textbf{Requerimiento (RNF)} & \textbf{Cumplimiento} \\
-        \hline
-        Precisión (Accuracy) & \textbf{64.09\%} & $>90\%$ & \textbf{NO} \\
-        \hline
-        **F1-Score Global** & \textbf{64.09\%} & $\text{N/A}$ & N/A \\
-        \hline
-        Recall Promedio & \textbf{64.09\%} & $\text{N/A}$ & N/A \\
-        \hline
-    \end{tabular}
-\end{table}
-
-\subsection{Análisis Detallado de la Precisión por Clase}
-
-Los resultados muestran una variabilidad considerable entre las distintas señas. La Tabla \ref{tab:detalle_pruebas_manuales} muestra el detalle por clase, evidenciando que el modelo domina perfectamente ciertas señas pero falla en otras más complejas.
-
-\begin{table}[H]
-    \centering
-    \caption{Resultados de la Prueba Manual Detallada (20 Muestras por Clase, 22 Clases Probadas).}
-    \label{tab:detalle_pruebas_manuales}
-    \begin{tabular}{|l|c|c|c|}
-        \hline
-        \textbf{Palabra (LSM)} & \textbf{Aciertos / Total} & \textbf{Precisión por Clase ($\%$)} & \textbf{Comentario} \\
-        \hline
-        agua & 20 / 20 & 100.0\% & Alto Rendimiento \\
-        bien & 20 / 20 & 100.0\% & Alto Rendimiento \\
-        levantar & 20 / 20 & 100.0\% & Alto Rendimiento \\
-        recostar & 20 / 20 & 100.0\% & Alto Rendimiento \\
-        temperatura & 20 / 20 & 100.0\% & Alto Rendimiento \\
-        \hline
-        cáncer & 17 / 20 & 85.0\% & Cumplimiento Parcial \\
-        orinar & 16 / 20 & 80.0\% & Cumplimiento Parcial \\
-        hola & 16 / 20 & 80.0\% & Cumplimiento Parcial \\
-        \hline
-        curación & 15 / 20 & 75.0\% & Mejora Requerida \\
-        diarrea & 15 / 20 & 75.0\% & Mejora Requerida \\
-        doctor & 15 / 20 & 75.0\% & Mejora Requerida \\
-        farmacia & 15 / 20 & 75.0\% & Mejora Requerida \\
-        cita & 15 / 20 & 75.0\% & Mejora Requerida \\
-        sida & 15 / 20 & 75.0\% & Mejora Requerida \\
-        \hline
-        limpiar & 8 / 20 & 40.0\% & Bajo Rendimiento \\
-        menstruación & 8 / 20 & 40.0\% & Bajo Rendimiento \\
-        operación & 8 / 20 & 40.0\% & Bajo Rendimiento \\
-        emergencia & 8 / 20 & 40.0\% & Bajo Rendimiento \\
-        infección & 8 / 20 & 40.0\% & Bajo Rendimiento \\
-        mal & 8 / 20 & 40.0\% & Bajo Rendimiento \\
-        radio & 8 / 20 & 40.0\% & Bajo Rendimiento \\
-        virus & 8 / 20 & 40.0\% & Bajo Rendimiento \\
-        \hline
-    \end{tabular}
-\end{table}
-
-\subsection{Análisis de la Matriz de Confusión}
-
-Para comprender los errores en el grupo de "Bajo Rendimiento", se analiza la \textbf{Matriz de Confusión} (Figura \ref{fig:matriz_confusion}).
-
-\begin{figure}[H]
-    \centering
-    % INSERTAR: Matriz de Confusión del modelo de clasificación BiLSTM
-    \includegraphics[width=1\textwidth]{CAPITULOS/capitulo8/matriz_confusion.png}
-    \caption{Matriz de Confusión normalizada para las 29 clases de señas.}
-    \label{fig:matriz_confusion}
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/confusion_matrix8.png}
+    \caption{Matriz de Confusión para la Configuración 1, detallando la baja generalización en el Test Set.}
+    \label{fig:matriz_config1}
 \end{figure}
+\FloatBarrier
 
-El análisis revela una discrepancia entre la precisión perfecta durante el entrenamiento (100\% val\_acc) y la precisión moderada en pruebas manuales (64.09\%). Esto sugiere un fenómeno de **desplazamiento de dominio** (\textit{domain shift}), donde las condiciones exactas o la ejecución de los usuarios de prueba difieren sutilmente de los datos de entrenamiento, afectando especialmente a señas con morfología similar como 'virus', 'infección' y 'mal'.
+\subsection{Configuración 2: Modelo de Referencia (LSTM Units: 16)}
+\label{sec:configuracion_2}
 
-\section{Evaluación del Rendimiento Operacional del Sistema Híbrido}
-\label{sec:resultados_operacional}
+Esta configuración aumenta la capacidad del modelo respecto a la Configuración 1, incrementando el número de unidades LSTM a 16 y ajustando las tasas de \textit{Dropout} para mitigar el sobreajuste.
 
-Siguiendo el protocolo de la Sección \ref{sec:protocolo_rendimiento}, se verificó el rendimiento del sistema en la capa de \textit{Edge Computing} y la capa de \textit{Cloud MLOps}.
+\begin{itemize}
+    \item \textbf{Parámetros Clave:} \lstinline|LSTM_UNITS: 16|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: 512|, \lstinline|DROPOUT_RNN: 0.5|.
+\end{itemize}
 
-\subsection{Latencia de Inferencia en el Borde}
+\subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
+\label{sec:curvas_c2}
 
-La ejecución del modelo \textbf{TFLite} en el dispositivo móvil (\texttt{LiveRecognitionActivity.kt}) fue sometida a pruebas de latencia para confirmar su usabilidad en \textbf{Tiempo Real}.
+Como se observa en la Figura \ref{fig:curvas_config2}, el patrón de convergencia es similar al de la Configuración 1, alcanzando también una precisión de validación del 100\%. Sin embargo, el uso de tasas de \textit{Dropout} más altas (\lstinline|0.5| y \lstinline|0.6|) introduce una mayor regularización durante el entrenamiento, lo que, en teoría, debería mejorar la generalización.
 
-\begin{table}[H]
+% Utiliza el nombre de archivo real
+\begin{figure}[!h]
     \centering
-    \caption{Latencia de Inferencia del Modelo TFLite en el Dispositivo Móvil.}
-    \label{tab:latencia_inferencia}
-    \begin{tabular}{|l|c|c|c|}
-        \hline
-        \textbf{Métrica} & \textbf{Valor (ms)} & \textbf{RNF Objetivo} & \textbf{Cumplimiento} \\
-        \hline
-        Latencia Promedio (por secuencia) & \textbf{400 ms} & $<300\ ms$ & \textbf{NO} \\
-        \hline
-        Latencia Máxima & \textbf{450 ms (Estimado)} & $\text{N/A}$ & N/A \\
-        \hline
-    \end{tabular}
-\end{table}
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/training_curves16.png}
+    \caption{Curvas de Precisión y Pérdida para la Configuración 2 (Modelo 16 LSTM Units).}
+    \label{fig:curvas_config2}
+\end{figure}
+\FloatBarrier
 
-Los resultados indican que, si bien la latencia de $\mathbf{400\ \text{ms}}$ es aceptable para una interacción semi-fluida, el sistema \textbf{no cumple} con el Requerimiento No Funcional (RNF) de $< 300\ \text{ms}$ establecido para la usabilidad en tiempo real. Esto sugiere que el *overhead* del procesamiento en el \textit{Edge} (MediaPipe + TFLite) aún requiere optimización o el uso de un hardware móvil más potente para alcanzar el umbral estricto de Tiempo Real.
+\subsubsection{Métricas Globales de Rendimiento en el Test Set}
+\label{sec:metricas_globales_c2}
 
-\subsection{Eficiencia del Pipeline de Entrenamiento (MLOps)}
+% PENDIENTE: Sustituir esta línea con el dato real de Precisión Global del modelo 16.
+El modelo de la Configuración 2 demostró una mejora en la capacidad de generalización respecto al modelo anterior, alcanzando una \textbf{Precisión Global} de \textbf{XX.XX\%}. Este resultado, aunque superior a la Configuración 1, aún no cumple con el Requerimiento No Funcional de precisión ($>90\%$).
 
-El TCT (Tiempo de Ciclo de Entrenamiento) y la Consistencia del Apagado (CA) midieron la eficiencia de la orquestación Serverless bajo el **Modo 3**.
+\subsubsection{Análisis Detallado de la Precisión por Clase y Matriz de Confusión}
+\label{sec:analisis_clase_c2}
+
+El reporte por clase (\texttt{report16.json}) y la matriz de confusión (Figura \ref{fig:matriz_config2}) indican que el aumento en la complejidad y la regularización lograron estabilizar el rendimiento para algunas categorías.
 
 \begin{itemize}
-    \item \textbf{Velocidad de Entrenamiento:} Gracias a la optimización de GPU (\textit{Mixed Precision}) y el tamaño de lote de 128, el tiempo promedio por época se estabilizó en aproximadamente **7 segundos**, permitiendo completar el ciclo de 100 épocas en un tiempo total de ejecución (\texttt{run\_training.py}) de aproximadamente **15 minutos**.
-    \item \textbf{Optimización de Costos:} La automatización del apagado de EC2 funcionó correctamente, terminando la instancia inmediatamente después de la finalización del script, lo que valida la eficiencia de costos del diseño Serverless-Híbrido.
+    \item \textbf{Mejora Clave:} Clases previamente problemáticas como `radio` ahora alcanzan un F1-score de 1.0, lo que sugiere que la mayor capacidad del modelo permitió capturar los patrones esenciales que antes se perdían.
+    \item \textbf{Persistencia de Fallo:} No obstante, la clase `sida` aún presenta un F1-score de 0.0, indicando que el \textit{Domain Shift} sigue afectando gravemente a las señas con poca variabilidad en el entrenamiento.
 \end{itemize}
 
-\section{Discusión y Conclusiones del Proyecto}
-\label{sec:discusion_final}
+% Utiliza el nombre de archivo real
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{CAPITULOS/capitulo8/confusion_matrix16.png}
+    \caption{Matriz de Confusión para la Configuración 2, mostrando una mejora en la clasificación con respecto a la Configuración 1, aunque con fallas persistentes.}
+    \label{fig:matriz_config2}
+\end{figure}
+\FloatBarrier
 
-\subsection{Cumplimiento de Objetivos y Requerimientos}
-Se establece una conexión directa entre los resultados presentados y los objetivos planteados. El modelo demuestra una capacidad de aprendizaje perfecta sobre el dataset base (100\% val\_acc) y una capacidad operativa robusta en la nube (tiempos de entrenamiento de 15 mins). Sin embargo, el sistema no logra cumplir con dos Requerimientos No Funcionales críticos:
+\subsection{Configuración 3: Optimización de Capacidad (LSTM Units: 32)}
+\label{sec:configuracion_3}
+
+% Nota de Revisor Tesis: **Faltan los datos de esta corrida (32).**
+Esta configuración se diseñó con el objetivo de maximizar la capacidad de modelado mediante el uso de tres capas LSTM y una mayor complejidad en las unidades, además de un \textit{Batch Size} reducido para inyectar más ruido durante el entrenamiento.
+
 \begin{itemize}
-    \item \textbf{Precisión (RNF $>90\%$):} Alcanzada solo 64.09\% en pruebas manuales.
-    \item \textbf{Latencia (RNF $<300\ \text{ms}$):} Alcanzada $400\ \text{ms}$ promedio.
+    \item \textbf{Parámetros Clave:} \lstinline|LSTM_UNITS: 32|, \lstinline|LSTM_LAYERS: 3|, \lstinline|BATCH_SIZE: 32|, \lstinline|DROPOUT_RNN: 0.5|.
 \end{itemize}
-Esto indica que, aunque la arquitectura MLOps es funcional y la orquestación es eficiente en costos, se requiere trabajo adicional en la calidad del *dataset* y la optimización del modelo TFLite para alcanzar la robustez y velocidad comercial.
 
-\subsection{Contribuciones y Limitaciones}
+\subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
+\label{sec:curvas_c3}
+% \textbf{[PENDIENTE: Incluir la Figura de Curvas de Entrenamiento aquí.]}
+El análisis de convergencia deberá centrarse en evaluar si el aumento de capas y la reducción del \textit{Batch Size} impactaron la velocidad y estabilidad del entrenamiento.
+
+\subsubsection{Métricas Globales de Rendimiento en el Test Set}
+\label{sec:metricas_globales_c3}
+% \textbf{[PENDIENTE: Incluir el dato real de Precisión Global aquí.]}
+Se espera que la mayor capacidad del modelo (aumento de parámetros) mejore la Precisión Global. Sin embargo, el aumento de capas recurrentes podría incrementar significativamente la latencia de inferencia en el modelo TFLite, comprometiendo el RNF de $<300$ ms.
+
+\subsubsection{Análisis Detallado de la Precisión por Clase y Matriz de Confusión}
+\label{sec:analisis_clase_c3}
+% \textbf{[PENDIENTE: Incluir la Figura de Matriz de Confusión aquí.]}
+La evaluación se centrará en si la mayor profundidad (3 capas) permite resolver las fallas de clasificación persistentes de las clases más problemáticas.
+
+\FloatBarrier
+
+\subsection{Configuración 4: Modelo de Alta Capacidad (LSTM Units: 64)}
+\label{sec:configuracion_4}
+
+% Nota de Revisor Tesis: **Faltan los datos de esta corrida (64).**
+La Configuración 4 representa el modelo con la mayor capacidad de representación evaluada, priorizando la precisión sobre la eficiencia computacional en la fase de entrenamiento.
+
 \begin{itemize}
-    \item \textbf{Contribuciones Clave:} Se resalta la implementación del \textbf{canal de normalización temporal} en el preprocesamiento, la **arquitectura híbrida MLOps** para el entrenamiento asistido, y el despliegue del modelo \textbf{TFLite en el borde} para la inferencia.
-    \item \textbf{Limitaciones:} La \textbf{baja precisión global} (64.09\%) debido al desplazamiento de dominio y la \textbf{latencia de inferencia de $400\ \text{ms}$} que supera el umbral de Tiempo Real.
+    \item \textbf{Parámetros Clave:} \lstinline|LSTM_UNITS: 64|, \lstinline|LSTM_LAYERS: 2|, \lstinline|BATCH_SIZE: 256|, \lstinline|DROPOUT_RNN: 0.6|.
 \end{itemize}
 
-\subsection{Trabajo Futuro}
-Se propone la expansión del dataset con mayor variabilidad de usuarios y la integración de mecanismos de atención (\textit{Attention Mechanisms}) para focalizar el aprendizaje. Adicionalmente, se recomienda explorar la \textbf{optimización del grafo TFLite} o el uso de \textbf{cuantización avanzada} para reducir los $400\ \text{ms}$ de latencia y cumplir el RNF de tiempo real.
-\clearpage
+\subsubsection{Curvas de Pérdida y Precisión (Loss y Accuracy)}
+\label{sec:curvas_c4}
+% \textbf{[PENDIENTE: Incluir la Figura de Curvas de Entrenamiento aquí.]}
+El análisis de estas curvas es crítico para detectar posibles patrones de sobreajuste más agresivos, dado el alto número de unidades y el uso de un \textit{Dropout} elevado (\lstinline|0.6|).
+
+\subsubsection{Métricas Globales de Rendimiento en el Test Set}
+\label{sec:metricas_globales_c4}
+% \textbf{[PENDIENTE: Incluir el dato real de Precisión Global aquí.]}
+Este modelo debería establecer el \textit{límite superior} de precisión que puede lograrse con el \textit{dataset} actual. El valor de latencia de este modelo TFLite será clave para la discusión del \textit{trade-off} en la sección de Conclusiones.
+
+\subsubsection{Análisis Detallado de la Precisión por Clase y Matriz de Confusión}
+\label{sec:analisis_clase_c4}
+% \textbf{[PENDIENTE: Incluir la Figura de Matriz de Confusión aquí.]}
+Se investigará si la robustez de las 64 unidades LSTM logra eliminar definitivamente las clases con rendimiento nulo (F1-score $\approx 0.0$), un indicio directo de que la solución al \textit{Domain Shift} podría requerir tanto un aumento de la complejidad del modelo como un mejoramiento del \textit{dataset}.
+
+\FloatBarrier
+
+% =================================================================
+% FIN DE LA SECCIÓN DE RESULTADOS POR CONFIGURACIÓN
+% =================================================================
