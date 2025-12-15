@@ -24,6 +24,9 @@
 \usepackage{colortbl}
 \usepackage{enumitem}
 \usepackage{pgf-pie}
+\usepackage{subfig}    % Para el comando \subfloat
+\usepackage{hyperref}  % Para enlaces y referencias
+\usepackage{placeins}  % Para el comando \FloatBarrier
 
 % --- INICIO: Configuración para el entorno codebox (con tcolorbox) ---
 \usepackage{tcolorbox}
@@ -158,6 +161,8 @@
 \usepackage{cleveref}          % Para las referencias cruzadas (Movido al final)
 \usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
 \usepackage{amsfonts}
+\usepackage{makeidx}           % Para generar índices
+\makeindex                     % Activar generación de índices
 \addbibresource{CAPITULOS/referencias/referencias.bib}  % Ruta correcta del archivo .bib
 
 \begin{document}
@@ -206,6 +211,7 @@ Mexican Sign Language (LSM), Sign Language Recognition, Hand Tracking, Machine L
 \include{CAPITULOS/capitulo7/capitulo7}
 \include{CAPITULOS/capitulo8/capitulo8}
 \include{CAPITULOS/capitulo9/capitulo9}
+
 % Añadir bibliografía
     \printbibliography
 
