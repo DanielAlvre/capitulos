@@ -166,32 +166,32 @@ En la Figura \ref{fig:imagen_scrum} se presenta un esquema de las etapas que con
 
 \subsection{Objetivo general}
 
-Desarrollar un sistema de reconocimiento de señas estáticas de la LSM, con una arquitectura en la nube optimizada para costos y rendimiento, implementando MediaPipe u otra API de \textit{hand tracking} para la captura y procesamiento de datos, enfocándose en señas de configuración manual o de reposo y parametrizando las principales articulaciones manuales en un sistema de coordenadas rectangulares. A partir de estos datos, se entrenará un modelo de clasificación utilizando TensorFlow para reconocer y asociar las señas a su equivalente en español. La palabra reconocida será reproducida utilizando una API de voz (\textit{Text-To-Speech}).
+Desarrollar un sistema de reconocimiento de señas estáticas de la LSM, con una arquitectura híbrida que combine componentes \textit{on-premise} y en la nube. Se utilizará MediaPipe u otra API de \textit{hand tracking} para la captura y procesamiento de datos, enfocándose en señas de configuración manual o de reposo y parametrizando las principales articulaciones manuales en un sistema de coordenadas rectangulares. A partir de estos datos, se entrenará un modelo de clasificación utilizando TensorFlow para reconocer y asociar las señas a su equivalente en español. La palabra reconocida será reproducida utilizando una API de voz (\textit{speech-to-text}).
 
 \subsection{Objetivos específicos}
 
 \begin{enumerate}
     \item \textbf{Recopilación de Datos:}
-    \begin{itemize}
-        \item Recopilar un conjunto de datos acotado y representativo de señas estáticas (de configuración manual o de reposo) en LSM, incluyendo las variaciones comunes, y etiquetarlas con su significado en español.
-        \item Utilizar una cámara web para la captura de las señas, asegurando una calidad adecuada para el entrenamiento del modelo en un ambiente controlado. Extraer una secuencia de fotogramas representativa de cada seña para su posterior procesamiento.
-        \item Utilizar MediaPipe para extraer los puntos clave de las articulaciones de las manos en un sistema de coordenadas rectangulares.
-    \end{itemize}
+        \begin{itemize}
+            \item Recopilar un conjunto de datos representativo de señas estáticas de detención en LSM, incluyendo variaciones dialectales comunes, y etiquetarlas con su significado en español.
+            \item Utilizar una cámara web para capturar de las señas, asegurando una calidad adecuada en un ambiente controlado. Extraer una secuencia de fotogramas representativa de cada seña para su posterior procesamiento.
+            \item Utilizar MediaPipe para extraer los puntos clave de las articulaciones de las manos en un sistema de coordenadas rectangulares.
+        \end{itemize}
 
     \item \textbf{Modelado y Entrenamiento:}
-    \begin{itemize}
-        \item Seleccionar y adaptar un modelo de reconocimiento existente, como una red neuronal convolucional (CNN), para el reconocimiento de señas estáticas \cite{ref7}.
-        \item Entrenar un modelo de reconocimiento de señas utilizando técnicas de aprendizaje automático (TensorFlow/Keras) con los datos recopilados y etiquetados.
-    \end{itemize}
+        \begin{itemize}
+            \item Seleccionar y adaptar un modelo de reconocimiento existente, como una red neuronal convolucional (CNN), para el reconocimiento de señas estáticas \cite{ref7}.
+            \item Entrenar un modelo de reconocimiento de señas utilizando técnicas de aprendizaje automático (TensorFlow/Keras) con los datos recopilados y etiquetados.
+        \end{itemize}
 
     \item \textbf{Diseño del Almacenamiento de Datos:}
-    \begin{itemize}
-        \item Diseñar e implementar una estructura de almacenamiento eficiente que combine una base de datos y un \textit{bucket} (como S3) para gestionar la información recopilada. La base de datos almacenará metadatos de las señas (traducciones, parámetros de articulaciones, configuraciones manuales), mientras que el \textit{bucket} almacenará las imágenes de las señas. Se asegurará la integridad de los datos y se facilitará el acceso a ambos tipos de información para el entrenamiento, la ejecución y el mantenimiento del sistema.
-    \end{itemize}
+        \begin{itemize}
+            \item Diseñar e implementar una estructura de almacenamiento eficiente que combine una base de datos y un \textit{bucket} (como S3) para gestionar la información recopilada. La base de datos almacenará metadatos de las señas (traducciones, parámetros de articulaciones, configuraciones manuales), mientras que el \textit{bucket} almacenará las imágenes de las señas. Se asegurará la integridad de los datos y se facilitará el acceso a ambos tipos de información para el entrenamiento, la ejecución y el mantenimiento del sistema.
+        \end{itemize}
 
     \item \textbf{Desarrollo de la Salida y Configuración:}
-    \begin{itemize}
-        \item Implementar un mecanismo de salida claro y accesible para presentar la traducción de la seña reconocida, ya sea en texto, audio (utilizando una API de \textit{Text-To-Speech}) o ambos, según los requisitos del usuario final.
-        \item Considerar la posibilidad de desarrollar una interfaz web intuitiva para interactuar con el sistema, si los recursos y el alcance del proyecto lo permiten.
-    \end{itemize}
+        \begin{itemize}
+            \item Implementar un mecanismo de salida claro y accesible para presentar la traducción de la seña reconocida, ya sea en texto, audio (utilizando una API de \textit{Text-To-Speech}) o ambos, según los requisitos del usuario final.
+            \item Considerar la posibilidad de desarrollar una interfaz web intuitiva para interactuar con el sistema, si los recursos y el alcance del proyecto lo permiten.
+        \end{itemize}
 \end{enumerate}
