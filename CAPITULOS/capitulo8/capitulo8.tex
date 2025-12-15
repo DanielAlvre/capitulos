@@ -494,7 +494,53 @@ El modelo de la Configuración 5 alcanzó una \textbf{Precisión Global} de \tex
 
 La Tabla \ref{tab:metricas_detalle_c5} y la Matriz de Confusión (Figura \ref{fig:matriz_config5}) muestran el impacto del \textit{Refine Tuning} en las clases previamente problemáticas.
 
-% PENDIENTE: Incluir la tabla con los datos del JSON (ej. report88.json)
+\begin{table}[H]
+    \centering
+    \caption{Métricas detalladas de clasificación por clase para la Configuración 5 (LSTM Units: 8x8, Refine Tuning Mínimo).}
+    \label{tab:metricas_detalle_c5_full}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|c|c|c|c|}
+            \hline
+            \textbf{Palabra (LSM)} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Soporte} \\
+            \hline
+            agua & 0.000 & 0.000 & 0.000 & 0 \\
+            bien & 1.000 & 1.000 & 1.000 & 58 \\
+            cita & 0.000 & 0.000 & 0.000 & 0 \\
+            curación & 1.000 & 1.000 & 1.000 & 45 \\
+            cáncer & 1.000 & 1.000 & 1.000 & 45 \\
+            cómo & 1.000 & 1.000 & 1.000 & 45 \\
+            diarrea & 1.000 & 1.000 & 1.000 & 66 \\
+            doctor & 1.000 & 1.000 & 1.000 & 47 \\
+            emergencia & 1.000 & 1.000 & 1.000 & 30 \\
+            enfermo & 1.000 & 1.000 & 1.000 & 58 \\
+            farmacia & 0.000 & 0.000 & 0.000 & 0 \\
+            fiebre & 1.000 & 1.000 & 1.000 & 33 \\
+            hola & 1.000 & 1.000 & 1.000 & 30 \\
+            infección & 1.000 & 1.000 & 1.000 & 30 \\
+            influenza & 0.000 & 0.000 & 0.000 & 0 \\
+            inyección & 1.000 & 1.000 & 1.000 & 45 \\
+            levantar & 1.000 & 1.000 & 1.000 & 58 \\
+            limpiar & 0.000 & 0.000 & 0.000 & 0 \\
+            mal & 0.887 & 0.936 & 0.911 & 47 \\
+            menstruación & 1.000 & 1.000 & 1.000 & 36 \\
+            operación & 0.000 & 0.000 & 0.000 & 0 \\
+            orinar & 0.000 & 0.000 & 0.000 & 0 \\
+            por favor & 0.000 & 0.000 & 0.000 & 0 \\
+            radio & 1.000 & 1.000 & 1.000 & 26 \\
+            recostar & 0.000 & 0.000 & 0.000 & 0 \\
+            salud & 0.000 & 0.000 & 0.000 & 0 \\
+            sida & 0.955 & 0.840 & 0.894 & 25 \\
+            síntoma & 1.000 & 1.000 & 1.000 & 60 \\
+            temperatura & 1.000 & 1.000 & 1.000 & 42 \\
+            tuberculosis & 1.000 & 1.000 & 1.000 & 30 \\
+            virus & 1.000 & 1.000 & 1.000 & 27 \\
+            vómito & 1.000 & 1.000 & 1.000 & 30 \\
+            \hline
+            \textbf{Promedio Ponderado} & \textbf{0.847} & \textbf{0.887} & \textbf{0.864} & \textbf{1105} \\
+            \hline
+        \end{tabular}
+    }
+\end{table}
 
 \begin{figure}[!h]
     \centering
@@ -537,7 +583,53 @@ La \textbf{Precisión Global} fue de \textbf{[DATO_RT_16A_GLOBAL]}\%. Este model
 
 El análisis se enfocará en el impacto del \textit{Refine Tuning} sobre el F1-Score de las clases más débiles del modelo 16 original.
 
-% PENDIENTE: Incluir la tabla con los datos del JSON (ej. report1616.json)
+\begin{table}[H]
+    \centering
+    \caption{Métricas detalladas de clasificación por clase para la Configuración 6 (LSTM Units: 16x16, Refine Tuning de Referencia).}
+    \label{tab:metricas_detalle_c6_full}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|c|c|c|c|}
+            \hline
+            \textbf{Palabra (LSM)} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Soporte} \\
+            \hline
+            agua & 0.000 & 0.000 & 0.000 & 0 \\
+            bien & 1.000 & 1.000 & 1.000 & 77 \\
+            cita & 0.000 & 0.000 & 0.000 & 0 \\
+            curación & 0.000 & 0.000 & 0.000 & 60 \\
+            cáncer & 1.000 & 1.000 & 1.000 & 60 \\
+            cómo & 1.000 & 1.000 & 1.000 & 60 \\
+            diarrea & 1.000 & 1.000 & 1.000 & 88 \\
+            doctor & 1.000 & 1.000 & 1.000 & 64 \\
+            emergencia & 0.000 & 0.000 & 0.000 & 0 \\
+            enfermo & 1.000 & 1.000 & 1.000 & 78 \\
+            farmacia & 1.000 & 1.000 & 1.000 & 60 \\
+            fiebre & 1.000 & 1.000 & 1.000 & 44 \\
+            hola & 1.000 & 1.000 & 1.000 & 42 \\
+            infección & 1.000 & 1.000 & 1.000 & 40 \\
+            influenza & 0.000 & 0.000 & 0.000 & 0 \\
+            inyección & 1.000 & 1.000 & 1.000 & 60 \\
+            levantar & 1.000 & 1.000 & 1.000 & 78 \\
+            limpiar & 0.000 & 0.000 & 0.000 & 0 \\
+            mal & 0.899 & 0.936 & 0.917 & 64 \\
+            menstruación & 1.000 & 1.000 & 1.000 & 48 \\
+            operación & 1.000 & 1.000 & 1.000 & 64 \\
+            orinar & 0.000 & 0.000 & 0.000 & 0 \\
+            por favor & 1.000 & 1.000 & 1.000 & 63 \\
+            radio & 1.000 & 1.000 & 1.000 & 35 \\
+            recostar & 1.000 & 1.000 & 1.000 & 60 \\
+            salud & 0.671 & 0.978 & 0.796 & 91 \\
+            sida & 0.000 & 0.000 & 0.000 & 33 \\
+            síntoma & 1.000 & 1.000 & 1.000 & 40 \\
+            temperatura & 1.000 & 1.000 & 1.000 & 56 \\
+            tuberculosis & 1.000 & 1.000 & 1.000 & 40 \\
+            virus & 1.000 & 1.000 & 1.000 & 36 \\
+            vómito & 1.000 & 1.000 & 1.000 & 40 \\
+            \hline
+            \textbf{Promedio Ponderado} & \textbf{0.854} & \textbf{0.896} & \textbf{0.871} & \textbf{1425} \\
+            \hline
+        \end{tabular}
+    }
+\end{table}
 
 \begin{figure}[!h]
     \centering
@@ -580,7 +672,53 @@ Se evalúa si la optimización profunda logró superar la precisión global del 
 
 Se busca la eliminación definitiva de las clases con F1-Score nulo.
 
-% PENDIENTE: Incluir la tabla con los datos del JSON (ej. report1632.json)
+\begin{table}[H]
+    \centering
+    \caption{Métricas detalladas de clasificación por clase para la Configuración 7 (LSTM Units: 16x32, Refine Tuning Profundo).}
+    \label{tab:metricas_detalle_c7_full}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|c|c|c|c|}
+            \hline
+            \textbf{Palabra (LSM)} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Soporte} \\
+            \hline
+            agua & 1.000 & 1.000 & 1.000 & 60 \\
+            bien & 1.000 & 1.000 & 1.000 & 78 \\
+            cita & 1.000 & 1.000 & 1.000 & 48 \\
+            curación & 0.000 & 0.000 & 0.000 & 60 \\
+            cáncer & 1.000 & 1.000 & 1.000 & 60 \\
+            cómo & 1.000 & 1.000 & 1.000 & 60 \\
+            diarrea & 1.000 & 1.000 & 1.000 & 88 \\
+            doctor & 1.000 & 1.000 & 1.000 & 64 \\
+            emergencia & 1.000 & 1.000 & 1.000 & 40 \\
+            enfermo & 1.000 & 1.000 & 1.000 & 78 \\
+            farmacia & 1.000 & 1.000 & 1.000 & 60 \\
+            fiebre & 1.000 & 1.000 & 1.000 & 44 \\
+            hola & 1.000 & 1.000 & 1.000 & 42 \\
+            infección & 1.000 & 1.000 & 1.000 & 40 \\
+            influenza & 0.000 & 0.000 & 0.000 & 0 \\
+            inyección & 1.000 & 1.000 & 1.000 & 60 \\
+            levantar & 1.000 & 1.000 & 1.000 & 78 \\
+            limpiar & 0.000 & 0.000 & 0.000 & 42 \\
+            mal & 0.887 & 0.936 & 0.911 & 64 \\
+            menstruación & 1.000 & 1.000 & 1.000 & 48 \\
+            operación & 1.000 & 1.000 & 1.000 & 64 \\
+            orinar & 0.000 & 0.000 & 0.000 & 35 \\
+            por favor & 1.000 & 1.000 & 1.000 & 63 \\
+            radio & 1.000 & 1.000 & 1.000 & 35 \\
+            recostar & 1.000 & 1.000 & 1.000 & 60 \\
+            salud & 0.671 & 0.978 & 0.796 & 91 \\
+            sida & 0.000 & 0.000 & 0.000 & 33 \\
+            síntoma & 1.000 & 1.000 & 1.000 & 40 \\
+            temperatura & 1.000 & 1.000 & 1.000 & 56 \\
+            tuberculosis & 1.000 & 1.000 & 1.000 & 40 \\
+            virus & 1.000 & 1.000 & 1.000 & 36 \\
+            vómito & 1.000 & 1.000 & 1.000 & 40 \\
+            \hline
+            \textbf{Promedio Ponderado} & \textbf{0.880} & \textbf{0.913} & \textbf{0.887} & \textbf{1893} \\
+            \hline
+        \end{tabular}
+    }
+\end{table}
 
 \begin{figure}[!h]
     \centering
@@ -623,7 +761,53 @@ Se espera que la \textbf{Precisión Global} (alcanzada en \textbf{[DATO_RT_32_GL
 
 Se investiga si la robustez de las 32 unidades, combinada con el \textit{Refine Tuning}, logra una clasificación perfecta o casi perfecta en la totalidad de las clases.
 
-% PENDIENTE: Incluir la tabla con los datos del JSON (ej. report3232.json)
+\begin{table}[H]
+    \centering
+    \caption{Métricas detalladas de clasificación por clase para la Configuración 8 (LSTM Units: 32x32, Refine Tuning Cota Superior).}
+    \label{tab:metricas_detalle_c8_full}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|c|c|c|c|}
+            \hline
+            \textbf{Palabra (LSM)} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Soporte} \\
+            \hline
+            agua & 1.000 & 1.000 & 1.000 & 45 \\
+            bien & 1.000 & 1.000 & 1.000 & 58 \\
+            cita & 1.000 & 1.000 & 1.000 & 36 \\
+            curación & 1.000 & 1.000 & 1.000 & 45 \\
+            cáncer & 1.000 & 1.000 & 1.000 & 45 \\
+            cómo & 1.000 & 1.000 & 1.000 & 45 \\
+            diarrea & 1.000 & 1.000 & 1.000 & 66 \\
+            doctor & 1.000 & 1.000 & 1.000 & 47 \\
+            emergencia & 1.000 & 1.000 & 1.000 & 30 \\
+            enfermo & 1.000 & 1.000 & 1.000 & 58 \\
+            farmacia & 1.000 & 1.000 & 1.000 & 45 \\
+            fiebre & 1.000 & 1.000 & 1.000 & 33 \\
+            hola & 1.000 & 1.000 & 1.000 & 30 \\
+            infección & 1.000 & 1.000 & 1.000 & 30 \\
+            influenza & 1.000 & 1.000 & 1.000 & 42 \\
+            inyección & 1.000 & 1.000 & 1.000 & 45 \\
+            levantar & 1.000 & 1.000 & 1.000 & 58 \\
+            limpiar & 0.923 & 1.000 & 0.960 & 24 \\
+            mal & 0.931 & 1.000 & 0.964 & 27 \\
+            menstruación & 1.000 & 1.000 & 1.000 & 36 \\
+            operación & 1.000 & 1.000 & 1.000 & 47 \\
+            orinar & 1.000 & 1.000 & 1.000 & 27 \\
+            por favor & 1.000 & 1.000 & 1.000 & 47 \\
+            radio & 1.000 & 1.000 & 1.000 & 26 \\
+            recostar & 1.000 & 1.000 & 1.000 & 45 \\
+            salud & 0.986 & 1.000 & 0.993 & 69 \\
+            sida & 1.000 & 0.880 & 0.936 & 25 \\
+            síntoma & 1.000 & 1.000 & 1.000 & 60 \\
+            temperatura & 1.000 & 1.000 & 1.000 & 42 \\
+            tuberculosis & 1.000 & 1.000 & 1.000 & 30 \\
+            virus & 1.000 & 1.000 & 1.000 & 27 \\
+            vómito & 1.000 & 1.000 & 1.000 & 30 \\
+            \hline
+            \textbf{Promedio Ponderado} & \textbf{0.994} & \textbf{0.994} & \textbf{0.994} & \textbf{1206} \\
+            \hline
+        \end{tabular}
+    }
+\end{table}
 
 \begin{figure}[!h]
     \centering
