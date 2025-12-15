@@ -66,8 +66,8 @@ Dado que la duración de las señas varía, los keypoints se almacenan en secuen
 Una vez que las secuencias de keypoints son procesadas en el cliente y sincronizadas como \textbf{.csv} a S3, comienza la fase Cloud. El flujo de trabajo completo y la interacción de los componentes se ilustra en la \textbf{Figura \ref{fig:diagrama_composicion}} para el proceso de adquisición y entrenamiento:
 
 \begin{figure}[H]
-    \includegraphics[scale=0.15]{CAPITULOS/capitulo5/parte1.png}
     \centering
+    \includegraphics[scale=0.15]{CAPITULOS/capitulo5/parte1.png}
     \caption[Diagrama de secuencia composición del sistema ]{Diagrama de secuencia: Adquisición de Datos y Flujo de Entrenamiento (Fases 1 y 2).}
     \label{fig:diagrama_composicion}
 \end{figure}
@@ -101,8 +101,8 @@ El algoritmo \textbf{BiLSTM} clasifica la secuencia de vectores, realizando un m
 El desglose detallado de la arquitectura de predicción en el cliente se profundiza a continuación en la \textbf{Figura \ref{fig:diagrama_procesamiento}}:
 
 \begin{figure}[H]
-    \includegraphics[scale=0.18]{CAPITULOS/capitulo5/parte2.png}
     \centering
+    \includegraphics[scale=0.18]{CAPITULOS/capitulo5/parte2.png}
     \caption[Diagrama de secuencia procesamiento y predicción del sistema ]{Diagrama de secuencia: Flujo de Inferencia y Predicción en Tiempo Real (Fase 3).}
     \label{fig:diagrama_procesamiento}
 \end{figure}

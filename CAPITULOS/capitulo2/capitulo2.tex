@@ -1,21 +1,10 @@
 \chapter{Marco Teórico}
 
-\section{TensorFlow/Keras}
-TensorFlow, una plataforma de aprendizaje automático de código abierto, y Keras, una interfaz de alto nivel para construir y entrenar modelos de redes neuronales, son herramientas esenciales en el desarrollo de modelos de aprendizaje profundo. Estos modelos, entrenados con datos de LSM, son capaces de reconocer y clasificar señas, formando la base del sistema de traducción \cite{ref34}.
+El objetivo central del presente capítulo se define en torno a dos ejes esenciales para la solidez de la tesis. En primer lugar, busca establecer el fundamento conceptua al delimitar y desarrollar los constructos teóricos y empíricos esenciales que sustentan la solución tecnológica propuesta. En segundo lugar, y de manera crucial, tiene como propósito justificar las decisiones metodológica  creando un puente conceptual explícito que argumente la idoneidad y pertinencia de las técnicas seleccionadas —específicamente la extracción de \textit{landmarks} y el uso de redes neuronales recurrentes— para abordar eficazmente el problema del reconocimiento de Lengua de Señas Mexicana (LSM). El rigor de este marco es, por tanto, indispensable para la comprensión integral de la construcción, el entrenamiento y la evaluación del modelo \textit{SignLanguageModel} implementado.
 
-\section{Procesamiento Híbrido (Local y en la Nube)}
-El enfoque híbrido combina el procesamiento local en el dispositivo del usuario con el procesamiento en la nube a través de Amazon Web Services (AWS). Esta estrategia aprovecha las ventajas de ambos entornos: el procesamiento local reduce la latencia y protege la privacidad, aspectos cruciales al tratar con datos sensibles como la comunicación en LSM, mientras que la nube ofrece potencia de cómputo escalable para tareas intensivas, como el entrenamiento de modelos y el almacenamiento de datos \cite{ref35}.
-
-\section{Amazon Web Services (AWS)}
-AWS proporciona una amplia gama de servicios en la nube que son fundamentales para el proyecto:
-\begin{itemize}
-    \item \textbf{Buckets S3:} Almacenamiento escalable y seguro para grandes volúmenes de datos de LSM, como videos y modelos de aprendizaje profundo.
-    \item \textbf{EC2:} Facilitan la arquitectura para el correcto uso del entrenador en python.
-    \item \textbf{Funciones Lambda:} Ejecutan código sin necesidad de aprovisionar o administrar servidores, lo que permite escalar automáticamente el procesamiento de solicitudes de traducción según la demanda \cite{ref5}.
-\end{itemize}
 
 \section{Lingüística de la Lengua de Señas Mexicana (LSM)}
-La LSM, como cualquier lengua natural, posee una gramática compleja que incluye aspectos como la configuración manual(CM) y lugar de articulación (LA), la ubicación, la orientación y el movimiento de las manos, así como las expresiones faciales. El proyecto incorpora conocimientos lingüísticos de la LSM para asegurar una traducción adecuada y culturalmente apropiada. La Matriz Segmental, que describe la estructura de las señas en términos de segmentos secuenciales, es una herramienta clave para el análisis y la representación de las señas en el sistema \cite{ref36}.
+La LSM, como cualquier lengua natural, posee una gramática compleja que incluye aspectos como la configuración manual(CM) y lugar de articulación (LA), la ubicación, la orientación y el movimiento de las manos, así como las expresiones faciales. El proyecto incorpora conocimientos lingüísticos de la LSM para asegurar una traducción adecuada y culturalmente apropiada. La Matriz Segmental, que describe la estructura de las señas en términos de segmentos secuenciales a nivel glosa, es una herramienta clave para el análisis y la representación de las señas en el sistema \cite{ref36}.
 
 \subsection{Composición de una seña en la Lengua de Señas Mexicana (LSM)}
 
@@ -77,81 +66,14 @@ Esta matriz se refiere a los elementos no manuales que acompañan la producción
     \item \textbf{Posturas del cuerpo:} Se refiere a la posición general del cuerpo durante la señalización, como la inclinación del torso, los hombros encogidos, etc.
 \end{itemize}
 
-\section{ Arquitectura de Microservicios}
-El proyecto adopta una arquitectura de microservicios en la parte del entrenamiento del modelo, donde cada componente del sistema se implementa como un servicio independiente y autónomo. Esta modularidad facilita el desarrollo, la implementación y el mantenimiento del sistema, permitiendo escalar y actualizar componentes individuales sin afectar el funcionamiento global \cite{ref37}.
-
 \section{Redes Neuronales}
 Las redes neuronales son un conjunto de algoritmos inspirados en la estructura del cerebro humano, diseñados para reconocer patrones. Se componen de nodos interconectados, organizados en capas, que procesan y transmiten información.
+En el contexto de este proyecto, las redes neuronales constituyen el corazón del sistema predictivo. Su función es tomar las secuencias de coordenadas espaciales y temporales (conocidas como \textit{keypoints} o landmarks) generadas por el preprocesamiento de video, y transformarlas en una etiqueta de texto que representa el signo de la LSM. Específicamente, se utiliza una arquitectura avanzada para modelar la dinámica y la semántica de los movimientos gestuales, permitiendo una traducción precisa y en tiempo real.
 \subsection{Redes Neuronales Convolucionales (CNN)}
 
 Las Redes Neuronales Convolucionales (CNN) son una red neuronal profunda con gran eficacia en el procesamiento de imágenes y videos. Esta capacidad se debe a su estructura, enfocada en analizar datos organizados en forma de grilla, como es el caso de las imágenes. En el contexto de la traducción de la Lengua de Señas Mexicana, las CNN tienen un rol fundamental, ya que facilitan el análisis de las imágenes que capturan las señas realizadas por el usuario.
 
 Las CNN se caracterizan por la inclusión de capas convolucionales. Estas capas emplean filtros (kernels), que se deslizan sobre la imagen de entrada para identificar y extraer características relevantes.
-
-\section{MediaPipe Holistic}
-
-MediaPipe Holistic es una solución integral de Google para el seguimiento del cuerpo humano en tiempo real. El modelo de Holistic combina  modelos de aprendizaje profundo para detectar y rastrear puntos (posiciones flotantes en un  plano x, y) clave en el rostro, las manos y el cuerpo completo. Esta capacidad de análisis detallado de los movimientos corporales es esencial para la captura expresiva de la Lengua de Señas Mexicana (LSM), donde la posición del cuerpo y los movimientos de las manos son fundamentales para recibir y generar la comunicación.
-
-\subsection{Componentes del Modelo Holistic}
-
-MediaPipe Holistic se compone de tres modelos principales:
-
-\begin{enumerate}
-    \item \textbf{Pose Landmarker:}
-    \begin{itemize}
-        \item \textbf{Descripción:}  Este modelo detecta 33 puntos de referencia del cuerpo humano en una imagen o video, incluyendo la nariz, los ojos, las orejas, los hombros, los codos, las muñecas, las caderas, las rodillas y los tobillos.
-        \item \textbf{Aplicaciones en lengua de señas mexicana:}  Estos puntos son cruciales para interpretar las señas, ya que permiten analizar la postura general del cuerpo y la posición de los brazos y las manos en relación al torso. Por ejemplo, la posición de los codos y las muñecas es fundamental para distinguir señas como \textquotedblleft CASA\textquotedblright  u  \textquotedblleft HOLA\textquotedblright.
-        \item \textbf{Funcionamiento:} El modelo utiliza una red neuronal convolucional similar a MobileNetV2 y está optimizado para aplicaciones de entrenamiento en tiempo real y en el dispositivo.  Primero, detecta la presencia de cuerpos humanos en la imagen, y luego localiza los 33 puntos de referencia en el cuerpo detectado.
-        \item \textbf{Opciones de configuración:}
-        \begin{itemize}
-            \item \textbf{running\_mode:} Establece el modo de ejecución (IMAGE, VIDEO, LIVE\_STREAM).
-            \item \textbf{num\_poses:} La cantidad máxima de poses a detectar.
-            \item \textbf{min\_pose\_detection\_confidence:} Puntuación mínima para la detección de poses.
-            \item \textbf{min\_pose\_presence\_confidence:} Puntuación mínima de presencia de poses.
-            \item \textbf{min\_tracking\_confidence:} Puntuación mínima para el seguimiento de poses.
-            \item \textbf{output\_segmentation\_masks:}  Si se generan máscaras de segmentación.
-        \end{itemize}
-    \end{itemize}
-    \begin{figure}[h]
-        \includegraphics[scale=0.4]{CAPITULOS/capitulo2/img.png}
-        \centering
-        \caption[Puntos de medipipe]{Puntos de medipipe Pose Landmarker \cite{ref20}}
-        \label{fig:imagen_medipipe_pose}
-    \end{figure}
-    \item \textbf{Face Landmarks:}
-    \begin{itemize}
-        \item \textbf{Cantidad:} 468 puntos.
-        \item \textbf{Descripción:}  Detecta puntos clave en el rostro, como los ojos, las cejas, la nariz, la boca y el contorno de la cara.
-        \item \textbf{Aplicaciones de MediaPipe Holistic en el sistema:} Se utilizan para analizar las expresiones faciales, que son un componente gramatical crucial en la LSM. Por ejemplo, las expresiones faciales pueden indicar preguntas, negación, o emociones.
-    \end{itemize}
-
-    \item \textbf{Hand Landmarks:}
-    \begin{itemize}
-        \item \textbf{Cantidad:} 21 puntos por cada mano \cite{ref20}.
-        \item \textbf{Descripción:} Detecta  puntos clave en las manos, como las puntas de los dedos, los nudillos y la palma.
-        \item \textbf{Aplicaciones de MediaPipe Holistic en el sistema:} Permite analizar la forma, orientación y movimiento de las manos, lo cual es fundamental para identificar los diferentes queremas (formas de la mano) en la LSM.
-    \end{itemize}
-    \begin{figure}[h]
-        \includegraphics[scale=0.4]{CAPITULOS/capitulo2/hand-landmarks.png}
-        \centering
-        \caption[Puntos de medipipe ]{Puntos de medipipe Hand Landmarks\cite{ref20}}
-        \label{fig:imagen_medipipe_hand}
-    \end{figure}
-
-\end{enumerate}
-
-
-
-
-\subsection{Ventajas de MediaPipe Holistic}
-
-\begin{itemize}
-    \item \textbf{Integración completa:} Combina el seguimiento de rostro, manos y cuerpo en un solo framework, lo que facilita el desarrollo de aplicaciones de LSM.
-    \item \textbf{Rendimiento en tiempo real:} Permite procesar imágenes en tiempo real, lo que es crucial para la fluidez en la traducción de LSM.
-    \item \textbf{Eficiencia computacional:} Está optimizado para ejecutarse en dispositivos móviles y de escritorio, con bajo consumo de recursos.
-    \item \textbf{Robustez:} Funciona en diferentes condiciones de iluminación y con diferentes tipos de cámaras.
-    \item \textbf{Facilidad de uso:} MediaPipe ofrece APIs fáciles de usar para integrar Holistic en aplicaciones de Python, Android y web.
-\end{itemize}
 
 \section{Convolución: Definición General (Tiempo Continuo)}
 
@@ -216,9 +138,9 @@ donde:
 \end{itemize}
 El proceso de aplicación de esta operación se ilustra visualmente en la Figura \ref{fig:accion_convolucion}, donde se muestra cómo el kernel se desliza sobre la imagen de entrada para generar el mapa de características.
 
-\begin{figure}[h]
-    \includegraphics[width=0.9\textwidth]{CAPITULOS/capitulo2/imagenpresentacion}
+\begin{figure}[H]
     \centering
+    \includegraphics[width=0.9\textwidth]{CAPITULOS/capitulo2/imagenpresentacion}
     \caption{Acción de Convolución}
     \label{fig:accion_convolucion}
 \end{figure}
@@ -330,13 +252,77 @@ Esta característica es fundamental para el reconocimiento de la Lengua de Seña
     \item  Mejora la precisión al distinguir entre señas que comparten movimientos iniciales o finales, pero que difieren en el contexto global de la secuencia.
 \end{itemize}
 
-\section{Funciones de Activación}
-Las funciones de activación introducen no linealidad en las redes neuronales, permitiendo que  aprendan patrones complejos en los datos. Específicamente, estas funciones determinan si la neurona debe ser activada o no, en función del resultado de la suma ponderada de sus entradas.
+\section{MediaPipe Holistic}
+
+MediaPipe Holistic es una solución integral de Google para el seguimiento del cuerpo humano en tiempo real. El modelo de Holistic combina  modelos de aprendizaje profundo para detectar y rastrear puntos (posiciones flotantes en un  plano x, y) clave en el rostro, las manos y el cuerpo completo. Esta capacidad de análisis detallado de los movimientos corporales es esencial para la captura expresiva de la Lengua de Señas Mexicana (LSM), donde la posición del cuerpo y los movimientos de las manos son fundamentales para recibir y generar la comunicación.
+
+\subsection{Componentes del Modelo Holistic}
+
+MediaPipe Holistic se compone de tres modelos principales:
+
+\begin{enumerate}
+    \item \textbf{Pose Landmarker:}
+    \begin{itemize}
+        \item \textbf{Descripción:}  Este modelo detecta 33 puntos de referencia del cuerpo humano en una imagen o video, incluyendo la nariz, los ojos, las orejas, los hombros, los codos, las muñecas, las caderas, las rodillas y los tobillos.
+        \item \textbf{Aplicaciones en lengua de señas mexicana:}  Estos puntos son cruciales para interpretar las señas, ya que permiten analizar la postura general del cuerpo y la posición de los brazos y las manos en relación al torso. Por ejemplo, la posición de los codos y las muñecas es fundamental para distinguir señas como \textquotedblleft CASA\textquotedblright  u  \textquotedblleft HOLA\textquotedblright.
+        \item \textbf{Funcionamiento:} El modelo utiliza una red neuronal convolucional similar a MobileNetV2 y está optimizado para aplicaciones de entrenamiento en tiempo real y en el dispositivo.  Primero, detecta la presencia de cuerpos humanos en la imagen, y luego localiza los 33 puntos de referencia en el cuerpo detectado.
+        \item \textbf{Opciones de configuración:}
+        \begin{itemize}
+            \item \textbf{running\_mode:} Establece el modo de ejecución (IMAGE, VIDEO, LIVE\_STREAM).
+            \item \textbf{num\_poses:} La cantidad máxima de poses a detectar.
+            \item \textbf{min\_pose\_detection\_confidence:} Puntuación mínima para la detección de poses.
+            \item \textbf{min\_pose\_presence\_confidence:} Puntuación mínima de presencia de poses.
+            \item \textbf{min\_tracking\_confidence:} Puntuación mínima para el seguimiento de poses.
+            \item \textbf{output\_segmentation\_masks:}  Si se generan máscaras de segmentación.
+        \end{itemize}
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.4]{CAPITULOS/capitulo2/img.png}
+        \caption[Puntos de medipipe]{Puntos de medipipe Pose Landmarker \cite{ref20}}
+        \label{fig:imagen_medipipe_pose}
+    \end{figure}
+    \item \textbf{Face Landmarks:}
+    \begin{itemize}
+        \item \textbf{Cantidad:} 468 puntos.
+        \item \textbf{Descripción:}  Detecta puntos clave en el rostro, como los ojos, las cejas, la nariz, la boca y el contorno de la cara.
+        \item \textbf{Aplicaciones de MediaPipe Holistic en el sistema:} Se utilizan para analizar las expresiones faciales, que son un componente gramatical crucial en la LSM. Por ejemplo, las expresiones faciales pueden indicar preguntas, negación, o emociones.
+    \end{itemize}
+
+    \item \textbf{Hand Landmarks:}
+    \begin{itemize}
+        \item \textbf{Cantidad:} 21 puntos por cada mano \cite{ref20}.
+        \item \textbf{Descripción:} Detecta  puntos clave en las manos, como las puntas de los dedos, los nudillos y la palma.
+        \item \textbf{Aplicaciones de MediaPipe Holistic en el sistema:} Permite analizar la forma, orientación y movimiento de las manos, lo cual es fundamental para identificar los diferentes queremas (formas de la mano) en la LSM.
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.4]{CAPITULOS/capitulo2/hand-landmarks.png}
+        \caption[Puntos de medipipe ]{Puntos de medipipe Hand Landmarks\cite{ref20}}
+        \label{fig:imagen_medipipe_hand}
+    \end{figure}
+
+\end{enumerate}
+
+
+
+
+\subsection{Ventajas de MediaPipe Holistic}
+
+\begin{itemize}
+    \item \textbf{Integración completa:} Combina el seguimiento de rostro, manos y cuerpo en un solo framework, lo que facilita el desarrollo de aplicaciones de LSM.
+    \item \textbf{Rendimiento en tiempo real:} Permite procesar imágenes en tiempo real, lo que es crucial para la fluidez en la traducción de LSM.
+    \item \textbf{Eficiencia computacional:} Está optimizado para ejecutarse en dispositivos móviles y de escritorio, con bajo consumo de recursos.
+    \item \textbf{Robustez:} Funciona en diferentes condiciones de iluminación y con diferentes tipos de cámaras.
+    \item \textbf{Facilidad de uso:} MediaPipe ofrece APIs fáciles de usar para integrar Holistic en aplicaciones de Python, Android y web.
+\end{itemize}
+
+\section{TensorFlow/Keras}
+TensorFlow, una plataforma de aprendizaje automático de código abierto, y Keras, una interfaz de alto nivel para construir y entrenar modelos de redes neuronales, son herramientas esenciales en el desarrollo de modelos de aprendizaje profundo. Estos modelos, entrenados con datos de LSM, son capaces de reconocer y clasificar señas, formando la base del sistema de traducción \cite{ref34}.
 
 \section{Funciones de Activación}
 Las funciones de activación introducen no linealidad en las redes neuronales, permitiendo que  aprendan patrones complejos en los datos. Para entender su papel, considérese que si una red neuronal se encuentra ante una bifurcación en el camino, las funciones de activación son responsables de decidir hacia dónde debe dirigirse la señal.
 
----
 
 \subsection{Función Sigmoide}
 La función sigmoide transforma cualquier valor de entrada a un rango entre 0 y 1, lo cual es útil para problemas de clasificación binaria. Su gráfica se presenta en la Figura 1, y su definición mediante la Ecuación \ref{eq:funcion_por_partes_sigmoide} muestra su dependencia del número de Euler ($e$).
@@ -369,7 +355,6 @@ La función sigmoide transforma cualquier valor de entrada a un rango entre 0 y 
         \label{eq:funcion_por_partes_sigmoide}
     \end{equation}
 }
-
 
 \subsection{Función Tangencial Hiperbólica (tanh)}
 
@@ -418,7 +403,6 @@ La función tangencial hiperbólica (tanh), se define mediante la siguiente ecua
         \label{eq:tanh_formula}
     \end{equation}
 }
-
 
 \subsection{Función ReLU (Rectified Linear Unit)}
 La función ReLU es una función lineal que retorna 0 para entradas negativas y el valor de entrada para entradas positivas. Esta función ha ganado popularidad debido a su simplicidad y eficiencia computacional. Su gráfica, mostrada en la Figura 3, ilustra su comportamiento lineal para valores positivos, y su definición se encuentra en la Ecuación \ref{eq:funcion_por_partes_relu}.
@@ -533,6 +517,51 @@ Los datasets ideales para el reconocimiento de LSM deben cumplir con las siguien
     \item \textbf{Formato de Datos:} Los datos deben estar en un formato adecuado para el entrenamiento de modelos de aprendizaje profundo, como imágenes, videos o secuencias de datos.
 \end{itemize}
 
+\section{Procesamiento Híbrido (Local y en la Nube)}
+El enfoque híbrido combina el procesamiento local en el dispositivo del usuario con el procesamiento en la nube a través de Amazon Web Services (AWS). Esta estrategia aprovecha las ventajas de ambos entornos: el procesamiento local reduce la latencia y protege la privacidad, aspectos cruciales al tratar con datos sensibles como la comunicación en LSM, mientras que la nube ofrece potencia de cómputo escalable para tareas intensivas, como el entrenamiento de modelos y el almacenamiento de datos \cite{ref35}.
+
+\section{Amazon Web Services (AWS)}
+AWS proporciona una amplia gama de servicios en la nube que son fundamentales para el proyecto:
+\begin{itemize}
+    \item \textbf{Buckets S3:} Almacenamiento escalable y seguro para grandes volúmenes de datos de LSM, como videos y modelos de aprendizaje profundo.
+    \item \textbf{EC2:} Facilitan la arquitectura para el correcto uso del entrenador en python.
+    \item \textbf{Funciones Lambda:} Ejecutan código sin necesidad de aprovisionar o administrar servidores, lo que permite escalar automáticamente el procesamiento de solicitudes de traducción según la demanda \cite{ref5}.
+\end{itemize}
+
+\section{ Arquitectura de Microservicios}
+El proyecto adopta una arquitectura de microservicios en la parte del entrenamiento del modelo, donde cada componente del sistema se implementa como un servicio independiente y autónomo. Esta modularidad facilita el desarrollo, la implementación y el mantenimiento del sistema, permitiendo escalar y actualizar componentes individuales sin afectar el funcionamiento global \cite{ref37}.
+
+\section{Ingeniería de Machine Learning (MLOps) y Arquitectura de Despliegue}
+\label{sec:mlops_despliegue}
+
+La solidez de un proyecto de \textit{Deep Learning} no reside únicamente en la arquitectura del modelo predictivo (Bi-LSTM), sino también en la infraestructura de \textit{Machine Learning Operations} (MLOps) que permite un ciclo de vida robusto, escalable y automatizado para el manejo de datos, el entrenamiento y el despliegue. Este proyecto incorpora un ecosistema de servicios de nube y estrategias de cómputo en el borde para garantizar la viabilidad empírica del sistema de reconocimiento de LSM.
+
+\subsection{MLOps y Orquestación del Entrenamiento en la Nube}
+\label{subsec:mlops_cloud}
+
+El entrenamiento del modelo requiere la gestión eficiente de grandes volúmenes de datos de \textit{landmarks} y la orquestación segura de tareas computacionales pesadas.
+
+\subsubsection{Almacenamiento Distribuido: Buckets S3}
+La gestión de la ingesta de datos de entrenamiento se centraliza en \textbf{Amazon Simple Storage Service (S3)}, donde los datos de \textit{keypoints} procesados se almacenan en contenedores denominados \textit{buckets} \cite{ref45}. Este servicio garantiza la durabilidad y disponibilidad de los archivos CSV y H5, esenciales para el entrenamiento. La arquitectura basada en S3 facilita el control de versiones y el acceso programático seguro, como se evidencia en la lógica de sincronización de \texttt{download.py} y la gestión de datos en \texttt{data\_processor.py}.
+
+\subsubsection{Orquestación sin Servidor (Serverless): AWS Lambda}
+Para iniciar y monitorear el ciclo de entrenamiento sin la necesidad de servidores dedicados permanentemente, se emplea la arquitectura sin servidor \textbf{AWS Lambda} \cite{ref46}. Las funciones Lambda (\texttt{trainingHandler.js}) actúan como manejadores de eventos y orquestadores ligeros, ejecutando la lógica de negocio necesaria para la preparación del ambiente, como encender la instancia de entrenamiento y enviarle comandos de ejecución.
+
+\subsubsection{Gestión de la Computación Remota: AWS Systems Manager (SSM)}
+La ejecución de los scripts de entrenamiento (\texttt{run\_training.py}), que requieren un ambiente pesado de GPU, es delegada a una instancia de computación bajo demanda. La comunicación segura y la ejecución de comandos remotos en esta instancia se logran mediante \textbf{AWS Systems Manager (SSM)}. Específicamente, el \textit{SSM Run Command} permite que la función Lambda envíe una instrucción para ejecutar el \textitscript de entrenamiento en un entorno de Linux, desacoplando el orquestador \textit{serverless} del ejecutor de la tarea de \textit{Deep Learning}. Este acoplamiento orquestador-ejecutor se configura a través del archivo \texttt{template.yaml} para asegurar el ciclo MLOps.
+
+
+\subsection{2.4. Estrategias de Despliegue: Edge Computing y Usabilidad}
+\label{subsec:edge_tts}
+
+La fase de despliegue se enfoca en la usabilidad en tiempo real, lo cual exige el procesamiento de la inferencia directamente en el dispositivo del usuario.
+
+\subsubsection{Computación en el Borde (\textit{Edge Computing})}
+El concepto de \textbf{Edge Computing} se adopta para optimizar el rendimiento del sistema de reconocimiento \cite{ref47}. Consiste en la ejecución de la inferencia del modelo (\textit{SignLanguageModel} serializado) directamente en el dispositivo móvil (teléfono o tableta) del usuario, tal como se implementa en \texttt{LiveRecognitionActivity.kt}. Esta aproximación ofrece beneficios cruciales de rendimiento y latencia: al procesar los datos localmente, se elimina el tiempo de ida y vuelta a la nube, garantizando una traducción casi instantánea y mejorando la experiencia de comunicación en tiempo real.
+
+\subsubsection{Componente de Interacción Vocal: Kotlin Text-to-Speech (TTS)}
+Para completar el ciclo de traducción, la etiqueta de texto del signo predicho debe ser convertida en voz para el oyente. Esta conversión se realiza utilizando la API nativa de \textbf{Text-to-Speech (TTS)} de Android, accesible mediante la librería de Kotlin \cite{ref48}. La API de TTS permite la síntesis de voz de alta calidad y baja latencia, asegurando que el resultado del modelo sea comunicado al usuario de manera clara y oportuna. Este es el último paso funcional en la cadena de valor de la aplicación, como se gestiona en la clase \texttt{LiveRecognitionActivity.kt}.
+
 \section{Matriz de Confusión}
 \label{sec:confusion_matrix}
 
@@ -548,11 +577,7 @@ La matriz de confusión es una \textbf{tabla de visualización fundamental} que 
 El uso de la matriz de confusión es crucial para el análisis de modelos de \textit{Machine Learning} y es una herramienta estándar para la evaluación \cite{ref44}. Para problemas con múltiples clases (clasificación multiclase), esta matriz se expande a un formato $N \times N$, donde $N$ es el número de clases. Una matriz de confusión general multiclase con $N=6$ elementos se presenta en la Tabla \ref{tab:confusion_example}, donde cada clase es denotada genéricamente como Elemento X, las etiquetas \textbf{TP}, \textbf{FN} y \textbf{FP} se muestran con el \textbf{Elemento 1} como la clase positiva de referencia.
 
 
-% *****************************************************************
-% TABLA: Ejemplo de Matriz de Confusión (Multi-clase 6x6, Generalizada)
-% Requiere el paquete \usepackage{booktabs} en el preámbulo.
-% *****************************************************************
-\begin{table}[h!]
+\begin{table}[H]
     \centering
     \caption{Matriz de Confusión Multiclase ($6 \times 6$)}
     \label{tab:confusion_example}
@@ -595,12 +620,15 @@ El uso de la matriz de confusión es crucial para el análisis de modelos de \te
     \footnotesize
     \textbf{Nota:} Las cifras en la diagonal indican el número de predicciones correctas (TP) para cada elemento. Los números fuera de la diagonal representan los errores de clasificación (Falsos Positivos/Negativos).
 \end{table}
+
 \section{Métricas}
+La validación del modelo de reconocimiento automático de LSM (\textit{SignLanguageModel}) se realiza a través de un conjunto de métricas de rendimiento diseñadas para evaluar tanto la \textbf{capacidad predictiva} como la \textbf{viabilidad operativa} de la solución. En un problema de clasificación multi-clase como el presente, es insuficiente depender únicamente de la precisión global (\textit{Accuracy}). Por ello, la evaluación se centra en métricas que proporcionan una visión detallada de cómo el modelo se desempeña en cada una de las clases de signos, identificando posibles sesgos o fallas en la distinción entre signos con alta similitud fonológica.
+
 \subsection{Medidas de tendencia central}
 
 Las medidas de tendencia central son herramientas estadísticas que permiten resumir la localización de los datos, es decir, ayudan a identificar el valor alrededor del cual se centran los datos. Estas medidas son esenciales para el análisis de datos en cualquier investigación, incluyendo el análisis de las muestras de Lengua de Señas Mexicana (LSM).
 
-\textbf{Medidas de tendencia central:}
+
 
 \textbf{Media:}
 
@@ -680,7 +708,7 @@ Es el Accuracy calculado sobre el \textbf{conjunto de datos de validación}, que
 
 \textbf{Precision (Precisión):}
 
-La Precisión mide, de todas las predicciones positivas que hizo el modelo para una clase, **cuántas fueron realmente correctas**. Es una métrica crítica cuando el costo de un Falso Positivo es alto (ej. clasificar un ruido como una seña). Se calcula utilizando la Ecuación \ref{eq:precision}.
+La Precisión mide, de todas las predicciones positivas que hizo el modelo para una clase, cuántas fueron realmente correctas. Es una métrica crítica cuando el costo de un Falso Positivo es alto (ej. clasificar un ruido como una seña). Se calcula utilizando la Ecuación \ref{eq:precision}.
 
 \indexedequation{Ecuación Precision}{
     \begin{equation}
@@ -691,7 +719,7 @@ La Precisión mide, de todas las predicciones positivas que hizo el modelo para 
 
 \textbf{Recall (Sensibilidad o Cobertura):}
 
-El Recall mide, de todas las muestras que **realmente pertenecen a una clase**, **cuántas fueron identificadas correctamente** por el modelo. Es una métrica crítica cuando el costo de un Falso Negativo es alto (ej. no reconocer una seña real). Su fórmula se muestra en la Ecuación \ref{eq:recall}.
+El Recall mide, de todas las muestras que realmente pertenecen a una clase, cuántas fueron identificadas correctamente por el modelo. Es una métrica crítica cuando el costo de un Falso Negativo es alto (ej. no reconocer una seña real). Su fórmula se muestra en la Ecuación \ref{eq:recall}.
 
 \indexedequation{Ecuación Recall}{
     \begin{equation}
@@ -710,4 +738,6 @@ El F1-score es la \textbf{media armónica} de la Precision y el Recall. Es una m
         \label{eq:f1_score}
     \end{equation}
 }
+
+
 
