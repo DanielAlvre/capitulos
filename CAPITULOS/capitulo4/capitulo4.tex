@@ -268,10 +268,31 @@ A continuación, se presenta un análisis exhaustivo de las capacidades principa
 
 \begin{figure}[H]
     \hspace*{-1.5cm}
-    \includegraphics[width=1.2\textwidth]{CAPITULOS/capitulo4/diam.png}
+    \includegraphics[width=1.2\textwidth]{CAPITULOS/capitulo4/diam}
     \caption{Diagrama de casos de uso del Sistema Principal}
     \label{fig:diagrama_casos_uso}
 \end{figure}
+
+\section{Conceptualización y Criterios del Módulo de Machine Learning} \label{sec:conceptualizacion_ml}
+
+Para satisfacer el Requerimiento Funcional de Reconocimiento de Seña (RF08) y, especialmente, los Requerimientos No Funcionales de rendimiento (RNF01 y RNF02), se definió la arquitectura del módulo de clasificación en la fase de análisis. Este módulo se centra en la correcta interpretación de secuencias temporales de datos.
+
+\subsection{Procesamiento de Secuencias y Arquitectura Bi-LSTM}
+La Lengua de Señas Mexicana es una lengua visogestual con una fuerte dependencia del movimiento. Por ello, el algoritmo de Machine Learning debe ser capaz de procesar \textbf{secuencias de datos de longitud variable}. La decisión se centra en la justificación que sigue:
+
+\begin{itemize}
+    \item \textbf{Normalización Temporal:} Para estandarizar la duración de la seña, se implementa un \textbf{canal de progreso temporal} (ver función \texttt{\_time\_progress\_from\_ts} en \texttt{data\_processor.py}). Esta característica, añadida a los \textit{keypoints} de MediaPipe, permite al modelo Bi-LSTM aprender dónde se encuentra cada \textit{frame} dentro del ciclo de la seña (ej. inicio, articulación, final).
+    \item \textbf{Arquitectura Recurrente:} Se selecciona una red \textbf{Bidirectional Long Short-Term Memory (Bi-LSTM)}, tal como se construye en \texttt{model\_constructor.py}. Esta elección es crucial, ya que permite que el modelo analice la secuencia de \textit{keypoints} tanto hacia adelante como hacia atrás, maximizando la comprensión del contexto espacial y temporal de la seña.
+    \item \textbf{Técnica de Masking:} La capa \texttt{Masking} se añade en la entrada de la red para manejar secuencias de longitud variable, asegurando que los datos de relleno (\textit{padding}) sean ignorados durante el entrenamiento y la inferencia, lo cual es vital para la precisión.
+\end{itemize}
+
+\subsection{Criterios de Despliegue (Edge Computing)}
+Dado el RNF02 (Latencia de < 300ms), el modelo debe ser desplegado en el dispositivo (Edge). Los criterios de diseño derivados de este requerimiento son:
+
+\begin{enumerate}
+    \item \textbf{Formato TFLite:} El modelo entrenado debe ser convertido al formato optimizado \textbf{TensorFlow Lite (TFLite)} para su ejecución eficiente en el dispositivo Android (\texttt{LiveRecognitionActivity.kt}).
+    \item \textbf{Compatibilidad:} La arquitectura Bi-LSTM se construye con capas que aseguran la compatibilidad del grafo con el intérprete de TFLite, evitando operaciones complejas que no se soportan en el despliegue de borde.
+\end{enumerate}
 
 \section{Comparación de Tecnologías y Plataformas}
 
@@ -1109,11 +1130,11 @@ A continuación, se detallan las principales tecnologías que serán utilizadas 
 \clearpage
 
 \section{Análisis de Viabilidad Económica y Costos Operacionales}
-La implementación de la arquitectura de Deep Learning y microservicios en la nube conlleva un costo operativo que debe ser estimado para evaluar la viabilidad del proyecto. A continuación, se presenta un análisis de los costos operativos mensuales proyectados, basados en un escenario de uso moderado (piloto) en la plataforma AWS, con un \textbf{costo total estimado de \$41.04 USD por mes}. La Figura \ref{fig:costo_mensual_aws} ilustra la distribución porcentual de esta inversión, destacando el cómputo como principal factor de gasto.
+La implementación de la arquitectura de Deep Learning y microservicios en la nube conlleva un costo operativo que debe ser estimado para evaluar la viabilidad del proyecto. A continuación, se presenta un análisis de los costos operativos mensuales proyectados, basados en un escenario de uso moderado (piloto) en la plataforma AWS, con un \textbf{costo total estimado de \$41.04 USD por mes}.La figura \ref{fig:costo} ilustra la distribución porcentual de esta inversión, destacando el cómputo como principal factor de gasto.
 
 \begin{figure}[H]
     \centering
-    \label{fig:costo_mensual_aws}
+    % Se quitó la etiqueta de aquí (ANTES)
     \begin{tikzpicture}
         \pie[
             sum=41.04, % Total actualizado
@@ -1128,6 +1149,7 @@ La implementación de la arquitectura de Deep Learning y microservicios en la nu
         }
     \end{tikzpicture}
     \caption{Proyección de Costos Mensuales Estimados (Entorno Piloto) en AWS}
+    \label{fig:costo} % <<--- SOLUCIÓN: LA ETIQUETA DEBE IR AQUÍ.
 \end{figure}
 
 La contención de costos se logra, en gran medida, gracias al aprovechamiento estratégico de la \textbf{Capa Gratuita (Free Tier)} de AWS para servicios como AWS Lambda, API Gateway y DynamoDB, que cubren la mayor parte del uso en el entorno piloto. Asimismo, el uso de herramientas \textbf{Open Source} como Python, TensorFlow y MediaPipe elimina las licencias de software, permitiendo que la inversión se centre casi exclusivamente en los recursos de cómputo y almacenamiento esenciales para el entrenamiento del modelo.

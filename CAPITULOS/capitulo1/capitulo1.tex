@@ -52,7 +52,7 @@ Proceso de Conversión del sistema
         % --- FASE 1: CLIENTE (Adquisición) ---
     \item \textbf{Inicio de Adquisición de Datos (Edge):} El usuario inicia el módulo de grabación (\texttt{ActivityCameraNew}) en la aplicación Android.
 
-    \item \textbf{Extracción de Características en Tiempo Real:} La aplicación utiliza MediaPipe en el dispositivo para extraer un vector de \textbf{195 características} (\textit{Pose} + Manos + Marca de Tiempo) frame a frame, aplicando normalización y suavizado. El desglose detallado de estas características, incluyendo los puntos clave y sus coordenadas, se presenta en la Tabla \ref{tab:mediapipe_features}, las coordenadas X, Y, Z representan la posición en 3D, mientras que V (Visibilidad) índica la confianza en la detección del punto.
+    \item \textbf{Extracción de Características en Tiempo Real:} La aplicación utiliza MediaPipe en el dispositivo para extraer un vector de \textbf{195 características} (\textit{Pose} + Manos + Marca de Tiempo) frame a frame, aplicando normalización y suavizado. El desglose detallado de estas características, incluyendo los puntos clave y sus coordenadas, se presenta en la Tabla \ref{tab:mediapipe_features_styled}, las coordenadas X, Y, Z representan la posición en 3D, mientras que V (Visibilidad) índica la confianza en la detección del punto.
 
     \begin{table}[H]
         \centering
@@ -112,7 +112,7 @@ Proceso de Conversión del sistema
 En resumen, los resultados que se esperan ser obtenidos son los siguientes:
 
 \begin{itemize}
-    \item \textbf{Reconocimiento de Señas Estáticas:} El sistema se enfocará en el reconocimiento preciso de un conjunto predefinido de señas estáticas de detención dentro de la Lengua de Señas Mexicana (LSM).
+    \item \textbf{Reconocimiento de Señas Estáticas:} El sistema se enfocará en el reconocimiento preciso de un conjunto predefinido de señas estáticas de detención dentro de la Lengua de Señas Mexicana (LSM). [\textit{se trabajaron tantos señas estáticas como dinámicas}]
     \item \textbf{Ambiente Controlado:} El sistema funcionará de manera óptima en un ambiente interior sin incidencia directa de luz solar, para garantizar la calidad de la captura de imágenes por la cámara y la API de hand tracking.
     \item \textbf{Configuraciones Manuales:} Se deberá contar con configuraciones manuales otorgadas por la API de hand tracking, las cuales constituyen una característica importante, como la posición de manos y los dedos.
     \item \textbf{Señas de Convención:} Existe una similitud léxica alrededor del país de 80\% a 90\%, esto quiere decir que existe una variación dialectal, de acuerdo con la región del país, lo que se buscará es solo utilizar señas como convención por la mayoría de sordos \cite{ref22}.
@@ -135,7 +135,7 @@ Para los miles de personas que dominan la Lengua de Señas Mexicana (LSM), este 
 
 Los estudios muestran que las personas con hipoacusia que tienen un nivel educativo más alto suelen tener un mayor dominio del español, debido a su acceso a recursos como libros e internet. Sin embargo, la falta de señas para ciertos conceptos limita su capacidad comunicativa, lo que a menudo lleva al uso del deletreo de señas en lugar del español signado. Esta limitación puede generar dificultades en la comprensión de información compleja o técnica, como la que se maneja en el ámbito médico.
 
-Este trabajo busca desarrollar un sistema de diccionario de palabras en LSM que permita la traducción de señas a palabras en español, apoyado por la tecnología actual \cite{ref17}. Los diccionarios no solo proveen información lingüística, sino que también desempeñan funciones sociales significativas, como fomentar la identidad cultural y cohesionar a la comunidad \cite{ref18}. Al facilitar la comunicación y el acceso a vocabulario específico en LSM, este proyecto busca reducir la dependencia del deletreo para conceptos técnicos o complejos. Esta facilitación es fundamental para promover una interacción más clara de las personas sordas en contextos especializados, como el ámbito de la salud.
+Este trabajo busca desarrollar un sistema de diccionario de palabras en LSM que permita la traducción de señas a palabras en español con su respectiva seña en LSM, apoyado por la tecnología actual \cite{ref17}. Los diccionarios no solo proveen información lingüística, sino que también desempeñan funciones sociales significativas, como fomentar la identidad cultural y cohesionar a la comunidad \cite{ref18}. Al facilitar la comunicación y el acceso a vocabulario específico en LSM, este proyecto busca reducir la dependencia del deletreo para conceptos técnicos o complejos. Esta facilitación es fundamental para promover una interacción más clara de las personas sordas en contextos especializados, como el ámbito de la salud.
 
 La función primordial y más conocida de un diccionario es proveer información sobre una lengua, un diccionario además conlleva otras funciones sociales como dar identidad, función histórica y cohesión de la sociedad \cite{ref19}. En el caso de la LSM, un diccionario o sistema de traducción puede ser una herramienta clave para preservar y difundir esta lengua, fortaleciendo los lazos entre los miembros de la comunidad sorda.
 \section{Metodologia}
