@@ -1,15 +1,15 @@
 \chapter{Pruebas y Validación del Módulo de Clasificación}
 \label{chap:pruebas}
 
-Este capítulo describe la \textbf{metodología y el diseño experimental} empleados para la evaluación del rendimiento del Módulo de Clasificación de Secuencias de LSM. La validación se centra en establecer el protocolo para probar la precisión del modelo de \textit{Deep Learning} (LSTM) en las 29 palabras objetivo, utilizando el aplicativo web \textbf{Flask} y el servicio \texttt{trainer}.
+Este capítulo describe la \textbf{metodología y el diseño experimental} empleados para la evaluación del rendimiento del Módulo de Clasificación de Secuencias de LSM. La validación se centra en establecer el protocolo para probar la precisión del modelo de \textit{Deep Learning} (LSTM) en las 29 palabras objetivo, utilizando el aplicativo móvil y el servicio \texttt{trainer}.
 
 \section{Metodología de Pruebas: Adquisición y Diseño del \textit{Test Set}}
 
-La prueba del sistema se fundamenta en la adquisición de un \textbf{Conjunto de Pruebas (\textit{Test Set})} independiente, capturado mediante el aplicativo web Flask para garantizar la fidelidad de los datos.
+La prueba del sistema se fundamenta en la adquisición de un \textbf{Conjunto de Pruebas (\textit{Test Set})} independiente, capturado mediante el aplicativo móvil para garantizar la fidelidad de los datos.
 
 \subsection{Protocolo de Captura de Secuencias de Prueba}
 
-La adquisición de las muestras de prueba se ejecuta a través de la interfaz web, donde el \textit{frontend} utiliza \textbf{MediaPipe Tasks Vision} para la extracción de características en tiempo real.
+La adquisición de las muestras de prueba se ejecuta a través de la interfaz de la app móvil, donde el \textit{frontend} utiliza \textbf{MediaPipe} para la extracción de características en tiempo real.
 
 \begin{enumerate}
     \item \textbf{Adquisición de \textit{Landmarks}:} El usuario ejecuta una de las 29 señas frente a la cámara. La aplicación registra una secuencia de \textit{frames}, donde cada \textit{frame} contiene:
@@ -18,7 +18,7 @@ La adquisición de las muestras de prueba se ejecuta a través de la interfaz we
         \item \textbf{Manos (42 puntos):} Coordenadas ($X, Y, Z$) para los 21 \textit{landmarks} de cada mano.
     \end{itemize}
     \item \textbf{Criterio de Cierre de Muestra:} La captura finaliza automáticamente al detectar un periodo prolongado de estabilidad, asegurando que solo se registren secuencias completas y bien ejecutadas de la seña, lo que garantiza la calidad del conjunto de validación.
-    \item \textbf{Almacenamiento Persistente:} La secuencia de \textit{landmarks} se transfiere al \textit{backend} (Flask). Este la almacena como un \textit{dataset} en un archivo \textbf{HDF5} (\texttt{.h5}) y registra la \textit{metadata} (\textit{Ground Truth}, duración, y número de \textit{frames}) en \textbf{PostgreSQL}.
+    \item \textbf{Almacenamiento Persistente:} La secuencia de \textit{landmarks} se transfiere al \textit{backend} (Flask). Este la almacena como un \textit{dataset} en un archivo \textbf{HDF5} (\texttt{.h5}) y registra la \textit{metadata} (\textit{Ground Truth}, duración, y número de \textit{frames}).
     \item \textbf{Condiciones Físicas Controladas:} Para garantizar la replicabilidad del \textit{Test Set}, todas las pruebas de validación se realizaron bajo un entorno físico controlado y uniforme:
     \begin{itemize}
         \item \textbf{Iluminación:} El entorno se mantuvo \textbf{bien iluminado} (luz natural y artificial constante).
@@ -54,23 +54,23 @@ Para obtener el resultado final de la clasificación se realizan los siguientes 
 
 Para determinar la calidad y robustez del algoritmo, se utilizan las siguientes métricas, las cuales son calculadas comparando la palabra predicha contra la etiqueta verdadera de la muestra:
 
+% Agrega esto al preámbulo: \usepackage{tabularx}
 \begin{table}[H]
     \centering
     \caption{Métricas de Eficacia utilizadas para la Validación del Algoritmo.}
     \label{tab:metricas_eficacia}
-    \begin{tabular}{|l|l|l|}
+    \begin{tabularx}{\textwidth}{|l|X|l|} % 'X' hará que la columna central se expanda
         \hline
         \textbf{Métrica} & \textbf{Propósito en el Proyecto} & \textbf{Fórmula} \\
         \hline
-        \textbf{Precisión (\textit{Accuracy}) Global} & Mide el rendimiento general del clasificador. & $\frac{\text{Aciertos Totales}}{\text{Muestras Totales}}$ \\
+        \textbf{Precisión Global} & Mide el rendimiento general del clasificador. & $\frac{\text{Aciertos Totales}}{\text{Muestras Totales}}$ \\
         \hline
-        \textbf{F1-Score por Clase} & \textbf{Métrica Principal de Validación.} Mide el equilibrio entre Precisión y Recall, robusta para posibles desequilibrios en el \textit{Test Set}. & $2 \cdot \frac{\text{Precisión} \cdot \text{Recall}}{\text{Precisión} + \text{Recall}}$ \\
+        \textbf{F1-Score por Clase} & \textbf{Métrica Principal.} Equilibrio entre Precisión y Recall, robusta para desequilibrios. & $2 \cdot \frac{\text{Precisión} \cdot \text{Recall}}{\text{Precisión} + \text{Recall}}$ \\
         \hline
-        \textbf{Pérdida (\textit{Loss}) de Validación} & Verifica la \textbf{convergencia} y la ausencia de sobreajuste (\textit{overfitting}) en el modelo durante el entrenamiento. & Error Categórico (Cross-Entropy) \\
+        \textbf{Pérdida de Val.} & Verifica la convergencia y la ausencia de \textit{overfitting}. & Cross-Entropy \\
         \hline
-    \end{tabular}
+    \end{tabularx}
 \end{table}
-
 \paragraph{Diagnóstico de Errores (Matriz de Confusión)}
 El análisis detallado de la \textbf{Matriz de Confusión} (generada a partir del reporte \texttt{report\_v1.json}) se convierte en la herramienta de diagnóstico fundamental. Permite visualizar las predicciones erróneas e identificar las clases que el modelo confunde (por ejemplo, 'virus' vs. 'infección'), lo cual es la clave para entender la baja precisión global (\mathbf{64.09\%}) mencionada en el Capítulo \ref{chap:resultados}.
 

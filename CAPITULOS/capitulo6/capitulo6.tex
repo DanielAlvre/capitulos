@@ -62,36 +62,38 @@ aws dynamodb create-table \
 Los datos iniciales para los roles, usuarios y el catálogo de señas fueron cargados utilizando operaciones de escritura por lotes (\texttt{batch-write-item} para el catálogo de señas) y elementos individuales (\texttt{put-item} para roles y usuarios iniciales) desde archivos de formato JSON.
 
 \subsection{Gestión de Identidad y Seguridad (IAM)}
-Se implementó el principio de \textit{menor privilegio} mediante roles de ejecución IAM. El rol \texttt{lambda-execution-role} centraliza los permisos necesarios para acceder a DynamoDB y S3, minimizando la superficie de ataque. El detalle de la política se muestra en el fragmento de código de infraestructura a continuación.
+\label{subsec:iam} % <--- Etiqueta para la subsección
+
+Se implementó el principio de \textit{menor privilegio} mediante roles de ejecución IAM. El rol \texttt{lambda-execution-role} centraliza los permisos necesarios para acceder a DynamoDB y S3, minimizando la superficie de ataque. El detalle de la política se muestra en el fragmento de código de infraestructura del Listing \ref{lst:role_lambda}.
 
 \begin{codebox}{Fragmento del template para rol de ejecución Lambda (\texttt{roleLambda.yaml})}
-    \begin{lstlisting}[language=yaml, caption={Fragmento del template para rol de ejecución Lambda}]
+    \begin{lstlisting}[language=yaml, caption={Fragmento del template para rol de ejecución Lambda}, label={lst:role_lambda}] % <--- Agregamos el label aquí
 Policies:
-  - PolicyName: lambda-custom-policy
-    PolicyDocument:
-      Version: "2012-10-17"
-      Statement:
-        - Effect: Allow
-          Action:
-            - dynamodb:GetItem
-            - dynamodb:PutItem
-            - dynamodb:UpdateItem
-            - dynamodb:DeleteItem
-            - dynamodb:Query
-            - dynamodb:Scan
-          Resource:
-            - !Sub 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/Roles'
-            - !Sub 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/Usuarios'
-            - !Sub 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/Senas'
-        - Effect: Allow
-          Action:
-            - s3:PutObject
-            - s3:GetObject
-            - s3:DeleteObject
-            - s3:ListBucket
-          Resource:
-            - !Sub 'arn:aws:s3:::${BucketName}/*'
-            - !Sub 'arn:aws:s3:::${BucketName}'
+  - PolicyName: lambda-custom-policy
+    PolicyDocument:
+      Version: "2012-10-17"
+      Statement:
+        - Effect: Allow
+          Action:
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+            - dynamodb:Query
+            - dynamodb:Scan
+          Resource:
+            - !Sub 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/Roles'
+            - !Sub 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/Usuarios'
+            - !Sub 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/Senas'
+        - Effect: Allow
+          Action:
+            - s3:PutObject
+            - s3:GetObject
+            - s3:DeleteObject
+            - s3:ListBucket
+          Resource:
+            - !Sub 'arn:aws:s3:::${BucketName}/*'
+            - !Sub 'arn:aws:s3:::${BucketName}'
     \end{lstlisting}
 \end{codebox}
 
