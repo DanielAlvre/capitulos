@@ -26,10 +26,10 @@ La arquitectura administrativa se compone de tres servicios principales, gestion
 La persistencia de los datos se realiza en \textbf{Amazon DynamoDB}, un motor de base de datos \textbf{NoSQL} de tipo clave-valor. Esta elección fue estratégica debido a la necesidad de \textbf{baja latencia} para las consultas de la API y la \textbf{flexibilidad del esquema} requerida para el Catálogo de Señas. Se utilizó el modelo de facturación \textbf{On-Demand} (\texttt{PAY\_PER\_REQUEST}), garantizando la eliminación del aprovisionamiento de capacidad fija y optimizando el costo.
 
 \subsection{Creación de Tablas y Esquemas}
-El proceso de creación de tablas se automatizó mediante \textbf{AWS CLI}, asegurando la consistencia del esquema y la configuración para las tres entidades principales del sistema.
+El proceso de creación de tablas se automatizó mediante \textbf{AWS CLI}, asegurando la consistencia del esquema y la configuración para las tres entidades principales del sistema. La creación de la tabla para los roles se detalla en el Listing \ref{lst:aws_cli_roles}.
 
 \begin{codebox}{Creación de tabla DynamoDB: Roles}
-    \begin{lstlisting}[language=bash, caption={Creación de tabla DynamoDB: Roles}]
+    \begin{lstlisting}[language=bash, caption={Creación de tabla DynamoDB: Roles}, label={lst:aws_cli_roles}]
 aws dynamodb create-table \
   --table-name Roles \
   --attribute-definitions AttributeName=_id,AttributeType=S \
@@ -38,8 +38,10 @@ aws dynamodb create-table \
     \end{lstlisting}
 \end{codebox}
 
+Asimismo, la configuración para la tabla de usuarios se muestra en el Listing \ref{lst:aws_cli_usuarios}.
+
 \begin{codebox}{Creación de tabla DynamoDB: Usuarios}
-    \begin{lstlisting}[language=bash, caption={Creación de tabla DynamoDB: Usuarios}]
+    \begin{lstlisting}[language=bash, caption={Creación de tabla DynamoDB: Usuarios}, label={lst:aws_cli_usuarios}]
 aws dynamodb create-table \
   --table-name Usuarios \
   --attribute-definitions AttributeName=_id,AttributeType=S \
@@ -48,8 +50,10 @@ aws dynamodb create-table \
     \end{lstlisting}
 \end{codebox}
 
+Finalmente, la tabla para el catálogo de señas se define según el comando del Listing \ref{lst:aws_cli_senas}.
+
 \begin{codebox}{Creación de tabla DynamoDB: Senas}
-    \begin{lstlisting}[language=bash, caption={Creación de tabla DynamoDB: Senas}]
+    \begin{lstlisting}[language=bash, caption={Creación de tabla DynamoDB: Senas}, label={lst:aws_cli_senas}]
 aws dynamodb create-table \
   --table-name Senas \
   --attribute-definitions AttributeName=_id,AttributeType=N \
@@ -67,7 +71,7 @@ Los datos iniciales para los roles, usuarios y el catálogo de señas fueron car
 Se implementó el principio de \textit{menor privilegio} mediante roles de ejecución IAM. El rol \texttt{lambda-execution-role} centraliza los permisos necesarios para acceder a DynamoDB y S3, minimizando la superficie de ataque. El detalle de la política se muestra en el fragmento de código de infraestructura del Listing \ref{lst:role_lambda}.
 
 \begin{codebox}{Fragmento del template para rol de ejecución Lambda (\texttt{roleLambda.yaml})}
-    \begin{lstlisting}[language=yaml, caption={Fragmento del template para rol de ejecución Lambda}, label={lst:role_lambda}] % <--- Agregamos el label aquí
+    \begin{lstlisting}[language=yaml, caption={Fragmento del template para rol de ejecución Lambda}, label={lst:role_lambda}]
 Policies:
   - PolicyName: lambda-custom-policy
     PolicyDocument:
@@ -101,10 +105,11 @@ Policies:
 El despliegue se orquestó utilizando el \textit{framework} \textbf{AWS SAM} a partir del archivo \texttt{template.yaml}.
 
 \subsection{Configuración de Funciones Lambda con SAM}
-Cada función se implementó en un \texttt{Resource} separado para mantener la modularidad.
+\vspace{-0.9em}
+Cada función se implementó en un \texttt{Resource} separado para mantener la modularidad. La definición para la función de autenticación se presenta en el Listing \ref{lst:sam_login}.
 
 \begin{codebox}{Fragmento del template para \texttt{loginFunction} (Corregido: consistencia de nombre)}
-    \begin{lstlisting}[language=yaml, caption={Fragmento del template para loginFunction}]
+    \begin{lstlisting}[language=yaml, caption={Fragmento del template para loginFunction}, label={lst:sam_login}]
 Resources:
   LoginApiGateway:
     Type: AWS::Serverless::Api
@@ -131,8 +136,10 @@ Resources:
     \end{lstlisting}
 \end{codebox}
 
+Por otro lado, la configuración para la gestión de datos (CRUD) se detalla en el Listing \ref{lst:sam_crud}.
+
 \begin{codebox}{Fragmento del template para \texttt{CrudFunction}}
-    \begin{lstlisting}[language=yaml, caption={Fragmento del template para CrudFunction}]
+    \begin{lstlisting}[language=yaml, caption={Fragmento del template para CrudFunction}, label={lst:sam_crud}]
 CrudApiGateway:
   Type: AWS::Serverless::Api
   Properties:
@@ -158,8 +165,10 @@ CrudFunction:
     \end{lstlisting}
 \end{codebox}
 
+Finalmente, la administración de archivos en S3 se configura según el Listing \ref{lst:sam_s3}.
+
 \begin{codebox}{Fragmento del template para \texttt{S3BucketManager}}
-    \begin{lstlisting}[language=yaml, caption={Fragmento del template para S3BucketManager}]
+    \begin{lstlisting}[language=yaml, caption={Fragmento del template para S3BucketManager}, label={lst:sam_s3}]
 S3ApiGateway:
   Type: AWS::Serverless::Api
   Properties:
@@ -238,18 +247,19 @@ A continuación se listan las rutas y operaciones principales expuestas para la 
 El flujo estándar para el despliegue de la aplicación Serverless incluye el uso de la interfaz de línea de comandos \textbf{SAM CLI}.
 
 \begin{enumerate}
-    \item \textbf{Construcción:} Se empaquetan las dependencias locales y se preparan los artefactos para el despliegue.
+    \item \textbf{Construcción:} Se empaquetan las dependencias locales y se preparan los artefactos para el despliegue mediante el comando mostrado en el Listing \ref{lst:sam_build}.
 
     \begin{codebox}{SAM Build}
-        \begin{lstlisting}[language=bash, caption={SAM Build}]
+        \begin{lstlisting}[language=bash, caption={SAM Build}, label={lst:sam_build}]
 rm -rf .aws-sam/
 sam build
         \end{lstlisting}
     \end{codebox}
 
-    \item \textbf{Despliegue:} Se sincronizan los artefactos con S3 y se actualiza el stack de CloudFormation.
+    \item \textbf{Despliegue:} Se sincronizan los artefactos con S3 y se actualiza el stack de CloudFormation, como se observa en el Listing \ref{lst:sam_deploy}.
+
     \begin{codebox}{SAM Deploy}
-        \begin{lstlisting}[language=bash, caption={SAM Deploy}]
+        \begin{lstlisting}[language=bash, caption={SAM Deploy}, label={lst:sam_deploy}]
 sam deploy
         \end{lstlisting}
     \end{codebox}
@@ -301,6 +311,7 @@ fun finalizeSequence(): List<FloatArray> {
 \end{codebox}
 
 \section{Implementación del Subsistema de Entrenamiento (MLOps)}
+\vspace{-0.5cm}
 El entrenamiento de modelos profundos se separa de la arquitectura Serverless administrativa debido a las limitaciones de tiempo de ejecución y recursos de AWS Lambda. Se implementa una \textbf{arquitectura híbrida de orquestación (MLOps)} que utiliza AWS Systems Manager (SSM) y Amazon EC2 (con GPU).
 
 \subsection{Configuración de la Función Orquestadora (AWS SAM)}
