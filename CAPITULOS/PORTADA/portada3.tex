@@ -1,0 +1,67 @@
+% --- Página de Firmas con Margen Corregido ---
+\newpage
+\thispagestyle{empty}
+
+% Definición del color guinda institucional
+\definecolor{guindaIPN}{RGB}{104, 36, 68}
+
+\begin{tikzpicture}[remember picture, overlay]
+    % El margen ahora se dibuja usando las esquinas reales de la página
+    % North West (Arriba Izquierda) a South East (Abajo Derecha)
+    \draw[line width=1.5pt, color=guindaIPN]
+    ([shift={(1.5cm,-1.5cm)}]current page.north west)
+    rectangle
+    ([shift={(-1.5cm,1.5cm)}]current page.south east);
+
+    % Segunda línea decorativa más delgada
+    \draw[line width=0.5pt, color=guindaIPN]
+    ([shift={(1.65cm,-1.65cm)}]current page.north west)
+    rectangle
+    ([shift={(-1.65cm,1.65cm)}]current page.south east);
+\end{tikzpicture}
+
+% Contenido del documento
+\begin{center}
+    \begin{minipage}[c]{0.45\textwidth}
+        \begin{flushleft}
+            \includegraphics[height=1.8cm]{CAPITULOS/PORTADA/upiita.jpg}
+        \end{flushleft}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{0.45\textwidth}
+        \begin{flushright}
+            \includegraphics[height=1.8cm]{CAPITULOS/PORTADA/ipn2.jpg} \\
+            \vspace{0.2cm}
+            \large \textbf{Autorización de uso de obra}
+        \end{flushright}
+    \end{minipage}
+\end{center}
+
+\vspace{0.2cm}
+
+\noindent \textbf{Instituto Politécnico Nacional} \\
+\noindent \textbf{P r e s e n t e}
+
+\vspace{0.5cm}
+
+\begin{spacing}{1.2}
+    \noindent Bajo protesta de decir verdad el que suscribe \ul{\textbf{Jose Daniel Alvarez Ramos}} (se anexa copia simple de identificación oficial), manifiesto ser autor (a) y titular de los derechos morales y patrimoniales de la obra titulada \ul{\textbf{Sistema de reconocimiento de señas de detección de palabras
+    para el lenguaje de señas LSM}} en adelante ``La Tesis'' y de la cual se adjunta copia, por lo que por medio del presente y con fundamento en el artículo 27 fracción II, inciso b) de la Ley Federal del Derecho de Autor, otorgo a el Instituto Politécnico Nacional, en adelante El IPN, autorización no exclusiva para comunicar y exhibir públicamente total o parcialmente en medios digitales, Plataforma de la Dirección de Bibliotecas del IPN y/o consulta directa en la Coordinación de Biblioteca de la UPIITA ``La Tesis'' por un periodo de 5 años contado a partir de la fecha de la presente autorización, dicho periodo se renovará automáticamente en caso de no dar aviso expreso a ``El IPN'' de su terminación.
+\end{spacing}
+
+\vspace{0.6cm}
+\begin{spacing}{1.2}
+\noindent En virtud de lo anterior, ``El IPN'' deberá reconocer en todo momento mi calidad de autor de ``La Tesis''. Adicionalmente, y en mi calidad de autor y titular de los derechos morales y patrimoniales de ``La Tesis'', manifiesto que la misma es original y que la presente autorización no contraviene ninguna otorgada por el suscrito respecto de ``La Tesis'', por lo que deslindo de toda responsabilidad a El IPN en caso de que el contenido de ``La Tesis'' o la autorización concedida afecte o viole derechos autorales, industriales, secretos industriales, convenios o contratos de confidencialidad o en general cualquier derecho de propiedad intelectual de terceros y asumo las consecuencias legales y económicas de cualquier demanda o reclamación que puedan derivarse del caso.
+\end{spacing}
+\vspace{0.5cm}
+
+\centering \noindent \textit{México, CDMX, a 5 de enero de 2025.}
+
+\vspace{0.5cm}
+
+\begin{center}
+    \textbf{Atentamente}  \\
+    \vspace{2.5cm}
+    \rule{7cm}{0.4pt} \\
+    \textbf{Jose Daniel Alvarez Ramos}
+\end{center}
