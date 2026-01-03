@@ -1,12 +1,23 @@
-\contentsline {myequations}{\numberline {2.0}Media aritmética}{19}{}%
-\contentsline {myequations}{\numberline {2.1}Varianza}{19}{}%
-\contentsline {myequations}{\numberline {2.2}Desviación estándar}{19}{}%
-\contentsline {myequations}{\numberline {2.3}Convolucion Definición general}{24}{}%
-\contentsline {myequations}{\numberline {2.4}Convolucion Discreta}{24}{}%
-\contentsline {myequations}{\numberline {2.5}Convolución en 2 Dimensiones}{25}{}%
-\contentsline {myequations}{\numberline {2.6}Función de activacion Sigmoide}{27}{}%
-\contentsline {myequations}{\numberline {2.7}Función de activacion (tanh)}{27}{}%
-\contentsline {myequations}{\numberline {2.8}Definición tanh}{28}{}%
-\contentsline {myequations}{\numberline {2.9}Función de activacion Relu}{28}{}%
-\contentsline {myequations}{\numberline {2.10} Función de activación Softmax}{29}{}%
-\contentsline {myequations}{\numberline {2.11} Matriz A}{29}{}%
+\contentsline {myequations}{\numberline {2.0}Ecuación Convolucion Continua}{29}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.1}Ecuación Convolucion Discreta}{29}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.2}Ecuación Convolución en 2 Dimensiones}{30}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.3}Ecuación de la Puerta de Entrada}{31}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.4}Ecuación de la Puerta de Olvido}{31}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.5}Ecuación de la Puerta de Salida}{31}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.6}Ecuación del Candidato al Estado de la Celda}{31}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.7}Ecuación del Estado de la Celda}{31}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.8}Ecuación del Estado Oculto}{31}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.9}Ecuación 4. Función de activación Sigmoide}{35}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.10}Ecuación 5. Función de activación (tanh) por partes}{36}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.11}Ecuación 6. Definición tanh}{36}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.12}Ecuación 7. Función de activación ReLU}{37}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.13}Ecuación 8. Función de activación Softmax}{37}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.14} Matriz A}{38}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.15}Ecuación Media aritmética}{42}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.16}Ecuación Varianza}{42}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.17}Ecuación Desviación estándar}{42}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.18}Ecuación Accuracy}{43}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.19}Ecuación Categorical Cross-Entropy (Loss)}{43}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.20}Ecuación Precisión}{43}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.21}Ecuación Recall}{43}{equ.0\c@equ }%
+\contentsline {myequations}{\numberline {2.22}Ecuación F1-score}{44}{equ.0\c@equ }%
