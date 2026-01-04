@@ -130,11 +130,16 @@
 % --- Configuración de encabezados y pies de página ---
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[LO]{\nouppercase{\leftmark}}
-\fancyhead[RE]{\nouppercase{\rightmark}}
 \fancyfoot[CE,CO]{\thepage}
-\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
+
+% Redefinir el estilo plain para que también tenga el número de página abajo al centro
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[CE,CO]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
 
 % --- Ajustar el desplazamiento del encabezado ---
 \fancyheadoffset[L]{3cm}  % Ajusta el valor al margen izquierdo
@@ -170,6 +175,7 @@
 \addbibresource{CAPITULOS/referencias/referencias.bib}  % Ruta correcta del archivo .bib
 
 \begin{document}
+\pagenumbering{arabic} % Asegurar numeración arábiga desde el principio
 
 % Portada
 \include{CAPITULOS/PORTADA/portada}
